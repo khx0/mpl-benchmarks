@@ -3,19 +3,20 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-03-19
+# date: 2018-03-21
 # file: plot_minimal.py
 ##########################################################################################
 
 """
 (Minimal) Benchmark matplotlib script illustrating how to set a lower and upper limit for the 
-minor tick locations in logarithmic scaling independent of the x axis limits.
+minor tick locations in logarithmic axis scaling independent of the axis limits.
+This script shows how to do this for a logarithmic x-axis.
 Version A uses the default behavior from the ticker.LogLocator class
 whereas version B manually crops the minor ticks, such that the newly chosen minor tick 
 locations become independent from the ax1.set_xlim(xmin, xmax) satement. 
-For aesthetic reasons, I often prever to avoid minor ticks towards
+For aesthetic reasons I often prefer not to have minor tick marks towards
 both the left and right margin of a chosen log-axis. 
-In general typically want to control the range for ticks indepedent of the view range,
+In general, I typically want to control the range for ticks indepedent of the view range,
 which is straight forward in matplotlibs normal view, but a little more challenging
 in the logarithmic scaling.
 """
