@@ -24,7 +24,7 @@ from matplotlib import gridspec
 from matplotlib import ticker
 
 from mplUtils import getFigureProps
-from mplUtils import get_pcolorCoordinateAxis
+from mplUtils import getPcolorBoxCoordinates
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -240,8 +240,8 @@ if __name__ == '__main__':
     assert zVals.shape == (nSamples_x, nSamples_y), "Error: Shape assertion failed."
     #################################################################################
 
-    xBoxCoords = get_pcolorCoordinateAxis(xVals, 'log')
-    yBoxCoords = get_pcolorCoordinateAxis(yVals)
+    xBoxCoords = getPcolorBoxCoordinates(xVals, 'log')
+    yBoxCoords = getPcolorBoxCoordinates(yVals)
 
     assert xBoxCoords.shape == (nSamples_x + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (nSamples_y + 1,), "Error: Shape assertion failed."

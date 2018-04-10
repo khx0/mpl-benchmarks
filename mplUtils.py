@@ -3,33 +3,12 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-04-09
+# date: 2018-04-10
 # file: mplUtils.py
 ##########################################################################################
 
 import sys
-import time
-import datetime
-import os
-import math
 import numpy as np
-import matplotlib as mpl
-from matplotlib import pyplot as plt
-from matplotlib import rc
-from matplotlib.pyplot import legend
-import matplotlib.colors as colors
-import matplotlib.cm as cm
-from matplotlib import gridspec
-from matplotlib import ticker
-
-mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
-
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
-
-now = datetime.datetime.now()
-now = "%s-%s-%s" %(now.year, str(now.month).zfill(2), str(now.day).zfill(2))
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
@@ -41,7 +20,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def get_pcolorCoordinateAxis(X, type = 'linear'):
+def getPcolorBoxCoordinates(X, type = 'linear'):
     if (type == 'linear'):
         dx = X[1] - X[0]
         Xcoords = np.linspace(X[0] - dx / 2.0, X[-1] + dx / 2.0, len(X) + 1)
