@@ -218,7 +218,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.close()
     return outname
 
-def get_pcolorCoordinateAxis(X, type = 'linear'):
+def getPcolorBoxCoordinates(X, type = 'linear'):
     if (type == 'linear'):
         dx = X[1] - X[0]
         Xcoords = np.linspace(X[0] - dx / 2.0, X[-1] + dx / 2.0, len(X) + 1)
@@ -259,8 +259,8 @@ if __name__ == '__main__':
     assert zVals.shape == (nSamples_x, nSamples_y), "Error: Shape assertion failed."
     #################################################################################
 
-    xBoxCoords = get_pcolorCoordinateAxis(xVals)
-    yBoxCoords = get_pcolorCoordinateAxis(yVals)
+    xBoxCoords = getPcolorBoxCoordinates(xVals)
+    yBoxCoords = getPcolorBoxCoordinates(yVals)
 
     assert xBoxCoords.shape == (nSamples_x + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (nSamples_y + 1,), "Error: Shape assertion failed."
