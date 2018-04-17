@@ -11,7 +11,7 @@ import numpy as np
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
-    True size scaling auxiliary function to setup mpl plots with a desired size.
+    True size scaling auxiliary function to setup mpl plots with a desired size in cm.
     Specify widht and height in cm.
     lFrac = left fraction   in [0, 1]
     rFrac = right fraction  in [0, 1]
@@ -24,7 +24,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     of the desired size, such that the actual plotting canvas has the specified
     target width and height, as provided by the input parameters of this function.
     '''
-    axesWidth = width / 2.54    # convert to inches
+    axesWidth = width / 2.54    # convert to inches (1 inch = 2.54 cm)
     axesHeight = height / 2.54  # convert to inches
     fWidth = axesWidth / (rFrac - lFrac)
     fHeight = axesHeight / (tFrac - bFrac)
@@ -33,6 +33,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
 def getPcolorBoxCoordinates(X, type = 'linear'):
     '''
     Create coordinates for the x and y axis of a pseudo-color 2D plot in matplotlib.
+    This function was tailored to provide the BoxCoordinates with the mpl function
+    pcolor.
     input:
         X = 1D array (i.e. the x or y axis values)
     returns:
