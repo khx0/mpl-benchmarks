@@ -7,6 +7,11 @@
 # file: mpl_fillbetween_example_minimal.py
 ##########################################################################################
 
+'''
+Minimal example to illustrate the use of matplotlib's fillbetween function.
+Here I demonstrate it by filling the area under a normal distribution.
+'''
+
 import sys
 import time
 import datetime

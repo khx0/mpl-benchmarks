@@ -7,6 +7,15 @@
 # file: mpl_fillbetweenx_example_minimal.py
 ##########################################################################################
 
+'''
+Minimal example to illustrate the use of matplotlib's fillbetweenx function.
+Sometimes I use flipped plots to illustrate histograms or distributions, and
+the overall layout of the figure needs a given plot to work with switched
+x and y values. So I basically want the same functionality as the fillbetween
+function, but with exchanged roles for x and y. For this purpose matplotlib's
+fillbetweenx function is the ideal choice.
+'''
+
 import sys
 import time
 import datetime
