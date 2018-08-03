@@ -149,7 +149,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     if (grid):
         ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed', 
                  dashes = [1.0, 0.5])
-        ax1.grid('on')
+        ax1.grid(True)
     ######################################################################################
     # save to file
     if (datestamp):

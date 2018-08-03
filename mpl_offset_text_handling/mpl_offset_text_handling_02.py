@@ -150,9 +150,9 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     if (datestamp):
         outname += '_' + now
     if (savePDF):
-        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True);
+        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if (savePNG):
-        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False);
+        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     
     plt.cla() 
     plt.clf()
