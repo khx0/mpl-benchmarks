@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-04-23
+# date: 2018-08-10
 # file: mpl_fillbetween_example_minimal.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 '''
@@ -73,7 +75,7 @@ if __name__ == '__main__':
     leg.draw_frame(False)
     plt.gca().add_artist(leg)
 
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True);
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
     plt.clf()
     plt.close()
 

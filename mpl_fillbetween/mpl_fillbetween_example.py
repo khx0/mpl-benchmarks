@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-04-22
+# date: 2018-08-10
 # file: mpl_fillbetween_example.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import sys
@@ -173,9 +175,10 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     if (datestamp):
         outname += '_' + now
     if (savePDF):
-        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True);
+        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if (savePNG):
-        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False);
+        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
+    plt.cla()
     plt.clf()
     plt.close()
     return outname
