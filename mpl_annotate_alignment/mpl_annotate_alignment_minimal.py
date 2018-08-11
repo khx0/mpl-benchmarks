@@ -115,6 +115,7 @@ if __name__ == '__main__':
     outname += '_' + now
     f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
     plt.show()
+    plt.cla()
     plt.clf()
     plt.close()
 

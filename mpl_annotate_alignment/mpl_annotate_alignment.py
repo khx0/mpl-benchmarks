@@ -190,6 +190,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
+    plt.cla()
     plt.clf()
     plt.close()
     return None
