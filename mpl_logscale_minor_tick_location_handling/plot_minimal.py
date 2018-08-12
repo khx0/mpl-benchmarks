@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-03-21
+# date: 2018-08-12
 # file: plot_minimal.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 """
@@ -112,7 +114,7 @@ def  plot_minimal_version_B(X, filename):
                                    
     locminArray = locmin.tick_values(1.0e-10, 9.0e-8)
     # use to manually set the range for the minor ticks in logarithmic scaling
-    print locminArray 
+    print(locminArray) 
     ax1.set_xticks(locminArray, minor = True)
     
     ax1.set_xlim(5.0e-13, 2.5e-6)
@@ -130,6 +132,7 @@ def  plot_minimal_version_B(X, filename):
     f.savefig(os.path.join(OUTDIR, filename + '.pdf'), dpi = 300, transparent = True)
     
     # close handles
+    plt.cla()
     plt.clf()
     plt.close()
 
