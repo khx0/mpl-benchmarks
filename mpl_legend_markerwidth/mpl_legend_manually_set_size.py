@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-04-13
+# date: 2018-08-12
 # file: mpl_legend_manually_set_size.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import sys
@@ -51,7 +53,8 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     plt.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
+                  r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)       
     
     ######################################################################################
@@ -154,30 +157,36 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     ######################################################################################
     # grid options
     if (grid):
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', linewidth = 0.4)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
+                 linewidth = 0.4)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', linewidth = 0.2)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', 
+                 linewidth = 0.2)
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
     if (datestamp):
         outname += '_' + now
     if (savePDF): # save to file using pdf backend
-        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True);
+        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if (savePNG):
-        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False);
+        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     if (saveSVG):
         cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
               ' ' + os.path.join(OUTDIR, outname + '.svg')
-        print cmd
+        print(cmd)
         os.system(cmd)
     ######################################################################################
     # close handles
+    plt.cla()
     plt.clf()
     plt.close()
     return outname
  
 if __name__ == '__main__':
+
+    # fix random seed for reproducibility
+    np.random.seed(223456789)
 
     ### create plot data
     nDatapoints = 200

@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-04-13
+# date: 2018-08-12
 # file: mpl_legend_linewidth_minimal.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import sys
@@ -67,6 +69,7 @@ if __name__ == '__main__':
     
     outname += '_' + now
     f.savefig(outname + '.pdf', dpi = 300, transparent = True)
+    plt.cla()
     plt.clf()
     plt.close()
             

@@ -52,7 +52,7 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
         maxExp = np.log10(X[-1])
         Xcoords = np.logspace(minExp - dx / 2.0, maxExp + dx / 2.0, len(X) + 1)
     else:
-        print "Error: Unknown type encountered."
+        print("Error: Unknown type encountered.")
         sys.exit(1)
     return Xcoords
 

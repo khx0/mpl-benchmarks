@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-04-13
+# date: 2018-08-12
 # file: mpl_legend_scatter_linewidth_minimal.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import sys
@@ -21,6 +23,9 @@ now = datetime.datetime.now()
 now = "%s-%s-%s" %(now.year, str(now.month).zfill(2), str(now.day).zfill(2))
 
 if __name__ == '__main__':
+
+    # fix random seed for reproducibility
+    np.random.seed(123456789)
 
     ### create plot data
     nDatapoints = 500
@@ -69,6 +74,7 @@ if __name__ == '__main__':
     
     outname += '_' + now
     f.savefig(outname + '.pdf', dpi = 300, transparent = True)
+    plt.cla()
     plt.clf()
     plt.close()
             
