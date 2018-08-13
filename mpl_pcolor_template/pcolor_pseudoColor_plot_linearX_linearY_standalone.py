@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-04-09
+# date: 2018-08-13
 # file: pcolor_pseudoColor_plot_linearX_linearY_standalone.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import sys
@@ -47,8 +49,9 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
     
-def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, show_cBar, outname, outdir, showlabels,
-    grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
+def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, show_cBar, 
+                outname, outdir, showlabels, grid = False, saveSVG = False, 
+                savePDF = True, savePNG = False, datestamp = True):
             
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -64,7 +67,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
+                  r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)  
     ######################################################################################
     # set up figure
@@ -103,11 +107,12 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     cMap = zColor[0]
     cNorm = mpl.colors.Normalize(vmin = zColor[1], vmax = zColor[2])
     scalarMap = cm.ScalarMappable(norm = cNorm, cmap = cMap)  
-    print "Colormap colornorm limits =", scalarMap.get_clim()
+    print("Colormap colornorm limits =", scalarMap.get_clim())
     ######################################################################################
     # colorbar
     if (show_cBar):
-        # add_axes(left, bottom, width, height) all between [0, 1] relative to the figure size
+        # add_axes(left, bottom, width, height) all between [0, 1] 
+        # relative to the figure size
         cax = f.add_axes([0.82, bFrac, 0.03, (tFrac - bFrac)])
         
         cax.tick_params('both', length = 3.0, width = 0.5, which = 'major')
@@ -165,7 +170,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
             label.set_visible(False)
         ax1.set_xlim(xFormat[1], xFormat[2]) # xmin, xmax
     else:
-        print "Error: Unknown xFormat[0] type encountered."
+        print("Error: Unknown xFormat[0] type encountered.")
         sys.exit(1)
     #####################################################################################
     if (yFormat[0] == 'auto'):
@@ -189,15 +194,17 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
             label.set_visible(False)
         ax1.set_ylim(yFormat[1], yFormat[2]) # xmin, xmax
     else:
-        print "Error: Unknown yFormat[0] type encountered."
+        print("Error: Unknown yFormat[0] type encountered.")
         sys.exit(1)
 
     ######################################################################################
     # grid options
     if (grid):
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', linewidth = 0.4)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
+                 linewidth = 0.4)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', linewidth = 0.2)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', 
+                 linewidth = 0.2)
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
@@ -210,10 +217,11 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     if (saveSVG):
         cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
               ' ' + os.path.join(OUTDIR, outname + '.svg')
-        print cmd
+        print(cmd)
         os.system(cmd)
     ######################################################################################
     # close handles
+    plt.cla()
     plt.clf()
     plt.close()
     return outname
@@ -228,7 +236,7 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
         maxExp = np.log10(X[-1])
         Xcoords = np.logspace(minExp - dx / 2.0, maxExp + dx / 2.0, len(X) + 1)
     else:
-        print "Error: Unknown type encountered."
+        print("Error: Unknown type encountered.")
         sys.exit(1)
     return Xcoords
 
@@ -252,9 +260,9 @@ if __name__ == '__main__':
             zVals[i, j] = 0.2 * xVals[i]
 
     #################################################################################
-    print "xVals.shape =", xVals.shape
-    print "yVals.shape =", yVals.shape
-    print "zVals.shape =", zVals.shape
+    print("xVals.shape =", xVals.shape)
+    print("yVals.shape =", yVals.shape)
+    print("zVals.shape =", zVals.shape)
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nSamples_x, nSamples_y), "Error: Shape assertion failed."
     #################################################################################
