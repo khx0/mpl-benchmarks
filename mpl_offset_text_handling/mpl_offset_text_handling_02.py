@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-08-03
+# date: 2018-08-13
 # file: mpl_offset_text_handling_02.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import time
@@ -57,7 +59,8 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
+                  r'\usepackage{amsmath}']}
     plt.rcParams.update(fontparams)
 
     ######################################################################################
@@ -120,7 +123,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
         
     
     ######################################################################################
-    # OFFSET TEXT HANDLING
+    # offset text handling
     # Comment: In this solution I turn off the automatically provided offset text
     # and manually annotate instead. One needs to be careful to get the manual
     # annotation right as soon as the data changes.

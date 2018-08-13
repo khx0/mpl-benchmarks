@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-08-03
+# date: 2018-08-13
 # file: mpl_offset_text_handling_01.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import time
@@ -121,7 +123,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
 
     ######################################################################################        
     ######################################################################################
-    # OFFSET TEXT HANDLING
+    # offset text handling
     # Comment: In this solution I use the provided offset together with
     # the ScalarFormatter to obtain it in the nicer math text mode.
     mf = mpl.ticker.ScalarFormatter(useMathText = True)

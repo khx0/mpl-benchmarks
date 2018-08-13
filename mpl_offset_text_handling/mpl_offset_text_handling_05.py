@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-08-03
+# date: 2018-08-13
 # file: mpl_offset_text_handling_05.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import time
@@ -57,7 +59,8 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
+                  r'\usepackage{amsmath}']}
     plt.rcParams.update(fontparams)
 
     ######################################################################################
@@ -120,7 +123,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
         
     ######################################################################################
     ######################################################################################
-    # OFFSET TEXT HANDLING
+    # offset text handling
     ax1 = plt.gca()
     ax1.ticklabel_format(axis = 'y', style = 'sci', scilimits = (0, 2))    
     
@@ -159,7 +162,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
                  dashes = [1.0, 0.5])
         ax1.grid(True)
     ######################################################################################
-    # SAVE TO FILE
+    # save to file
     if (datestamp):
         outname += '_' + now
     if (savePDF):
