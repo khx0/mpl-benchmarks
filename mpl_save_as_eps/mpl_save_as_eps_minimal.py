@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-05-18
+# date: 2018-08-13
 # file: mpl_save_as_eps_minimal.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import time
@@ -68,6 +70,7 @@ if __name__ == '__main__':
     f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
     f.savefig(os.path.join(OUTDIR, outname) + '.eps', dpi = 600, format = 'eps')
     plt.show()
+    plt.cla()
     plt.clf()
     plt.close()
 
