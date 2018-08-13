@@ -3,8 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-04-11
+# date: 2018-08-13
 # file: mpl_manually_set_axis_zorder_minimal.py
+# tested with python 2.7.15 in conjunction with mpl version 2.2.2
+# tested with python 3.7.0  in conjunction with mpl version 2.2.2
 ##########################################################################################
 
 import time
@@ -94,8 +96,10 @@ if __name__ == '__main__':
     ax1.set_xlim(-0.05, 1.05)              
     
     outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True);
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
     plt.show()
+    
+    plt.cla()
     plt.clf()
     plt.close()
 
