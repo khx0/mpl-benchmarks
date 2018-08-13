@@ -6,8 +6,11 @@ to collect examples that I frequently reuse.
 For some cases I provide full and minimal versions of the same plotting case.
 The full version shows the custom version, how I use them, whilst the minimal
 version is meant to be a minimal requirement python script that focuses on
-the single issue, that I wish to highlight, with out further ado.
+the single issue that I wish to highlight, with out further ado.
 
-As of 2018-08 I am testing all examples using both python 2 and python 3.
-They should all work with python 2.7.15 in conjunction with mpl version 2.2.2
-and python 3.7.0  in conjunction with mpl version 2.2.2.
+## Python and matplotlib versions
+All shown examples have been tested both with python 3 (version 3.7.0)
+and python 2 (version 2.7.15). In both cases matplotlib
+version 2.2.2 was used.
+* Python 2.7.15, Matplotlib 2.2.2
+* Python 3.7.0,  Matplotlib 2.2.2
