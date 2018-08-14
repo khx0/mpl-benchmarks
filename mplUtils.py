@@ -56,6 +56,18 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
         sys.exit(1)
     return Xcoords
 
+def getHistogramCoordinates(X, nBins, normed = True):
+
+    hist, bin_edges = np.histogram(X, bins = nBins, normed = normed)
+    bin_centers = (bin_edges[1:] + bin_edges[0:-1]) / 2.0
+    assert hist.shape == bin_centers.shape, "Error: Shape assertion failed."
+    
+    res = np.zeros((nBins, 2))
+    res[:, 0] = bin_centers
+    res[:, 1] = hist
+    
+    return res
+    
 if __name__ == '__main__':
 
     pass
