@@ -10,7 +10,6 @@
 ##########################################################################################
 
 import sys
-sys.path.append('../')
 import time
 import datetime
 import os
