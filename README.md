@@ -13,6 +13,6 @@ the single issue that I wish to highlight, with out further ado.
 ## Python and matplotlib versions
 All shown examples have been tested both with python 3 (version 3.7.0)
 and python 2 (version 2.7.15). In both cases matplotlib
-version 2.2.2 was used.
-* Python 2.7.15, Matplotlib 2.2.2
-* Python 3.7.0,  Matplotlib 2.2.2
+version 2.2.3 was used.
+* Python 2.7.15, Matplotlib 2.2.3
+* Python 3.7.0,  Matplotlib 2.2.3
