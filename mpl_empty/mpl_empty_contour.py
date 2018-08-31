@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-08-27
+# date: 2018-08-31
 # file: mpl_empty_contour.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.2
-# tested with python 3.7.0  in conjunction with mpl version 2.2.2
+# tested with python 2.7.15 in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 2.2.3
 ##########################################################################################
 
 import sys
