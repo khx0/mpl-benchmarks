@@ -8,7 +8,7 @@ how much potential matplotlib has if one goes beyond the defaults.
 For some cases I provide full and minimal versions of the same plotting case.
 The full version shows the custom version, how I use them, whilst the minimal
 version is meant to be a minimal requirement python script that focuses on
-the single issue that I wish to highlight, with out further ado.
+the single issue that I wish to highlight, without further ado.
 
 ## Python and matplotlib versions
 All shown examples have been tested both with python 3 (version 3.7.0)
