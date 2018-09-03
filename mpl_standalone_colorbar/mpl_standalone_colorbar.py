@@ -13,13 +13,8 @@ import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-# from matplotlib import rc
-# from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
-# from matplotlib import gridspec
-# from matplotlib import ticker
-import parula
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -133,8 +128,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
     
     cax = f.add_axes([lFrac, bFrac, (rFrac - lFrac), (tFrac - bFrac)])
     
-    cax.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
-    cax.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
+    cax.tick_params('both', length = 4.5, width = 0.5, which = 'major', pad = 3.0)
+    cax.tick_params('both', length = 3.0, width = 0.25, which = 'minor', pad = 3.0)
     cax.tick_params(axis = 'both', which = 'major', pad = 2)
     
     cb1 = mpl.colorbar.ColorbarBase(cax, 
@@ -172,15 +167,53 @@ if __name__ == '__main__':
     X = np.array([[0, 1]])
        
     cb_label = r'color bar label $\, z$'
-       
+
     outname = Plot(titlestr = '',
                    X = X, 
                    params = [cb_label],
-                   outname = 'mpl_standalone_colorbar_parula',
+                   outname = 'mpl_standalone_colorbar_viridis',
                    outdir = OUTDIR, 
                    pColors = [],
-                   cMap = parula.ParulaColormap(),
+                   cMap = cm.viridis,
                    grid = False)
+
+    outname = Plot(titlestr = '',
+                   X = X, 
+                   params = [cb_label],
+                   outname = 'mpl_standalone_colorbar_plasma',
+                   outdir = OUTDIR, 
+                   pColors = [],
+                   cMap = cm.plasma,
+                   grid = False)
+                   
+    outname = Plot(titlestr = '',
+                   X = X, 
+                   params = [cb_label],
+                   outname = 'mpl_standalone_colorbar_inferno',
+                   outdir = OUTDIR, 
+                   pColors = [],
+                   cMap = cm.inferno,
+                   grid = False)
+                   
+    outname = Plot(titlestr = '',
+                   X = X, 
+                   params = [cb_label],
+                   outname = 'mpl_standalone_colorbar_magma',
+                   outdir = OUTDIR, 
+                   pColors = [],
+                   cMap = cm.magma,
+                   grid = False)
+                   
+    outname = Plot(titlestr = '',
+                   X = X, 
+                   params = [cb_label],
+                   outname = 'mpl_standalone_colorbar_gray',
+                   outdir = OUTDIR, 
+                   pColors = [],
+                   cMap = cm.gray,
+                   grid = False)
+
+
 
 
 
