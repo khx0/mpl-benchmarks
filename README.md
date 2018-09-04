@@ -1,12 +1,11 @@
 # mpl-benchmarks
 Useful matplotlib snippets and plotting routines.
-I routinely wish to adjust all aspects of matplotlib plots and use this repository
-to collect examples that I frequently reuse. In particular I want to illustrate
+I routinely wish to adjust many aspects of matplotlib figures and use this repository
+to collect examples that I frequently reuse. In particular, I want to illustrate
 how much potential matplotlib has if one goes beyond the defaults.
 
-
-For some cases I provide full and minimal versions of the same plotting case.
-The full version shows the custom version, how I use them, whilst the minimal
+For some cases I provide full and minimal versions of the same plotting example.
+The full version shows my highly custom version, how I use them, whilst the minimal
 version is meant to be a minimal requirement python script that focuses on
 the single issue that I wish to highlight, without further ado.
 
