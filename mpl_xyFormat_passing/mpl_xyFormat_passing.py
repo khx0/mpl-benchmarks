@@ -11,19 +11,20 @@
 
 ##########################################################################################
 # xFormat and yFormat are two 6-tuples each for x- and y-format passing to
-# the any given plotting function.
+# any given plotting function.
 # The syntax is the following
 # xFormat = (xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor)
 # yFormat = (ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor)
-# Often I wish to set the x- and y scaling and ticks after a manual inspection
+# Often I wish to set the x- and y-scaling and ticks after a manual inspection
 # of the data. Hence a full automatization with autoscaling is often anyway not
-# always desired, since many plots are simply a lot of individual custom work.
+# always desired for me, since many plots are simply a lot of individual custom work.
 # However, often I wish to reuse a plotting function, and the only thing that
-# needs to be changed is the x-y scaling. Thus using these two 6-tuples is a
+# needs to be changed is the x- and y-scaling. Thus using these two 6-tuples is a
 # convenient way for me to quickly pass this kind of information to
 # any kind of plotting function.
 # By passing xFormat = None to the plotting function, matplotlib's default
-# autoscaling will be used.
+# autoscaling will be used, as illustrated in the first plot function call of 
+# this script.
 ##########################################################################################
 
 import time
