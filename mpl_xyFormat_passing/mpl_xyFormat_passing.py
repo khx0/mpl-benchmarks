@@ -134,10 +134,10 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
     
     # manually set the axis zorder here
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  #ax.spines is a dictionary
+    for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
-    ### legend
+    # set figure legend
     leg = ax1.legend(handlelength = 1.35, 
                      scatterpoints = 1,
                      markerscale = 1.0,
