@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##########################################################################################
 # author: Nikolas Schnellbaecher
-# contact: nikolas.schnellbaecher@bioquant.uni-heidelberg.de
+# contact: khx0@posteo.net
 # date: 2018-09-09
 # file: mpl_multiple_legends.py
 ##########################################################################################
