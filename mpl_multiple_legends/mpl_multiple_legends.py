@@ -38,19 +38,28 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, './')
 
-def getFigureProps(width, height):
+def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
-    Specify widht and height in cm
+    True size scaling auxiliary function to setup mpl plots with a desired size in cm.
+    Specify widht and height in cm.
+    lFrac = left fraction   in [0, 1]
+    rFrac = right fraction  in [0, 1]
+    bFrac = bottom fraction in [0, 1]
+    tFrac = top fraction    in [0, 1]
+    returns:
+        fWidth = figure width
+        fHeight = figure height
+    These figure width and height values can then be used to create a figure instance 
+    of the desired size, such that the actual plotting canvas has the specified
+    target width and height, as provided by the input parameters of this function.
     '''
-    lFrac, rFrac = 0.15, 0.95
-    bFrac, tFrac = 0.15, 0.95
-    axesWidth = width / 2.54 # convert to inches
-    axesHeight = height / 2.54 # convert to inches
+    axesWidth = width / 2.54    # convert to inches (1 inch = 2.54 cm)
+    axesHeight = height / 2.54  # convert to inches
     fWidth = axesWidth / (rFrac - lFrac)
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, Xs, X, params, outname, outdir, pColors,
+def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
     
     mpl.rcParams['xtick.top'] = False
@@ -74,7 +83,8 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors,
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
-        getFigureProps(width = 7.5, height = 6.0)
+        getFigureProps(width = 7.5, height = 6.0, 
+                       lFrac = 0.15, rFrac = 0.95, bFrac = 0.15, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -124,14 +134,11 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors,
                       alpha = 1.0, 
                       linewidth = 0.5, 
                       color = pColors[i], 
-                 zorder = 1)
-                 #label = labels[i])
-                 
+                      zorder = 1)
+        
         pHandles.append(p)
     
-    labels = [r'$\mathcal{A} = 2.5\cdot 10^{-4}$',
-              r'$\mathcal{A} = 1.5\cdot 10^{-4}$',
-              r'$\mathcal{A} = 5 \cdot 10^{-5}$']
+
     
     legLeft = plt.legend(pHandles, labels,
                          loc = 'upper left',
@@ -168,8 +175,8 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors,
                     zorder = 2)
     
     # dummy data for manual scatterpoint legend
-    x = [-10.0]
-    y = [-10.0]
+    x, y = [-10.0], [-10.0]
+
     dummyColor = '#666666'
     ax1.scatter(x, y, 
                 marker = '+', 
@@ -197,10 +204,10 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors,
     
     ######################################################################################
     # legend
-    mpl.rc('legend',**{'fontsize': 9.0})
     leg = ax1.legend(loc = 'upper right',
                      handlelength = 0.1, 
                      scatterpoints = 1,
+                     fontsize = 9.0,
                      ncol = 1)
     leg.draw_frame(False)
     ######################################################################################
@@ -228,7 +235,7 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors,
     plt.cla()
     plt.clf()
     plt.close()
-    return None
+    return outname
 
 if __name__ == '__main__':
         
@@ -259,18 +266,23 @@ if __name__ == '__main__':
     ### call plotting function
          
     pColors = ['k', 'C3', 'C0']
+    
+    labels = [r'$\mathcal{A} = 2.5\cdot 10^{-4}$',
+              r'$\mathcal{A} = 1.5\cdot 10^{-4}$',
+              r'$\mathcal{A} = 5 \cdot 10^{-5}$']
      
-    Plot(titlestr = '', 
-         Xs = Xs, 
-         X = X, 
-         params = amplitudes, 
-         outname = 'mpl_multiple_legends', 
-         outdir = OUTDIR, 
-         pColors = pColors,
-         grid = False, 
-         savePDF = True, 
-         savePNG = False, 
-         datestamp = True)
+    outname = Plot(titlestr = '', 
+                   Xs = Xs, 
+                   X = X, 
+                   params = amplitudes, 
+                   outname = 'mpl_multiple_legends', 
+                   outdir = OUTDIR, 
+                   pColors = pColors,
+                   labels = labels,
+                   grid = False, 
+                   savePDF = True, 
+                   savePNG = False, 
+                   datestamp = True)
 
 
 
