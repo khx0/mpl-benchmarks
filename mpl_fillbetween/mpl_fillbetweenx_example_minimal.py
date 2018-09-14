@@ -67,7 +67,7 @@ if __name__ == '__main__':
     #                                    interpolate=False, *, data = None, **kwargs)
     # [from https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.fill_betweenx.html]
     # as of 2018-08-14
-    # So the first argument is the array with he y coordinates and the second argument 
+    # Above the first argument is the array with the y coordinates and the second argument 
     # is the array with the x coordinates.
     # However, below I first pass the x-coordinates and then the y-coordinates, since
     # I consider a normal x-y-plot turned by 90 degree and then flipped along 
