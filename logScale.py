@@ -37,6 +37,21 @@ def getLogScalePadding(xminData, xmaxData, paddingFraction):
     that the padding between xmaxData and xmax will be 4 percent
     of the data extend (dataWidth). Likewise the padding between xmin and xminData will
     equally be 4 percent of the dataWidth (measured in log-10 decades).
+
+	### Math description
+	Given the minimal and maximal data extend, we define the data width (extent of the data)
+	as
+	$\Delta w = \log_{10}(xmaxData / xminData) = \log_{10}(xmaxData) - log_{10}(xminData)$
+	For the padding along a given axis to the right, we want the following equation to hold
+	$\log_{10}(xmax) - \log_{10}(xmaxData) = pF * \Delta w$, where pF is the padding Fraction, and
+	xmax the yet unknown maximal value, that we wish to determine. Isolating this last
+	equation for xmax simply gives:
+	$xmax = xmaxData \cdot 10^{pF * \Delta w}$
+	Similarly for the left padding, the governing equation reads
+	$\log_{10}(xminData) - \log_{10}(xmin) = pF * \Delta w$,
+	assuming an equal padding fraction to the left and to the right. Isolating this equation
+	for xmin simply gives
+	$xmin = xminData * 10^{-pF * \Delta w}$. 
     """
     
     # data width measured in log-10 decades
