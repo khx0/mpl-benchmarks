@@ -5,8 +5,8 @@
 # contact: khx0@posteo.net
 # date: 2018-09-17
 # file: logScale.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 2.7.15
+# tested with python 3.7.0
 ##########################################################################################
 
 import numpy as np
@@ -23,19 +23,20 @@ def getLogScalePadding(xminData, xmaxData, paddingFraction):
     xmin, xmax
     
     xminData and xmaxData are the minimal and maximal data values in that axis direction.
-    Assuming a logarithmic scaling in this direction, this function returns the
-    xmin and xmax values, such that a desired padding of paddingFraction 
-    to the left and to the right of the data width is adjusted.
-    This assumes log base 10 and that you want to have an equal padding to the left
+    Assuming a logarithmic axis scaling in this direction, this function returns a
+    xmin and xmax value pair, such that a desired padding of paddingFraction 
+    to the left and to the right of the data width along this axis is set.
+    This assumes base 10 logarithms and that you want to have an equal padding to the left
     as to the right.
     The returned xmin, xmax values can then for example be used by the
     ax.set_xlim(xmin, xmax) command, to achieve the desired effect.
+    Or alternatively by ax.set_ylim(xmin, xmax) for a given y-axis.
     
     Example:
     A paddingFraction = 0.04 means
     that the padding between xmaxData and xmax will be 4 percent
     of the data extend (dataWidth). Likewise the padding between xmin and xminData will
-    equally be 4 percent of the dataWidht (measured in log-10 decaeds).
+    equally be 4 percent of the dataWidth (measured in log-10 decades).
     """
     
     # data width measured in log-10 decades
@@ -46,10 +47,7 @@ def getLogScalePadding(xminData, xmaxData, paddingFraction):
     return xmin, xmax
     
 if __name__ == '__main__':
+    
+    pass
 
-    xminData = 1.0e-11
-    xmaxData = 1.0e-9
-    paddingFraction = 0.04
-    xmin, xmax = getLogScalePadding(xminData, xmaxData, paddingFraction)
-    print(xmin, xmax)
 
