@@ -1,13 +1,16 @@
- #!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-04-10
+# date: 2018-09-18
 # file: mplUtils.py
 ##########################################################################################
 
 import numpy as np
+
+def nextHigher(value, baseUnit):
+    return np.ceil(value / baseUnit) * baseUnit 
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
