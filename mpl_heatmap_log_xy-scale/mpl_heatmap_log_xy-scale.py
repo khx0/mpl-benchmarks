@@ -4,9 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2018-09-18
-# file: mpl_heatmap_linear_xy-scale.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# file: mpl_heatmap_log_xy-scale.py
 ##########################################################################################
 
 import sys
@@ -22,11 +20,12 @@ from matplotlib import rc
 from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
+from matplotlib import ticker
 
 from mplUtils import getFigureProps
 from mplUtils import getPcolorBoxCoordinates
 
-from axisPadding import getLinearAxisPadding
+from axisPadding import getLogAxisPadding
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -241,22 +240,23 @@ def plot_pcolor(X, Y, Z, titlestr, params,
 
 if __name__ == '__main__':
 
-    basename = 'mpl_heatmap_linear_xy-scale'
+    basename = 'mpl_heatmap_log_xy-scale'
     
     ######################################################################################
     ### create dummy data
     
-    nDataPoints = 30
+    nDataPoints = 31
     Z = np.zeros((nDataPoints, nDataPoints))
     print('Z.shape =', Z.shape)
 
-    xVals = np.linspace(0.0, 1.0, nDataPoints)
-    yVals = np.linspace(-1.0, 1.0, nDataPoints)
+    xVals = np.logspace(1, 3, nDataPoints)
+    yVals = np.logspace(-3, -1, nDataPoints)
     
     # fill Z matrix
     for i in range(len(yVals)):
         for j in range(len(xVals)):
-            Z[i, j] = np.sin(np.pi * xVals[j]) * np.sin(np.pi * yVals[i])
+            Z[i, j] = np.sin(np.pi * np.log(yVals[i])) * \
+                      np.cos(np.pi * np.log(xVals[j]) - np.pi / 2.0)
     
     Z_min = np.min(Z)
     Z_max = np.max(Z)
@@ -264,8 +264,8 @@ if __name__ == '__main__':
     print("maximal  z value =", Z_max)
     ######################################################################################
     
-    xBoxCoords = getPcolorBoxCoordinates(xVals)
-    yBoxCoords = getPcolorBoxCoordinates(yVals)
+    xBoxCoords = getPcolorBoxCoordinates(xVals, 'log')
+    yBoxCoords = getPcolorBoxCoordinates(yVals, 'log')
         
     assert xBoxCoords.shape == (len(xVals) + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (len(yVals) + 1,), "Error: Shape assertion failed."
@@ -276,17 +276,17 @@ if __name__ == '__main__':
     # left and right axis padding fraction
     paddingFraction = 0.035
     
-    xminData = 0.0
-    xmaxData = 1.0
-    xmin, xmax = getLinearAxisPadding(xminData, xmaxData, paddingFraction)
+    xminData = 1.0e1
+    xmaxData = 1.0e3
+    xmin, xmax = getLogAxisPadding(xminData, xmaxData, paddingFraction)
     
-    yminData = -1.0
-    ymaxData = 1.0
-    ymin, ymax = getLinearAxisPadding(yminData, ymaxData, paddingFraction)
+    yminData = 1.0e-3
+    ymaxData = 1.0e-1
+    ymin, ymax = getLogAxisPadding(yminData, ymaxData, paddingFraction)
     
-    xFormat = ['linear', xmin, xmax, 0.0, 1.05, 0.5, 0.1,
+    xFormat = ['log', xmin, xmax, -1.0, -1.0, -1.0, -1.0,
                r'x label $x$']
-    yFormat = ['linear', ymin, ymax, -1.0, 1.05, 0.5, 0.1,
+    yFormat = ['log', ymin, ymax, -1.0, -1.0, -1.0, -1.0,
                r'y label $y$']
 
     ### absolute scaling
@@ -294,7 +294,7 @@ if __name__ == '__main__':
     zmin = -1.0
     zmax = 1.0
     zColor = [cMap, zmin, zmax, r'z label $\, z$']
-    zFormat = ['linear', -1.0, 1.05, 0.5]
+    zFormat = ['linear', -1.0, 1.1, 0.5]
     
     outname = basename + '_absZscale'
     
@@ -321,7 +321,7 @@ if __name__ == '__main__':
     zmin = np.min(Z)
     zmax = np.max(Z)
     zColor = [cMap, zmin, zmax, r'z label $z$']
-    zFormat = ['linear', -1.0, 1.05, 0.25]
+    zFormat = ['linear', -1.0, 1.1, 0.5]
 
     outname = basename + '_relZscale'
 
