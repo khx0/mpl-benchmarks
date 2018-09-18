@@ -42,7 +42,7 @@ RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 ensure_dir(OUTDIR)
-    
+
 def plot_pcolor(X, Y, Z, titlestr, params,
     fProps, xFormat, yFormat, zFormat, zColor, show_cBar, outname, outdir, showlabels,
     grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
