@@ -16,12 +16,12 @@ import unittest
 
 sys.path.append('../')
 
-from logScale import getLogScalePadding
+from axisPadding import getLogAxisPadding
 
-class LogScaleTest(unittest.TestCase):
+class AxisPaddingTest(unittest.TestCase):
     
     """
-    Test cases for the logScale module.
+    Test cases for the axisPadding module.
     """
     
     def test_logScale_01(self):
@@ -33,7 +33,7 @@ class LogScaleTest(unittest.TestCase):
         xmin_reference = 8.317637711026709e-12
         xmax_reference = 1.202264434617413e-09
         
-        xmin, xmax = getLogScalePadding(xminData, xmaxData, paddingFraction)
+        xmin, xmax = getLogAxisPadding(xminData, xmaxData, paddingFraction)
         
         self.assertTrue(np.isclose(xmin, xmin_reference))
         self.assertTrue(np.isclose(xmax, xmax_reference))

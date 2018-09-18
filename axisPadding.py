@@ -4,14 +4,14 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2018-09-17
-# file: logScale.py
+# file: axisPadding.py
 # tested with python 2.7.15
 # tested with python 3.7.0
 ##########################################################################################
 
 import numpy as np
 
-def getLogScalePadding(xminData, xmaxData, paddingFraction):
+def getLinearAxisPadding(xminData, xmaxData, paddingFraction):
     """
     Input arguments:
     xminData: minimal data value along a given axis
@@ -21,6 +21,24 @@ def getLogScalePadding(xminData, xmaxData, paddingFraction):
     
     Return values:
     xmin, xmax
+    """
+    dataWidth = xmaxData - xminData
+    xmax = xmaxData + dataWidth * paddingFraction
+    xmin = xminData - dataWidth * paddingFraction
+    return xmin, xmax
+
+def getLogAxisPadding(xminData, xmaxData, paddingFraction):
+    """
+    Input arguments:
+    xminData: minimal data value along a given axis
+    xmaxData: maximal data value along a given axis
+    paddingFraction: Fraction of the data width, that is desired as the padding of this
+                     axis. The paddingFraction is a floating point value in [0.0, 1.0].
+    
+    Return values:
+    xmin, xmax
+    
+    Same as getLinearAxisPadding taylored for logarithmic axis scaling.
     
     xminData and xmaxData are the minimal and maximal data values in that axis direction.
     Assuming a logarithmic axis scaling in this direction, this function returns a

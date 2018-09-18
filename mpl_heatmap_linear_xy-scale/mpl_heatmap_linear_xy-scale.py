@@ -22,11 +22,11 @@ from matplotlib import rc
 from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
-from matplotlib import gridspec
-from matplotlib import ticker
 
 from mplUtils import getFigureProps
 from mplUtils import getPcolorBoxCoordinates
+
+from axisPadding import getLinearAxisPadding
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -64,7 +64,9 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
                   r'\usepackage{amsmath}']}
+                  
     mpl.rcParams.update(fontparams)  
+    
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
@@ -269,13 +271,7 @@ if __name__ == '__main__':
     
     ### call plot function
     fProps = [4.0, 4.0, 0.20, 0.80, 0.20, 0.88]
-    
-    def getLinearAxisPadding(xminData, xmaxData, paddingFraction):
-        dataWidth = xmaxData - xminData
-        xmax = xmaxData + dataWidth * paddingFraction
-        xmin = xminData - dataWidth * paddingFraction
-        return xmin, xmax
-    
+        
     paddingFraction = 0.035
     
     xminData = 0.0
