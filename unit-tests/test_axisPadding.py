@@ -16,6 +16,7 @@ import unittest
 
 sys.path.append('../')
 
+from axisPadding import getLinearAxisPadding
 from axisPadding import getLogAxisPadding
 
 class AxisPaddingTest(unittest.TestCase):
@@ -23,6 +24,34 @@ class AxisPaddingTest(unittest.TestCase):
     """
     Test cases for the axisPadding module.
     """
+    
+    def test_linearScale_01(self):
+        
+        xminData = 0.0
+        xmaxData = 2.0
+        paddingFraction = 0.05
+        
+        xmin_reference = -0.1
+        xmax_reference = 2.1
+        
+        xmin, xmax = getLinearAxisPadding(xminData, xmaxData, paddingFraction)
+        
+        self.assertTrue(np.isclose(xmin, xmin_reference))
+        self.assertTrue(np.isclose(xmax, xmax_reference))
+
+    def test_linearScale_02(self):
+        
+        xminData = -99.0
+        xmaxData = 53.0
+        paddingFraction = 0.03
+        
+        xmin_reference = -99.0 - 4.56
+        xmax_reference = 53.0 + 4.56
+        
+        xmin, xmax = getLinearAxisPadding(xminData, xmaxData, paddingFraction)
+        
+        self.assertTrue(np.isclose(xmin, xmin_reference))
+        self.assertTrue(np.isclose(xmax, xmax_reference))
     
     def test_logScale_01(self):
     
