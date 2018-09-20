@@ -44,7 +44,7 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 ensure_dir(OUTDIR)
 
 def plot_pcolor(X, Y, Z, titlestr, params,
-    fProps, xFormat, yFormat, zFormat, zColor, show_cBar, 
+    fProps, xFormatObj, yFormatObj, zFormat, zColor, show_cBar, 
     outname, outdir, showlabels,
     grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
             
@@ -94,8 +94,8 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ######################################################################################
     # labeling
     plt.title(titlestr)
-    ax1.set_xlabel(xFormat[7], fontsize = 8.0)
-    ax1.set_ylabel(yFormat[7], fontsize = 8.0)
+    ax1.set_xlabel(xFormatObj[2], fontsize = 8.0)
+    ax1.set_ylabel(yFormatObj[2], fontsize = 8.0)
     ax1.xaxis.labelpad = 2.0
     ax1.yaxis.labelpad = 4.0
     ######################################################################################
@@ -109,7 +109,8 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ######################################################################################
     # colorbar
     if (show_cBar):
-        # add_axes(left, bottom, width, height) all between [0, 1] relative to the figure size
+        # Add_axes(left, bottom, width, height) all between [0, 1] 
+        # relative to the figure size.
         cax = f.add_axes([0.82, bFrac, 0.03, (tFrac - bFrac)])
         
         cax.tick_params('both', length = 3.0, width = 0.5, which = 'major')
@@ -144,7 +145,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
                    norm = cNorm,
                    edgecolors = 'none')
     
-    #####################################################################################
+    ######################################################################################
     # z-max/z-min annotation
          
     str1 = r"$z_{\mathrm{max}} = %.5f \,$" %(params[1])
@@ -162,52 +163,56 @@ def plot_pcolor(X, Y, Z, titlestr, params,
                  fontsize = 6.0, 
                  horizontalalignment = 'left')
 
-    #####################################################################################
+    ######################################################################################
     # axis formatting
-    if (xFormat[0] == 'auto'):
+    if (xFormatObj[0] == 'auto'):
         pass
-    if (xFormat[0] == 'linear'):
-        ax1.set_xlim(xFormat[1], xFormat[2]) # xmin, xmax
-        major_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[5])
-        minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
+    if (xFormatObj[0] == 'linear'):
+        xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormatObj[1]
+        ax1.set_xlim(xmin, xmax)
+        major_x_ticks = np.arange(xTicksMin, xTicksMax, dxMajor)
+        minor_x_ticks = np.arange(xTicksMin, xTicksMax, dxMinor)
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-
+        
         # manual formatting here:
         # ax1.set_xticklabels([0, 0.5, 1])
     
-    elif (xFormat[0] == 'log'):
+    elif (xFormatObj[0] == 'log'):
         ax1.set_xscale('log')
+        xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormatObj[1]
         ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
         ax1.xaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 8,
                                     subs = [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]))
 #         for label in ax1.xaxis.get_ticklabels()[1::2]:
 #             label.set_visible(False)
-        ax1.set_xlim(xFormat[1], xFormat[2]) # xmin, xmax
+        ax1.set_xlim(xmin, xmax)
     else:
-        print("Error: Unknown xFormat[0] type encountered.")
+        print("Error: Unknown xFormatObj[0] type encountered.")
         sys.exit(1)
-    #####################################################################################
-    if (yFormat[0] == 'auto'):
+    ######################################################################################
+    if (yFormatObj[0] == 'auto'):
         pass
-    if (yFormat[0] == 'linear'):
-        ax1.set_ylim(yFormat[1], yFormat[2]) # xmin, xmax
-        major_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[5])
-        minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
+    if (yFormatObj[0] == 'linear'):
+        ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormatObj[1]
+        ax1.set_ylim(ymin, ymax)
+        major_y_ticks = np.arange(yTicksMin, yTicksMax, dyMajor)
+        minor_y_ticks = np.arange(yTicksMin, yTicksMax, dyMinor)
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
 
         # manual formatting here:
         # ax1.set_yticklabels([0, 0.5, 1])
     
-    elif (yFormat[0] == 'log'):
+    elif (yFormatObj[0] == 'log'):
         ax1.set_yscale('log')
+        ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormatObj[1]
         ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
         ax1.yaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 8,
                                     subs = [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]))
 #         for label in ax1.yaxis.get_ticklabels()[1::2]:
 #             label.set_visible(False)
-        ax1.set_ylim(yFormat[1], yFormat[2]) # xmin, xmax
+        ax1.set_ylim(ymin, ymax)
     else:
         print("Error: Unknown yFormat[0] type encountered.")
         sys.exit(1)
@@ -215,9 +220,11 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ######################################################################################
     # grid options
     if (grid):
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', linewidth = 0.4)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
+                 linewidth = 0.4)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', linewidth = 0.2)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', 
+                 linewidth = 0.2)
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
@@ -284,11 +291,12 @@ if __name__ == '__main__':
     ymaxData = 1.0
     ymin, ymax = getLinearAxisPadding(yminData, ymaxData, paddingFraction)
     
-    xFormat = ['linear', xmin, xmax, 0.0, 1.05, 0.5, 0.1,
-               r'x label $x$']
-    yFormat = ['linear', ymin, ymax, -1.0, 1.05, 0.5, 0.1,
-               r'y label $y$']
-
+    xFormat = (xmin, xmax, 0.0, 1.05, 0.5, 0.1)
+    xFormatObj = ['linear', xFormat, r'x label $x$']
+    
+    yFormat = (ymin, ymax, -1.0, 1.05, 0.5, 0.1)
+    yFormatObj = ['linear', yFormat, r'y label $y$']
+    
     ### absolute scaling
     cMap = cm.viridis #cm.plasma
     zmin = -1.0
@@ -304,8 +312,8 @@ if __name__ == '__main__':
                 titlestr = '',
                 params = [Z_min, Z_max],
                 fProps = fProps,
-                xFormat = xFormat,
-                yFormat = yFormat,
+                xFormatObj = xFormatObj,
+                yFormatObj = yFormatObj,
                 zFormat = zFormat,
                 zColor = zColor,
                 show_cBar = True,
@@ -331,8 +339,8 @@ if __name__ == '__main__':
                 titlestr = '',
                 params = [Z_min, Z_max],
                 fProps = fProps,
-                xFormat = xFormat,
-                yFormat = yFormat,
+                xFormatObj = xFormatObj,
+                yFormatObj = yFormatObj,
                 zFormat = zFormat,
                 zColor = zColor,
                 show_cBar = True,
