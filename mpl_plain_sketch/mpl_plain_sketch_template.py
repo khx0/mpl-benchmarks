@@ -19,11 +19,6 @@ import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
-import matplotlib.colors as colors
-import matplotlib.cm as cm
-from matplotlib import gridspec
-from matplotlib import ticker
-from scipy.stats import norm
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -117,7 +112,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.yaxis.labelpad = 5.0
     ######################################################################################
     # plotting
-        
+    
     lineWidth = 0.65    
         
     ax1.plot(X[:, 0], X[:, 1], 
@@ -129,16 +124,15 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                  
     ######################################################################################
     # legend
-#     if (drawLegend):
-#         leg = ax1.legend(#bbox_to_anchor = [0.7, 0.8],
-#                          #loc = 'upper left',
-#                          handlelength = 1.5, 
-#                          scatterpoints = 1,
-#                          markerscale = 1.0,
-#                          ncol = 1)
-#         leg.draw_frame(False)
-#         plt.gca().add_artist(leg)
-    
+    if (drawLegend):
+        leg = ax1.legend(#bbox_to_anchor = [0.7, 0.8],
+                         #loc = 'upper left',
+                         handlelength = 1.5, 
+                         scatterpoints = 1,
+                         markerscale = 1.0,
+                         ncol = 1)
+        leg.draw_frame(False)
+        plt.gca().add_artist(leg)
 
     ax1.spines['right'].set_visible(False)
     ax1.spines['top'].set_visible(False)    
@@ -148,37 +142,27 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     if (xFormat == None):
         pass
     else:
-        
-#         major_x_ticks = np.arange(xFormat[2], xFormat[3], xFormat[4])
-#         minor_x_ticks = np.arange(xFormat[2], xFormat[3], xFormat[5])
-#         ax1.set_xticks(major_x_ticks)
-#         ax1.set_xticks(minor_x_ticks, minor = True)
-#         ax1.set_xlim(xFormat[0], xFormat[1])
         ax1.set_xticklabels([])
         ax1.set_xticks([])
         
     if (yFormat == None):
         pass
-    else:
-#         major_y_ticks = np.arange(yFormat[2], yFormat[3], yFormat[4])
-#         minor_y_ticks = np.arange(yFormat[2], yFormat[3], yFormat[5])
-#         ax1.set_yticks(major_y_ticks)
-#         ax1.set_yticks(minor_y_ticks, minor = True)
-#         ax1.set_ylim(yFormat[0], yFormat[1])
-        
+    else:        
         ax1.set_yticklabels([])
         ax1.set_yticks([])
           
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  #ax.spines is a dictionary
+    for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
     ######################################################################################
     # grid options
     if (grid):
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', linewidth = 0.2)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
+                 linewidth = 0.2)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', linewidth = 0.1)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', 
+                 linewidth = 0.1)
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
@@ -197,6 +181,20 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              
 if __name__ == '__main__':
     
+    ######################################################################################
+    # create dummy data
+    
+    nVisPoints = 800
+    xVals = np.linspace(-26.0, 24.0, nVisPoints)
+    yVals = np.array([0.05 * x ** 3 + 0.05 * x ** 2 + 0.05 * x for x in xVals])
+    
+    X = np.zeros((nVisPoints, 2))
+    X[:, 0] = xVals
+    X[:, 1] = yVals
+    
+    ######################################################################################
+    # call the plotting function
+    
     outname = 'mpl_plain_sketch_template'
     
     xFormat = [-29.0, 27.0, 0.0, 1.1, 1.0, 1.0]
@@ -214,15 +212,3 @@ if __name__ == '__main__':
          drawLegend = False, 
          xFormat = xFormat,
          yFormat = yFormat)
-
-
-
-
-
-
-
-    
-    
-    
-
-    
