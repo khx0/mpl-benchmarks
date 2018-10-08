@@ -197,8 +197,8 @@ if __name__ == '__main__':
     
     outname = 'mpl_plain_sketch_template'
     
-    xFormat = [-29.0, 27.0, 0.0, 1.1, 1.0, 1.0]
-    yFormat = [-1050.0, 1050.0, -1.0, 1.1, 1.0, 1.0]
+    xFormat = []
+    yFormat = []
     
     pColors = ['#FF0000'] # standard red
     
