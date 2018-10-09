@@ -142,12 +142,14 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     if (xFormat == None):
         pass
     else:
+        # modify this clause, if you want to get different axis ticking
         ax1.set_xticklabels([])
         ax1.set_xticks([])
         
     if (yFormat == None):
         pass
-    else:        
+    else:
+        # modify this clause, if you want to get different axis ticking     
         ax1.set_yticklabels([])
         ax1.set_yticks([])
           
@@ -195,7 +197,7 @@ if __name__ == '__main__':
     ######################################################################################
     # call the plotting function
     
-    outname = 'mpl_plain_sketch_template'
+    outname = 'mpl_plain_sketch_template_01'
     
     xFormat = []
     yFormat = []
