@@ -105,8 +105,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ######################################################################################
     # labeling
     plt.title(titlestr)
-    ax1.set_xlabel(r'$x$', fontsize = 6.0)
-    ax1.set_ylabel(r'$p(x\, ; \mu)$', fontsize = 6.0)
+    ax1.set_xlabel(r'$k$', fontsize = 6.0)
+    ax1.set_ylabel(r'$p(k\, ; \mu)$', fontsize = 6.0)
     ax1.xaxis.labelpad = 2.0
     ax1.yaxis.labelpad = 2.0 
     ######################################################################################
@@ -137,6 +137,19 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                     edgecolor = 'None',
                     zorder = 11,
                     label = labels[i])
+    
+    ######################################################################################
+    # annotations
+    
+    label = r'$p(k\, ; \mu) = \dfrac{\mu^k}{k!} e^{-\mu}$'
+    
+    x_pos = 0.25
+    
+    ax1.annotate(label,
+                 xy = (x_pos, 0.85),
+                 xycoords = 'axes fraction',
+                 fontsize = 5.0, 
+                 horizontalalignment = 'left')
     
     ######################################################################################
     # legend
