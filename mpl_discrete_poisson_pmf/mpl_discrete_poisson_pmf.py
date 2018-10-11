@@ -100,8 +100,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
 
-    ax1.tick_params(axis='x', which='major', pad = 2.0)
-    ax1.tick_params(axis='y', which='major', pad = 2.0, zorder = 10)
+    ax1.tick_params(axis='x', which='major', pad = 1.5)
+    ax1.tick_params(axis='y', which='major', pad = 1.5, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -118,7 +118,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              color = pColors[0],
              alpha = 1.0,
              lw = lineWidth,
-             zorder = 1,
+             zorder = 2,
              dashes = [4.0, 2.0])
     
     for i in range(len(muVals)):
@@ -127,7 +127,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                  color = pColors[i + 1],
                  alpha = 1.0,
                  lw = lineWidth,
-                 zorder = 11,
+                 zorder = 2,
                  label = r'')
              
         ax1.scatter(X[:, 0], X[:, i + 1],
