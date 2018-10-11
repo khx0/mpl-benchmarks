@@ -3,8 +3,8 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-10-10
-# file: mpl_discrete_poisson_pmf.py
+# date: 2018-10-11
+# file: mpl_discrete_poisson_pmf_B.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 2.2.3
 ##########################################################################################
@@ -148,7 +148,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.annotate(label,
                  xy = (x_pos, 0.85),
                  xycoords = 'axes fraction',
-                 fontsize = 5.0, 
+                 fontsize = 6.0, 
                  horizontalalignment = 'left')
     
     ######################################################################################
@@ -156,7 +156,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     if (drawLegend):
         leg = ax1.legend(#bbox_to_anchor = [0.7, 0.8],
                          #loc = 'upper left',
-                         handlelength = 0.5, 
+                         handlelength = 0.25, 
                          scatterpoints = 1,
                          markerscale = 1.0,
                          ncol = 1)
@@ -209,28 +209,21 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     plt.close()
     return outname
 
-def PoissonDist(x, mu):
+if __name__ == '__main__':
+
     '''
     pmf = probability mass function   
     pmf function signature
-    pmf(k, mu, loc = 0)
+    poisson.pmf(k, mu, loc = 0)
     where k is the random variable, mu the shape parameter and loc 
     the distribution of the corresponding Poisson distribution
     '''
-    return poisson.pmf(x, mu)
-  
-# alternatively one can do
-# rv = poisson(mu)
-# and then call the pmf via
-# rv.pmf(x)
-
-if __name__ == '__main__':
     
     ######################################################################################
     # create Poisson distribution
-    muVals = [1.0, 5.0, 9.0]
+    muVals = [0.0, 1.0, 2.0]
     
-    xVals = np.arange(0, 30, 1)
+    xVals = np.arange(0, 20, 1)
 
     X = np.zeros((len(xVals), len(muVals) + 1))
     X[:, 0] = xVals
@@ -252,14 +245,14 @@ if __name__ == '__main__':
     ######################################################################################
     # call plotting function
     
-    labels = [r'$\mu = 1$',
-              r'$\mu = 5$',
-              r'$\mu = 9$']
+    labels = [r'$\mu = 0$',
+              r'$\mu = 1$',
+              r'$\mu = 2$']
     
-    outname = 'mpl_discrete_poisson_pmf'
+    outname = 'mpl_discrete_poisson_pmf_B'
     
-    xFormat = [-0.5, 19.5, 0.0, 19.1, 5.0, 1.0]
-    yFormat = [-0.02, 0.42, 0.0, 0.405, 0.1, 0.05]
+    xFormat = [-0.5, 12.5, 0.0, 12.1, 5.0, 1.0]
+    yFormat = [-0.05, 1.05, 0.0, 1.05, 0.2, 0.1]
     
     pColors = ['#CCCCCC', 'C0', 'C1', 'C2']
     
