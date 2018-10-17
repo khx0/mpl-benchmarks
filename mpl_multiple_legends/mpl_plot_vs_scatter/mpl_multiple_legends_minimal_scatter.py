@@ -53,7 +53,6 @@ if __name__ == '__main__':
     ### minimal plot
     f, ax1 = plt.subplots(1)
     
-    ######################################################################################
     '''
     When using matplotlib's standard plot command use
     p, = ax.plot(...)
@@ -62,8 +61,9 @@ if __name__ == '__main__':
     If you instead use using matplotlib's scatter command use
     p = ax.scatter(...)
     without the comma "," to get the correct plot handle p.
+    This difference comes from the different return values of the two plotting commands.
     '''
-    ######################################################################################
+
     # scatter plot 1
     p1 = ax1.scatter(X[:, 0], X[:, 1], 
                      marker = 'o', 
