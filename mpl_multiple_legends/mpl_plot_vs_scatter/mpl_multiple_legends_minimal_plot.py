@@ -4,7 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2018-10-17
-# file: mpl_multiple_legends_minimal_scatter.py
+# file: mpl_multiple_legends_minimal_plot.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 2.2.3
 ##########################################################################################
@@ -36,7 +36,7 @@ ensure_dir(OUTDIR)
 
 if __name__ == '__main__':
     
-    outname = 'mpl_multiple_legends_minimal_scatter'
+    outname = 'mpl_multiple_legends_minimal_plot'
     
     ### create data
     nVisPoints = 20
@@ -53,42 +53,45 @@ if __name__ == '__main__':
     ### minimal plot
     f, ax1 = plt.subplots(1)
     
+    ######################################################################################
+    '''
+    When using matplotlib's standard plot command use
+    p, = ax.plot(...)
+    to get the correct plot handle as a return value from the plot command.
     
+    If you instead use using matplotlib's scatter command use
+    p = ax.scatter(...)
+    without the comma "," to get the correct plot handle p.
+    '''
     ######################################################################################
     # scatter plot 1
-    p1 = ax1.scatter(X[:, 0], X[:, 1], 
-                     marker = 'o', 
-                     s = 50, 
-                     facecolors = 'None',
-                     alpha = 1.0, 
-                     linewidth = 1.0,
-                     edgecolors = 'C0', 
-                     zorder = 2)
+    p1, = ax1.plot(X[:, 0], X[:, 1],
+                  alpha = 1.0, 
+                  linewidth = 1.0,
+                  color = 'C0', 
+                  zorder = 2)
     
     pHandles = [p1]
-    labels_1 = [r'scatter 1']
+    labels_1 = [r'plot 1']
     leg_1 = plt.legend(pHandles, labels_1,
                        loc = 'upper left',
-                       handlelength = 0.1,
+                       handlelength = 2.0,
                        fontsize = 10.0)
     leg_1.draw_frame(False)
     plt.gca().add_artist(leg_1)
     ######################################################################################
     # scatter plot 2
-    p2 = ax1.scatter(X[:, 0], X[:, 2], 
-                     marker = 'o', 
-                     s = 50, 
-                     facecolors = 'None',
-                     alpha = 1.0, 
-                     linewidth = 1.0,
-                     edgecolors = 'C3', 
-                     zorder = 2)
+    p2, = ax1.plot(X[:, 0], X[:, 2], 
+                  alpha = 1.0, 
+                  linewidth = 1.0,
+                  color = 'C3', 
+                  zorder = 2)
     
     pHandles = [p2]
-    labels_2 = [r'scatter 2']
+    labels_2 = [r'plot 2']
     leg_2 = plt.legend(pHandles, labels_2,
                        loc = 'upper right',
-                       handlelength = 0.1,
+                       handlelength = 2.0,
                        fontsize = 10.0)
     leg_2.draw_frame(False)
     plt.gca().add_artist(leg_2)
