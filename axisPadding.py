@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-17
+# date: 2018-11-07
 # file: axisPadding.py
 # tested with python 2.7.15
 # tested with python 3.7.0
@@ -82,4 +82,3 @@ def getLogAxisPadding(xminData, xmaxData, paddingFraction):
 if __name__ == '__main__':
     
     pass
-
