@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-08-30
+# date: 2018-11-19
 # file: mpl_annotate_alignment.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import time
@@ -68,11 +68,16 @@ def Plot(titlestr, X, outname, outdir, pColors,
     mpl.rc('legend',**{'fontsize': 7.5})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    plt.rcParams['pdf.fonttype'] = 42  
-    mpl.rcParams['text.usetex'] = False
+    mpl.rcParams['font.family'] = 'sans-serif'
+    #plt.rcParams['font.sans-serif'] = 'Comic Sans MS'
+    mpl.rcParams['font.sans-serif'] = 'Helvetica'
+    
+    #plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
+    #plt.rcParams['pdf.fonttype'] = 42  
+    #mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
+                  r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)      
     
     ######################################################################################
