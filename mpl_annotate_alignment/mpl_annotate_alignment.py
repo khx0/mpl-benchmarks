@@ -68,13 +68,16 @@ def Plot(titlestr, X, outname, outdir, pColors,
     mpl.rc('legend',**{'fontsize': 7.5})
     mpl.rc("axes", linewidth = 0.5)    
     
+    ######################################################################################
     mpl.rcParams['font.family'] = 'sans-serif'
-    #plt.rcParams['font.sans-serif'] = 'Comic Sans MS'
     mpl.rcParams['font.sans-serif'] = 'Helvetica'
+    # the above two lines could also be replaced by the single line below
+    # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
     
-    #plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    #plt.rcParams['pdf.fonttype'] = 42  
-    #mpl.rcParams['text.usetex'] = False
+    mpl.rcParams['pdf.fonttype'] = 42
+    ######################################################################################
+    
+    mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
                   r'\usepackage{amsmath}']}
