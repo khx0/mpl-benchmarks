@@ -15,3 +15,5 @@ and python 2 (version 2.7.15). In both cases matplotlib
 version 2.2.3 was used.
 * Python 2.7.15, Matplotlib 2.2.3
 * Python 3.7.0,  Matplotlib 2.2.3
+
+for Python 3.7.0 I am currently testing compatibility with Matplotlib 3.0.1
