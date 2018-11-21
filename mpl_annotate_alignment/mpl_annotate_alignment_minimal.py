@@ -65,14 +65,14 @@ if __name__ == '__main__':
     
     ### annotations
     '''
-    I personally like to use relative coordinates for the placement of annotations.
+    In this example I use relative coordinates for the placement of annotations.
     This is realized by setting xycoords = 'axes fraction'. Then the specified xy
-    position is relative to the axis canvas, where both the x and y position is
-    specified by the fraction between [0, 1]. 
-    Additionally I combine this by specifing the alignment using the
-    "horizontalalignment" and "verticalalignment" keywords.
+    position is set relative to the axis canvas, where both the x and y position is
+    specified by their fractional value between [0, 1]. 
+    Additionally this example demonstrates the use of alignment specifications,
+    using the "horizontalalignment" and "verticalalignment" keywords.
     For the horizontal alignment keyword use left, right or center and
-    for the vertical alignment keyword use top, center, bottom, respectively.
+    for the vertical alignment keyword use top, center and bottom, respectively.
     '''
     
     ax1.annotate('upper right label',
