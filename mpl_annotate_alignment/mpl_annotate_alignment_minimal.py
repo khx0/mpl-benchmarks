@@ -72,7 +72,7 @@ if __name__ == '__main__':
     Additionally this example demonstrates the use of alignment specifications,
     using the "horizontalalignment" and "verticalalignment" keywords.
     For the horizontal alignment keyword use left, right or center and
-    for the vertical alignment keyword use top, center and bottom, respectively.
+    for the vertical alignment keyword use top, center or bottom, respectively.
     '''
     
     ax1.annotate('upper right label',
