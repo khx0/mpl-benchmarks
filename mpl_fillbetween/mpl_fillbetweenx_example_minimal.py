@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-08-10
+# date: 2018-11-23
 # file: mpl_fillbetweenx_example_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 '''
@@ -99,6 +99,3 @@ if __name__ == '__main__':
     f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
     plt.clf()
     plt.close()
-
-
-    

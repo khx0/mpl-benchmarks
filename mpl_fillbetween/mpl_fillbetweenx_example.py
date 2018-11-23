@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-08-10
+# date: 2018-11-23
 # file: mpl_fillbetweenx_example.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
@@ -79,7 +79,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     plt.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)     
     
     ######################################################################################
@@ -147,8 +148,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ######################################################################################
     # legend
     if (drawLegend):
-        leg = ax1.legend(#bbox_to_anchor = [0.7, 0.8],
-                         #loc = 'upper left',
+        leg = ax1.legend(# bbox_to_anchor = [0.7, 0.8],
+                         # loc = 'upper left',
                          handlelength = 1.5, 
                          scatterpoints = 1,
                          markerscale = 1.0,
@@ -183,9 +184,11 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ######################################################################################
     # grid options
     if (grid):
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', linewidth = 0.2)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
+                 linewidth = 0.2)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', linewidth = 0.1)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', 
+                 linewidth = 0.1)
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
@@ -224,29 +227,3 @@ if __name__ == '__main__':
          drawLegend = True, 
          xFormat = xFormat,
          yFormat = yFormat)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-
-    
