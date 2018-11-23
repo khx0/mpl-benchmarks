@@ -147,4 +147,3 @@ if __name__ == '__main__':
          		   outdir = OUTDIR, 
          		   pColors = ['k'],
          		   grid = False)
-         

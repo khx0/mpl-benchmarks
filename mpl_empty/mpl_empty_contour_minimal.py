@@ -78,5 +78,3 @@ if __name__ == '__main__':
     plt.cla()
     plt.clf()
     plt.close()
-    
-    
