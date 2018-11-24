@@ -54,17 +54,17 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
     
-    mpl.rc('font',**{'size': 10})
-    mpl.rc('legend',**{'fontsize': 8.0})
+    mpl.rc('font', **{'size': 10})
+    mpl.rc('legend', **{'fontsize': 8.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    # plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
-                  r'\usepackage{amsmath}']}
+                                          r'\usepackage{amsmath}']}
                   
     mpl.rcParams.update(fontparams)  
     
@@ -88,8 +88,8 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ax1.tick_params('both', length = 3.0, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 1.0)
-    ax1.tick_params(axis='y', which='major', pad = 1.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
 
     ######################################################################################
     # labeling
@@ -136,6 +136,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         cb1.ax.tick_params(labelsize = 6.0)
     
         if (zFormat[0] == 'linear'):
+            print("LINEAR ", zFormat[0], zFormat[1], zFormat[2], zFormat[3])
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
         # cb1.ax.minorticks_on()
@@ -277,7 +278,7 @@ if __name__ == '__main__':
     assert xBoxCoords.shape == (len(xVals) + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (len(yVals) + 1,), "Error: Shape assertion failed."
     
-    ### call plot function
+    # call plot function
     fProps = [4.0, 4.0, 0.20, 0.80, 0.20, 0.88]
 
     # left and right axis padding fraction
@@ -297,8 +298,8 @@ if __name__ == '__main__':
     yFormat = (ymin, ymax, -1.0, 1.05, 0.5, 0.1)
     yFormatObj = ['linear', yFormat, r'y label $y$']
     
-    ### absolute scaling
-    cMap = cm.viridis #cm.plasma
+    # absolute scaling
+    cMap = cm.viridis # cm.plasma 
     zmin = -1.0
     zmax = 1.0
     zColor = [cMap, zmin, zmax, r'z label $\, z$']
@@ -324,12 +325,13 @@ if __name__ == '__main__':
                 saveSVG = False)
     
 
-    ### relative scaling                      
-    cMap = cm.viridis #cm.plasma
+    # relative scaling                      
+    cMap = cm.viridis # cm.plasma
     zmin = np.min(Z)
     zmax = np.max(Z)
-    zColor = [cMap, zmin, zmax, r'z label $z$']
-    zFormat = ['linear', -1.0, 1.05, 0.25]
+    print("relative scaling: ", zmin, zmax)
+    zColor = [cMap, zmin, zmax, r'z label $\, z$']
+    zFormat = ['linear', -0.75, 0.8, 0.25]
 
     outname = basename + '_relZscale'
 
@@ -349,4 +351,3 @@ if __name__ == '__main__':
                 showlabels = True,
                 grid = False,
                 saveSVG = False)
-
