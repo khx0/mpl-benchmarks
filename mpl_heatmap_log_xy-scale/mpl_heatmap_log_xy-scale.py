@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-18
+# date: 2018-11-25
 # file: mpl_heatmap_log_xy-scale.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
@@ -55,17 +55,17 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
     
-    mpl.rc('font',**{'size': 10})
-    mpl.rc('legend',**{'fontsize': 8.0})
+    mpl.rc('font', **{'size': 10})
+    mpl.rc('legend', **{'fontsize': 8.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    # plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
-                  r'\usepackage{amsmath}']}
+                                          r'\usepackage{amsmath}']}
                   
     mpl.rcParams.update(fontparams)  
     
@@ -89,8 +89,8 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ax1.tick_params('both', length = 3.0, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 1.0)
-    ax1.tick_params(axis='y', which='major', pad = 1.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
 
     ######################################################################################
     # labeling
@@ -110,7 +110,10 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ######################################################################################
     # colorbar
     if (show_cBar):
-        # add_axes(left, bottom, width, height) all between [0, 1] relative to the figure size
+        ##########################################################
+        # add_axes(left, bottom, width, height) all between [0, 1] 
+        # relative to the figure size
+        ##########################################################
         cax = f.add_axes([0.82, bFrac, 0.03, (tFrac - bFrac)])
         
         cax.tick_params('both', length = 3.0, width = 0.5, which = 'major')
@@ -145,8 +148,8 @@ def plot_pcolor(X, Y, Z, titlestr, params,
                    norm = cNorm,
                    edgecolors = 'none')
     
-    #####################################################################################
-    # z-max/z-min annotation
+    ######################################################################################
+    # z-max / z-min annotation
          
     str1 = r"$z_{\mathrm{max}} = %.5f \,$" %(params[1])
     str2 = r"$z_{\mathrm{min}} = %.5f \,$" %(params[0])
@@ -163,7 +166,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
                  fontsize = 6.0, 
                  horizontalalignment = 'left')
 
-    #####################################################################################
+    ######################################################################################
     # axis formatting
     if (xFormat[0] == 'auto'):
         pass
@@ -216,9 +219,11 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ######################################################################################
     # grid options
     if (grid):
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', linewidth = 0.4)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
+                 linewidth = 0.4)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', linewidth = 0.2)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor',
+                 linewidth = 0.2)
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
@@ -268,11 +273,11 @@ if __name__ == '__main__':
     
     xBoxCoords = getPcolorBoxCoordinates(xVals, 'log')
     yBoxCoords = getPcolorBoxCoordinates(yVals, 'log')
-        
+      
     assert xBoxCoords.shape == (len(xVals) + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (len(yVals) + 1,), "Error: Shape assertion failed."
     
-    ### call plot function
+    # call plot function
     fProps = [4.0, 4.0, 0.20, 0.80, 0.20, 0.88]
 
     # left and right axis padding fraction
@@ -291,8 +296,8 @@ if __name__ == '__main__':
     yFormat = ['log', ymin, ymax, -1.0, -1.0, -1.0, -1.0,
                r'y label $y$']
 
-    ### absolute scaling
-    cMap = cm.viridis #cm.plasma
+    # absolute scaling
+    cMap = cm.viridis # cm.plasma
     zmin = -1.0
     zmax = 1.0
     zColor = [cMap, zmin, zmax, r'z label $\, z$']
@@ -318,13 +323,14 @@ if __name__ == '__main__':
                 saveSVG = False)
     
 
-    ### relative scaling                      
-    cMap = cm.viridis #cm.plasma
+    # relative scaling                      
+    cMap = cm.viridis # cm.plasma
     zmin = np.min(Z)
     zmax = np.max(Z)
-    zColor = [cMap, zmin, zmax, r'z label $z$']
-    zFormat = ['linear', -1.0, 1.1, 0.5]
-
+    zColor = [cMap, zmin, zmax, r'z label $\, z$']
+    # zFormat = ['linear', -1.0, 1.1, 0.5]
+    zFormat = ['linear', -0.75, 0.8, 0.25]
+    
     outname = basename + '_relZscale'
 
     plot_pcolor(X = xBoxCoords,
@@ -343,4 +349,3 @@ if __name__ == '__main__':
                 showlabels = True,
                 grid = False,
                 saveSVG = False)
-

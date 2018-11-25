@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-18
+# date: 2018-11-25
 # file: mpl_heatmap_linear_xy-scale.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
@@ -109,8 +109,10 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ######################################################################################
     # colorbar
     if (show_cBar):
-        # Add_axes(left, bottom, width, height) all between [0, 1] 
-        # relative to the figure size.
+        ##########################################################
+        # add_axes(left, bottom, width, height) all between [0, 1] 
+        # relative to the figure size
+        ##########################################################
         cax = f.add_axes([0.82, bFrac, 0.03, (tFrac - bFrac)])
         
         cax.tick_params('both', length = 3.0, width = 0.5, which = 'major')
@@ -136,7 +138,6 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         cb1.ax.tick_params(labelsize = 6.0)
     
         if (zFormat[0] == 'linear'):
-            print("LINEAR ", zFormat[0], zFormat[1], zFormat[2], zFormat[3])
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
         # cb1.ax.minorticks_on()
@@ -147,7 +148,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
                    edgecolors = 'none')
     
     ######################################################################################
-    # z-max/z-min annotation
+    # z-max / z-min annotation
          
     str1 = r"$z_{\mathrm{max}} = %.5f \,$" %(params[1])
     str2 = r"$z_{\mathrm{min}} = %.5f \,$" %(params[0])
@@ -175,7 +176,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         minor_x_ticks = np.arange(xTicksMin, xTicksMax, dxMinor)
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-        
+
         # manual formatting here:
         # ax1.set_xticklabels([0, 0.5, 1])
     
