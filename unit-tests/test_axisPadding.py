@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-18
+# date: 2018-11-26
 # file: test_axisPadding.py
 # tested with python 2.7.15
 # tested with python 3.7.0
@@ -76,8 +76,3 @@ class AxisPaddingTest(unittest.TestCase):
 if __name__ == '__main__':
 
     unittest.main()
-    
-    
-    
-    
-    
