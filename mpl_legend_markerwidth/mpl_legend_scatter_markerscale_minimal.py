@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-01
+# date: 2018-11-26
 # file: mpl_legend_scatter_markerscale_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
@@ -19,8 +19,16 @@ from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
 
+def ensure_dir(dir):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+
 now = datetime.datetime.now()
 now = "%s-%s-%s" %(now.year, str(now.month).zfill(2), str(now.day).zfill(2))
+
+BASEDIR = os.path.dirname(os.path.abspath(__file__))
+RAWDIR = os.path.join(BASEDIR, 'raw')
+OUTDIR = os.path.join(BASEDIR, 'out')
 
 if __name__ == '__main__':
 
@@ -68,11 +76,7 @@ if __name__ == '__main__':
     ###############################################  
     
     outname += '_' + now
-    f.savefig(outname + '.pdf', dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname + '.pdf'), dpi = 300, transparent = True)
     plt.cla()
     plt.clf()
     plt.close()
-            
-
-    
-    
