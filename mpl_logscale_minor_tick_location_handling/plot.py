@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-02
+# date: 2018-11-26
 # file: plot.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 """
@@ -76,16 +76,16 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
      
-    mpl.rc('font',**{'size': 10})
-    mpl.rc('legend',**{'fontsize': 9.0})
+    mpl.rc('font', **{'size': 10})
+    mpl.rc('legend', **{'fontsize': 9.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
-                  r'\usepackage{amsmath}']}
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)       
 
     ######################################################################################
@@ -112,8 +112,8 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 1.5)
-    ax1.tick_params(axis='y', which='major', pad = 1.5, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.5)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.5, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -246,7 +246,3 @@ if __name__ == '__main__':
           ' ' + os.path.join(OUTDIR, returnname + '.svg')
     print(cmd)
     os.system(cmd)
-             
-
-    
-    

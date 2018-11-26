@@ -3,15 +3,15 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-02
+# date: 2018-11-26
 # file: plot_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 """
-(Minimal) Benchmark matplotlib script illustrating how to set a lower and upper limit for the 
-minor tick locations in logarithmic axis scaling independent of the axis limits.
+(Minimal) Benchmark matplotlib script illustrating how to set a lower and upper limit 
+for the minor tick locations in logarithmic axis scaling independent of the axis limits.
 This script shows how to do this for a logarithmic x-axis.
 Version A uses the default behavior from the ticker.LogLocator class
 whereas version B manually crops the minor ticks, such that the newly chosen minor tick 
@@ -151,6 +151,3 @@ if __name__ == '__main__':
 
     outname = 'mpl_logscale_minor_tick_location_handling_minimal_version_B'
     plot_minimal_version_B(X, outname)
-
-
-    
