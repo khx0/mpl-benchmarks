@@ -137,9 +137,17 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ###############################################################
     ###############################################################
     # manually set the axis zorder here
-    ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
+    # ax1.set_axisbelow(False)
+    # for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
+    #     spine.set_zorder(10)
+    # clean up in next iteration
+    for spine in ax1.spines.values():
         spine.set_zorder(10)
+    # print(ax1.spines.items())
+    # print("////////////////")
+    # print(ax1.spines.keys())
+    # print("/////////////////")
+    # print(ax1.spines.values())
     ###############################################################
     ###############################################################
     
