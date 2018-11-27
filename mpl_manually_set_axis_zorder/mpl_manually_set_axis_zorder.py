@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-02
+# date: 2018-11-27
 # file: mpl_manually_set_axis_zorder.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import time
@@ -64,16 +64,16 @@ def Plot(titlestr, X, outname, outdir, pColors,
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
     
-    mpl.rc('font',**{'size': 10})
-    mpl.rc('legend',**{'fontsize': 7.5})
+    mpl.rc('font', **{'size': 10})
+    mpl.rc('legend', **{'fontsize': 7.5})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                  r'\usepackage{amsmath}']}
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)      
     
     ######################################################################################
@@ -95,8 +95,8 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ax1.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 2.0)
-    ax1.tick_params(axis='y', which='major', pad = 2.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -129,14 +129,16 @@ def Plot(titlestr, X, outname, outdir, pColors,
     zorder = 1 and 11 for the two lines
     and zorder = 10 for the axis, as manually set below.
     The value of zoder = 10 for the axis should be adjusted
-    for your individual needs.
+    for your individual needs. The actual zorder value you need 
+    for your purpose will depend on how many plot layers your 
+    given plot contains.
     '''
     
     ###############################################################
     ###############################################################
     # manually set the axis zorder here
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  #ax.spines is a dictionary
+    for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     ###############################################################
     ###############################################################
@@ -195,4 +197,3 @@ if __name__ == '__main__':
          outdir = OUTDIR, 
          pColors = ['C0', 'C1'],
          grid = False)
-         
