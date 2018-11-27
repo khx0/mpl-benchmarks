@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-02
+# date: 2018-11-27
 # file: mpl_manually_set_axis_zorder_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import time
@@ -80,7 +80,7 @@ if __name__ == '__main__':
     ######################################################################################
     # manually set the axis zorder here
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  #ax.spines is a dictionary
+    for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     ######################################################################################
     ######################################################################################
@@ -102,6 +102,3 @@ if __name__ == '__main__':
     plt.cla()
     plt.clf()
     plt.close()
-
-    
-    
