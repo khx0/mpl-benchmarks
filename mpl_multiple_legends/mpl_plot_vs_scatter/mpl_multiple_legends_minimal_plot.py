@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-10-17
+# date: 2018-11-28
 # file: mpl_multiple_legends_minimal_plot.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import time
@@ -55,21 +55,25 @@ if __name__ == '__main__':
     
     '''
     When using matplotlib's standard plot command use
+
     p, = ax.plot(...)
+    
     to get the correct plot handle as a return value from the plot command.
     
     If you instead use using matplotlib's scatter command use
+    
     p = ax.scatter(...)
+    
     without the comma "," to get the correct plot handle p.
     This difference comes from the different return values of the two plotting commands.
     '''
 
     # scatter plot 1
     p1, = ax1.plot(X[:, 0], X[:, 1],
-                  alpha = 1.0, 
-                  linewidth = 1.0,
-                  color = 'C0', 
-                  zorder = 2)
+                   alpha = 1.0, 
+                   linewidth = 1.0,
+                   color = 'C0', 
+                   zorder = 2)
     
     pHandles = [p1]
     labels_1 = [r'plot 1']
@@ -82,10 +86,10 @@ if __name__ == '__main__':
     ######################################################################################
     # scatter plot 2
     p2, = ax1.plot(X[:, 0], X[:, 2], 
-                  alpha = 1.0, 
-                  linewidth = 1.0,
-                  color = 'C3', 
-                  zorder = 2)
+                   alpha = 1.0, 
+                   linewidth = 1.0,
+                   color = 'C3', 
+                   zorder = 2)
     
     pHandles = [p2]
     labels_2 = [r'plot 2']
@@ -104,9 +108,12 @@ if __name__ == '__main__':
     ax1.yaxis.labelpad = 5.5
     
     outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
+              dpi = 300, 
+              transparent = True)
     plt.show()
     
+    # close handles
     plt.cla()
     plt.clf()
     plt.close()
