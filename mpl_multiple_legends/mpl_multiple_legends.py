@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-11
+# date: 2018-11-28
 # file: mpl_multiple_legends.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import time
@@ -70,8 +70,8 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
     mpl.rc('legend', **{'fontsize': 8.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
@@ -109,8 +109,8 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
     ax1.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 3.0)
-    ax1.tick_params(axis='y', which='major', pad = 3.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 3.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 3.0, zorder = 10)
     
     ######################################################################################
     # labeling
@@ -136,7 +136,6 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
         pHandles.append(p)
     
 
-    
     legLeft = plt.legend(pHandles, labels,
                          loc = 'upper left',
                          handlelength = 2.0)
@@ -215,9 +214,11 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
     ######################################################################################
     # grid options
     if (grid):
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', linewidth = 0.4)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
+                 linewidth = 0.4)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', linewidth = 0.2)
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor',
+                 linewidth = 0.2)
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
@@ -280,7 +281,4 @@ if __name__ == '__main__':
                    savePDF = True, 
                    savePNG = False, 
                    datestamp = True)
-
-
-
-
+                   
