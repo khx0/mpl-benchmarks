@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-11
+# date: 2018-11-28
 # file: mpl_multiple_legends_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import time
@@ -105,12 +105,12 @@ if __name__ == '__main__':
     ax1.yaxis.labelpad = 5.5
     
     outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', 
+              dpi = 300, 
+              transparent = True)
     plt.show()
     
+    # close handles
     plt.cla()
     plt.clf()
     plt.close()
-
-
-
