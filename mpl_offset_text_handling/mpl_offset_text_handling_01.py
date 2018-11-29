@@ -47,7 +47,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     ymin = yFormat[0]
     ymax = yFormat[1]
 
-    mpl.rc('legend',**{'fontsize': 3.0})
+    mpl.rc('legend', **{'fontsize': 3.0})
     mpl.rc("axes", linewidth = 0.3)
 
     mpl.rcParams['xtick.top'] = True
@@ -59,7 +59,8 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
+                                          r'\usepackage{amsmath}']}
     plt.rcParams.update(fontparams)
 
     ######################################################################################
@@ -120,14 +121,13 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
                          ncol = 1)
         leg.draw_frame(False)
 
-
     ######################################################################################        
     ######################################################################################
     # offset text handling
     # Comment: In this solution I use the provided offset together with
     # the ScalarFormatter to obtain it in the nicer math text mode.
     mf = mpl.ticker.ScalarFormatter(useMathText = True)
-    mf.set_powerlimits((-2,2))
+    mf.set_powerlimits((-2, 2))
     plt.gca().yaxis.set_major_formatter(mf)
     ax1.yaxis.offsetText.set_fontsize(4.0)
     ######################################################################################
@@ -151,7 +151,8 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if (savePNG):
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
-    
+    ######################################################################################
+    # close handles
     plt.cla() 
     plt.clf()
     plt.close()
@@ -181,12 +182,3 @@ if __name__ == '__main__':
          labels = True,
          outname = 'figure_01',
          outdir = OUTDIR)
-         
-         
-
-
-
-
-
-
-
