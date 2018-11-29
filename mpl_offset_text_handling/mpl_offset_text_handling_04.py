@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-03
+# date: 2018-11-30
 # file: mpl_offset_text_handling_04.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import time
@@ -47,7 +47,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     ymin = yFormat[0]
     ymax = yFormat[1]
 
-    mpl.rc('legend',**{'fontsize': 3.0})
+    mpl.rc('legend', **{'fontsize': 3.0})
     mpl.rc("axes", linewidth = 0.3)
 
     mpl.rcParams['xtick.top'] = True
@@ -60,7 +60,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                  r'\usepackage{amsmath}']}
+                                          r'\usepackage{amsmath}']}
     plt.rcParams.update(fontparams)
 
     ######################################################################################
@@ -169,7 +169,8 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if (savePNG):
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
-    
+    ######################################################################################
+    # close handles
     plt.cla() 
     plt.clf()
     plt.close()
@@ -198,12 +199,3 @@ if __name__ == '__main__':
          labels = True,
          outname = 'figure_04',
          outdir = OUTDIR)
-         
-         
-
-
-
-
-
-
-
