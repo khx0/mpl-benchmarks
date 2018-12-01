@@ -38,6 +38,8 @@ ensure_dir(OUTDIR)
 if __name__ == '__main__':
     
     outname = 'mpl_multiple_legends_minimal_scatter'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     # create synthetic data
     nVisPoints = 20
