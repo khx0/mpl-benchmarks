@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-30
+# date: 2018-12-01
 # file: mpl_offset_text_handling_05.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -33,10 +33,9 @@ now = datetime.datetime.now()
 now = "%s-%s-%s" %(now.year, str(now.month).zfill(2), str(now.day).zfill(2))
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR  = os.path.join(BASEDIR, './')
-OUTDIR  = os.path.join(BASEDIR, './')
+RAWDIR  = os.path.join(BASEDIR, 'raw')
+OUTDIR  = os.path.join(BASEDIR, 'out')
 
-ensure_dir(RAWDIR)
 ensure_dir(OUTDIR)
 
 def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir, 
@@ -87,8 +86,6 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(4.0)
 
-    xticks = plt.getp(plt.gca(), 'xticklines')
-    yticks = plt.getp(plt.gca(), 'yticklines')
     ax1.tick_params('both', length = 1.5, width = 0.3, which = 'major', pad = 1.5)
     ax1.tick_params('both', length = 0.8, width = 0.2, which = 'minor', pad = 1.5)
     ######################################################################################
@@ -158,7 +155,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     # grid options
     if (grid):
         ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed', 
-                 dashes = [1.0, 0.5])
+                 dashes = [7.5, 3.0])
         ax1.grid(True)
     ######################################################################################
     # save to file
@@ -168,12 +165,13 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if (savePNG):
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
-    
+    ######################################################################################
+    # close handles
     plt.cla()
     plt.clf()
     plt.close()
     return None
-    
+
 if __name__ == '__main__':
     
     # create dummy data to plot
@@ -197,12 +195,3 @@ if __name__ == '__main__':
          labels = True,
          outname = 'figure_05',
          outdir = OUTDIR)
-         
-         
-
-
-
-
-
-
-
