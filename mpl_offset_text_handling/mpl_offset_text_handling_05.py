@@ -11,6 +11,7 @@
 
 import time
 import datetime
+import platform
 import sys
 import os
 import math
@@ -173,6 +174,10 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     return None
 
 if __name__ == '__main__':
+
+    outname = 'figure_05' + \
+              '_Python_' + platform.python_version() + \
+              '_mpl_' + mpl.__version__
     
     # create dummy data to plot
     nPoints = 200
@@ -193,5 +198,5 @@ if __name__ == '__main__':
          xFormat = xFormat,
          yFormat = yFormat,
          labels = True,
-         outname = 'figure_05',
+         outname = outname,
          outdir = OUTDIR)

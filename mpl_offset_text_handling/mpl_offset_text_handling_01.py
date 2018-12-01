@@ -11,6 +11,7 @@
 
 import time
 import datetime
+import platform
 import sys
 import os
 import math
@@ -156,7 +157,11 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     return None
     
 if __name__ == '__main__':
-    
+
+    outname = 'figure_01' + \
+              '_Python_' + platform.python_version() + \
+              '_mpl_' + mpl.__version__
+
     # create dummy data to plot
     nPoints = 200
     xVals = np.linspace(0, 100.0, nPoints)
@@ -177,5 +182,5 @@ if __name__ == '__main__':
          yFormat = yFormat,
          plotLabel = r'plot legend label',
          labels = True,
-         outname = 'figure_01',
+         outname = outname,
          outdir = OUTDIR)
