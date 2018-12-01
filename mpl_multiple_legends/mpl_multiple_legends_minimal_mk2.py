@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-28
+# date: 2018-12-01
 # file: mpl_multiple_legends_minimal_mk2.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,6 +11,7 @@
 
 import time
 import datetime
+import platform
 import sys
 import os
 import math
@@ -37,8 +38,10 @@ ensure_dir(OUTDIR)
 if __name__ == '__main__':
     
     outname = 'mpl_multiple_legends_minimal_mk2'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
-    ### create data
+    # create synthetic data
     nVisPoints = 500
     xVals = np.linspace(0.0, 1.0, nVisPoints)
     
@@ -52,7 +55,7 @@ if __name__ == '__main__':
     X[:, 2] = yVals2
     X[:, 3] = yVals3 
     
-    ### minimal plot
+    # minimal plot
     f, ax1 = plt.subplots(1)
     
     p1, = ax1.plot(X[:, 0], X[:, 1], 
@@ -100,7 +103,6 @@ if __name__ == '__main__':
     plt.gca().add_artist(leg3)
     
     ######################################################################################
-    
     # labeling
     ax1.set_xlabel(r'$x$ label')
     ax1.set_ylabel(r'$y$ label')
@@ -108,7 +110,9 @@ if __name__ == '__main__':
     ax1.yaxis.labelpad = 5.5
     
     outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', 
+              dpi = 300, 
+              transparent = True)
     plt.show()
     
     # close handles
