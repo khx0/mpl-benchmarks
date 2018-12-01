@@ -170,7 +170,7 @@ if __name__ == '__main__':
     X[:, 0] = xVals
     X[:, 1] = yVals
     
-    # plot formatting
+    # set formatting
     xFormat = [0.0, 100.0, 20.0, 5.0 , r'x label']
     yFormat = [0.0, 1.0e6, 200000.0, 100000.0 , r'y label']
     

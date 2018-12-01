@@ -87,8 +87,6 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(4.0)
 
-    xticks = plt.getp(plt.gca(), 'xticklines')
-    yticks = plt.getp(plt.gca(), 'yticklines')
     ax1.tick_params('both', length = 1.5, width = 0.3, which = 'major', pad = 1.5)
     ax1.tick_params('both', length = 0.8, width = 0.2, which = 'minor', pad = 1.5)
     ######################################################################################
@@ -123,13 +121,13 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
         
     ######################################################################################
     ######################################################################################
-    # OFFSET TEXT HANDLING
+    # offset text handling
     ax1 = plt.gca()
     ax1.ticklabel_format(axis = 'y', style = 'sci', scilimits = (0, 2))    
     
     f.savefig('./dummy_figure_TMP.svg')
     
-    offset = ax1.get_yaxis().get_offset_text( )
+    offset = ax1.get_yaxis().get_offset_text()
     ax1.yaxis.offsetText.set_visible(False)  
     
     def formatPowerOfTen(text):
@@ -189,7 +187,7 @@ if __name__ == '__main__':
     X[:, 0] = xVals
     X[:, 1] = yVals
     
-    # plot formatting
+    # set formatting
     xFormat = [0.0, 100.0, 20.0, 5.0 , r'x label']
     yFormat = [0.0, 1.0e6, 200000.0, 100000.0 , r'y label']
     
