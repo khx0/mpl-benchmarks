@@ -137,7 +137,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
         return label
     
     powerLabel = formatPowerOfTen(offset.get_text())
-        
+
     ax1.annotate(powerLabel,
                  xy = (0.0, 1.01),
                  xycoords = 'axes fraction',
@@ -159,11 +159,11 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
         ax1.grid(True)
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF):
+    if savePDF:
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
