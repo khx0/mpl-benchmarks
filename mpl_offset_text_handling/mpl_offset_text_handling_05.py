@@ -39,7 +39,7 @@ OUTDIR  = os.path.join(BASEDIR, 'out')
 
 ensure_dir(OUTDIR)
 
-def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir, 
+def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir, 
          grid = True, savePDF = True, savePNG = False, datestamp = True):
 
     xmin = xFormat[0]
@@ -108,7 +108,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
              color = pcolors[0],
              lw = 0.5,
              alpha = 1.0,
-             label = r'plot legend label')
+             label = plotLabel)
     ######################################################################################
     # legend
     if (labels):
@@ -197,6 +197,7 @@ if __name__ == '__main__':
          pcolors = ['#003399'],
          xFormat = xFormat,
          yFormat = yFormat,
+         plotLabel = r'plot legend label',
          labels = True,
          outname = outname,
          outdir = OUTDIR)
