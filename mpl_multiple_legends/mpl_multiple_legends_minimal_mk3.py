@@ -41,7 +41,7 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     
-    # create data
+    # create synthetic data
     nVisPoints = 500
     xVals = np.linspace(0.0, 1.0, nVisPoints)
     

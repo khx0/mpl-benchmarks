@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-28
+# date: 2018-12-01
 # file: mpl_multiple_legends_minimal_plot.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,6 +11,7 @@
 
 import time
 import datetime
+import platform
 import sys
 import os
 import math
@@ -37,9 +38,11 @@ ensure_dir(OUTDIR)
 if __name__ == '__main__':
     
     outname = 'mpl_multiple_legends_minimal_plot'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
-    ### create data
-    nVisPoints = 20
+    # create synthetic data
+    nVisPoints = 10
     xVals = np.linspace(0.0, 1.0, nVisPoints)
     
     yVals1 = [x * (1.0 - x) for x in xVals]
@@ -50,7 +53,7 @@ if __name__ == '__main__':
     X[:, 1] = yVals1
     X[:, 2] = yVals2 
     
-    ### minimal plot
+    # minimal plot
     f, ax1 = plt.subplots(1)
     
     '''

@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-28
+# date: 2018-12-01
 # file: mpl_multiple_legends_minimal_scatter.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,6 +11,7 @@
 
 import time
 import datetime
+import platform
 import sys
 import os
 import math
@@ -38,7 +39,7 @@ if __name__ == '__main__':
     
     outname = 'mpl_multiple_legends_minimal_scatter'
     
-    ### create data
+    # create synthetic data
     nVisPoints = 20
     xVals = np.linspace(0.0, 1.0, nVisPoints)
     
@@ -50,7 +51,7 @@ if __name__ == '__main__':
     X[:, 1] = yVals1
     X[:, 2] = yVals2 
     
-    ### minimal plot
+    # minimal plot
     f, ax1 = plt.subplots(1)
     
     '''
@@ -106,7 +107,6 @@ if __name__ == '__main__':
     leg_2.draw_frame(False)
     plt.gca().add_artist(leg_2)
     ######################################################################################
-    
     # labeling
     ax1.set_xlabel(r'$x$ label')
     ax1.set_ylabel(r'$y$ label')
