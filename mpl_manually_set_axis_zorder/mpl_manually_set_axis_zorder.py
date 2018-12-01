@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-27
+# date: 2018-12-01
 # file: mpl_manually_set_axis_zorder.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,6 +11,7 @@
 
 import time
 import datetime
+import platform
 import sys
 import os
 import numpy as np
@@ -137,21 +138,13 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ###############################################################
     ###############################################################
     # manually set the axis zorder here
-    # ax1.set_axisbelow(False)
-    # for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
-    #     spine.set_zorder(10)
-    # clean up in next iteration
-    for spine in ax1.spines.values():
+    ax1.set_axisbelow(False)
+    for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
-    # print(ax1.spines.items())
-    # print("////////////////")
-    # print(ax1.spines.keys())
-    # print("/////////////////")
-    # print(ax1.spines.values())
     ###############################################################
     ###############################################################
     
-    ### legend
+    # legend
     leg = ax1.legend(handlelength = 1.35, 
                      scatterpoints = 1,
                      markerscale = 1.0,
@@ -187,7 +180,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
 if __name__ == '__main__':
 
-    # create data
+    outname = 'mpl_manually_set_axis_zorder'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+
+    # create synthetic data
     nVisPoints = 500
     
     xVals = np.linspace(-0.5, 1.5, nVisPoints)
@@ -201,7 +198,7 @@ if __name__ == '__main__':
     # plot data                    
     Plot(titlestr = '',
          X = X, 
-         outname = 'mpl_manually_set_axis_zorder',
+         outname = outname,
          outdir = OUTDIR, 
          pColors = ['C0', 'C1'],
          grid = False)

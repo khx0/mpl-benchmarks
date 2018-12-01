@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-27
+# date: 2018-12-01
 # file: mpl_manually_set_axis_zorder_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,6 +11,7 @@
 
 import time
 import datetime
+import platform
 import sys
 import os
 import numpy as np
@@ -36,7 +37,10 @@ ensure_dir(OUTDIR)
 if __name__ == '__main__':
 
     outname = 'mpl_manually_set_axis_zorder_minimal'
-    # create data
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+
+    # create synthetic data
     nVisPoints = 500
     
     xVals = np.linspace(-0.5, 1.5, nVisPoints)
@@ -47,7 +51,7 @@ if __name__ == '__main__':
     X[:, 1] = yVals1
     X[:, 2] = yVals2
     
-    ### minimal plot
+    # minimal plot
     f, ax1 = plt.subplots(1)
     
     '''
@@ -80,8 +84,8 @@ if __name__ == '__main__':
     ######################################################################################
     # manually set the axis zorder here
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
-        spine.set_zorder(10)
+    for spine in ax1.spines.values(): # ax1.spines is a dictionary
+        spine.set_zorder(10) 
     ######################################################################################
     ######################################################################################
     
@@ -96,7 +100,9 @@ if __name__ == '__main__':
     ax1.set_xlim(-0.05, 1.05)              
     
     outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', 
+              dpi = 300,
+              transparent = True)
     plt.show()
     
     plt.cla()
