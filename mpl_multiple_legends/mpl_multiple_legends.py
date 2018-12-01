@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-28
+# date: 2018-12-01
 # file: mpl_multiple_legends.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,6 +11,7 @@
 
 import time
 import datetime
+import platform
 import sys
 import os
 import math
@@ -74,7 +75,8 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
     mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams) 
 
     ######################################################################################
@@ -132,10 +134,8 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
                       linewidth = 0.5, 
                       color = pColors[i], 
                       zorder = 1)
-        
         pHandles.append(p)
     
-
     legLeft = plt.legend(pHandles, labels,
                          loc = 'upper left',
                          handlelength = 2.0)
@@ -222,11 +222,11 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
@@ -236,8 +236,12 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
     return outname
 
 if __name__ == '__main__':
+
+    outname = 'mpl_multiple_legends' + \
+              '_Python_' + platform.python_version() + \
+              '_mpl_' + mpl.__version__
         
-    ### create synthetic data
+    # create synthetic data
     
     nVisPoints = 500
     nScatterPoints = 20
@@ -261,19 +265,19 @@ if __name__ == '__main__':
     X[:, 0] = xVals
     Xs[:, 0] = xVals2
     
-    ### call plotting function
+    # call plotting function
          
     pColors = ['k', 'C3', 'C0']
     
     labels = [r'$\mathcal{A} = 2.5\cdot 10^{-4}$',
               r'$\mathcal{A} = 1.5\cdot 10^{-4}$',
               r'$\mathcal{A} = 5 \cdot 10^{-5}$']
-     
+    
     outname = Plot(titlestr = '', 
                    Xs = Xs, 
                    X = X, 
                    params = amplitudes, 
-                   outname = 'mpl_multiple_legends', 
+                   outname = outname, 
                    outdir = OUTDIR, 
                    pColors = pColors,
                    labels = labels,
