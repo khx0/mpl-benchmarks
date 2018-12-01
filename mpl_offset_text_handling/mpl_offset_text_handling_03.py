@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-30
+# date: 2018-12-01
 # file: mpl_offset_text_handling_03.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,6 +11,7 @@
 
 import time
 import datetime
+import platform
 import sys
 import os
 import math
@@ -33,13 +34,12 @@ now = datetime.datetime.now()
 now = "%s-%s-%s" %(now.year, str(now.month).zfill(2), str(now.day).zfill(2))
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR  = os.path.join(BASEDIR, './')
-OUTDIR  = os.path.join(BASEDIR, './')
+RAWDIR  = os.path.join(BASEDIR, 'raw')
+OUTDIR  = os.path.join(BASEDIR, 'out')
 
-ensure_dir(RAWDIR)
 ensure_dir(OUTDIR)
 
-def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir, 
+def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir, 
          grid = True, savePDF = True, savePNG = False, datestamp = True):
 
     xmin = xFormat[0]
@@ -87,8 +87,6 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(4.0)
 
-    xticks = plt.getp(plt.gca(), 'xticklines')
-    yticks = plt.getp(plt.gca(), 'yticklines')
     ax1.tick_params('both', length = 1.5, width = 0.3, which = 'major', pad = 1.5)
     ax1.tick_params('both', length = 0.8, width = 0.2, which = 'minor', pad = 1.5)
     ######################################################################################
@@ -110,7 +108,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
              color = pcolors[0],
              lw = 0.5,
              alpha = 1.0,
-             label = r'plot legend label')
+             label = plotLabel)
     ######################################################################################
     # legend
     if (labels):
@@ -120,8 +118,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
                          markerscale = 1.0,
                          ncol = 1)
         leg.draw_frame(False)
-        
-        
+    
     ###################################################################################### 
     ######################################################################################
     # offset text handling
@@ -132,7 +129,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     
     offset = ax1.get_yaxis().get_offset_text()
     ax1.yaxis.offsetText.set_visible(False)
-    print(offset.get_text())
+    # print(offset.get_text())
     ax1.annotate(offset.get_text(),
                  xy = (0.0, 1.02),
                  xycoords = 'axes fraction',
@@ -150,15 +147,15 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     # grid options
     if (grid):
         ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed', 
-                 dashes = [1.0, 0.5])
+                 dashes = [7.5, 3.0])
         ax1.grid(True)
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF):
+    if savePDF:
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
@@ -168,6 +165,10 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, labels, outname, outdir,
     return None
     
 if __name__ == '__main__':
+
+    outname = 'figure_03' + \
+              '_Python_' + platform.python_version() + \
+              '_mpl_' + mpl.__version__
     
     # create dummy data to plot
     nPoints = 200
@@ -187,6 +188,7 @@ if __name__ == '__main__':
          pcolors = ['#003399'],
          xFormat = xFormat,
          yFormat = yFormat,
+         plotLabel = r'plot legend label',
          labels = True,
-         outname = 'figure_03',
+         outname = outname,
          outdir = OUTDIR)
