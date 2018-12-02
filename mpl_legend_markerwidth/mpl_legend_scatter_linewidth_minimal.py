@@ -3,16 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-26
+# date: 2018-12-02
 # file: mpl_legend_scatter_linewidth_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
+import os
+import platform
 import time
 import datetime
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -37,7 +38,7 @@ if __name__ == '__main__':
     # fix random seed for reproducibility
     np.random.seed(123456789)
 
-    ### create plot data
+    # create synthetic plot data
     nDatapoints = 500
     xVals = np.random.normal(0.5, 0.15, nDatapoints)
     yVals = np.random.normal(0.5, 0.2, nDatapoints)
@@ -46,6 +47,8 @@ if __name__ == '__main__':
     X[:, 1] = yVals
     
     outname = 'mpl_legend_scatter_linewidth_minimal'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     f, ax1 = plt.subplots(1)
     f.set_size_inches(3.0, 3.0)   
@@ -60,8 +63,8 @@ if __name__ == '__main__':
                 zorder = 3,
                 label = r'scatter label')
                          
-    ###############################################
-    ###############################################
+    ####################################################
+    ####################################################
     # legend handling           
     leg = ax1.legend(handlelength = 0.1,
                      markerscale = 3.5)
@@ -75,15 +78,18 @@ if __name__ == '__main__':
     '''
 
     # set the linewidth of the legend object
-    for i, legobj in enumerate(leg.legendHandles):
+    for legobj in leg.legendHandles:
         legobj.set_linewidth(1.0)
 
     leg.draw_frame(False)
-    ###############################################
-    ###############################################  
+    ####################################################
+    #################################################### 
     
     outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname + '.pdf'), dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname + '.pdf'),
+              dpi = 300,
+              transparent = True)
+    
     plt.cla()
     plt.clf()
     plt.close()
