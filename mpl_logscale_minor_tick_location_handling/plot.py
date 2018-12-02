@@ -3,10 +3,11 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-26
+# date: 2018-12-01
 # file: plot.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# requires: pdf2svg installed
 ##########################################################################################
 
 """
@@ -20,11 +21,12 @@ For aesthetic reasons I often prefer not to have minor tick marks towards
 both the left and right margin of a chosen log-axis. 
 In general, I typically want to control the range for ticks indepedent of the view range,
 which is straight forward in matplotlibs normal view, but a little more challenging
-in the logarithmic scaling.
+when using logarithmic axis scaling.
 """
 
 import sys
 import os
+import platform
 import time
 import datetime
 import math
@@ -55,18 +57,27 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 ensure_dir(OUTDIR)
 
-def getFigureProps(width, height):
+def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
-    Specify widht and height in cm
+    True size scaling auxiliary function to setup mpl plots with a desired size.
+    Specify widht and height in cm.
+    lFrac = left fraction   in [0, 1]
+    rFrac = right fraction  in [0, 1]
+    bFrac = bottom fraction in [0, 1]
+    tFrac = top fraction    in [0, 1]
+    returns:
+        fWidth = figure width
+        fHeight = figure height
+    These figure width and height values can then be used to create a figure instance 
+    of the desired size, such that the actual plotting canvas has the specified
+    target width and height, as provided by the input parameters of this function.
     '''
-    lFrac, rFrac = 0.16, 0.85
-    bFrac, tFrac = 0.17, 0.9
-    axesWidth = width / 2.54 # convert to inches
-    axesHeight = height / 2.54 # convert to inches
+    axesWidth = width / 2.54    # convert to inches
+    axesHeight = height / 2.54  # convert to inches
     fWidth = axesWidth / (rFrac - lFrac)
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
-    
+
 def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
 
@@ -91,7 +102,10 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
-        getFigureProps(width = 5.5, height = 4.5)
+        getFigureProps(width = 5.5, height = 4.5,
+                       lFrac = 0.16, rFrac = 0.85,
+                       bFrac = 0.17, tFrac = 0.9)
+
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -189,11 +203,11 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
@@ -216,6 +230,8 @@ if __name__ == '__main__':
     colorVals = ['C0']
 
     outname = 'mpl_logscale_minor_tick_location_handling_version_A'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     returnname = Plot(titlestr = '',
                       type = 'A',
@@ -228,11 +244,12 @@ if __name__ == '__main__':
 
     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
           ' ' + os.path.join(OUTDIR, returnname + '.svg')
-    print(cmd)
     os.system(cmd)
                    
     outname = 'mpl_logscale_minor_tick_location_handling_version_B'
-                   
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+
     returnname = Plot(titlestr = '',
                       type = 'B',
                       X = X,
@@ -244,5 +261,4 @@ if __name__ == '__main__':
 
     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
           ' ' + os.path.join(OUTDIR, returnname + '.svg')
-    print(cmd)
     os.system(cmd)
