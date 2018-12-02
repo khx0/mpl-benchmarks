@@ -231,9 +231,13 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     if datestamp:
         outname += '_' + now
     if savePDF: # save to file using pdf backend
-        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
+        f.savefig(os.path.join(outdir, outname) + '.pdf',
+                  dpi = 300,
+                  transparent = True)
     if savePNG:
-        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
+        f.savefig(os.path.join(outdir, outname) + '.png',
+                  dpi = 600,
+                  transparent = False)
     if saveSVG:
         cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
               ' ' + os.path.join(OUTDIR, outname + '.svg')
@@ -281,7 +285,7 @@ if __name__ == '__main__':
     
     xBoxCoords = getPcolorBoxCoordinates(xVals, 'log')
     yBoxCoords = getPcolorBoxCoordinates(yVals, 'log')
-      
+    
     assert xBoxCoords.shape == (len(xVals) + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (len(yVals) + 1,), "Error: Shape assertion failed."
     
