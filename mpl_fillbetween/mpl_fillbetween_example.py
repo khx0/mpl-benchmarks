@@ -3,16 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-23
+# date: 2018-12-02
 # file: mpl_fillbetween_example.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 2.2.3
 ##########################################################################################
 
 import sys
+import os
+import platform
 import time
 import datetime
-import os
 import math
 import numpy as np
 import matplotlib as mpl
@@ -62,8 +63,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
 def Plot(titlestr, X, params, outname, outdir, pColors, 
-        grid = False, drawLegend = True, xFormat = None, yFormat = None, 
-        savePDF = True, savePNG = False, datestamp = True):
+         grid = False, drawLegend = True, xFormat = None, yFormat = None, 
+         savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -75,8 +76,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     mpl.rc('legend',**{'fontsize': 7.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
@@ -105,15 +106,15 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.tick_params('both', length = 3.0, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
 
-    ax1.tick_params(axis='x', which='major', pad = 1.0)
-    ax1.tick_params(axis='y', which='major', pad = 1.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
     ax1.set_xlabel(r'x label', fontsize = 8.0)
     ax1.set_ylabel(r'y label', fontsize = 8.0)
     ax1.xaxis.labelpad = 2.0
-    ax1.yaxis.labelpad = 2.0  
+    ax1.yaxis.labelpad = 2.0
     ######################################################################################
     # plotting
     
@@ -131,8 +132,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ######################################################################################
     # legend
     if (drawLegend):
-        leg = ax1.legend(#bbox_to_anchor = [0.7, 0.8],
-                         #loc = 'upper left',
+        leg = ax1.legend(# bbox_to_anchor = [0.7, 0.8],
+                         # loc = 'upper left',
                          handlelength = 1.5, 
                          scatterpoints = 1,
                          markerscale = 1.0,
@@ -159,9 +160,9 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
         ax1.set_ylim(yFormat[0], yFormat[1])
-          
+    
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
+    for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
     ######################################################################################
@@ -175,18 +176,24 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF):
+    if savePDF:
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
+    ######################################################################################
+    # close handles
     plt.cla()
     plt.clf()
     plt.close()
     return outname
              
 if __name__ == '__main__':
+
+    outname = 'mpl_fillbetween_example'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     nPoints = 400
     xVals = np.linspace(-6.0, 6.0, nPoints)
@@ -203,7 +210,7 @@ if __name__ == '__main__':
     Plot(titlestr = '',
          X = X,
          params = [], 
-         outname = 'mpl_fillbetween_example',
+         outname = outname,
          outdir = OUTDIR, 
          pColors = pColors, 
          grid = False, 
