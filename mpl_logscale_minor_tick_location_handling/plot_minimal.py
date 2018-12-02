@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-26
+# date: 2018-12-02
 # file: plot_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -20,11 +20,12 @@ For aesthetic reasons I often prefer not to have minor tick marks towards
 both the left and right margin of a chosen log-axis. 
 In general, I typically want to control the range for ticks indepedent of the view range,
 which is straight forward in matplotlibs normal view, but a little more challenging
-in the logarithmic scaling.
+when using logarithmic axis scaling.
 """
 
 import sys
 import os
+import platform
 import time
 import datetime
 import numpy as np
@@ -82,11 +83,16 @@ def  plot_minimal_version_A(X, filename):
     ax1.set_axisbelow(False)
     
     filename += '_' + now
-    f.savefig(os.path.join(OUTDIR, filename + '.pdf'), dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, filename + '.pdf'), 
+              dpi = 300, 
+              transparent = True)
     
     # close handles
+    plt.cla()
     plt.clf()
     plt.close()
+
+    return None
     
 def  plot_minimal_version_B(X, filename):
 
@@ -129,12 +135,16 @@ def  plot_minimal_version_B(X, filename):
     ax1.set_axisbelow(False)
     
     filename += '_' + now
-    f.savefig(os.path.join(OUTDIR, filename + '.pdf'), dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, filename + '.pdf'),
+              dpi = 300, 
+              transparent = True)
     
     # close handles
     plt.cla()
     plt.clf()
     plt.close()
+
+    return None
 
 if __name__ == '__main__':
 
@@ -147,7 +157,11 @@ if __name__ == '__main__':
     X[:, 1] = yValues
     
     outname = 'mpl_logscale_minor_tick_location_handling_minimal_version_A'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     plot_minimal_version_A(X, outname)
 
     outname = 'mpl_logscale_minor_tick_location_handling_minimal_version_B'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     plot_minimal_version_B(X, outname)
