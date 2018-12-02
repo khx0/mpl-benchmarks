@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-26
+# date: 2018-12-02
 # file: mpl_legend_manually_set_size.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,9 +11,10 @@
 
 import sys
 sys.path.append('../')
+import os
+import platform
 import time
 import datetime
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -49,19 +50,20 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     mpl.rc('legend',**{'fontsize': 5.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
-                  r'\usepackage{amsmath}']}
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)       
     
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 5.5, height = 4.0,
-                       lFrac = 0.12, rFrac = 0.70, bFrac = 0.17, tFrac = 0.9)
+                       lFrac = 0.12, rFrac = 0.70,
+                       bFrac = 0.17, tFrac = 0.9)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -76,8 +78,8 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 1.5)
-    ax1.tick_params(axis='y', which='major', pad = 1.5, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.5)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.5, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -148,12 +150,12 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     leg.draw_frame(False)
 
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  #ax.spines is a dictionary
+    for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
             
     ######################################################################################
     # set plot range and scale
-    
+    # USE DEFAULTS HERE
     ######################################################################################
     # grid options
     if (grid):
@@ -165,13 +167,13 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
-    if (saveSVG):
+    if saveSVG:
         cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
               ' ' + os.path.join(OUTDIR, outname + '.svg')
         print(cmd)
@@ -188,7 +190,7 @@ if __name__ == '__main__':
     # fix random seed for reproducibility
     np.random.seed(223456789)
 
-    ### create plot data
+    # create synthetic plot data
     nDatapoints = 200
     xVals = np.linspace(0.0, 1.0, nDatapoints)
     yVals = np.array([x for x in xVals])
@@ -208,7 +210,7 @@ if __name__ == '__main__':
     Z[:, 0] = xVals
     Z[:, 1] = yVals
     
-    ### call plot routine
+    # call plot routine
     pColors = ['C3', 'C0', 'C2']
     
     labels = [r'data line',
@@ -216,6 +218,8 @@ if __name__ == '__main__':
               r'scatter points (only line)'] 
 
     outname = 'mpl_legend_manually_set_size'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     outname = Plot(titlestr = '',
                    X = X,
