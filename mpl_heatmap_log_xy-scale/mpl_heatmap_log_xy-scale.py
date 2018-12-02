@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-25
+# date: 2018-12-02
 # file: mpl_heatmap_log_xy-scale.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,9 +11,10 @@
 
 import sys
 sys.path.append('../')
+import os
+import platform
 import time
 import datetime
-import os
 import math
 import numpy as np
 import matplotlib as mpl
@@ -227,16 +228,15 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
-    if (saveSVG):
+    if saveSVG:
         cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
               ' ' + os.path.join(OUTDIR, outname + '.svg')
-        print(cmd)
         os.system(cmd)
     ######################################################################################
     # close handles
@@ -248,9 +248,17 @@ def plot_pcolor(X, Y, Z, titlestr, params,
 if __name__ == '__main__':
 
     basename = 'mpl_heatmap_log_xy-scale'
+
+    outnameAbs = basename + '_absZscale'
+    outnameAbs += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+
+    outnameRel = basename + '_relZscale'
+    outnameRel += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     ######################################################################################
-    ### create dummy data
+    # create dummy data
     
     nDataPoints = 31
     Z = np.zeros((nDataPoints, nDataPoints))
@@ -302,9 +310,7 @@ if __name__ == '__main__':
     zmax = 1.0
     zColor = [cMap, zmin, zmax, r'z label $\, z$']
     zFormat = ['linear', -1.0, 1.1, 0.5]
-    
-    outname = basename + '_absZscale'
-    
+
     plot_pcolor(X = xBoxCoords,
                 Y = yBoxCoords,
                 Z = Z,
@@ -316,13 +322,12 @@ if __name__ == '__main__':
                 zFormat = zFormat,
                 zColor = zColor,
                 show_cBar = True,
-                outname = outname, 
+                outname = outnameAbs, 
                 outdir = OUTDIR,
                 showlabels = True,
                 grid = False,
                 saveSVG = False)
     
-
     # relative scaling                      
     cMap = cm.viridis # cm.plasma
     zmin = np.min(Z)
@@ -331,8 +336,6 @@ if __name__ == '__main__':
     # zFormat = ['linear', -1.0, 1.1, 0.5]
     zFormat = ['linear', -0.75, 0.8, 0.25]
     
-    outname = basename + '_relZscale'
-
     plot_pcolor(X = xBoxCoords,
                 Y = yBoxCoords,
                 Z = Z,
@@ -344,7 +347,7 @@ if __name__ == '__main__':
                 zFormat = zFormat,
                 zColor = zColor,
                 show_cBar = True,
-                outname = outname, 
+                outname = outnameRel, 
                 outdir = OUTDIR,
                 showlabels = True,
                 grid = False,
