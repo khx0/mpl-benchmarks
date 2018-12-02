@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-26
+# date: 2018-12-02
 # file: mpl_legend_linewidth_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -11,6 +11,7 @@
 
 import sys
 import time
+import platform
 import datetime
 import os
 import numpy as np
@@ -30,9 +31,11 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
+ensure_dir(OUTDIR)
+
 if __name__ == '__main__':
 
-    ### create plot data
+    # create synthetic data
     nDatapoints = 200
     xVals = np.linspace(0.0, 1.0, nDatapoints)
     yVals = np.array([x for x in xVals])
@@ -41,6 +44,8 @@ if __name__ == '__main__':
     X[:, 1] = yVals
     
     outname = 'mpl_legend_linewidth_minimal'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     f, ax1 = plt.subplots(1)
     f.set_size_inches(3.0, 3.0)   
@@ -52,19 +57,18 @@ if __name__ == '__main__':
             zorder = 2,
             label = r'line label')
     
-    ###############################################
-    ###############################################
+    ####################################################
+    ####################################################
     # legend handling           
     leg = ax1.legend(handlelength = 2.0)
     
     '''
     The linewidth of the legend object can be manually
-    adjusted by the two code lines below,
-    by using the
+    adjusted by the two code lines below, by using the
     legobj.set_linewidth(WIDTH)
     function.
     Here this is used to adjust the linewidth of the 
-    scatter symbol.
+    scatter symbols.
     '''
 
     # set the linewidth of the legend object
@@ -72,11 +76,14 @@ if __name__ == '__main__':
         legobj.set_linewidth(4.0)
 
     leg.draw_frame(False)
-    ###############################################
-    ###############################################  
+    ####################################################
+    #################################################### 
     
     outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname + '.pdf'), dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname + '.pdf'),
+              dpi = 300,
+              transparent = True)
+              
     plt.cla()
     plt.clf()
     plt.close()
