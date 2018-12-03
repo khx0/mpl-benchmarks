@@ -3,16 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-23
+# date: 2018-12-04
 # file: mpl_empty_contour_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
+import os
+import platform
 import time
 import datetime
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -37,6 +38,9 @@ ensure_dir(OUTDIR)
 if __name__ == '__main__':
 
     outname = 'mpl_empty_contour_minimal'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+    outname += now # set datestamp
 
 	# create data
     nDataPoints = 500
@@ -52,7 +56,7 @@ if __name__ == '__main__':
     
     pColors = ['k']
     
-    ### minimal plot
+    # minimal plot
     f, ax1 = plt.subplots(1)
     f.set_size_inches(2.0, 2.0)
     
@@ -71,10 +75,12 @@ if __name__ == '__main__':
     
     plt.axis('off')
     
-    ### save plot to file
-    outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
+    # save plot to file
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
+              dpi = 300,
+              transparent = True)
     plt.show()
+    
     plt.cla()
     plt.clf()
     plt.close()
