@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-23
+# date: 2018-12-03
 # file: mpl_fillbetweenx_example_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
@@ -19,9 +19,10 @@ fillbetweenx function is the ideal choice.
 '''
 
 import sys
+import os
+import platform
 import time
 import datetime
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -43,6 +44,11 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 ensure_dir(OUTDIR)
 
 if __name__ == '__main__':
+
+    outname = 'mpl_fillbetweenx_example_minimal_'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+    outname += now # set datestamp
     
     nPoints = 400
     xVals = np.linspace(-6.0, 6.0, nPoints)
@@ -50,9 +56,7 @@ if __name__ == '__main__':
     X = np.zeros((nPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
-    outname = 'mpl_fillbetweenx_example_minimal_' + now
-    
+
     f, ax1 = plt.subplots(1)
 
     ax1.set_xlabel(r'x label', fontsize = 8.0)
