@@ -3,16 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-23
+# date: 2018-12-04
 # file: mpl_empty_contour.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
+import os
+import platform
 import time
 import datetime
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -68,11 +69,12 @@ def Plot(titlestr, X, outname, outdir, pColors,
     mpl.rc('legend', **{'fontsize': 7.5})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)      
     
     ######################################################################################
@@ -128,6 +130,10 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
 if __name__ == '__main__':
 
+    outname = 'mpl_empty_contour'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+
 	# create data
     nDataPoints = 500
     radius = 50.0
@@ -143,7 +149,7 @@ if __name__ == '__main__':
     # plot data                    
     outname = Plot(titlestr = '',
          		   X = X,
-         		   outname = 'mpl_empty_contour',
+         		   outname = outname,
          		   outdir = OUTDIR, 
          		   pColors = ['k'],
          		   grid = False)
