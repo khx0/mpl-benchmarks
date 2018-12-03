@@ -80,6 +80,7 @@ if __name__ == '__main__':
     # my new y coordinates. This might be confusing, but it is here precisely what I want.
     # This might be different for different applications of yours and you should 
     # in all cases make sure to clearly understand the API and think about what you want.
+    # As always.
     ######################################################################################
     ax1.fill_betweenx(X[:, 0], X[:, 1], 0.0,
                       color = 'C0',

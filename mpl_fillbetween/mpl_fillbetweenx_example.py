@@ -3,16 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-23
+# date: 2018-12-03
 # file: mpl_fillbetweenx_example.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
+import os
+import platform
 import time
 import datetime
-import os
 import math
 import numpy as np
 import matplotlib as mpl
@@ -62,8 +63,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
 def Plot(titlestr, X, params, outname, outdir, pColors, 
-        grid = False, drawLegend = True, xFormat = None, yFormat = None, 
-        savePDF = True, savePNG = False, datestamp = True):
+         grid = False, drawLegend = True, xFormat = None, yFormat = None, 
+         savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -75,8 +76,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     mpl.rc('legend',**{'fontsize': 7.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
@@ -99,14 +100,12 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
-        
-    xticks = plt.getp(plt.gca(), 'xticklines')
-    yticks = plt.getp(plt.gca(), 'yticklines')
+    
     ax1.tick_params('both', length = 3.0, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
 
-    ax1.tick_params(axis='x', which='major', pad = 1.0)
-    ax1.tick_params(axis='y', which='major', pad = 1.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -133,11 +132,12 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     # my new y coordinates. This might be confusing, but it is here precisely what I want.
     # This might be different for different applications of yours and you should 
     # in all cases make sure to clearly understand the API and think about what you want.
+    # As always.
     ######################################################################################
     ax1.fill_betweenx(X[:, 0], X[:, 1], 0.0,
-                     color = pColors[0],
-                     alpha = 0.5,
-                     lw = 0.0)
+                      color = pColors[0],
+                      alpha = 0.5,
+                      lw = 0.0)
     
     ax1.plot(X[:, 1], X[:, 0], 
              color = pColors[0],
@@ -178,7 +178,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_ylim(yFormat[0], yFormat[1])
           
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  #ax.spines is a dictionary
+    for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
     ######################################################################################
@@ -198,13 +198,19 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if (savePNG):
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
+    ######################################################################################
+    # close handles
     plt.cla()
     plt.clf()
     plt.close()
     return outname
              
 if __name__ == '__main__':
-    
+
+    outname = 'mpl_fillbetweenx_example'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+
     nPoints = 400
     xVals = np.linspace(-6.0, 6.0, nPoints)
     yVals = norm.pdf(xVals, 0.0, 1.0)
@@ -220,7 +226,7 @@ if __name__ == '__main__':
     Plot(titlestr = '',
          X = X,
          params = [], 
-         outname = 'mpl_fillbetweenx_example',
+         outname = outname,
          outdir = OUTDIR, 
          pColors = pColors, 
          grid = False, 
