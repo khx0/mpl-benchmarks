@@ -82,9 +82,9 @@ if __name__ == '__main__':
     # in all cases make sure to clearly understand the API and think about what you want.
     ######################################################################################
     ax1.fill_betweenx(X[:, 0], X[:, 1], 0.0,
-                     color = 'C0',
-                     alpha = 0.5,
-                     lw = 0.0)
+                      color = 'C0',
+                      alpha = 0.5,
+                      lw = 0.0)
     
     ax1.plot(X[:, 1], X[:, 0], 
              color = 'C0',
@@ -100,6 +100,10 @@ if __name__ == '__main__':
     leg.draw_frame(False)
     plt.gca().add_artist(leg)
 
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
+              dpi = 300,
+              transparent = True)
+    
+    plt.cla()
     plt.clf()
     plt.close()
