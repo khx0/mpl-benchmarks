@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-05
+# date: 2018-12-05
 # file: mpl_save_as_eps.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 2.2.3
@@ -19,10 +19,11 @@ the transparent versions. This is of course not always equally applicable
 but often works good enough.
 '''
 
-import time
-import datetime
 import sys
 import os
+import platform
+import time
+import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -74,16 +75,16 @@ def Plot(titlestr, X, outname, outdir, pColors,
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
     
-    mpl.rc('font',**{'size': 10})
-    mpl.rc('legend',**{'fontsize': 7.5})
+    mpl.rc('font', **{'size': 10})
+    mpl.rc('legend', **{'fontsize': 7.5})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                  r'\usepackage{amsmath}']}
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)      
     
     ######################################################################################
@@ -105,8 +106,8 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ax1.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 2.0)
-    ax1.tick_params(axis='y', which='major', pad = 2.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -124,19 +125,19 @@ def Plot(titlestr, X, outname, outdir, pColors,
              clip_on = False,
              zorder = 1)
     
-    ### legend
+    # legend
     leg = ax1.legend(handlelength = 1.35, 
                      scatterpoints = 1,
                      markerscale = 1.0,
                      ncol = 1)
     leg.draw_frame(False)
-        
+    
     ######################################################################################
     # set plot range and scale
     ax1.set_xlim(-0.05, 1.05) 
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.4)
         ax1.grid('on')
@@ -145,13 +146,13 @@ def Plot(titlestr, X, outname, outdir, pColors,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
-    if (saveEPS):
+    if saveEPS:
         f.savefig(os.path.join(outdir, outname) + '.eps', format ='eps', dpi = 600)
     ######################################################################################
     # close handles
@@ -161,6 +162,10 @@ def Plot(titlestr, X, outname, outdir, pColors,
     return None
 
 if __name__ == '__main__':
+
+    outname = 'mpl_save_as_eps'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
 
     # create data
     nVisPoints = 500
@@ -173,9 +178,8 @@ if __name__ == '__main__':
     # plot data                    
     Plot(titlestr = '',
          X = X, 
-         outname = 'mpl_save_as_eps',
+         outname = outname,
          outdir = OUTDIR, 
          pColors = ['C0'],
          grid = False,
          saveEPS = True)
-         

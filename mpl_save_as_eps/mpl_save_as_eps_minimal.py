@@ -37,6 +37,8 @@ ensure_dir(OUTDIR)
 if __name__ == '__main__':
 
     outname = 'mpl_save_as_eps_minimal'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     # create synthetic data
     nVisPoints = 500
@@ -62,7 +64,7 @@ if __name__ == '__main__':
                      markerscale = 1.0,
                      ncol = 1)
     leg.draw_frame(False)
-        
+
     # set plot range and scale
     ax1.set_xlim(-0.05, 1.05)              
     
