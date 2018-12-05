@@ -3,17 +3,18 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-04
+# date: 2018-12-05
 # file: pcolor_pseudoColor_plot_linearX_linearY.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
 sys.path.append('../')
+import os
+import platform
 import time
 import datetime
-import os
 import math
 import numpy as np
 import matplotlib as mpl
@@ -53,16 +54,16 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
     
-    mpl.rc('font',**{'size': 10})
-    mpl.rc('legend',**{'fontsize': 8.0})
+    mpl.rc('font', **{'size': 10})
+    mpl.rc('legend', **{'fontsize': 8.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                  r'\usepackage{amsmath}']}
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)  
     ######################################################################################
     # set up figure
@@ -84,8 +85,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     ax1.tick_params('both', length = 3.0, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 1.0)
-    ax1.tick_params(axis='y', which='major', pad = 1.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
 
     ######################################################################################
     # labeling
@@ -104,7 +105,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     print("Colormap colornorm limits =", scalarMap.get_clim())
     ######################################################################################
     # colorbar
-    if (show_cBar):
+    if show_cBar:
         # add_axes(left, bottom, width, height) all between [0, 1] 
         # relative to the figure size
         cax = f.add_axes([0.82, bFrac, 0.03, (tFrac - bFrac)])
@@ -193,23 +194,23 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
 
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', linewidth = 0.4)
         ax1.grid('on')
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', linewidth = 0.2)
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
-    if (saveSVG):
+    if saveSVG:
         cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
               ' ' + os.path.join(OUTDIR, outname + '.svg')
-        print(cmd)
+        # print(cmd)
         os.system(cmd)
     ######################################################################################
     # close handles
@@ -219,8 +220,12 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     return outname
 
 if __name__ == '__main__':
-    
-    ### create plot data
+
+    outname = 'pcolor_pseudoColor_plot_linearX_linearY' 
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+
+    # create synthetic plot data
     
     nSamples_x = 5
     nSamples_y = 5
@@ -251,7 +256,7 @@ if __name__ == '__main__':
     assert xBoxCoords.shape == (nSamples_x + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (nSamples_y + 1,), "Error: Shape assertion failed."
         
-    ### call plot function
+    # call plot function
 
     fProps = [4.0, 4.0, 0.16, 0.80, 0.20, 0.88]
     xFormat = ['linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'x axis label']
@@ -273,11 +278,8 @@ if __name__ == '__main__':
                           zFormat = zFormat,
                           zColor = zColor,
                           show_cBar = True,
-                          outname = 'pcolor_pseudoColor_plot_linearX_linearY', 
+                          outname = outname, 
                           outdir = OUTDIR,
                           showlabels = True,
                           grid = False,
                           saveSVG = False)
-
-
-
