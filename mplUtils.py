@@ -7,6 +7,7 @@
 # file: mplUtils.py
 ##########################################################################################
 
+import sys
 import numpy as np
 
 def nextHigher(value, baseUnit):
@@ -76,4 +77,3 @@ def getHistogramCoordinates(X, nBins, normed = True):
 if __name__ == '__main__':
 
     pass
-
