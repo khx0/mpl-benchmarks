@@ -3,16 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-05
+# date: 2018-12-05
 # file: mpl_save_as_eps_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
-import time
-import datetime
 import sys
 import os
+import platform
+import time
+import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -37,7 +38,7 @@ if __name__ == '__main__':
 
     outname = 'mpl_save_as_eps_minimal'
     
-    ### create data
+    # create synthetic data
     nVisPoints = 500
     xVals = np.linspace(0.0, 1.0, nVisPoints)
     yVals = np.array([np.sin(x) for x in xVals])
@@ -45,7 +46,7 @@ if __name__ == '__main__':
     X[:, 0] = xVals
     X[:, 1] = yVals
     
-    ### minimal plot
+    # minimal plot
     f, ax1 = plt.subplots(1)
     
     ax1.plot(X[:, 0], X[:, 1],
@@ -62,17 +63,20 @@ if __name__ == '__main__':
                      ncol = 1)
     leg.draw_frame(False)
         
-    ### set plot range and scale
+    # set plot range and scale
     ax1.set_xlim(-0.05, 1.05)              
     
-    ### save plot to file
+    # save plot to file
     outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
-    f.savefig(os.path.join(OUTDIR, outname) + '.eps', dpi = 600, format = 'eps')
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
+              dpi = 300,
+              transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname) + '.eps',
+              dpi = 600,
+              format = 'eps')
     plt.show()
+
+    # clear handles
     plt.cla()
     plt.clf()
     plt.close()
-
-    
-    
