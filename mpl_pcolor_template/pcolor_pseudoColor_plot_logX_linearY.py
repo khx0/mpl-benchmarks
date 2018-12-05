@@ -194,7 +194,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
 
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
                  linewidth = 0.4)
         ax1.grid('on')
