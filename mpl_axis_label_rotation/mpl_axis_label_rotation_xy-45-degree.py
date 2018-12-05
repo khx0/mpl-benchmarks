@@ -3,16 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-20
+# date: 2018-12-04
 # file: mpl_axis_label_rotation_xy-45-degree.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
+import os
+import platform
 import time
 import datetime
-import os
 import math
 import numpy as np
 import matplotlib as mpl
@@ -75,13 +76,13 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     mpl.rc('legend', **{'fontsize': 7.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    # plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                  r'\usepackage{amsmath}']}
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)     
     
     ######################################################################################
@@ -100,14 +101,12 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
-        
-    xticks = plt.getp(plt.gca(), 'xticklines')
-    yticks = plt.getp(plt.gca(), 'yticklines')
+    
     ax1.tick_params('both', length = 1.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 1.0, width = 0.25, which = 'minor', pad = 3.0)
 
-    ax1.tick_params(axis='x', which='major', pad = 2.0)
-    ax1.tick_params(axis='y', which='major', pad = 2.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -161,12 +160,12 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_ylim(yFormat[0], yFormat[1])
           
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
+    for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.2)
         ax1.grid('on')
@@ -175,11 +174,11 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF):
+    if savePDF:
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
@@ -204,6 +203,8 @@ if __name__ == '__main__':
     # call the plotting function
     
     outname = 'mpl_axis_label_rotation_xy-45-degree'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     xFormat = [-0.05, 1.05, 0.0, 1.1, 1.0, 1.0]
     yFormat = [-1.35, 1.35, -1.0, 1.1, 1.0, 1.0]
