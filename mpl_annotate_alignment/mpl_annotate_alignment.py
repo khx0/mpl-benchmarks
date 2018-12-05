@@ -3,16 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-19
+# date: 2018-12-05
 # file: mpl_annotate_alignment.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
-import time
-import datetime
 import sys
 import os
+import platform
+import time
+import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -102,8 +103,8 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ax1.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 3.0)
-    ax1.tick_params(axis='y', which='major', pad = 4.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 3.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 4.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -121,14 +122,14 @@ def Plot(titlestr, X, outname, outdir, pColors,
              clip_on = False,
              zorder = 1)
     
-    ### legend
+    # legend
     leg = ax1.legend(handlelength = 1.35, 
                      scatterpoints = 1,
                      markerscale = 1.0,
                      ncol = 1)
     leg.draw_frame(False)
     
-    ### annotations
+    # annotations
     '''
     In this example I use relative coordinates for the placement of annotations.
     This is realized by setting xycoords = 'axes fraction'. Then the specified xy
@@ -192,11 +193,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
@@ -206,6 +207,10 @@ def Plot(titlestr, X, outname, outdir, pColors,
     return None
 
 if __name__ == '__main__':
+
+    outname = 'mpl_annotate_alignment'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
 
     # create data
     nVisPoints = 500
@@ -218,7 +223,7 @@ if __name__ == '__main__':
     # plot data                    
     Plot(titlestr = '',
          X = X, 
-         outname = 'mpl_annotate_alignment',
+         outname = outname,
          outdir = OUTDIR, 
          pColors = ['C0'],
          grid = False)
