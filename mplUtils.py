@@ -60,12 +60,12 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
         sys.exit(1)
     return Xcoords
 
-def getHistogramCoordinates(X, nBins, normed = True):
+def getHistogramCoordinates(X, nBins, density = True):
     '''
     Creates (x, y) data pairs of the histogram data using
     numpy's histogram function.
     '''
-    hist, bin_edges = np.histogram(X, bins = nBins, normed = normed)
+    hist, bin_edges = np.histogram(X, bins = nBins, density = density)
     bin_centers = (bin_edges[1:] + bin_edges[0:-1]) / 2.0
     assert hist.shape == bin_centers.shape, "Error: Shape assertion failed."
     

@@ -3,17 +3,18 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-06
+# date: 2018-12-07
 # file: mpl_scatter_histogram.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
 sys.path.append('../')
+import os
+import platform
 import time
 import datetime
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -69,13 +70,14 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
     
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 7.5})
-    mpl.rc("axes", linewidth = 0.5)    
+    mpl.rc('axes', linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)      
     
     ######################################################################################
@@ -108,8 +110,8 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
     ax1.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 2.0)
-    ax1.tick_params(axis='y', which='major', pad = 2.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -120,10 +122,10 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
     ######################################################################################
     
     ax1.plot([-1.0, 20.0], [0.0, 0.0],
-            dashes = [4.0, 2.0],
-            color = '#CCCCCC',
-            lw = 1.0,
-            zorder = 1)
+             dashes = [4.0, 2.0],
+             color = '#CCCCCC',
+             lw = 1.0,
+             zorder = 1)
     
     ax1.plot(X[:, 0], X[:, 1],
              alpha = 1.0,
@@ -155,7 +157,7 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
     ax1.set_axisbelow(False)
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.4)
         ax1.grid('on')
@@ -164,11 +166,11 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
@@ -178,6 +180,10 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
     return None
 
 if __name__ == '__main__':
+
+    outname = 'mpl_scatter_histogram'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
 
     # create data
     meanValue = 1.5
@@ -189,7 +195,7 @@ if __name__ == '__main__':
     samples = np.random.exponential(meanValue, nSamples)
     scatterData = getHistogramCoordinates(samples, 
                                           nBins = nBins,  
-                                          normed = True)
+                                          density = True)
     
     # create analytical curve
     nVisPoints = 500
@@ -203,9 +209,7 @@ if __name__ == '__main__':
     Plot(titlestr = '',
          X = X, 
          Y = scatterData,
-         outname = 'mpl_scatter_histogram',
+         outname = outname,
          outdir = OUTDIR, 
          pColors = ['C3'],
          grid = False)
-
-         
