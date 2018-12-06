@@ -3,16 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-06
+# date: 2018-12-07
 # file: mpl_scatter_histogram_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 import sys
+import os
+import platform
 import time
 import datetime
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -38,12 +39,12 @@ ensure_dir(OUTDIR)
 # from the mplUtils.py file, copied to this minimal script
 # for stand alone convenience
 
-def getHistogramCoordinates(X, nBins, normed = True):
+def getHistogramCoordinates(X, nBins, density = True):
     '''
     Creates (x, y) data pairs of the histogram data using
     numpy's histogram function.
     '''
-    hist, bin_edges = np.histogram(X, bins = nBins, normed = normed)
+    hist, bin_edges = np.histogram(X, bins = nBins, density = density)
     bin_centers = (bin_edges[1:] + bin_edges[0:-1]) / 2.0
     assert hist.shape == bin_centers.shape, "Error: Shape assertion failed."
     
@@ -55,6 +56,8 @@ def getHistogramCoordinates(X, nBins, normed = True):
 if __name__ == '__main__':
 
     outname = 'mpl_scatter_histogram_minimal'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
 
     # create data
     meanValue = 1.5
@@ -65,8 +68,8 @@ if __name__ == '__main__':
     np.random.seed(123456789)
     samples = np.random.exponential(meanValue, nSamples)
     scatterData = getHistogramCoordinates(samples, 
-                                          nBins = nBins,  
-                                          normed = True)
+                                          nBins = nBins,
+                                          density = True) 
     
     # create analytical curve
     nVisPoints = 500
@@ -77,14 +80,13 @@ if __name__ == '__main__':
     X[:, 1] = yVals
     
     ######################################################################################
-    
-    ### minimal plot
+    # minimal plot
     f, ax1 = plt.subplots(1)
     
     ax1.plot([-0.25, 15.0], [0.0, 0.0],
-            dashes = [4.0, 2.0],
-            color = '#CCCCCC',
-            zorder = 1)
+             dashes = [4.0, 2.0],
+             color = '#CCCCCC',
+             zorder = 1)
     
     ax1.plot(X[:, 0], X[:, 1],
              alpha = 1.0,
@@ -110,12 +112,12 @@ if __name__ == '__main__':
     leg.draw_frame(False)
     
     outname += '_' + now
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', dpi = 300, transparent = True)
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
+              dpi = 300,
+              transparent = True)
     plt.show()
     
     # close handles
     plt.cla()
     plt.clf()
-    plt.close() 
-
-
+    plt.close()
