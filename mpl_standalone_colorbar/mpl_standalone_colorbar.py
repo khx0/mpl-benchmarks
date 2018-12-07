@@ -67,7 +67,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
     
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 9.0})
-    mpl.rc("axes", linewidth = 0.5)    
+    mpl.rc('axes', linewidth = 0.5)    
     
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
     mpl.rcParams['pdf.fonttype'] = 42  
@@ -119,7 +119,6 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
     print('cmap_min = ', cmap_min)
     print('cmap_max = ', cmap_max)
     cNorm = mpl.colors.Normalize(vmin = cmap_min, vmax = cmap_max)
-    scalarMap = cm.ScalarMappable(norm = cNorm, cmap = cMap)
     ######################################################################################
     # plot (dummy) data
     ax1.imshow(X, cmap = cMap, vmin = cmap_min, vmax = cmap_max)
