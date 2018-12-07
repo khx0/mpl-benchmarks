@@ -37,7 +37,8 @@ ensure_dir(OUTDIR)
 
 # a copy of the getHistogramCoordinates function
 # from the mplUtils.py file, copied to this minimal script
-# for stand alone convenience
+# to make it self sufficient by itself
+# (stand alone version for convenience)
 
 def getHistogramCoordinates(X, nBins, density = True):
     '''
