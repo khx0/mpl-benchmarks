@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-18
+# date: 2018-12-07
 # file: mplUtils.py
 ##########################################################################################
 
@@ -64,6 +64,9 @@ def getHistogramCoordinates(X, nBins, density = True):
     '''
     Creates (x, y) data pairs of the histogram data using
     numpy's histogram function.
+    
+    Numpy's histogram normed keyword is deprecated and has been replaced
+    by density = True / False.
     '''
     hist, bin_edges = np.histogram(X, bins = nBins, density = density)
     bin_centers = (bin_edges[1:] + bin_edges[0:-1]) / 2.0
