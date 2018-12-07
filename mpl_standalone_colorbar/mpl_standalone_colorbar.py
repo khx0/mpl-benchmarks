@@ -3,15 +3,16 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-09-07
+# date: 2018-12-07
 # file: mpl_standalone_colorbar.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
+import os
+import platform
 import time
 import datetime
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -64,15 +65,16 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
     mpl.rcParams['xtick.direction'] = 'in'
     mpl.rcParams['ytick.direction'] = 'in'
     
-    mpl.rc('font',**{'size': 10})
-    mpl.rc('legend',**{'fontsize': 9.0})
+    mpl.rc('font', **{'size': 10})
+    mpl.rc('legend', **{'fontsize': 9.0})
     mpl.rc("axes", linewidth = 0.5)    
     
-    plt.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    plt.rcParams['pdf.fonttype'] = 42  
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
+    mpl.rcParams['pdf.fonttype'] = 42  
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', r'\usepackage{amsmath}']}
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
+                                          r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)      
     
     ######################################################################################
@@ -81,7 +83,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
         getFigureProps(width = 0.4, height = 3.5, 
                        lFrac = 0.10, rFrac = 0.32,
                        bFrac = 0.1, tFrac = 0.9)
-       
+
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -107,8 +109,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
     ax1.tick_params('both', length = 5.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 3.0, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis='x', which='major', pad = 3.0)
-    ax1.tick_params(axis='y', which='major', pad = 3.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 3.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 3.0, zorder = 10)
     
     ######################################################################################
     # colormap settings
@@ -151,11 +153,11 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
     
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
@@ -170,52 +172,31 @@ if __name__ == '__main__':
        
     cb_label = r'color bar label $\, z$'
 
-    outname = Plot(titlestr = '',
-                   X = X, 
-                   params = [cb_label],
-                   outname = 'mpl_standalone_colorbar_viridis',
-                   outdir = OUTDIR, 
-                   pColors = [],
-                   cMap = cm.viridis,
-                   grid = False)
+    cMaps = [cm.viridis,
+             cm.plasma,
+             cm.inferno,
+             cm.magma,
+             cm.gray]
 
-    outname = Plot(titlestr = '',
-                   X = X, 
-                   params = [cb_label],
-                   outname = 'mpl_standalone_colorbar_plasma',
-                   outdir = OUTDIR, 
-                   pColors = [],
-                   cMap = cm.plasma,
-                   grid = False)
-                   
-    outname = Plot(titlestr = '',
-                   X = X, 
-                   params = [cb_label],
-                   outname = 'mpl_standalone_colorbar_inferno',
-                   outdir = OUTDIR, 
-                   pColors = [],
-                   cMap = cm.inferno,
-                   grid = False)
-                   
-    outname = Plot(titlestr = '',
-                   X = X, 
-                   params = [cb_label],
-                   outname = 'mpl_standalone_colorbar_magma',
-                   outdir = OUTDIR, 
-                   pColors = [],
-                   cMap = cm.magma,
-                   grid = False)
-                   
-    outname = Plot(titlestr = '',
-                   X = X, 
-                   params = [cb_label],
-                   outname = 'mpl_standalone_colorbar_gray',
-                   outdir = OUTDIR, 
-                   pColors = [],
-                   cMap = cm.gray,
-                   grid = False)
+    outnames = ['mpl_standalone_colorbar_viridis',
+                'mpl_standalone_colorbar_plasma',
+                'mpl_standalone_colorbar_inferno',
+                'mpl_standalone_colorbar_magma',
+                'mpl_standalone_colorbar_gray']
 
+    assert len(cMaps) == len(outnames), "Length assertion failed."
 
+    for i, cMap in enumerate(cMaps):
+        
+        outname = outnames[i]
+        outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
 
-
-
+        outname = Plot(titlestr = '',
+                       X = X, 
+                       params = [cb_label],
+                       outname = outname, 
+                       outdir = OUTDIR, 
+                       pColors = [],
+                       cMap = cMap,
+                       grid = False)
