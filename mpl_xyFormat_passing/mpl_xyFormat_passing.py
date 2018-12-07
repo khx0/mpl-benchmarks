@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-26
+# date: 2018-12-07
 # file: mpl_xyFormat_passing.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 2.2.3
+# tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
 ##########################################################################################
@@ -27,10 +27,11 @@
 # this script.
 ##########################################################################################
 
-import time
-import datetime
 import sys
 import os
+import platform
+import time
+import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -134,7 +135,7 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
     
     # manually set the axis zorder here
     ax1.set_axisbelow(False)
-    for k, spine in ax1.spines.items():  # ax1.spines is a dictionary
+    for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
     # set figure legend
@@ -166,7 +167,7 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
         ax1.set_yticks(minor_y_ticks, minor = True)
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
                  linewidth = 0.4)
         ax1.grid('on')
@@ -175,11 +176,11 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
@@ -190,7 +191,7 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
 
 if __name__ == '__main__':
 
-    # create data
+    # create synthetic data
     nVisPoints = 1000
     xVals = np.linspace(-0.5, 12.5, nVisPoints)
     yVals = np.array([np.sin(x) for x in xVals])
@@ -204,12 +205,16 @@ if __name__ == '__main__':
 
     xFormat = None
     yFormat = None
+
+    outname = 'mpl_xyFormat_passing_autoscale'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     Plot(titlestr = '',
          X = X, 
          xFormat = xFormat,
          yFormat = yFormat,
-         outname = 'mpl_xyFormat_passing_autoscale',
+         outname = outname,
          outdir = OUTDIR, 
          pColors = ['C0'],
          grid = False)
@@ -218,12 +223,16 @@ if __name__ == '__main__':
     
     xFormat = (-0.2, 10.2, 0.0, 10.1, 5.0, 1.0)
     yFormat = (-1.1, 1.1, -1.0, 1.05, 0.5, 0.1)
+
+    outname = 'mpl_xyFormat_passing_example_01'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     Plot(titlestr = '',
          X = X, 
          xFormat = xFormat,
          yFormat = yFormat,
-         outname = 'mpl_xyFormat_passing_example_01',
+         outname = outname,
          outdir = OUTDIR, 
          pColors = ['C0'],
          grid = False)
@@ -232,12 +241,16 @@ if __name__ == '__main__':
     
     xFormat = (0.0, 2.0 * np.pi, 0.0, 2.0 * np.pi * 1.02, 1.0, 0.5)
     yFormat = (-1.1, 1.1, -1.0, 1.05, 1.0, 0.2)
+
+    outname = 'mpl_xyFormat_passing_example_02'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     Plot(titlestr = '',
          X = X, 
          xFormat = xFormat,
          yFormat = yFormat,
-         outname = 'mpl_xyFormat_passing_example_02',
+         outname = outname,
          outdir = OUTDIR, 
          pColors = ['C0'],
          grid = False)
