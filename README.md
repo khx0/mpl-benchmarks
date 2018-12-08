@@ -15,9 +15,6 @@ the single issue that I wish to highlight, without further ado.
 
 ## Python and matplotlib versions
 All shown examples have been tested both with python 3 (version 3.7.0)
-and python 2 (version 2.7.15). In both cases matplotlib
-version 2.2.3 was used.
+and python 2 (version 2.7.15).
 * Python 2.7.15, Matplotlib 2.2.3
-* Python 3.7.0,  Matplotlib 2.2.3
-
-for Python 3.7.0 I am currently testing compatibility with Matplotlib 3.0.1
+* Python 3.7.0,  Matplotlib 3.0.1
