@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-07
+# date: 2018-12-08
 # file: mplUtils.py
 ##########################################################################################
 
@@ -42,10 +42,11 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
     input:
         X = 1D array (i.e. the x or y axis values)
     returns:
-        Xcoords = xoordinate values for the recatangular patches of the corresponding pcolor plot.
+        Xcoords = xoordinate values for the recatangular patches of the 
+                  corresponding pcolor plot.
     Note:
-        When X is a (N, 1) od (N,) numpy array, then Xcoords will always be created to be a
-        (N+1, 1) or (N+1,) numpy array.
+        When X is a (N, 1) od (N,) numpy array, then Xcoords will always be created 
+        to be a (N+1, 1) or (N+1,) numpy array.
     '''
     if (type == 'linear'):
         dx = X[1] - X[0]
