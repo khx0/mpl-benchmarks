@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-26
+# date: 2018-12-08
 # file: test_axisPadding.py
 # tested with python 2.7.15
 # tested with python 3.7.0

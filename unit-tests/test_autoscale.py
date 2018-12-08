@@ -49,7 +49,7 @@ class AutoScaleTest(unittest.TestCase):
         self.assertTrue(np.isclose(cap, reference_cap))
         
         return None
-        
+    
     def test_nextHigher_02(self):
                     
         value = -0.375
