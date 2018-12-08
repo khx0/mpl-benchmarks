@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-26
+# date: 2018-12-08
 # file: test_autoscale.py
 # tested with python 2.7.15
 # tested with python 3.7.0
@@ -24,6 +24,12 @@ class AutoScaleTest(unittest.TestCase):
     Test cases for the autoscaling functionality.
     """
     
+    """
+    nextHigher(value, baseUnit)
+    returns a float, where value is rounded to the next higher value in
+    units of the specified baseUnit.
+    """
+
     def test_nextHigher_01(self):
                     
         value = 22.75
