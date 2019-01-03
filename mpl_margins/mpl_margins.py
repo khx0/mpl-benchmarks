@@ -6,7 +6,7 @@
 # date: 2019-01-03
 # file: mpl_margins.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import os
@@ -151,6 +151,14 @@ def Plot(titlestr, X, margins, outname, outdir, pColors,
     # set_xlim and set_ylim commands are explicit absolute commands to set the axis limits. 
     # The margin command will add padding to each axis according to the simple rule:
     # additional axis padding = margin * dataInterval
+    # Hence the axis limit using the plt.margins commands are the following:
+    # dataRangeX = xMax - xMin
+    # dataRangeY = yMax - yMin
+    # xPadding = xMargin * dataRangeX
+    # yPadding = yMargin * dataRangeY
+    # limits x: [xMin - xPadding, xMax + xPadding]
+    # limits y: [yMin - yPadding, yMax + yPadding]
+    # By default the padding is symmetrical in both directions of a given axis.
     ######################################################################################
     
     # use plt.margins instead of absolute set_xlim and set_ylim axis limit specifications.
@@ -158,7 +166,7 @@ def Plot(titlestr, X, margins, outname, outdir, pColors,
     
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.4)
         ax1.grid('on')
