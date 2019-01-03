@@ -118,8 +118,8 @@ def Plot(titlestr, X, margins, outname, outdir, pColors,
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
     
-    ax1.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
-    ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
+    ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
+    ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
     
     ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
     ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
