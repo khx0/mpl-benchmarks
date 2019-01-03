@@ -141,11 +141,17 @@ def Plot(titlestr, X, margins, outname, outdir, pColors,
                  zorder = 8)
     
     ######################################################################################
-    # set plot range and scale
+    # set plot range, scale and padding
     
-    # use plt.margins(x = xMargin, y = yMargin)
-    # is in conflict with ax1.set_xlim(*) and ax1.set_ylim(*)
-    # and will be overwritten by both of them regardless of the order of the commands. 
+    ######################################################################################
+    # Here we use plt.margins(x = xMargin, y = yMargin).
+    # The plt.margins(*) command is in conflict with ax1.set_xlim(*) and ax1.set_ylim(*)
+    # and will be overwritten by both of them regardless of the order of the commands.
+    # This makes sense since it is part of matplotlib's autoscaling tools, whereas the
+    # set_xlim and set_ylim commands are explicit absolute commands to set the axis limits. 
+    # The margin command will add padding to each axis according to the simple rule:
+    # additional axis padding = margin * dataInterval
+    ######################################################################################
     
     plt.margins(x = margins[0], y = margins[1])
     
