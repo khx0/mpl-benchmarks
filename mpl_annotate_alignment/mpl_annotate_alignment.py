@@ -6,7 +6,7 @@
 # date: 2018-12-05
 # file: mpl_annotate_alignment.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import sys
@@ -180,11 +180,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
                  zorder = 8)
         
     ######################################################################################
-    # set plot range and scale
+    # set plot range and scale (axis limits)
     ax1.set_xlim(-0.05, 1.05) 
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.4)
         ax1.grid('on')
