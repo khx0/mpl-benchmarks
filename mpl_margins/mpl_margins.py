@@ -10,11 +10,9 @@
 ##########################################################################################
 
 ##########################################################################################
-# Here we use plt.margins(x = xMargin, y = yMargin).
-# The plt.margins(*) command is in conflict with ax1.set_xlim(*) and ax1.set_ylim(*)
-# and will be overwritten by both of them regardless of the order of the commands.
-# This makes sense since it is part of matplotlib's autoscaling tools, whereas the
-# set_xlim and set_ylim commands are explicit absolute commands to set the axis limits.
+# Matplolib's pyplot.margins command: 
+#
+# Syntax used in this script: plt.margins(x = xMargin, y = yMargin)
 # 
 # The margin command will add padding to each axis according to the simple rule:
 # additional axis padding = margin * dataInterval
@@ -26,6 +24,11 @@
 # limits x: [xMin - xPadding, xMax + xPadding]
 # limits y: [yMin - yPadding, yMax + yPadding]
 # By default the padding is symmetrical in both directions of a given axis.
+#
+# The plt.margins(*) command is in conflict with ax1.set_xlim(*) and ax1.set_ylim(*)
+# and will be overwritten by both of them regardless of the order of the commands.
+# This makes sense since it is part of matplotlib's autoscaling tools, whereas the
+# set_xlim and set_ylim commands are explicit absolute commands to set the axis limits.
 ##########################################################################################
 
 import os
