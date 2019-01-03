@@ -153,6 +153,7 @@ def Plot(titlestr, X, margins, outname, outdir, pColors,
     # additional axis padding = margin * dataInterval
     ######################################################################################
     
+    # use plt.margins instead of absolute set_xlim and set_ylim axis limit specifications.
     plt.margins(x = margins[0], y = margins[1])
     
     ######################################################################################
