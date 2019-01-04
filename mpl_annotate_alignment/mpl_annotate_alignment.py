@@ -3,16 +3,14 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-05
+# date: 2019-01-04
 # file: mpl_annotate_alignment.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -100,11 +98,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
     
-    ax1.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
-    ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
+    ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
+    ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
     
-    ax1.tick_params(axis = 'x', which = 'major', pad = 3.0)
-    ax1.tick_params(axis = 'y', which = 'major', pad = 4.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)

@@ -9,22 +9,14 @@
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
-import math
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
-import matplotlib.colors as colors
-import matplotlib.cm as cm
-from matplotlib import gridspec
-from matplotlib import ticker
-from scipy.stats import norm
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -65,13 +57,13 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
 def Plot(titlestr, X, params, outname, outdir, pColors, 
          grid = False, drawLegend = True, xFormat = None, yFormat = None, 
          savePDF = True, savePNG = False, datestamp = True):
-
+    
     mpl.rcParams['xtick.top'] = True
     mpl.rcParams['xtick.bottom'] = True
     mpl.rcParams['ytick.right'] = True
     mpl.rcParams['xtick.direction'] = 'in'
     mpl.rcParams['ytick.direction'] = 'in'
-
+    
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 7.0})
     mpl.rc("axes", linewidth = 0.5)    
@@ -96,7 +88,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
     labelfontsize = 6.0
-
+    
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
@@ -104,7 +96,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     
     ax1.tick_params('both', length = 1.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 1.0, width = 0.25, which = 'minor', pad = 3.0)
-
+    
     ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
     ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
@@ -119,14 +111,14 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     # plotting
     
     lineWidth = 0.75    
-        
+    
     ax1.plot(X[:, 0], X[:, 1], 
              color = pColors[0],
              alpha = 1.0,
              lw = lineWidth,
              zorder = 2,
              label = r'$y = y(x)$')
-                 
+         
     ######################################################################################
     # legend
     if drawLegend:
@@ -158,8 +150,9 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
         ax1.set_ylim(yFormat[0], yFormat[1])
-          
+    
     ax1.set_axisbelow(False)
+    
     for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
@@ -189,7 +182,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              
 if __name__ == '__main__':
     
-    # create dummy data
+    # create synthetic data
     
     nVisPoints = 800
     xVals = np.linspace(0.0, 1.0, nVisPoints)
@@ -198,7 +191,7 @@ if __name__ == '__main__':
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-        
+    
     ######################################################################################
     # call the plotting function
     

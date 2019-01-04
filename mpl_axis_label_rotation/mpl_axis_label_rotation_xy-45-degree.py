@@ -3,28 +3,20 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-05
+# date: 2019-01-04
 # file: mpl_axis_label_rotation_xy-45-degree.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
-import math
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
-import matplotlib.colors as colors
-import matplotlib.cm as cm
-from matplotlib import gridspec
-from matplotlib import ticker
-from scipy.stats import norm
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -89,7 +81,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 4.1, height = 2.9,
-                       lFrac = 0.17, rFrac = 0.95, bFrac = 0.15, tFrac = 0.95)
+                       lFrac = 0.17, rFrac = 0.95,
+                       bFrac = 0.15, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -111,7 +104,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     # labeling
     plt.title(titlestr)
     ax1.set_xlabel(r'$x$', fontsize = 6.0, x = 0.5, rotation = 45.0)
-    # rotation is expressed in degrees
+    # rotation (angle) is expressed in degrees
     ax1.set_ylabel(r'$y(x)$', fontsize = 6.0, y = 0.70, rotation = 45.0)
     ax1.xaxis.labelpad = -2.0
     ax1.yaxis.labelpad = 1.0 
@@ -160,6 +153,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_ylim(yFormat[0], yFormat[1])
           
     ax1.set_axisbelow(False)
+    
     for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
@@ -189,7 +183,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              
 if __name__ == '__main__':
     
-    # create dummy data
+    # create synthetic data
     
     nVisPoints = 800
     xVals = np.linspace(0.0, 1.0, nVisPoints)
@@ -198,7 +192,7 @@ if __name__ == '__main__':
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-        
+    
     ######################################################################################
     # call the plotting function
     
