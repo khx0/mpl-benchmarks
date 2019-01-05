@@ -3,18 +3,15 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-04
+# date: 2019-01-05
 # file: mpl_discrete_poisson_pmf_B.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
-import math
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -153,7 +150,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     
     ######################################################################################
     # legend
-    if (drawLegend):
+    if drawLegend:
         leg = ax1.legend(#bbox_to_anchor = [0.7, 0.8],
                          #loc = 'upper left',
                          handlelength = 0.25, 
