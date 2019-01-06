@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-03
+# date: 2019-01-06
 # file: mpl_fillbetweenx_example_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 '''
@@ -18,10 +18,8 @@ function, but with exchanged roles for x and y. For this purpose matplotlib's
 fillbetweenx function is the ideal choice.
 '''
 
-import sys
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -48,7 +46,7 @@ if __name__ == '__main__':
     outname = 'mpl_fillbetweenx_example_minimal_'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    outname += now # set datestamp
+    outname += '_' + now # set datestamp
     
     nPoints = 400
     xVals = np.linspace(-6.0, 6.0, nPoints)
@@ -82,6 +80,7 @@ if __name__ == '__main__':
     # in all cases make sure to clearly understand the API and think about what you want.
     # As always.
     ######################################################################################
+    
     ax1.fill_betweenx(X[:, 0], X[:, 1], 0.0,
                       color = 'C0',
                       alpha = 0.5,

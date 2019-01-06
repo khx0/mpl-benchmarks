@@ -3,27 +3,20 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-02
+# date: 2019-01-06
 # file: mpl_fillbetween_example.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
-import math
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
-import matplotlib.colors as colors
-import matplotlib.cm as cm
-from matplotlib import gridspec
-from matplotlib import ticker
 from scipy.stats import norm
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -131,7 +124,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              label = r'legend')
     ######################################################################################
     # legend
-    if (drawLegend):
+    if drawLegend:
         leg = ax1.legend(# bbox_to_anchor = [0.7, 0.8],
                          # loc = 'upper left',
                          handlelength = 1.5, 
@@ -162,12 +155,13 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_ylim(yFormat[0], yFormat[1])
     
     ax1.set_axisbelow(False)
+    
     for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
                  linewidth = 0.2)
         ax1.grid('on')

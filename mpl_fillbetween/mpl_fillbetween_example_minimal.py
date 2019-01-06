@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-02
+# date: 2019-01-06
 # file: mpl_fillbetween_example_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 '''
@@ -14,10 +14,8 @@ Minimal example to illustrate the use of matplotlib's fillbetween function.
 Here I demonstrate it by filling the area under a normal distribution.
 '''
 
-import sys
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -51,7 +49,7 @@ if __name__ == '__main__':
     outname = 'mpl_fillbetween_example_minimal' 
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    outname += now # set datestamp
+    outname += '_' + now # set datestamp
     
     f, ax1 = plt.subplots(1)
 

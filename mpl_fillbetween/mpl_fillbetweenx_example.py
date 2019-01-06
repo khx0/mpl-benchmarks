@@ -3,27 +3,20 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-03
+# date: 2019-01-06
 # file: mpl_fillbetweenx_example.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
-import math
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
-import matplotlib.colors as colors
-import matplotlib.cm as cm
-from matplotlib import gridspec
-from matplotlib import ticker
 from scipy.stats import norm
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -134,6 +127,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     # in all cases make sure to clearly understand the API and think about what you want.
     # As always.
     ######################################################################################
+    
     ax1.fill_betweenx(X[:, 0], X[:, 1], 0.0,
                       color = pColors[0],
                       alpha = 0.5,
@@ -145,9 +139,10 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              lw = 0.5,
              zorder = 3,
              label = r'legend')
+    
     ######################################################################################
     # legend
-    if (drawLegend):
+    if drawLegend:
         leg = ax1.legend(# bbox_to_anchor = [0.7, 0.8],
                          # loc = 'upper left',
                          handlelength = 1.5, 
@@ -183,7 +178,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
                  linewidth = 0.2)
         ax1.grid('on')
