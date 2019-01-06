@@ -3,16 +3,14 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-04
+# date: 2019-01-06
 # file: mpl_empty_contour.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -81,7 +79,8 @@ def Plot(titlestr, X, outname, outdir, pColors,
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 4.0, height = 4.0,
-                       lFrac = 0.1, rFrac = 0.9, bFrac = 0.1, tFrac = 0.9)
+                       lFrac = 0.1, rFrac = 0.9,
+                       bFrac = 0.1, tFrac = 0.9)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -90,7 +89,9 @@ def Plot(titlestr, X, outname, outdir, pColors,
     
     ######################################################################################
     # labeling
+    
     ######################################################################################
+    # plotting
         
     ax1.plot(X[:, 0], X[:, 1],
              alpha = 1.0,
@@ -100,7 +101,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
              zorder = 1)
     
     # plt.axes().set_aspect('equal')
-            
+         
     ######################################################################################
     # set plot range and scale
     #ax1.set_xlim(0.0, 628.0)
@@ -129,23 +130,23 @@ def Plot(titlestr, X, outname, outdir, pColors,
     return outname
 
 if __name__ == '__main__':
-
+    
     outname = 'mpl_empty_contour'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-
+    
 	# create data
     nDataPoints = 500
     radius = 50.0
     angles = np.linspace(0.0, 2.0 * np.pi, nDataPoints)
     xVals = np.array([radius * np.cos(x) for x in angles])
     yVals = np.array([radius * np.sin(x) for x in angles])
-
+    
     X = np.zeros((nDataPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
     print("X.shape =", X.shape)
-
+    
     # plot data                    
     outname = Plot(titlestr = '',
          		   X = X,

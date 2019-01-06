@@ -209,7 +209,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     return outname
 
 if __name__ == '__main__':
-
+  
     '''
     pmf = probability mass function   
     pmf function signature

@@ -3,16 +3,14 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-04
+# date: 2019-01-06
 # file: mpl_empty_contour_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -36,19 +34,19 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 ensure_dir(OUTDIR)
 
 if __name__ == '__main__':
-
+    
     outname = 'mpl_empty_contour_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    outname += now # set datestamp
-
+    outname += '_' + now # set datestamp
+    
 	# create data
     nDataPoints = 500
     radius = 50.0
     angles = np.linspace(0.0, 2.0 * np.pi, nDataPoints)
     xVals = np.array([radius * np.cos(x) for x in angles])
     yVals = np.array([radius * np.sin(x) for x in angles])
-
+    
     X = np.zeros((nDataPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
@@ -66,10 +64,10 @@ if __name__ == '__main__':
              lw = 1.0,
              clip_on = True,
              zorder = 1)
-
+    
     ax1.set_xlim(-55.0, 55.0)
     ax1.set_ylim(-55.0, 55.0)
-
+    
     ax1.set_xticks([])
     ax1.set_yticks([])
     

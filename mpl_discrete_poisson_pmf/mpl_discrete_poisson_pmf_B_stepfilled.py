@@ -108,8 +108,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.yaxis.labelpad = 2.0 
     ######################################################################################
     # plotting
-        
-    lineWidth = 0.5    
+    
+    lineWidth = 0.5   
     
     ax1.plot([-1.0, 21.0], [0.0, 0.0], 
              color = pColors[0],
@@ -119,7 +119,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              dashes = [4.0, 2.0])
     
     for i in range(len(muVals)):
-             
+        
         ax1.scatter(X[:, 0], X[:, i + 1],
                     s = 4.5,
                     lw = lineWidth,
@@ -127,14 +127,14 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                     edgecolor = 'None',
                     zorder = 3,
                     label = labels[i])
-            
+        
         ax1.plot(X[:, 0], X[:, i + 1],
                  color = pColors[i + 1],
                  lw = 0.5,
                  alpha = 1.0,
                  zorder = 2,
                  drawstyle = 'steps-mid')
-
+    
     ######################################################################################
     # annotations
     
@@ -150,7 +150,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     
     ######################################################################################
     # legend
-    if (drawLegend):
+    if drawLegend:
         leg = ax1.legend(# bbox_to_anchor = [0.7, 0.8],
                          # loc = 'upper left',
                          handlelength = 0.25, 
@@ -170,7 +170,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xFormat[0], xFormat[1])
-        
+    
     if (yFormat == None):
         pass
     else:
@@ -179,7 +179,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
         ax1.set_ylim(yFormat[0], yFormat[1])
-                
+    
     ax1.set_axisbelow(False)
     for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
