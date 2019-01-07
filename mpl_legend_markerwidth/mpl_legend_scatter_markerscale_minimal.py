@@ -3,16 +3,14 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-02
+# date: 2019-01-07
 # file: mpl_legend_scatter_markerscale_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl

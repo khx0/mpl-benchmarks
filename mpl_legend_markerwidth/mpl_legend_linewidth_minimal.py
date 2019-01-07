@@ -3,17 +3,15 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-02
+# date: 2019-01-07
 # file: mpl_legend_linewidth_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
-import time
+import os
 import platform
 import datetime
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -51,11 +49,11 @@ if __name__ == '__main__':
     f.set_size_inches(3.0, 3.0)   
     
     ax1.plot(X[:, 0], X[:, 1],
-            color = 'C0',
-            alpha = 1.0,
-            lw = 0.5,
-            zorder = 2,
-            label = r'line label')
+             color = 'C0',
+             alpha = 1.0,
+             lw = 0.5,
+             zorder = 2,
+             label = r'line label')
     
     ####################################################
     ####################################################
@@ -72,7 +70,7 @@ if __name__ == '__main__':
     '''
 
     # set the linewidth of the legend object
-    for i, legobj in enumerate(leg.legendHandles):
+    for legobj in leg.legendHandles:
         legobj.set_linewidth(4.0)
 
     leg.draw_frame(False)

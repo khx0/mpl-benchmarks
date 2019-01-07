@@ -3,17 +3,16 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-02
+# date: 2019-01-07
 # file: mpl_legend_manually_set_size.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import sys
 sys.path.append('../')
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -145,11 +144,13 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
                      ncol = 1)
                         
     # set the linewidth of each legend object
-    for i, legobj in enumerate(leg.legendHandles):
+    for legobj in leg.legendHandles:
         legobj.set_linewidth(1.0)
+        
     leg.draw_frame(False)
 
     ax1.set_axisbelow(False)
+    
     for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
             
@@ -158,7 +159,7 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     # USE DEFAULTS HERE
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
                  linewidth = 0.4)
         ax1.grid('on')
