@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-02
+# date: 2019-01-07
 # file: plot_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 """
@@ -23,10 +23,8 @@ which is straight forward in matplotlibs normal view, but a little more challeng
 when using logarithmic axis scaling.
 """
 
-import sys
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -147,7 +145,7 @@ def  plot_minimal_version_B(X, filename):
     return None
 
 if __name__ == '__main__':
-
+    
     # create data to plot
     nVisPoints = 1000
     xValues = np.logspace(-13, -5, nVisPoints)
@@ -160,7 +158,7 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     plot_minimal_version_A(X, outname)
-
+    
     outname = 'mpl_logscale_minor_tick_location_handling_minimal_version_B'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__

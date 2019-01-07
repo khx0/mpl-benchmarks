@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-02
+# date: 2019-01-07
 # file: plot.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 # requires: pdf2svg installed
 ##########################################################################################
 
@@ -24,22 +24,15 @@ which is straight forward in matplotlibs normal view, but a little more challeng
 when using logarithmic axis scaling.
 """
 
-import sys
 import os
 import platform
-import time
 import datetime
-import math
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
-import matplotlib.colors as colors
-import matplotlib.cm as cm
-from matplotlib import gridspec
 from matplotlib import ticker
-from scipy import stats
 from matplotlib.ticker import LogFormatter 
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -194,7 +187,7 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
                  linewidth = 0.4)
         ax1.grid('on')
