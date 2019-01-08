@@ -3,17 +3,15 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-01
+# date: 2019-01-08
 # file: mpl_manually_set_axis_zorder_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import time
+import os
 import datetime
 import platform
-import sys
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -71,7 +69,7 @@ if __name__ == '__main__':
              label = 'data 1',
              clip_on = False,
              zorder = 1)
-
+    
     ax1.plot(X[:, 0], X[:, 2],
              alpha = 1.0,
              color = 'C1',
@@ -84,6 +82,7 @@ if __name__ == '__main__':
     ######################################################################################
     # manually set the axis zorder here
     ax1.set_axisbelow(False)
+    
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10) 
     ######################################################################################

@@ -3,17 +3,15 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-01
+# date: 2019-01-08
 # file: mpl_manually_set_axis_zorder.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.0  in conjunction with mpl version 3.0.1
 ##########################################################################################
 
-import time
+import os
 import datetime
 import platform
-import sys
-import os
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -81,7 +79,8 @@ def Plot(titlestr, X, outname, outdir, pColors,
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 6.5, height = 5.5,
-                       lFrac = 0.20, rFrac = 0.9, bFrac = 0.17, tFrac = 0.95)
+                       lFrac = 0.20, rFrac = 0.9,
+                       bFrac = 0.17, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -139,6 +138,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ###############################################################
     # manually set the axis zorder here
     ax1.set_axisbelow(False)
+    
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
     ###############################################################
@@ -156,7 +156,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ax1.set_xlim(-0.05, 1.05) 
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
                  linewidth = 0.4)
         ax1.grid('on')
@@ -165,11 +165,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
         ax1.grid('on', which = 'minor')
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
