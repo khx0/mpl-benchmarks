@@ -3,18 +3,15 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-01
+# date: 2019-01-08
 # file: mpl_multiple_legends_minimal_mk2.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import time
+import os
 import datetime
 import platform
-import sys
-import os
-import math
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -40,6 +37,7 @@ if __name__ == '__main__':
     outname = 'mpl_multiple_legends_minimal_mk2'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
+    outname += '_' + now
     
     # create synthetic data
     nVisPoints = 500
@@ -109,7 +107,6 @@ if __name__ == '__main__':
     ax1.xaxis.labelpad = 3.5
     ax1.yaxis.labelpad = 5.5
     
-    outname += '_' + now
     f.savefig(os.path.join(OUTDIR, outname) + '.pdf', 
               dpi = 300, 
               transparent = True)
