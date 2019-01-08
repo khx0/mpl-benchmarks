@@ -193,7 +193,7 @@ def Plot(titlestr, X, margins, outname, outdir, pColors,
     return None
 
 if __name__ == '__main__':
-
+    
     # create dummy data
     nVisPoints = 300
     xVals = np.linspace(0.0, 1.0, nVisPoints)
@@ -201,8 +201,9 @@ if __name__ == '__main__':
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-
+    
     ######################################################################################
+    
     xMargin, yMargin = 0.5, 0.5
     outname = 'mpl_margins_A_xMargin_{}_yMargin_{}'.format(xMargin, yMargin)
     outname += '_Python_' + platform.python_version() + \
@@ -218,6 +219,7 @@ if __name__ == '__main__':
          grid = False)
     
     ######################################################################################
+    
     xMargin, yMargin = 0.0, 0.25
     outname = 'mpl_margins_B_xMargin_{}_yMargin_{}'.format(xMargin, yMargin)
     outname += '_Python_' + platform.python_version() + \
@@ -231,8 +233,9 @@ if __name__ == '__main__':
          outdir = OUTDIR, 
          pColors = ['C0'],
          grid = False)
-
+    
     ######################################################################################
+    
     xMargin, yMargin = 0.25, 0.0
     outname = 'mpl_margins_C_xMargin_{}_yMargin_{}'.format(xMargin, yMargin)
     outname += '_Python_' + platform.python_version() + \
@@ -246,8 +249,9 @@ if __name__ == '__main__':
          outdir = OUTDIR, 
          pColors = ['C0'],
          grid = False)
-
+    
     ######################################################################################
+    
     xMargin, yMargin = 0.073, 0.073
     outname = 'mpl_margins_D_xMargin_{}_yMargin_{}'.format(xMargin, yMargin)
     outname += '_Python_' + platform.python_version() + \
