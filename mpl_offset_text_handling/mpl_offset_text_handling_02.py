@@ -3,26 +3,20 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-01
+# date: 2019-01-09
 # file: mpl_offset_text_handling_02.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import time
+import os
 import datetime
 import platform
-import sys
-import os
-import math
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
-import matplotlib.colors as colors
-import matplotlib.cm as cm
-from matplotlib import ticker
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -41,7 +35,7 @@ ensure_dir(OUTDIR)
 
 def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir, 
          grid = True, savePDF = True, savePNG = False, datestamp = True):
-
+    
     xmin = xFormat[0]
     xmax = xFormat[1]
     ymin = yFormat[0]
@@ -49,12 +43,12 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
 
     mpl.rc('legend', **{'fontsize': 3.0})
     mpl.rc("axes", linewidth = 0.3)
-
+    
     mpl.rcParams['xtick.top'] = True
     mpl.rcParams['ytick.right'] = True
     mpl.rcParams['xtick.direction'] = 'in'
     mpl.rcParams['ytick.direction'] = 'in'
-
+    
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
@@ -62,7 +56,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
                                           r'\usepackage{amsmath}']}
     plt.rcParams.update(fontparams)
-
+    
     ######################################################################################
     # set up figure
     f, ax1 = plt.subplots(1)
@@ -71,22 +65,22 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     f.subplots_adjust(wspace = 2.5)
     f.subplots_adjust(left = 0.18)
     f.subplots_adjust(bottom = 0.22)
-
+    
     major_x_ticks = np.arange(xmin, xmax + 10.0, xFormat[2])
     minor_x_ticks = np.arange(xmin, xmax + 10.0, xFormat[3])
     ax1.set_xticks(major_x_ticks)
     ax1.set_xticks(minor_x_ticks, minor = True)
-
+    
     major_y_ticks = np.arange(ymin, ymax + 0.5, yFormat[2])
     minor_y_ticks = np.arange(ymin, ymax + 0.5, yFormat[3])
     ax1.set_yticks(major_y_ticks)
     ax1.set_yticks(minor_y_ticks, minor = True)
-
+    
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(4.0)
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(4.0)
-
+    
     ax1.tick_params('both', length = 1.5, width = 0.3, which = 'major', pad = 1.5)
     ax1.tick_params('both', length = 0.8, width = 0.2, which = 'minor', pad = 1.5)
     ######################################################################################
@@ -111,7 +105,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
              label = plotLabel)
     ######################################################################################
     # legend
-    if (labels):
+    if labels:
         leg = ax1.legend(loc = 'upper left',
                          handlelength = 2.8,
                          scatterpoints = 1,
@@ -141,7 +135,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     ax1.set_ylim(ymin, ymax)
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed', 
                  dashes = [7.5, 3.0])
         ax1.grid(True)

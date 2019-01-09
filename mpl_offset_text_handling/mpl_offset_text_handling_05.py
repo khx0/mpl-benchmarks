@@ -10,7 +10,6 @@
 ##########################################################################################
 
 import os
-import time
 import datetime
 import platform
 import numpy as np
@@ -18,9 +17,6 @@ import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
-# import matplotlib.colors as colors
-# import matplotlib.cm as cm
-# from matplotlib import ticker
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 

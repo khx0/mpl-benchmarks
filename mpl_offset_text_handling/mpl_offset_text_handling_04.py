@@ -3,26 +3,20 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-01
+# date: 2019-01-09
 # file: mpl_offset_text_handling_04.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import time
+import os
 import datetime
 import platform
-import sys
-import os
-import math
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
 from matplotlib.pyplot import legend
-import matplotlib.colors as colors
-import matplotlib.cm as cm
-from matplotlib import ticker
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -111,7 +105,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
              label = plotLabel)
     ######################################################################################
     # legend
-    if (labels):
+    if labels:
         leg = ax1.legend(loc = 'upper left',
                          handlelength = 2.8,
                          scatterpoints = 1,
@@ -154,7 +148,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     ax1.set_ylim(ymin, ymax)
     ######################################################################################
     # grid options
-    if (grid):
+    if grid:
         ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed', 
                  dashes = [7.5, 3.0])
         ax1.grid(True)
