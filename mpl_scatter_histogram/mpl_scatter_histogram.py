@@ -3,17 +3,16 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-07
+# date: 2019-01-11
 # file: mpl_scatter_histogram.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.12
 ##########################################################################################
 
 import sys
 sys.path.append('../')
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl

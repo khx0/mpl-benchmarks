@@ -3,16 +3,14 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-07
+# date: 2019-01-11
 # file: mpl_scatter_histogram_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -59,6 +57,7 @@ if __name__ == '__main__':
     outname = 'mpl_scatter_histogram_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
+    outname += '_' + now
 
     # create data
     meanValue = 1.5
@@ -112,7 +111,7 @@ if __name__ == '__main__':
                      ncol = 1)
     leg.draw_frame(False)
     
-    outname += '_' + now
+
     f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
               dpi = 300,
               transparent = True)
