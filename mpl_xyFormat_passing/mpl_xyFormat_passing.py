@@ -3,16 +3,16 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-07
+# date: 2019-01-11
 # file: mpl_xyFormat_passing.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 ##########################################################################################
 # xFormat and yFormat are two 6-tuples each for x- and y-format passing to
 # any given plotting function.
-# The syntax is the following
+# The syntax is the following:
 # xFormat = (xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor)
 # yFormat = (ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor)
 # Often I wish to set the x- and y-scaling and ticks after a manual inspection
@@ -27,10 +27,8 @@
 # this script.
 ##########################################################################################
 
-import sys
 import os
 import platform
-import time
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -99,7 +97,8 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 6.5, height = 5.5,
-                       lFrac = 0.20, rFrac = 0.9, bFrac = 0.17, tFrac = 0.95)
+                       lFrac = 0.20, rFrac = 0.9,
+                       bFrac = 0.17, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -135,6 +134,7 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
     
     # manually set the axis zorder here
     ax1.set_axisbelow(False)
+    
     for spine in ax1.spines.values():  # ax1.spines is a dictionary
         spine.set_zorder(10)
     
@@ -144,7 +144,7 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
                      markerscale = 1.0,
                      ncol = 1)
     leg.draw_frame(False)
-        
+    
     ######################################################################################
     # set plot range and scale
     if (xFormat == None):
@@ -190,7 +190,7 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
     return None
 
 if __name__ == '__main__':
-
+    
     # create synthetic data
     nVisPoints = 1000
     xVals = np.linspace(-0.5, 12.5, nVisPoints)
@@ -200,12 +200,12 @@ if __name__ == '__main__':
     X[:, 1] = yVals
     
     # plot data                    
-        
+    
     # matplotlib's default autoscaling
-
+    
     xFormat = None
     yFormat = None
-
+    
     outname = 'mpl_xyFormat_passing_autoscale'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
@@ -218,12 +218,12 @@ if __name__ == '__main__':
          outdir = OUTDIR, 
          pColors = ['C0'],
          grid = False)
-
+    
     # example 1    
     
     xFormat = (-0.2, 10.2, 0.0, 10.1, 5.0, 1.0)
     yFormat = (-1.1, 1.1, -1.0, 1.05, 0.5, 0.1)
-
+    
     outname = 'mpl_xyFormat_passing_example_01'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
@@ -236,12 +236,12 @@ if __name__ == '__main__':
          outdir = OUTDIR, 
          pColors = ['C0'],
          grid = False)
-         
+    
     # example 2 
     
     xFormat = (0.0, 2.0 * np.pi, 0.0, 2.0 * np.pi * 1.02, 1.0, 0.5)
     yFormat = (-1.1, 1.1, -1.0, 1.05, 1.0, 0.2)
-
+    
     outname = 'mpl_xyFormat_passing_example_02'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
