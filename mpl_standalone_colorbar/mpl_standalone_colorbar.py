@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-07
+# date: 2019-01-11
 # file: mpl_standalone_colorbar.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.1
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import os
@@ -66,7 +66,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
     mpl.rcParams['ytick.direction'] = 'in'
     
     mpl.rc('font', **{'size': 10})
-    mpl.rc('legend', **{'fontsize': 9.0})
+    # mpl.rc('legend', **{'fontsize': 9.0})
     mpl.rc('axes', linewidth = 0.5)    
     
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
@@ -80,10 +80,10 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
-        getFigureProps(width = 0.4, height = 3.5, 
+        getFigureProps(width = 0.4, height = 3.5,
                        lFrac = 0.10, rFrac = 0.32,
                        bFrac = 0.1, tFrac = 0.9)
-
+    
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -139,7 +139,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
                                     cmap = cMap,
                                     norm = cNorm,
                                     orientation = 'vertical')
-                                       
+                   
     cb1.set_label(cb_label, labelpad = 5.0, fontsize = 10.0)
     cb1.outline.set_linewidth(0.5)
 

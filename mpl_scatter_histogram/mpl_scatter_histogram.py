@@ -6,7 +6,7 @@
 # date: 2019-01-11
 # file: mpl_scatter_histogram.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.12
+# tested with python 3.7.0  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import sys
