@@ -3,14 +3,14 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-08
+# date: 2019-02-01
 # file: test_axisPadding.py
 # tested with python 2.7.15
 # tested with python 3.7.0
 ##########################################################################################
 
-import os
 import sys
+import platform
 import numpy as np
 import unittest
 
@@ -20,10 +20,9 @@ from axisPadding import getLinearAxisPadding
 from axisPadding import getLogAxisPadding
 
 class AxisPaddingTest(unittest.TestCase):
-    
-    """
+    '''
     Test cases for the axisPadding module.
-    """
+    '''
     
     def test_linearScale_01(self):
         
@@ -74,5 +73,14 @@ class AxisPaddingTest(unittest.TestCase):
         return None
         
 if __name__ == '__main__':
-
+    
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("RUNNING ", __file__)
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("Python Interpreter Verison =", platform.python_version())
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("/////////////////////////////////////////////////////////////////////////////")
+    
     unittest.main()
