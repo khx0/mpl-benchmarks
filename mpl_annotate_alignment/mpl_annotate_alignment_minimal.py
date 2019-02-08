@@ -33,7 +33,7 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 ensure_dir(OUTDIR)
 
 if __name__ == '__main__':
-
+    
     outname = 'mpl_annotate_alignment_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
@@ -58,7 +58,7 @@ if __name__ == '__main__':
              label = 'data',
              clip_on = False,
              zorder = 1)
-
+    
     leg = ax1.legend(handlelength = 1.5, 
                      scatterpoints = 1,
                      markerscale = 1.0,
@@ -82,34 +82,34 @@ if __name__ == '__main__':
                  xycoords = 'axes fraction',
                  horizontalalignment = 'right',
                  zorder = 8)
-                 
+     
     ax1.annotate('upper left label',
                  xy = (0.0, 1.03),
                  xycoords = 'axes fraction',
                  horizontalalignment = 'left',
                  zorder = 8)
-                 
+    
     ax1.annotate('center label',
                  xy = (0.5, 0.5),
                  xycoords = 'axes fraction',
                  horizontalalignment = 'center',
                  verticalalignment = 'center',
                  zorder = 8)
-                 
+    
     ax1.annotate('right margin top label',
                  xy = (1.02, 1.0),
                  xycoords = 'axes fraction',
                  horizontalalignment = 'left',
                  verticalalignment = 'top',
                  zorder = 8)
-                 
+    
     ax1.annotate('right margin bottom label',
                  xy = (1.02, 0.0),
                  xycoords = 'axes fraction',
                  horizontalalignment = 'left',
                  verticalalignment = 'bottom',
                  zorder = 8)
-        
+    
     # set plot range and scale
     ax1.set_xlim(-0.05, 1.05)              
     
@@ -118,7 +118,7 @@ if __name__ == '__main__':
               dpi = 300,
               transparent = True)
     plt.show()
-
+    
     # close handles
     plt.cla()
     plt.clf()
