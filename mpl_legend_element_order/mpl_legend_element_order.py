@@ -137,6 +137,10 @@ def Plot(titlestr, X, data, outname, outdir,
     # legend
     if drawLegend:
         
+        print("Plot handle data types:")
+        print("type(p1) =", type(p1))
+        print("type(p2) =", type(p2))
+        print("type(p3) =", type(p3))
         '''
         The order of the plot handles in the pHandles list determines their
         oder in the figure's legend.

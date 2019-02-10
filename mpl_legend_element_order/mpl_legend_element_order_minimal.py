@@ -77,6 +77,11 @@ if __name__ == '__main__':
                           lw = 0.0,
                           zorder = 2,
                           label = r"p3 handle's label")
+
+    print("Plot handle data types:")
+    print("type(p1) =", type(p1))
+    print("type(p2) =", type(p2))
+    print("type(p3) =", type(p3))
     '''
     The order of the plot handles in the pHandles list determines their
     oder in the figure's legend.
