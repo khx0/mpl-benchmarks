@@ -129,7 +129,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     
     # annotations
     '''
-    In this example I use relative coordinates for the placement of annotations.
+    This example uses relative coordinates for the placement of annotations.
     This is realized by setting xycoords = 'axes fraction'. Then the specified xy
     position is set relative to the axis canvas, where both the x and y position is
     specified by their fractional value between [0, 1]. 
