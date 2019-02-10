@@ -15,7 +15,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -82,7 +81,7 @@ if __name__ == '__main__':
                  xycoords = 'axes fraction',
                  horizontalalignment = 'right',
                  zorder = 8)
-     
+    
     ax1.annotate('upper left label',
                  xy = (0.0, 1.03),
                  xycoords = 'axes fraction',

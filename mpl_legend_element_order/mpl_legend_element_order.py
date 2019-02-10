@@ -10,6 +10,7 @@
 ##########################################################################################
 
 import os
+import platform
 import datetime
 import numpy as np
 import matplotlib as mpl
@@ -222,6 +223,8 @@ if __name__ == '__main__':
     data[:, 1] = np.sin(2.0 * np.pi * data[:, 0]) + np.random.normal(mu, sigma, nDatapoints)
     
     outname = 'mpl_legend_element_order'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
     
     xFormat = [-0.035, 1.035, 0.0, 1.1, 1.0, 0.25]
     yFormat = [-1.65, 1.65, -1.0, 1.1, 1.0, 1.0]
