@@ -1,17 +1,18 @@
 # mpl-benchmarks
 Useful matplotlib snippets, plotting routines and template scripts.
 The examples herein illustrate many advanced matplotlib features by using them in a
-concrete context. I personally use this repository to collect such examples,
+concrete context. This repository is used to collect such examples,
 to provide them for easy reusability and as interesting showcases with the hope
 that they might prove to be useful for interested other parties.
 This repository consist of many examples which can also be understood as
 template plot scripts for different plotting scenarios.
-In particular, I want to illustrate how much potential matplotlib has if one goes beyond the defaults.
+In particular, many of these are meant to illustrate how much potential matplotlib 
+has if one goes beyond the defaults.
 
-For some cases I provide full and minimal versions of the same plotting example.
-The full version shows a customized version, how I prefer to use it, whilst the minimal
-version is meant to be a minimal requirement python script that focuses on
-the single issue that I wish to highlight, without further ado.
+For some cases both a full and minimal version of the same plotting example is provided.
+The full versions are often heavily customized, whilst the minimal
+versions are meant to be a minimal requirement python scripts that focus on
+a single issue, without further ado.
 
 ## Python and matplotlib versions
 All shown examples have been tested both with python 3 (version 3.7.0)
