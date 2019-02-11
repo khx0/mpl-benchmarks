@@ -3,15 +3,15 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-11
 # file: mpl_fillbetween_example_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 '''
 Minimal example to illustrate the use of matplotlib's fillbetween function.
-Here I demonstrate it by filling the area under a normal distribution.
+Here illustrated by filling the area under a normal distribution.
 '''
 
 import os

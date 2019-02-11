@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-11
 # file: mpl_fillbetweenx_example.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import os
@@ -120,9 +120,9 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     # is the array with the x coordinates.
     # However, below I first pass the x-coordinates and then the y-coordinates, since
     # I consider a normal x-y-plot turned by 90 degree and then flipped along 
-    # the horizontal axis. Hence my conventional x-coordinates become my 
-    # new y-coordinates and vice versa, such that my first argument are basically 
-    # my new y coordinates. This might be confusing, but it is here precisely what I want.
+    # the horizontal axis. Hence the conventional x-coordinates become the
+    # new y-coordinates and vice versa, such that the first argument are basically 
+    # the new y coordinates. This might be confusing, but it is here precisely what I want.
     # This might be different for different applications of yours and you should 
     # in all cases make sure to clearly understand the API and think about what you want.
     # As always.
