@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-11
 # file: mpl_legend_linewidth_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import os
@@ -62,9 +62,9 @@ if __name__ == '__main__':
     
     '''
     The linewidth of the legend object can be manually
-    adjusted by the two code lines below, by using the
+    adjusted by the two code lines below, using the
     legobj.set_linewidth(WIDTH)
-    function.
+    function call.
     Here this is used to adjust the linewidth of the 
     scatter symbols.
     '''

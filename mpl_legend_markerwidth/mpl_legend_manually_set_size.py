@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-11
 # file: mpl_legend_manually_set_size.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import sys
@@ -133,7 +133,7 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     and a line (also depending on the marker type).
     For example the markertype '+' is only controlled by a linewidth, but not a 
     markerscale. For the markertype 'o' you can have both, but can also set 
-    the linewidth to zero as I did in this example above.
+    the linewidth to zero as in this example above.
     '''
     
     leg = ax1.legend(bbox_to_anchor = [1.0, 1.0],
