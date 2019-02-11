@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
-# file: plot_minimal.py
+# date: 2019-02-12
+# file: mpl_logscale_minor_ticks_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 """
@@ -93,36 +93,36 @@ def  plot_minimal_version_A(X, filename):
     return None
     
 def  plot_minimal_version_B(X, filename):
-
+    
     f, ax1 = plt.subplots(1)
     
     ax1.set_xlabel(r'x label', fontsize = 10.0)
     ax1.set_ylabel(r'y label', fontsize = 10.0)
     ax1.xaxis.labelpad = 4.0
     ax1.yaxis.labelpad = 4.0
-
+    
     ax1.plot(X[:, 0], X[:, 1],
              color = 'C0',
              alpha = 1.0,
              lw = 1.0)
-             
+    
     # set plot range and scale
-
+    
     ax1.set_xscale('log')
     
     ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 10))
-
+    
     locmin = mpl.ticker.LogLocator(base = 10.0, 
                                    subs = np.arange(2, 10) * 0.1,  
                                    numticks = 100)
-                                   
+                    
     locminArray = locmin.tick_values(1.0e-10, 9.0e-8)
     # use to manually set the range for the minor ticks in logarithmic scaling
     print(locminArray) 
     ax1.set_xticks(locminArray, minor = True)
     
     ax1.set_xlim(5.0e-13, 2.5e-6)
-        
+    
     ax1.set_ylim(-0.02, 1.05)
     major_y_ticks = np.arange(0.0, 1.1, 0.5)
     minor_y_ticks = np.arange(0.0, 1.1, 0.1)
@@ -141,7 +141,7 @@ def  plot_minimal_version_B(X, filename):
     plt.cla()
     plt.clf()
     plt.close()
-
+    
     return None
 
 if __name__ == '__main__':

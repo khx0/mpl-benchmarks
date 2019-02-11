@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
-# file: plot.py
+# date: 2019-02-12
+# file: mpl_logscale_minor_ticks.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 # requires: pdf2svg installed
 ##########################################################################################
 
@@ -172,7 +172,6 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     else:
         print("Error: Unknown case encountered.")
         sys.exit(1)
-    
     
     ax1.set_xlim(5.0e-13, 2.5e-6)
      
