@@ -61,7 +61,8 @@ if __name__ == '__main__':
     ax1.yaxis.labelpad = 2.0  
     
     ######################################################################################
-    # Here it is important to understand the syntax of the fill_betweenx command.
+    # To account for the switched roles of x and y you need to properly understand
+    # the syntax of the fill_betweenx command.
     # The API specifies 
     # matplotlib.axes.Axes.fill_betweenx(y, x1, x2=0, where=None, step=None, 
     #                                    interpolate=False, *, data = None, **kwargs)
@@ -69,12 +70,14 @@ if __name__ == '__main__':
     # as of 2018-08-14
     # Above the first argument is the array with the y coordinates and the second argument 
     # is the array with the x coordinates.
-    # However, below I first pass the x-coordinates and then the y-coordinates, since
-    # I consider a normal x-y-plot turned by 90 degree and then flipped along 
+    #
+    # In the example below we first pass the x-coordinates and then the y-coordinates, 
+    # since we consider a normal x-y-plot turned by 90 degree and then flipped along 
     # the horizontal axis. Hence the conventional x-coordinates become the
-    # new y-coordinates and vice versa, such that the first argument are basically 
-    # the new y coordinates. This might be confusing, but it is here precisely what I want.
-    # This might be different for different applications of yours and you should 
+    # new y-coordinates and vice versa, such that the first argument is basically 
+    # the array of new y coordinates. This might be confusing, but here it is precisely 
+    # the desired behavior.
+    # This might differ for different applications of yours and you should 
     # in all cases make sure to clearly understand the API and think about what you want.
     # As always.
     ######################################################################################
