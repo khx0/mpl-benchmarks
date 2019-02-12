@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-12
 # file: mpl_multiple_legends.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import os
@@ -75,7 +75,7 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
                                           r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams) 
-
+    
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
