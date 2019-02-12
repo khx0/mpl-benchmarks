@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-12
 # file: mpl_margins.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 ##########################################################################################
@@ -25,8 +25,8 @@
 # limits y: [yMin - yPadding, yMax + yPadding]
 # By default the padding is symmetrical in both directions of a given axis.
 #
-# The plt.margins(*) command is in conflict with ax1.set_xlim(*) and ax1.set_ylim(*)
-# and will be overwritten by both of them regardless of the order of the commands.
+# The plt.margins(*) command is superseded by the ax1.set_xlim(*) and ax1.set_ylim(*)
+# commands (regardless of the order of occurrence if both are present in a plot script).
 # This makes sense since it is part of matplotlib's autoscaling tools, whereas the
 # set_xlim and set_ylim commands are explicit absolute commands to set the axis limits.
 ##########################################################################################
