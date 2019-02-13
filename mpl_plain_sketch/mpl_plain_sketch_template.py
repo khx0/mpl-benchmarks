@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-13
 # file: mpl_plain_sketch_template.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import os
@@ -80,9 +80,9 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
-        getFigureProps(width = 4.1, height = 3.2,
-                       lFrac = 0.10, rFrac = 0.95,
-                       bFrac = 0.15, tFrac = 0.95)
+        getFigureProps(width = 3.0, height = 2.5,
+                       lFrac = 0.10, rFrac = 0.96,
+                       bFrac = 0.12, tFrac = 0.96)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)    
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -106,7 +106,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.set_xlabel(r'$x$', fontsize = 6.0, x = 0.98)
     # rotation is expressed in degrees
     ax1.set_ylabel(r'$y$', fontsize = 6.0, y = 0.82, rotation = 0.0)
-    ax1.xaxis.labelpad = 5.0
+    ax1.xaxis.labelpad = 3.0
     ax1.yaxis.labelpad = 5.0
     ######################################################################################
     # plotting
@@ -119,7 +119,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              lw = lineWidth,
              zorder = 2,
              label = r'')
-                 
+    
     ######################################################################################
     # legend
     if drawLegend:
@@ -131,10 +131,10 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                          ncol = 1)
         leg.draw_frame(False)
         plt.gca().add_artist(leg)
-
+    
     ax1.spines['right'].set_visible(False)
     ax1.spines['top'].set_visible(False)    
-
+    
     ######################################################################################
     # set plot range  
     if (xFormat == None):
@@ -143,14 +143,14 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         # modify this clause, if you want to get different axis ticking
         ax1.set_xticklabels([])
         ax1.set_xticks([])
-        
+    
     if (yFormat == None):
         pass
     else:
         # modify this clause, if you want to get different axis ticking     
         ax1.set_yticklabels([])
         ax1.set_yticks([])
-        
+    
     ax1.set_axisbelow(False)
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
@@ -178,12 +178,10 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     plt.clf()
     plt.close()
     return outname
-             
+
 if __name__ == '__main__':
     
-    ######################################################################################
     # create dummy data
-    
     nVisPoints = 800
     xVals = np.linspace(-26.0, 24.0, nVisPoints)
     yVals = np.array([0.05 * x ** 3 + 0.05 * x ** 2 + 0.05 * x for x in xVals])
@@ -192,9 +190,7 @@ if __name__ == '__main__':
     X[:, 0] = xVals
     X[:, 1] = yVals
     
-    ######################################################################################
     # call the plotting function
-    
     outname = 'mpl_plain_sketch_template_01'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
