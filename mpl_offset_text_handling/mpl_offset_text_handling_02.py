@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-13
 # file: mpl_offset_text_handling_02.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import os
@@ -119,6 +119,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     # Comment: In this solution I turn off the automatically provided offset text
     # and manually annotate instead. One needs to be careful to get the manual
     # annotation right as soon as the data changes.
+    
     ax1.ticklabel_format(axis = 'y', style = 'sci', scilimits = (0, 2))
     ax1.yaxis.offsetText.set_visible(False)
     ax1.annotate(r'$\times \, 10^{6}$',
@@ -126,6 +127,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
                  xycoords = 'axes fraction',
                  fontsize = 4.0, 
                  horizontalalignment = 'left')
+    
     ######################################################################################
     ######################################################################################   
 
@@ -159,7 +161,7 @@ if __name__ == '__main__':
     outname = 'figure_02' + \
               '_Python_' + platform.python_version() + \
               '_mpl_' + mpl.__version__
-
+    
     # create dummy data to plot
     nPoints = 200
     xVals = np.linspace(0, 100.0, nPoints)
