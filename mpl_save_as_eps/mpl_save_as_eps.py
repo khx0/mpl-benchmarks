@@ -3,18 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-13
 # file: mpl_save_as_eps.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 '''
 This script illustrates how to save a matplotlib figure in the EPS file format.
 This file export fails to show transparencies in figures.
-Hence any transparency or usage of alpha values will not be exported
-to the file.
-As a workaround I often use solid colors (alpha = 1.0) which resemble
+Hence any transparency or usage of alpha values will not be exported to the file.
+As a workaround one can use solid colors (alpha = 1.0) which resemble
 the transparent versions. This is of course not always equally applicable
 but often works good enough.
 '''
@@ -164,7 +163,7 @@ if __name__ == '__main__':
     outname = 'mpl_save_as_eps'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-
+    
     # create data
     nVisPoints = 500
     xVals = np.linspace(0.0, 1.0, nVisPoints)
