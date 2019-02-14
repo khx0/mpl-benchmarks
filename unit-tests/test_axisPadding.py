@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-01
+# date: 2019-02-14
 # file: test_axisPadding.py
 # tested with python 2.7.15
-# tested with python 3.7.0
+# tested with python 3.7.2
 ##########################################################################################
 
 import sys
