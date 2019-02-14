@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-14
 # file: mpl_standalone_colorbar.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import os
@@ -139,10 +139,10 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
                                     cmap = cMap,
                                     norm = cNorm,
                                     orientation = 'vertical')
-                   
+        
     cb1.set_label(cb_label, labelpad = 5.0, fontsize = 10.0)
     cb1.outline.set_linewidth(0.5)
-
+    
     cb_labels = np.arange(0.0, 1.1, 0.5)
     cb1.set_ticks(cb_labels)
     cb1.set_ticklabels([0, 0.5, 1])
@@ -168,29 +168,29 @@ def Plot(titlestr, X, params, outname, outdir, pColors, cMap,
 if __name__ == '__main__':
     
     X = np.array([[0, 1]])
-       
+    
     cb_label = r'color bar label $\, z$'
-
+    
     cMaps = [cm.viridis,
              cm.plasma,
              cm.inferno,
              cm.magma,
              cm.gray]
-
+    
     outnames = ['mpl_standalone_colorbar_viridis',
                 'mpl_standalone_colorbar_plasma',
                 'mpl_standalone_colorbar_inferno',
                 'mpl_standalone_colorbar_magma',
                 'mpl_standalone_colorbar_gray']
-
+    
     assert len(cMaps) == len(outnames), "Length assertion failed."
-
+    
     for i, cMap in enumerate(cMaps):
         
         outname = outnames[i]
         outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-
+        
         outname = Plot(titlestr = '',
                        X = X, 
                        params = [cb_label],
