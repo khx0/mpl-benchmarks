@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-14
 # file: mpl_scatter_histogram.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 import sys
@@ -133,7 +133,7 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
              label = 'analytical data',
              clip_on = True,
              zorder = 1)
-             
+    
     ax1.scatter(Y[:, 0], Y[:, 1],
                 s = 20,
                 lw = 0.5,
@@ -179,11 +179,11 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
     return None
 
 if __name__ == '__main__':
-
+    
     outname = 'mpl_scatter_histogram'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-
+    
     # create data
     meanValue = 1.5
     nBins = 25
