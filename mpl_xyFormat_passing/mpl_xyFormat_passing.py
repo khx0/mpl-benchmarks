@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-01-12
+# date: 2019-02-14
 # file: mpl_xyFormat_passing.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.0  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
 
 ##########################################################################################
@@ -16,7 +16,7 @@
 # xFormat = (xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor)
 # yFormat = (ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor)
 # Often I wish to set the x- and y-scaling and ticks after a manual inspection
-# of the data. Hence a full automatization with autoscaling is often anyway not
+# of the data. Hence a full automatization with autoscaling is not
 # always desired for me, since many plots are simply a lot of individual custom work.
 # However, often I wish to reuse a plotting function, and the only thing that
 # needs to be changed is the x- and y-scaling. Thus using these two 6-tuples is a
