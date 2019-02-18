@@ -29,7 +29,7 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
         tmp = comb * 10.0 ** exp
         ticks = np.concatenate((ticks, tmp), axis = 0)
     
-    tmp = comb * 10 ** (expMax)
+    tmp = comb * 10.0 ** (expMax)
     ticks = np.concatenate((ticks, tmp[tmp <= max]), axis = 0)
     
     return ticks
