@@ -35,7 +35,7 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
     return ticks
 
 if __name__ == '__main__':
-        
+    
     # make this the first unit test
     min = 1.0e-12
     max = 1.0e-10
@@ -45,5 +45,3 @@ if __name__ == '__main__':
     assert len(ticks) == 19, "len(ticks) assertion failed."
     
     print("ticks =", ticks)
-    
-    
