@@ -21,7 +21,7 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
     ticks = np.array([])
     
     expMin = int(np.floor(np.log10(min)))
-    expMax = int(np.ceil(np.log10(max)))
+    expMax = int(np.floor(np.log10(max)))
     
     tmp = comb * 10.0 ** expMin
     
@@ -38,12 +38,4 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
 
 if __name__ == '__main__':
     
-    # make this the first unit test
-    min = 1.0e-12
-    max = 1.0e-10
-    
-    ticks = getLogTicksBase10(min, max)
-    
-    assert len(ticks) == 19, "len(ticks) assertion failed."
-    
-    print("ticks =", ticks)
+    pass

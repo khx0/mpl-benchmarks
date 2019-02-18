@@ -39,7 +39,15 @@ class TickerTest(unittest.TestCase):
         
         self.assertTrue(len(ticks) == 19)
         self.assertTrue(np.allclose(ticks, ticks_ref))
-                
+        
+        #####################################################
+        # self.assertTrue(np.array_equal(ticks, ticks_ref))
+        # np.array_equal will return False due to
+        # numerical round off issues.
+        # Try to make the ticker module robust against these
+        # numerical machine precision effects.
+        #####################################################
+        
         return None
 
     def test_log_ticks_02(self):
@@ -56,9 +64,26 @@ class TickerTest(unittest.TestCase):
         
         ticks = getLogTicksBase10(min, max)
         
-        # print(ticks)
-        
         self.assertTrue(len(ticks) == 18)
+        self.assertTrue(np.allclose(ticks, ticks_ref))
+                
+        return None
+     
+    def test_log_ticks_03(self):
+        
+        min = 2.0e-12
+        max = 7.0e-11
+        
+        ticks_ref = np.array([
+            2.0e-12, 3.0e-12, 4.0e-12, 5.0e-12,\
+            6.0e-12, 7.0e-12, 8.0e-12, 9.0e-12,\
+            1.0e-11, 2.0e-11, 3.0e-11, 4.0e-11, 5.0e-11, \
+            6.0e-11, 7.0e-11])
+        
+        ticks = getLogTicksBase10(min, max)
+        print(ticks)
+        
+        self.assertTrue(len(ticks) == 15)
         self.assertTrue(np.allclose(ticks, ticks_ref))
                 
         return None
