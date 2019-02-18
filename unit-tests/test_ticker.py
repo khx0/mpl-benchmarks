@@ -81,7 +81,6 @@ class TickerTest(unittest.TestCase):
             6.0e-11, 7.0e-11])
         
         ticks = getLogTicksBase10(min, max)
-        print(ticks)
         
         self.assertTrue(len(ticks) == 15)
         self.assertTrue(np.allclose(ticks, ticks_ref))
