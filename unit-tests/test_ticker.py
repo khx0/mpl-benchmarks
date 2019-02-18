@@ -23,55 +23,24 @@ class TickerTest(unittest.TestCase):
     Test cases for the ticker module.
     '''
     
-    '''
-    def test_linearScale_01(self):
+    def test_log_ticks_01(self):
         
-        xminData = 0.0
-        xmaxData = 2.0
-        paddingFraction = 0.05
+        min = 1.0e-12
+        max = 1.0e-10
         
-        xmin_reference = -0.1
-        xmax_reference = 2.1
+        ticks_ref = np.array([
+            1.0e-12, 2.0e-12, 3.0e-12, 4.0e-12, 5.0e-12,\
+            6.0e-12, 7.0e-12, 8.0e-12, 9.0e-12,\
+            1.0e-11, 2.0e-11, 3.0e-11, 4.0e-11, 5.0e-11, \
+            6.0e-11, 7.0e-11, 8.0e-11, 9.0e-11, \
+            1.0e-10])
         
-        xmin, xmax = getLinearAxisPadding(xminData, xmaxData, paddingFraction)
+        ticks = getLogTicksBase10(min, max)
         
-        self.assertTrue(np.isclose(xmin, xmin_reference))
-        self.assertTrue(np.isclose(xmax, xmax_reference))
-        
+        self.assertTrue(len(ticks) == 19)
+        self.assertTrue(np.allclose(ticks, ticks_ref))
+                
         return None
-
-    def test_linearScale_02(self):
-        
-        xminData = -99.0
-        xmaxData = 53.0
-        paddingFraction = 0.03
-        
-        xmin_reference = -99.0 - 4.56
-        xmax_reference = 53.0 + 4.56
-        
-        xmin, xmax = getLinearAxisPadding(xminData, xmaxData, paddingFraction)
-        
-        self.assertTrue(np.isclose(xmin, xmin_reference))
-        self.assertTrue(np.isclose(xmax, xmax_reference))
-    
-        return None
-    
-    def test_logScale_01(self):
-    
-        xminData = 1.0e-11
-        xmaxData = 1.0e-9
-        paddingFraction = 0.04
-        
-        xmin_reference = 8.317637711026709e-12
-        xmax_reference = 1.202264434617413e-09
-        
-        xmin, xmax = getLogAxisPadding(xminData, xmaxData, paddingFraction)
-        
-        self.assertTrue(np.isclose(xmin, xmin_reference))
-        self.assertTrue(np.isclose(xmax, xmax_reference))
-        
-        return None
-    '''
 
 if __name__ == '__main__':
     
