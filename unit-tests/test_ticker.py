@@ -42,6 +42,27 @@ class TickerTest(unittest.TestCase):
                 
         return None
 
+    def test_log_ticks_02(self):
+        
+        min = 2.0e-12
+        max = 1.0e-10
+        
+        ticks_ref = np.array([
+            2.0e-12, 3.0e-12, 4.0e-12, 5.0e-12,\
+            6.0e-12, 7.0e-12, 8.0e-12, 9.0e-12,\
+            1.0e-11, 2.0e-11, 3.0e-11, 4.0e-11, 5.0e-11, \
+            6.0e-11, 7.0e-11, 8.0e-11, 9.0e-11, \
+            1.0e-10])
+        
+        ticks = getLogTicksBase10(min, max)
+        
+        # print(ticks)
+        
+        self.assertTrue(len(ticks) == 18)
+        self.assertTrue(np.allclose(ticks, ticks_ref))
+                
+        return None
+
 if __name__ == '__main__':
     
     print("/////////////////////////////////////////////////////////////////////////////")
