@@ -20,9 +20,11 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
     
     ticks = np.array([])
     
-    expMin, expMax = np.log10(min), np.log10(max)
+    expMin = int(np.floor(np.log10(min)))
+    expMax = int(np.ceil(np.log10(max)))
     
     tmp = comb * 10.0 ** expMin
+    
     ticks = np.concatenate((ticks, tmp[tmp >= min]), axis = 0)
     
     for exp in np.arange(expMin + 1, expMax, 1).astype(int):
