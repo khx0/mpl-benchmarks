@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-12
+# date: 2019-02-17
 # file: mpl_logscale_minor_ticks.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.2
@@ -155,19 +155,44 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 10))
     
     if (type == 'A'):
-    
+        
         ax1.xaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 10,
                                     subs = np.arange(2, 10) * 0.1))
-                                    
+                     
     elif (type == 'B'):
-    
+        
+        def getLogMinorTicks_base10(min, max):
+            
+            expMin = np.log10(min)
+            
+            expMax = np.log10(max)
+            
+            print("expMin, expMax =", expMin, expMax)
+            
+            tmp = np.arange(1, 10) * 0.1
+            
+            print("tmp =", tmp)    
+        
+        
         locmin = mpl.ticker.LogLocator(base = 10.0, 
                                        subs = np.arange(2, 10) * 0.1,  
                                        numticks = 100)
-                                   
-        locminArray = locmin.tick_values(1.0e-10, 9.0e-8)
-        print(locminArray) 
+            
+        print(locmin)
+        # locminArray = locmin.tick_values(1.0e-10, 9.0e-8)
+        locminArray = locmin.tick_values(1e-12, 1e-11)
+        locminArray = np.array([2.0e-12, 3.0e-12, 4.0e-12])
+        getLogMinorTicks_base10(1.0e-12, 1.0e-10)
+        print(locminArray)
         ax1.set_xticks(locminArray, minor = True)
+        
+#         locmin = mpl.ticker.LogLocator(base = 10.0, 
+#                                        subs = np.arange(2, 10) * 0.1,  
+#                                        numticks = 100)
+#                
+#         locminArray = locmin.tick_values(1.0e-10, 9.0e-8)
+#         print(locminArray)
+#         ax1.set_xticks(locminArray, minor = True)
 
     else:
         print("Error: Unknown case encountered.")
@@ -178,7 +203,7 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     # uncomment the two lines below for only using every second x-tick major label                                             
     #     for label in ax1.xaxis.get_ticklabels()[::2]:
     #         label.set_visible(False)
-
+    
     ax1.set_axisbelow(False)
     
     ax1.set_ylim(-0.02, 1.05)
@@ -234,9 +259,9 @@ if __name__ == '__main__':
                       pColors = colorVals,
                       grid = False)
 
-    cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
-          ' ' + os.path.join(OUTDIR, returnname + '.svg')
-    os.system(cmd)
+#     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
+#           ' ' + os.path.join(OUTDIR, returnname + '.svg')
+#     os.system(cmd)
                    
     outname = 'mpl_logscale_minor_tick_location_handling_version_B'
     outname += '_Python_' + platform.python_version() + \
@@ -251,6 +276,6 @@ if __name__ == '__main__':
                       pColors = colorVals,
                       grid = False)
 
-    cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
-          ' ' + os.path.join(OUTDIR, returnname + '.svg')
-    os.system(cmd)
+#     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
+#           ' ' + os.path.join(OUTDIR, returnname + '.svg')
+#     os.system(cmd)
