@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-18
+# date: 2019-02-19
 # file: ticker.py
 # tested with python 2.7.15
 # tested with python 3.7.2
@@ -14,6 +14,20 @@ import numpy as np
 def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
     '''
     Returns logarithmic base 10 ticks between min and max (inclusive at both ends).
+    [min, max]
+    
+    The default comb for base 10 logarithmic ticks is comb = [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    which kan be changed by overwriting the default keyword argument.
+    
+    Example:
+    using 
+    min = 3.0e2 
+    and
+    max = 8.0e4
+    will return a 1d (numpy) tick array with
+    ticks =               [3.0e2, 4.0e2, 5.0e2, 6.0e2, 7.0e2, 8.0e2, 9.0e2,
+             1.0e3, 2.0e3, 3.0e3, 4.0e3, 5.0e3, 6.0e3, 7.0e3, 8.0e3, 9.0e3,
+             1.0e4, 2.0e4, 3.0e4, 4.0e4, 5.0e4, 6.0e4, 7.0e4, 8.0e4] 
     '''
     if (min > max):
         min, max = max, min
