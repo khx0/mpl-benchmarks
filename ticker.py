@@ -29,16 +29,14 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
              1.0e3, 2.0e3, 3.0e3, 4.0e3, 5.0e3, 6.0e3, 7.0e3, 8.0e3, 9.0e3,
              1.0e4, 2.0e4, 3.0e4, 4.0e4, 5.0e4, 6.0e4, 7.0e4, 8.0e4] 
     
-    
-    
     Example usage:
     Here the minor ticks have no labels (NullFormatter).
     ****************************************************************
     ...
-    ax1.set_xscale('log')
+    ax.set_xscale('log')
     xMinorTicks = getLogTicksBase10(1.0e-12, 1.0e-6)
-    ax1.xaxis.set_minor_locator(ticker.FixedLocator((xMinorTicks)))
-    ax1.xaxis.set_minor_formatter(mpl.ticker.NullFormatter())
+    ax.xaxis.set_minor_locator(ticker.FixedLocator((xMinorTicks)))
+    ax.xaxis.set_minor_formatter(mpl.ticker.NullFormatter())
     ...
     ****************************************************************
     '''
