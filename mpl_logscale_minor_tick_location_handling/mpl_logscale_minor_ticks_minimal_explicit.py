@@ -65,18 +65,26 @@ def  plot_minimal(X, filename):
              alpha = 1.0,
              lw = 1.0)
     
+    ######################################################################################
+    ######################################################################################
     # set plot range and scale
-    
     ax1.set_xscale('log')
     
+    # 1 set major ticks using LogLocator
+    ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 10))
+    
+    # 1 create ticks manually (explicit)
     xMinorTicks = getLogTicksBase10(1.0e-12, 1.0e-6)
-    print(xMinorTicks)
     
-    ax1.set_xticks(xMinorTicks, minor = True)
-    # ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 10))
+    # 2 set minor ticks using the FixedLocator
+    ax1.xaxis.set_minor_locator(ticker.FixedLocator((xMinorTicks)))
     
+    # 3 use the NullFormatter for minor ticks without tick labels
+    ax1.xaxis.set_minor_formatter(mpl.ticker.NullFormatter())
     
     ax1.set_xlim(5.0e-13, 2.5e-6)
+    ######################################################################################
+    ######################################################################################
     
     ax1.set_ylim(-0.02, 1.05)
     major_y_ticks = np.arange(0.0, 1.1, 0.5)

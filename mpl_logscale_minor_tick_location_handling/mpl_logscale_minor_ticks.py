@@ -160,39 +160,14 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
                                     subs = np.arange(2, 10) * 0.1))
                      
     elif (type == 'B'):
-        
-        def getLogMinorTicks_base10(min, max):
-            
-            expMin = np.log10(min)
-            
-            expMax = np.log10(max)
-            
-            print("expMin, expMax =", expMin, expMax)
-            
-            tmp = np.arange(1, 10) * 0.1
-            
-            print("tmp =", tmp)    
-        
-        
+             
         locmin = mpl.ticker.LogLocator(base = 10.0, 
                                        subs = np.arange(2, 10) * 0.1,  
                                        numticks = 100)
-            
-        print(locmin)
-        # locminArray = locmin.tick_values(1.0e-10, 9.0e-8)
-        locminArray = locmin.tick_values(1e-12, 1e-11)
-        locminArray = np.array([2.0e-12, 3.0e-12, 4.0e-12])
-        getLogMinorTicks_base10(1.0e-12, 1.0e-10)
-        print(locminArray)
+        locminArray = locmin.tick_values(1.0e-10, 9.0e-8)
+        # use to manually set the range for the minor ticks in logarithmic scaling
+        print(locminArray) 
         ax1.set_xticks(locminArray, minor = True)
-        
-#         locmin = mpl.ticker.LogLocator(base = 10.0, 
-#                                        subs = np.arange(2, 10) * 0.1,  
-#                                        numticks = 100)
-#                
-#         locminArray = locmin.tick_values(1.0e-10, 9.0e-8)
-#         print(locminArray)
-#         ax1.set_xticks(locminArray, minor = True)
 
     else:
         print("Error: Unknown case encountered.")
