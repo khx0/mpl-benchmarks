@@ -41,6 +41,7 @@ class TickerTest(unittest.TestCase):
         self.assertTrue(np.allclose(ticks, ticks_ref))
         
         #####################################################
+        # ToDo item added [2019-02-18]
         # self.assertTrue(np.array_equal(ticks, ticks_ref))
         # np.array_equal will return False due to
         # numerical round off issues.
