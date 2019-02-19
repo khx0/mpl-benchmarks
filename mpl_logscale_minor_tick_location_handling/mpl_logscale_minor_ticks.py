@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-17
+# date: 2019-02-19
 # file: mpl_logscale_minor_ticks.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.2
@@ -73,13 +73,13 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
 
 def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
-
+    
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
     mpl.rcParams['ytick.right'] = False
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
-     
+    
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 9.0})
     mpl.rc("axes", linewidth = 0.5)    
@@ -91,7 +91,7 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
                                           r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)       
-
+    
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\

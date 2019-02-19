@@ -11,11 +11,12 @@
 ##########################################################################################
 
 """
-Benchmark matplotlib script illustrating how to set a lower and upper limit for the 
-minor tick locations in logarithmic axis scaling independent of the axis limits.
+(Minimal) Benchmark matplotlib script illustrating how to set a lower and upper limit 
+for the minor tick locations in logarithmic axis scaling independent of the axis limits.
 This script shows how to do this for a logarithmic x-axis.
-Version A uses the default behavior from the ticker.LogLocator class
-whereas version B manually crops the minor ticks, such that the newly chosen minor tick 
+In this version C script, the major ticks are set using the ticker.LogLocator class.
+The minor ticks are created using the getLogTicksBase10 function from the ticker module.
+In this way the minor ticks are cropped, such that the newly chosen minor tick 
 locations become independent from the ax1.set_xlim(xmin, xmax) satement. 
 For aesthetic reasons I often prefer not to have minor tick marks towards
 both the left and right margin of a chosen log-axis. 
