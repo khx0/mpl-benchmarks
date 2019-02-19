@@ -163,13 +163,13 @@ def Plot(titlestr, X, showlabels, outname, outdir, pColors,
     # 1 set major ticks using LogLocator
     ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 10))
     
-    # 1 create ticks manually (explicit)
+    # 2 create ticks manually (explicit)
     xMinorTicks = getLogTicksBase10(1.0e-12, 1.0e-6)
     
-    # 2 set minor ticks using the FixedLocator
+    # 3 set minor ticks using the FixedLocator
     ax1.xaxis.set_minor_locator(ticker.FixedLocator((xMinorTicks)))
     
-    # 3 use the NullFormatter for minor ticks without tick labels
+    # 4 use the NullFormatter for minor ticks without tick labels
     ax1.xaxis.set_minor_formatter(mpl.ticker.NullFormatter())
     
     ax1.set_xlim(5.0e-13, 2.5e-6)
