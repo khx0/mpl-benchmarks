@@ -117,7 +117,7 @@ if __name__ == '__main__':
     X[:, 0] = xValues
     X[:, 1] = yValues
     
-    outname = 'mpl_logscale_minor_tick_location_handling_minimal_explicit'
+    outname = 'mpl_logscale_minor_tick_location_handling_minimal_version_C_explicit'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     plot_minimal(X, outname)
