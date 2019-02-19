@@ -315,5 +315,5 @@ if __name__ == '__main__':
                     showlabels = True,
                     grid = False,
                     savePDF = True,
-                    saveSVG = False, #True,
+                    saveSVG = True,
                     savePNG = False)
