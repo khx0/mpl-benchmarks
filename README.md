@@ -11,7 +11,7 @@ has if one goes beyond the defaults.
 
 For some cases both a full and minimal version of the same plotting example is provided.
 The full versions are often heavily customized, whilst the minimal
-versions are meant to be a minimal requirement python scripts that focus on
+versions are meant to be minimal requirement python scripts that focus on
 a single issue, without further ado.
 
 ## Python and matplotlib versions
