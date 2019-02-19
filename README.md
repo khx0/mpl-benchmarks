@@ -20,4 +20,6 @@ and python 2 (version 2.7.15).
 * Python 2.7.15, Matplotlib 2.2.3
 * Python 3.7.2,  Matplotlib 3.0.2
 
+# Example pseudo color plot
+
 ![Demo](demo.png)
