@@ -16,7 +16,6 @@ import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib import rc
-from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -64,7 +63,6 @@ def Plot(titlestr, X, outname, outdir, pColors,
     mpl.rcParams['ytick.direction'] = 'out'
     
     mpl.rc('font', **{'size': 10})
-    mpl.rc('legend', **{'fontsize': 7.5})
     mpl.rc("axes", linewidth = 0.5)    
     
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
