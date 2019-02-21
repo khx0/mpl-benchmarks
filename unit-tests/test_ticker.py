@@ -132,9 +132,9 @@ class TickerTest(unittest.TestCase):
         
         self.assertTrue(len(ticks) == 24)
         self.assertTrue(np.allclose(ticks, ticks_ref))
-                
-        return None
         
+        return None
+    
     def test_log_ticks_07(self):
         
         min = 1.48e1
@@ -147,9 +147,9 @@ class TickerTest(unittest.TestCase):
         
         self.assertTrue(len(ticks) == 10)
         self.assertTrue(np.allclose(ticks, ticks_ref))
-                
-        return None
         
+        return None
+    
     def test_log_ticks_08(self):
         
         min = 4.9999e-9
@@ -163,7 +163,7 @@ class TickerTest(unittest.TestCase):
         
         self.assertTrue(len(ticks) == 21)
         self.assertTrue(np.allclose(ticks, ticks_ref))
-                
+        
         return None
         
 if __name__ == '__main__':
