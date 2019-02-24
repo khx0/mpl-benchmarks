@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-19
+# date: 2019-02-24
 # file: ticker.py
 # tested with python 2.7.15
 # tested with python 3.7.2
@@ -43,11 +43,16 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
     if (min > max):
         min, max = max, min
     
-    ticks = np.array([])
-    
     expMin = int(np.floor(np.log10(min)))
     expMax = int(np.floor(np.log10(max)))
     
+    if np.isclose(expMin, expMax):
+    	tmp = comb * 10.0 ** expMin
+    	tmp = tmp[tmp >= min]
+    	return tmp[tmp <= max]
+
+    ticks = np.array([])
+
     tmp = comb * 10.0 ** expMin
     
     ticks = np.concatenate((ticks, tmp[tmp >= min]), axis = 0)
