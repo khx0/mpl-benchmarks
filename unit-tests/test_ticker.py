@@ -180,6 +180,34 @@ class TickerTest(unittest.TestCase):
         
         return None
         
+    def test_log_ticks_10(self):
+        
+        min = 8.99e-7
+        max = 9.01e-7
+        
+        ticks_ref = np.array([9.0e-7])
+        
+        ticks = getLogTicksBase10(min, max)
+                        
+        self.assertTrue(len(ticks) == 1)
+        self.assertTrue(np.allclose(ticks, ticks_ref))
+        
+        return None
+        
+    def test_log_ticks_11(self):
+        
+        min = 9.01e-7
+        max = 8.99e-7
+        
+        ticks_ref = np.array([9.0e-7])
+        
+        ticks = getLogTicksBase10(min, max)
+                        
+        self.assertTrue(len(ticks) == 1)
+        self.assertTrue(np.allclose(ticks, ticks_ref))
+        
+        return None
+
 if __name__ == '__main__':
     
     print("/////////////////////////////////////////////////////////////////////////////")
