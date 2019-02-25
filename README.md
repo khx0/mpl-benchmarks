@@ -22,4 +22,9 @@ and python 2 (version 2.7.15).
 
 ### Example pseudo color plot
 
-![Demo](/mpl_heatmap_log_xy-scale/pcolor_showcase_figure_composition.png)
+![Demo](/mpl_heatmap_log_xy-scale/demo/out/pcolor_showcase_figure_composition.png)
+
+The python script which produces this output is kept under
+```
+/mpl/heatmap_log_xy-scale/demo/
+```
