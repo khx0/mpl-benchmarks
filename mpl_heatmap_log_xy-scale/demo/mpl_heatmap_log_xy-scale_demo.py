@@ -3,8 +3,8 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-19
-# file: mpl_heatmap_log_xy-scale.py
+# date: 2019-02-25
+# file: mpl_heatmap_log_xy-scale_demo.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.2
 ##########################################################################################
@@ -247,12 +247,10 @@ if __name__ == '__main__':
               (31, 0.035, cm.magma, 'magma'),
               (31, 0.035, cm.gray, 'gray'),
               (31, 0.035, cm.plasma, 'plasma')] 
-            
-    #, (31, 0.033)]
-    
+      
     for nDataPoints, paddingFraction, cMap, cMapString in params:
         
-        filename = 'demo_nDataPoints_{}_mk2_cMap_{}'.format(nDataPoints, cMapString)
+        filename = 'demo_nDataPoints_{}_cMap_{}'.format(nDataPoints, cMapString)
         
         # create dummy data
         Z = np.zeros((nDataPoints, nDataPoints))

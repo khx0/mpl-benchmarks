@@ -9,3 +9,10 @@
 * Window / Level plugin for mpl's imshow command
 
 * generic imshow routines
+
+
+to pcolor exampels:
+* add absolute padding scaling functionality
+
+* specify relative paddingFraction, but w.r.t to the absolute figure size, this makes
+more sense
