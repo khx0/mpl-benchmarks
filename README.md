@@ -24,7 +24,7 @@ and python 2 (version 2.7.15).
 
 ![Demo](/mpl_heatmap_log_xy-scale/demo/out/pcolor_showcase_figure_composition.png)
 
-The python script which produces this output is kept under
+The python script which produces the above two figures can be found under
 ```
-/mpl/heatmap_log_xy-scale/demo/
+/mpl_heatmap_log_xy-scale/demo/
 ```
