@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-25
+# date: 2019-02-27
 # file: test_ticker.py
 # tested with python 2.7.15
 # tested with python 3.7.2
@@ -204,6 +204,20 @@ class TickerTest(unittest.TestCase):
         ticks = getLogTicksBase10(min, max)
                         
         self.assertTrue(len(ticks) == 1)
+        self.assertTrue(np.allclose(ticks, ticks_ref))
+        
+        return None
+    
+    def test_log_ticks_12(self):
+        
+        min = 1.01e-1
+        max = 1.02e-1
+        
+        ticks_ref = np.array([])
+        
+        ticks = getLogTicksBase10(min, max)
+                 
+        self.assertTrue(len(ticks) == 0)
         self.assertTrue(np.allclose(ticks, ticks_ref))
         
         return None
