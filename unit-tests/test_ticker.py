@@ -216,7 +216,15 @@ class TickerTest(unittest.TestCase):
         ticks_ref = np.array([])
         
         ticks = getLogTicksBase10(min, max)
-                 
+         
+        self.assertTrue(len(ticks) == 0)
+        self.assertTrue(np.allclose(ticks, ticks_ref))
+
+        min = 1.02e-1
+        max = 1.01e-1
+
+        ticks = getLogTicksBase10(min, max)
+           
         self.assertTrue(len(ticks) == 0)
         self.assertTrue(np.allclose(ticks, ticks_ref))
         
