@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-24
+# date: 2019-03-07
 # file: ticker.py
 # tested with python 2.7.15
 # tested with python 3.7.2
@@ -65,6 +65,13 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
     ticks = np.concatenate((ticks, tmp[tmp <= max]), axis = 0)
     
     return ticks
+    
+def cleanFormatter(x, pos):
+    '''
+    will format 0.0 as 0 and
+    will format 1.0 as 1
+    '''
+    return '{:g}'.format(x)
 
 if __name__ == '__main__':
     
