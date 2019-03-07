@@ -233,7 +233,14 @@ class TickerTest(unittest.TestCase):
         
     def test_cleanFormatter(self):
         
-        pass
+        ticklabel = cleanFormatter(0.0, 0.0)
+        self.assertTrue(ticklabel == '0')
+        
+        ticklabel = cleanFormatter(1.0, 1.0)
+        self.assertTrue(ticklabel == '1')
+        
+        ticklabel = cleanFormatter(0.50, 0.50)
+        self.assertTrue(ticklabel == '0.5')
 
 if __name__ == '__main__':
     
