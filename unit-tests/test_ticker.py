@@ -17,6 +17,7 @@ import unittest
 sys.path.append('../')
 
 from ticker import getLogTicksBase10
+from ticker import cleanFormatter
 
 class TickerTest(unittest.TestCase):
     '''
@@ -229,6 +230,10 @@ class TickerTest(unittest.TestCase):
         self.assertTrue(np.allclose(ticks, ticks_ref))
         
         return None
+        
+    def test_cleanFormatter(self):
+        
+        pass
 
 if __name__ == '__main__':
     
