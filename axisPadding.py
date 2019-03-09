@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-11-07
+# date: 2019-03-09
 # file: axisPadding.py
 # tested with python 2.7.15
-# tested with python 3.7.0
+# tested with python 3.7.2
 ##########################################################################################
 
 import numpy as np
@@ -78,7 +78,7 @@ def getLogAxisPadding(xminData, xmaxData, paddingFraction):
     xmax = xmaxData * 10.0 ** (+ paddingFraction * dataWidth)
     
     return xmin, xmax
-    
+
 if __name__ == '__main__':
     
     pass
