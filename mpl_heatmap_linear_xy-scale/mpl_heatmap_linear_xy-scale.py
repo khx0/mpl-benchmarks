@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-11
+# date: 2019-03-09
 # file: mpl_heatmap_linear_xy-scale.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.3
 ##########################################################################################
 
 import sys
@@ -336,7 +336,7 @@ if __name__ == '__main__':
     print("relative scaling: ", zmin, zmax)
     zColor = [cMap, zmin, zmax, r'z label $\, z$']
     zFormat = ['linear', -0.75, 0.8, 0.25]
-
+    
     plot_pcolor(X = xBoxCoords,
                 Y = yBoxCoords,
                 Z = Z,
