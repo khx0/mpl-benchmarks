@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-07
+# date: 2019-03-08
 # file: test_ticker.py
 # tested with python 2.7.15
 # tested with python 3.7.2
@@ -241,6 +241,17 @@ class TickerTest(unittest.TestCase):
         
         ticklabel = cleanFormatter(0.50, 0.50)
         self.assertTrue(ticklabel == '0.5')
+        
+        ticklabel = cleanFormatter(0.00, 0.00)
+        self.assertTrue(ticklabel == '0')
+        
+        ticklabel = cleanFormatter(1.000, 1.000)
+        self.assertTrue(ticklabel == '1')
+        
+        ticklabel = cleanFormatter(10.0000, 10.0000)
+        self.assertTrue(ticklabel == '10')
+        
+        return None
 
 if __name__ == '__main__':
     
