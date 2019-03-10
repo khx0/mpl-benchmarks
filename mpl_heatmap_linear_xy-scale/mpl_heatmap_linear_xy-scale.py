@@ -247,13 +247,13 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     return outname
 
 if __name__ == '__main__':
-
+    
     basename = 'mpl_heatmap_linear_xy-scale'
-
+    
     outnameAbs = basename + '_absZscale'
     outnameAbs += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-
+    
     outnameRel = basename + '_relZscale'
     outnameRel += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
@@ -264,7 +264,7 @@ if __name__ == '__main__':
     nDataPoints = 30
     Z = np.zeros((nDataPoints, nDataPoints))
     print('Z.shape =', Z.shape)
-
+    
     xVals = np.linspace(0.0, 1.0, nDataPoints)
     yVals = np.linspace(-1.0, 1.0, nDataPoints)
     

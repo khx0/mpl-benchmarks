@@ -3,14 +3,14 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-25
+# date: 2019-03-10
 # file: mpl_heatmap_log_xy-scale_demo.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.3
 ##########################################################################################
 
 import sys
-sys.path.append('../')
+sys.path.append('../../')
 import os
 import platform
 import datetime
@@ -92,7 +92,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     
     ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
-
+    
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -101,7 +101,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ax1.xaxis.labelpad = 1.0
     ax1.yaxis.labelpad = 1.0
     ######################################################################################
-
+    
     ######################################################################################
     # color map settings
     cMap = zColor[0]
