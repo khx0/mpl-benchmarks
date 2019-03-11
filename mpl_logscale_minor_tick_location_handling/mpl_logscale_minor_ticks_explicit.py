@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-19
+# date: 2019-03-11
 # file: mpl_logscale_minor_ticks.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.0.2
+# tested with python 3.7.2  in conjunction with mpl version 3.0.3
 # requires: pdf2svg installed
 ##########################################################################################
 
@@ -208,9 +208,9 @@ def Plot(titlestr, X, showlabels, outname, outdir, pColors,
     plt.clf()
     plt.close()
     return outname
-                
+     
 if __name__ == '__main__':
-
+    
     # create data to plot
     nVisPoints = 1000
     xValues = np.logspace(-13, -5, nVisPoints)
@@ -221,7 +221,7 @@ if __name__ == '__main__':
     
     # plotting
     colorVals = ['C0']
-
+    
     outname = 'mpl_logscale_minor_tick_location_handling_version_C_explicit'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
