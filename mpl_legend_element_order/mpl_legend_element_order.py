@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-10
+# date: 2019-03-11
 # file: mpl_legend_element_order.py
 # tested with python 2.7.15 using matplotlib 2.2.3
-# tested with python 3.7.2  using matplotlib 3.0.2
+# tested with python 3.7.2  using matplotlib 3.0.3
 ##########################################################################################
 
 import os
@@ -132,7 +132,7 @@ def Plot(titlestr, X, data, outname, outdir,
                           lw = 0.0,
                           zorder = 2,
                           label = r"p3 handle's label")
-        
+     
     ######################################################################################
     # legend
     if drawLegend:
