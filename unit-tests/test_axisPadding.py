@@ -9,6 +9,17 @@
 # tested with python 3.7.2
 ##########################################################################################
 
+'''
+Also tested with pytest (version 4.3.1)
+invocation:
+$python -m pytest
+where python is your chosed interpreter.
+Alternatively simply call
+$pytest
+in this containting ../unit-tests/
+directory.
+'''
+
 import sys
 import platform
 import numpy as np
@@ -69,7 +80,7 @@ class AxisPaddingTest(unittest.TestCase):
         
         self.assertTrue(np.isclose(xmin, xmin_reference))
         self.assertTrue(np.isclose(xmax, xmax_reference))
-        
+        print("test_logScale_01")
         return None
         
 if __name__ == '__main__':
