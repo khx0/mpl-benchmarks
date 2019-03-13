@@ -29,7 +29,11 @@ The python script which produces the above two figures can be found under
 /mpl_heatmap_log_xy-scale/demo/
 ```
 
+<<<<<<< HEAD
 ### Testing
+=======
+### Testting
+>>>>>>> 5de7217d2dded24616ed069e8714c08532ca7e02
 For some modules unit tests are provided in the
 ```
 /unit-tests/
