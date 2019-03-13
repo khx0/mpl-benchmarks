@@ -28,3 +28,11 @@ The python script which produces the above two figures can be found under
 ```
 /mpl_heatmap_log_xy-scale/demo/
 ```
+
+### Testting
+For some modules unit tests are provided in the
+```
+/unit-tests/
+```
+directory which can be run using the unittest module or via pytest.
+All tests were done using pytest version 4.3.1.
