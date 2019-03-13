@@ -11,13 +11,13 @@
 
 '''
 Also tested with pytest (version 4.3.1)
-invocation:
+cd to the directory ../unit-tests/ containing this script and
+then invoke
 $python -m pytest
-where python is your chosed interpreter.
-Alternatively simply call
+where python is your chosen python interpreter or
+alternatively simply call
 $pytest
-in this containting ../unit-tests/
-directory.
+using the defautl python interpreter.
 '''
 
 import sys

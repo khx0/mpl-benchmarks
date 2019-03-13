@@ -9,6 +9,17 @@
 # tested with python 3.7.2
 ##########################################################################################
 
+'''
+Also tested with pytest (version 4.3.1)
+cd to the directory ../unit-tests/ containing this script and
+then invoke
+$python -m pytest
+where python is your chosen python interpreter or
+alternatively simply call
+$pytest
+using the defautl python interpreter.
+'''
+
 import sys
 import platform
 import numpy as np
