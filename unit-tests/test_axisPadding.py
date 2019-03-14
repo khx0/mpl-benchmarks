@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-02-14
+# date: 2019-03-14
 # file: test_axisPadding.py
 # tested with python 2.7.15
 # tested with python 3.7.2
@@ -11,13 +11,13 @@
 
 '''
 Also tested with pytest (version 4.3.1)
-cd to the directory ../unit-tests/ containing this script and
+cd to the directory containing this script (here ../unit-tests/) and
 then invoke
 $python -m pytest
 where python is your chosen python interpreter or
 alternatively simply call
 $pytest
-using the defautl python interpreter.
+using the default python interpreter.
 '''
 
 import sys
