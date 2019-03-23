@@ -3,12 +3,16 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2018-12-08
+# date: 2019-03-23
 # file: mplUtils.py
 ##########################################################################################
 
 import sys
 import numpy as np
+
+def ensure_dir(dir):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
 
 def nextHigher(value, baseUnit):
     return np.ceil(value / baseUnit) * baseUnit 
