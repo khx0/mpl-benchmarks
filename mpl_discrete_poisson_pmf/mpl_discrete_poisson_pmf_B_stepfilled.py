@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-09
+# date: 2019-03-23
 # file: mpl_discrete_poisson_pmf_B_stepfilled.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,14 +15,9 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 from scipy.stats import poisson
-
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
 
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
@@ -31,7 +26,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
@@ -181,7 +176,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_ylim(yFormat[0], yFormat[1])
     
     ax1.set_axisbelow(False)
-    for spine in ax1.spines.values():  # ax1.spines is a dictionary
+
+    for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
     
     ######################################################################################
@@ -231,9 +227,9 @@ if __name__ == '__main__':
 
         yVals = poisson.pmf(xVals, mu)
         assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    
-        X[:, i + 1] = yVals
 
+        X[:, i + 1] = yVals
+        
         ##################################################################################
         # check for normalization
         norm = np.sum(yVals)

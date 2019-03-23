@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-09
+# date: 2019-03-23
 # file: mpl_axis_label_rotation_y-horizontal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,14 +15,9 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
-
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
 
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
@@ -31,7 +26,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
@@ -118,7 +113,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              lw = lineWidth,
              zorder = 2,
              label = r'$y = y(x)$')
-         
+
     ######################################################################################
     # legend
     if drawLegend:
@@ -141,7 +136,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xFormat[0], xFormat[1])
-        
+    
     if (yFormat == None):
         pass
     else:
@@ -153,7 +148,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     
     ax1.set_axisbelow(False)
     
-    for spine in ax1.spines.values():  # ax1.spines is a dictionary
+    for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
     
     ######################################################################################
@@ -179,15 +174,13 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     plt.clf()
     plt.close()
     return outname
-             
+  
 if __name__ == '__main__':
     
     # create synthetic data
-    
     nVisPoints = 800
     xVals = np.linspace(0.0, 1.0, nVisPoints)
-    yVals = np.array([np.sin(2.0 * np.pi * x) for x in xVals])
-    
+    yVals = np.sin(2.0 * np.pi * xVals)    
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals

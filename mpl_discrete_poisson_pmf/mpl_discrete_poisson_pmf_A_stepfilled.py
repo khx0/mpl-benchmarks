@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-09
+# date: 2019-03-23
 # file: mpl_discrete_poisson_pmf_A_stepfilled.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,14 +15,9 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 from scipy.stats import poisson
-
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
 
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
@@ -31,7 +26,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
@@ -55,8 +50,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
 def Plot(titlestr, X, params, outname, outdir, pColors, 
-        grid = False, drawLegend = True, xFormat = None, yFormat = None, 
-        savePDF = True, savePNG = False, datestamp = True):
+         grid = False, drawLegend = True, xFormat = None, yFormat = None, 
+         savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -88,7 +83,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
     labelfontsize = 6.0
-
+    
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
@@ -108,7 +103,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.yaxis.labelpad = 2.0 
     ######################################################################################
     # plotting
-        
+    
     lineWidth = 0.5    
     
     ax1.plot([-1.0, 21.0], [0.0, 0.0], 
@@ -119,7 +114,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              dashes = [4.0, 2.0])
     
     for i in range(len(muVals)):
-             
+        
         ax1.scatter(X[:, 0], X[:, i + 1],
                     s = 2.5,
                     lw = lineWidth,
@@ -127,7 +122,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                     edgecolor = 'None',
                     zorder = 3,
                     label = labels[i])
-                    
+    
         ax1.plot(X[:, 0], X[:, i + 1],
                  color = pColors[i + 1],
                  lw = 0.5,
@@ -170,7 +165,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xFormat[0], xFormat[1])
-        
+    
     if (yFormat == None):
         pass
     else:
@@ -179,9 +174,10 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
         ax1.set_ylim(yFormat[0], yFormat[1])
-                
+    
     ax1.set_axisbelow(False)
-    for spine in ax1.spines.values():  # ax1.spines is a dictionary
+
+    for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
     
     ######################################################################################
