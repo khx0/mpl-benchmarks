@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_axis_label_rotation_y-horizontal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,7 +15,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 from matplotlib.ticker import FuncFormatter
 
@@ -198,7 +197,7 @@ if __name__ == '__main__':
     # create synthetic data
     nVisPoints = 800
     xVals = np.linspace(0.0, 1.0, nVisPoints)
-    yVals = np.array([np.sin(2.0 * np.pi * x) for x in xVals])
+    yVals = np.sin(2.0 * np.pi * xVals)
     
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
