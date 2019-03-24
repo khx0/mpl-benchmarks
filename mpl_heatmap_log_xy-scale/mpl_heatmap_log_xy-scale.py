@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-10
+# date: 2019-03-24
 # file: mpl_heatmap_log_xy-scale.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -17,7 +17,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
@@ -47,7 +46,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     fProps, xFormat, yFormat, zFormat, zColor, show_cBar, 
     outname, outdir, showlabels,
     grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
-            
+      
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
     mpl.rcParams['ytick.right'] = False
@@ -149,7 +148,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     
     ######################################################################################
     # z-max / z-min annotation
-         
+    
     str1 = r"$z_{\mathrm{max}} = %.5f \,$" %(params[1])
     str2 = r"$z_{\mathrm{min}} = %.5f \,$" %(params[0])
     
@@ -312,7 +311,7 @@ if __name__ == '__main__':
     zmax = 1.0
     zColor = [cMap, zmin, zmax, r'z label $\, z$']
     zFormat = ['linear', -1.0, 1.1, 0.5]
-
+    
     plot_pcolor(X = xBoxCoords,
                 Y = yBoxCoords,
                 Z = Z,

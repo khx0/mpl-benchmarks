@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_legend_element_order.py
 # tested with python 2.7.15 using matplotlib 2.2.3
 # tested with python 3.7.2  using matplotlib 3.0.3
@@ -15,7 +15,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 def ensure_dir(dir):
@@ -132,7 +131,7 @@ def Plot(titlestr, X, data, outname, outdir,
                           lw = 0.0,
                           zorder = 2,
                           label = r"p3 handle's label")
-     
+    
     ######################################################################################
     # legend
     if drawLegend:
@@ -168,7 +167,7 @@ def Plot(titlestr, X, data, outname, outdir,
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xFormat[0], xFormat[1])
-        
+    
     if (yFormat == None):
         pass
     else:

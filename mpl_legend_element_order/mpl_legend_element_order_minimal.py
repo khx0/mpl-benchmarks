@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_legend_element_order_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -69,7 +69,7 @@ if __name__ == '__main__':
                 edgecolor = 'k',
                 zorder = 3,
                 label = r"p2 handle's label")
-
+    
     error = 0.5
     p3 = ax1.fill_between(X[:, 0], X[:, 1] - error, X[:, 1] + error, 
                           color = 'k',
@@ -77,7 +77,7 @@ if __name__ == '__main__':
                           lw = 0.0,
                           zorder = 2,
                           label = r"p3 handle's label")
-
+    
     print("Plot handle data types:")
     print("type(p1) =", type(p1))
     print("type(p2) =", type(p2))
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     The order of the plot handles in the pHandles list determines their
     oder in the figure's legend.
     '''
-     
+    
     pHandles = [p3, p2, p1]
     pLabels = [handle.get_label() for handle in pHandles]
     
