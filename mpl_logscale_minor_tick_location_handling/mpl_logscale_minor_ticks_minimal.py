@@ -34,17 +34,13 @@ from matplotlib.ticker import LogFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
-
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def  plot_minimal_version_A(X, filename):
 
@@ -163,3 +159,4 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     plot_minimal_version_B(X, outname)
+

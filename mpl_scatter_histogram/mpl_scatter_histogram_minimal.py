@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_scatter_histogram_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,14 +15,9 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
-
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
 
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
@@ -31,7 +26,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 # a copy of the getHistogramCoordinates function
 # from the mplUtils.py file, copied to this minimal script

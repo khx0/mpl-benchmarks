@@ -29,10 +29,6 @@ from axisPadding import getLogAxisPadding
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
-
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
 
@@ -40,13 +36,13 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def plot_pcolor(X, Y, Z, titlestr, params,
     fProps, xFormat, yFormat, zFormat, zColor, show_cBar, 
     outname, outdir, showlabels,
     grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
-      
+    
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
     mpl.rcParams['ytick.right'] = False
@@ -64,7 +60,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
                                           r'\usepackage{amsmath}']}
-                  
+          
     mpl.rcParams.update(fontparams)  
     
     ######################################################################################
@@ -89,7 +85,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     
     ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
-
+    
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -98,7 +94,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     ax1.xaxis.labelpad = 2.0
     ax1.yaxis.labelpad = 4.0
     ######################################################################################
-
+    
     ######################################################################################
     # color map settings
     cMap = zColor[0]
@@ -117,12 +113,12 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         cax.tick_params('both', length = 3.0, width = 0.5, which = 'major')
         cax.tick_params('both', length = 2.0, width = 0.25, which = 'minor') 
         cax.tick_params(axis = 'both', which = 'major', pad = 2)  
-
+        
         cb1 = mpl.colorbar.ColorbarBase(cax, 
                                         cmap = cMap,
                                         norm = cNorm,
                                         orientation = 'vertical')
-
+        
 #         cb1.set_label(zColor[3], 
 #                       labelpad = 2.5, fontsize = 6)
         
@@ -135,7 +131,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         cb1.outline.set_linewidth(0.5)
         cb1.ax.tick_params(axis = 'y', direction = 'out', which = 'both')
         cb1.ax.tick_params(labelsize = 6.0)
-    
+        
         if (zFormat[0] == 'linear'):
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
@@ -157,13 +153,13 @@ def plot_pcolor(X, Y, Z, titlestr, params,
                  xycoords = 'axes fraction',
                  fontsize = 6.0, 
                  horizontalalignment = 'left')
-
+    
     ax1.annotate(str2,
                  xy = (0.0, 1.025),
                  xycoords = 'axes fraction',
                  fontsize = 6.0, 
                  horizontalalignment = 'left')
-
+    
     ######################################################################################
     # axis formatting
     if (xFormat[0] == 'auto'):
@@ -174,7 +170,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-
+        
         # manual formatting here:
         # ax1.set_xticklabels([0, 0.5, 1])
     
@@ -198,10 +194,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-
-        # manual formatting here:
-        # ax1.set_yticklabels([0, 0.5, 1])
-    
+        
     elif (yFormat[0] == 'log'):
         ax1.set_yscale('log')
         ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
@@ -213,7 +206,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     else:
         print("Error: Unknown yFormat[0] type encountered.")
         sys.exit(1)
-
+    
     ######################################################################################
     # grid options
     if grid:
@@ -247,13 +240,13 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     return outname
 
 if __name__ == '__main__':
-
+    
     basename = 'mpl_heatmap_log_xy-scale'
-
+    
     outnameAbs = basename + '_absZscale'
     outnameAbs += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-
+    
     outnameRel = basename + '_relZscale'
     outnameRel += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
@@ -264,7 +257,7 @@ if __name__ == '__main__':
     nDataPoints = 31
     Z = np.zeros((nDataPoints, nDataPoints))
     print('Z.shape =', Z.shape)
-
+    
     xVals = np.logspace(1, 3, nDataPoints)
     yVals = np.logspace(-3, -1, nDataPoints)
     
@@ -288,7 +281,7 @@ if __name__ == '__main__':
     
     # call plot function
     fProps = [4.0, 4.0, 0.20, 0.80, 0.20, 0.88]
-
+    
     # left and right axis padding fraction
     paddingFraction = 0.035
     
@@ -304,7 +297,7 @@ if __name__ == '__main__':
                r'x label $x$']
     yFormat = ['log', ymin, ymax, -1.0, -1.0, -1.0, -1.0,
                r'y label $y$']
-
+    
     # absolute scaling
     cMap = cm.viridis # cm.plasma
     zmin = -1.0
@@ -327,8 +320,7 @@ if __name__ == '__main__':
                 outdir = OUTDIR,
                 showlabels = True,
                 grid = False,
-                saveSVG = False,
-                savePNG = True)
+                saveSVG = False)
     
     # relative scaling                      
     cMap = cm.viridis # cm.plasma

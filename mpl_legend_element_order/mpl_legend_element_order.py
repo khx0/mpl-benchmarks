@@ -17,10 +17,6 @@ import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import legend
 
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
-
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(now.year, str(now.month).zfill(2), str(now.day).zfill(2))
 
@@ -28,7 +24,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''

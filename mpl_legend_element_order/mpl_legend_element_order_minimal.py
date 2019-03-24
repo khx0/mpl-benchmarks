@@ -17,23 +17,19 @@ import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import legend
 
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
-
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(now.year, str(now.month).zfill(2), str(now.day).zfill(2))
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
     
     outname = 'mpl_legend_element_order_minimal'
     outname += '_Python_' + platform.python_version() + \
-               '_mpl_' + mpl.__version__
+               '_mpl_' + mpl.__version__ + '_' + now
     
     # create synthetic data
     nVisPoints = 500

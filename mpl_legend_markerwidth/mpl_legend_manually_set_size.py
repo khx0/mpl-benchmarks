@@ -22,9 +22,6 @@ from matplotlib import ticker
 
 from mplUtils import getFigureProps
 
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
 
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
@@ -33,7 +30,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
          grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):

@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-10
+# date: 2019-03-24
 # file: mpl_heatmap_log_xy-scale_demo.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -17,7 +17,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
@@ -32,10 +31,6 @@ from axisPadding import getLogAxisPadding
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
-
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
 
@@ -43,7 +38,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def plot_pcolor(X, Y, Z, titlestr, params,
     fProps, xFormat, yFormat, zFormat, zColor, show_cBar, 
@@ -125,7 +120,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
                                         cmap = cMap,
                                         norm = cNorm,
                                         orientation = 'vertical')
-                
+        
         ax1.annotate(zColor[3],
                      xy = (1.175, 1.06),
                      xycoords = 'axes fraction',
@@ -147,7 +142,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     
     ######################################################################################
     # z-max / z-min annotation
-         
+    
     str1 = r"$z_{\mathrm{max}} = %.5f \,$" %(params[1])
     str2 = r"$z_{\mathrm{min}} = %.5f \,$" %(params[0])
     
@@ -156,7 +151,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
                  xycoords = 'axes fraction',
                  fontsize = 6.0, 
                  horizontalalignment = 'left')
-
+    
     ax1.annotate(str2,
                  xy = (0.0, 1.025),
                  xycoords = 'axes fraction',
@@ -173,7 +168,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-            
+    
     elif (xFormat[0] == 'log'):
         
         ax1.set_xscale('log')
@@ -196,7 +191,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-            
+    
     elif (yFormat[0] == 'log'):
         ax1.set_yscale('log')
         
@@ -247,7 +242,7 @@ if __name__ == '__main__':
               (31, 0.035, cm.magma, 'magma'),
               (31, 0.035, cm.gray, 'gray'),
               (31, 0.035, cm.plasma, 'plasma')] 
-      
+    
     for nDataPoints, paddingFraction, cMap, cMapString in params:
         
         filename = 'demo_nDataPoints_{}_cMap_{}'.format(nDataPoints, cMapString)
@@ -258,13 +253,13 @@ if __name__ == '__main__':
         
         xVals = np.logspace(1, 3, nDataPoints)
         yVals = np.logspace(-3, -1, nDataPoints)
-    
+        
         # fill Z matrix
         for i in range(len(yVals)):
             for j in range(len(xVals)):
                 Z[i, j] = np.sin(np.pi * np.log(yVals[i])) * \
                           np.cos(np.pi * np.log(xVals[j]) - np.pi / 2.0)
-    
+        
         Z_min = np.min(Z)
         Z_max = np.max(Z)
         
