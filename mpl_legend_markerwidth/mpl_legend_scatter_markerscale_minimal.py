@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_legend_scatter_markerscale_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,7 +15,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 def ensure_dir(dir):
@@ -47,7 +46,7 @@ if __name__ == '__main__':
     outname = 'mpl_legend_scatter_markerscale_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-
+    
     f, ax1 = plt.subplots(1)
     f.set_size_inches(3.0, 3.0)   
     
@@ -66,7 +65,7 @@ if __name__ == '__main__':
     # legend handling           
     leg = ax1.legend(handlelength = 0.5,
                      markerscale = 2.5)
-
+    
     '''
     If the marker symbol of scatter plot is used
     with zero linewidth, the symbol size for the

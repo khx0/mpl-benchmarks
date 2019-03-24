@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_legend_manually_set_size.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -17,7 +17,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 from matplotlib import ticker
 
@@ -35,7 +34,7 @@ RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 ensure_dir(OUTDIR)
-    
+
 def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
          grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
 
@@ -45,8 +44,8 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
     
-    mpl.rc('font',**{'size': 10})
-    mpl.rc('legend',**{'fontsize': 5.0})
+    mpl.rc('font', **{'size': 10})
+    mpl.rc('legend', **{'fontsize': 5.0})
     mpl.rc("axes", linewidth = 0.5)    
     
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
@@ -95,7 +94,7 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
             lw = 0.3,
             zorder = 2,
             label = labels[0])
-             
+    
     ax1.scatter(Y[:, 0], Y[:, 1], 
                 s = 0.75,
                 marker = 'o', 
@@ -115,7 +114,7 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
                 linewidth = 0.3, 
                 zorder = 3,
                 label = labels[2])
-                     
+    
     ######################################################################################
     # legend
     
@@ -142,18 +141,18 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
                      scatterpoints = 1,
                      markerscale = 3.0,
                      ncol = 1)
-                        
+              
     # set the linewidth of each legend object
     for legobj in leg.legendHandles:
         legobj.set_linewidth(1.0)
-        
+    
     leg.draw_frame(False)
 
     ax1.set_axisbelow(False)
     
-    for spine in ax1.spines.values():  # ax1.spines is a dictionary
+    for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
-            
+    
     ######################################################################################
     # set plot range and scale
     # USE DEFAULTS HERE
@@ -217,7 +216,7 @@ if __name__ == '__main__':
     labels = [r'data line',
               r'scatter points (only marker)',
               r'scatter points (only line)'] 
-
+    
     outname = 'mpl_legend_manually_set_size'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
