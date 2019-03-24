@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_multiple_legends_minimal_scatter.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -68,7 +68,7 @@ if __name__ == '__main__':
     without the comma "," to get the correct plot handle p.
     This difference comes from the different return values of the two plotting commands.
     '''
-
+    
     # scatter plot 1
     p1 = ax1.scatter(X[:, 0], X[:, 1], 
                      marker = 'o', 

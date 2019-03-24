@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_multiple_legends.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,7 +15,6 @@ import platform
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -126,7 +125,7 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
     pHandles = []
     
     for i in range(len(params)):
-    
+        
         p, = ax1.plot(X[:, 0], X[:, i + 1], 
                       alpha = 1.0, 
                       linewidth = 0.5, 
@@ -170,7 +169,7 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
     
     # dummy data for manual scatterpoint legend
     x, y = [-10.0], [-10.0]
-
+    
     dummyColor = '#666666'
     ax1.scatter(x, y, 
                 marker = '+', 
