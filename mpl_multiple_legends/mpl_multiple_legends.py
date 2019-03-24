@@ -237,9 +237,8 @@ if __name__ == '__main__':
     outname = 'mpl_multiple_legends' + \
               '_Python_' + platform.python_version() + \
               '_mpl_' + mpl.__version__
-        
-    # create synthetic data
     
+    # create synthetic data
     nVisPoints = 500
     nScatterPoints = 20
     Lx = 40.0
@@ -263,7 +262,7 @@ if __name__ == '__main__':
     Xs[:, 0] = xVals2
     
     # call plotting function
-         
+    
     pColors = ['k', 'C3', 'C0']
     
     labels = [r'$\mathcal{A} = 2.5\cdot 10^{-4}$',
