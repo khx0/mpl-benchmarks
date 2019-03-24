@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_offset_text_handling_02.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,7 +15,6 @@ import platform
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -42,7 +41,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     ymax = yFormat[1]
 
     mpl.rc('legend', **{'fontsize': 3.0})
-    mpl.rc("axes", linewidth = 0.3)
+    mpl.rc('axes', linewidth = 0.3)
     
     mpl.rcParams['xtick.top'] = True
     mpl.rcParams['ytick.right'] = True
@@ -155,7 +154,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     plt.clf()
     plt.close()
     return None
-    
+
 if __name__ == '__main__':
     
     outname = 'figure_02' + \
