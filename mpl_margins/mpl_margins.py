@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_margins.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -37,7 +37,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -142,7 +141,7 @@ def Plot(titlestr, X, margins, outname, outdir, pColors,
              label = 'data',
              clip_on = True,
              zorder = 1)
-        
+    
     # legend
     leg = ax1.legend(handlelength = 1.35, 
                      scatterpoints = 1,
@@ -164,7 +163,7 @@ def Plot(titlestr, X, margins, outname, outdir, pColors,
     
     ######################################################################################
     # set plot range, scale and padding
-        
+    
     # use plt.margins instead of absolute set_xlim and set_ylim axis limit specifications.
     plt.margins(x = margins[0], y = margins[1])
     
