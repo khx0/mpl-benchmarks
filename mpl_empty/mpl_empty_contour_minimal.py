@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-09
+# date: 2019-03-24
 # file: mpl_empty_contour_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -18,10 +18,6 @@ from matplotlib import pyplot as plt
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
-
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
 
@@ -29,7 +25,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
     
@@ -42,8 +38,8 @@ if __name__ == '__main__':
     nDataPoints = 500
     radius = 50.0
     angles = np.linspace(0.0, 2.0 * np.pi, nDataPoints)
-    xVals = np.array([radius * np.cos(x) for x in angles])
-    yVals = np.array([radius * np.sin(x) for x in angles])
+    xVals = radius * np.cos(angles)
+    yVals = radius * np.sin(angles)
     
     X = np.zeros((nDataPoints, 2))
     X[:, 0] = xVals

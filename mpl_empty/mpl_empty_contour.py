@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-09
+# date: 2019-03-24
 # file: mpl_empty_contour.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,13 +15,8 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
-
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
 
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
@@ -30,7 +25,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
@@ -90,7 +85,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     
     ######################################################################################
     # plotting
-        
+    
     ax1.plot(X[:, 0], X[:, 1],
              alpha = 1.0,
              color = pColors[0],
@@ -99,7 +94,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
              zorder = 1)
     
     # plt.axes().set_aspect('equal')
-         
+    
     ######################################################################################
     # set plot range and scale
     #ax1.set_xlim(0.0, 628.0)
@@ -114,11 +109,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
     
     ######################################################################################
     # save to file
-    if (datestamp):
+    if datestamp:
         outname += '_' + now
-    if (savePDF): # save to file using pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if (savePNG):
+    if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
@@ -137,8 +132,8 @@ if __name__ == '__main__':
     nDataPoints = 500
     radius = 50.0
     angles = np.linspace(0.0, 2.0 * np.pi, nDataPoints)
-    xVals = np.array([radius * np.cos(x) for x in angles])
-    yVals = np.array([radius * np.sin(x) for x in angles])
+    xVals = radius * np.cos(angles)
+    yVals = radius * np.sin(angles)
     
     X = np.zeros((nDataPoints, 2))
     X[:, 0] = xVals

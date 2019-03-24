@@ -9,6 +9,10 @@
 
 import sys
 import numpy as np
+import datetime
+
+now = datetime.datetime.now()
+now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
 
 def ensure_dir(dir):
     if not os.path.exists(dir):
