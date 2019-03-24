@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-09
+# date: 2019-03-24
 # file: mpl_heatmap_linear_xy-scale.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -17,7 +17,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
@@ -29,10 +28,6 @@ from axisPadding import getLinearAxisPadding
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
-
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
 
@@ -40,13 +35,13 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def plot_pcolor(X, Y, Z, titlestr, params,
     fProps, xFormatObj, yFormatObj, zFormat, zColor, show_cBar, 
     outname, outdir, showlabels,
     grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
-            
+    
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
     mpl.rcParams['ytick.right'] = False
@@ -135,7 +130,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         cb1.outline.set_linewidth(0.5)
         cb1.ax.tick_params(axis = 'y', direction = 'out', which = 'both')
         cb1.ax.tick_params(labelsize = 6.0)
-    
+
         if (zFormat[0] == 'linear'):
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
@@ -148,7 +143,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     
     ######################################################################################
     # z-max / z-min annotation
-         
+    
     str1 = r"$z_{\mathrm{max}} = %.5f \,$" %(params[1])
     str2 = r"$z_{\mathrm{min}} = %.5f \,$" %(params[0])
     
@@ -176,9 +171,6 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
 
-        # manual formatting here:
-        # ax1.set_xticklabels([0, 0.5, 1])
-    
     elif (xFormatObj[0] == 'log'):
         ax1.set_xscale('log')
         xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormatObj[1]
@@ -201,10 +193,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         minor_y_ticks = np.arange(yTicksMin, yTicksMax, dyMinor)
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-
-        # manual formatting here:
-        # ax1.set_yticklabels([0, 0.5, 1])
-    
+        
     elif (yFormatObj[0] == 'log'):
         ax1.set_yscale('log')
         ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormatObj[1]
