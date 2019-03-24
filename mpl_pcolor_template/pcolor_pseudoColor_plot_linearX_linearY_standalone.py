@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: pcolor_pseudoColor_plot_linearX_linearY_standalone.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,16 +15,12 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
+from matplotlib.ticker import FuncFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
-
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
 
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
@@ -33,7 +29,14 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
+
+def cleanFormatter(x, pos):
+    '''
+    will format 0.0 as 0 and
+    will format 1.0 as 1
+    '''
+    return '{:g}'.format(x)
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
@@ -193,13 +196,18 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         print("Error: Unknown yFormat[0] type encountered.")
         sys.exit(1)
     
+    # tick label formatting
+    majorFormatter = FuncFormatter(cleanFormatter)
+    ax1.xaxis.set_major_formatter(majorFormatter)
+    ax1.yaxis.set_major_formatter(majorFormatter)
+    
     ######################################################################################
     # grid options
     if grid:
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.4)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', 
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor',
                  linewidth = 0.2)
         ax1.grid('on', which = 'minor')
     ######################################################################################
@@ -213,7 +221,6 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     if saveSVG:
         cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
               ' ' + os.path.join(OUTDIR, outname + '.svg')
-        print(cmd)
         os.system(cmd)
     ######################################################################################
     # close handles
@@ -238,27 +245,27 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
 
 if __name__ == '__main__':
     
-    outname = 'pcolor_pseudoColor_plot_linearX_linearY'
+    outname = 'pcolor_pseudoColor_plot_linearX_linearY_standalone'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-
+    
     # create synthetic plot data
     
     nSamples_x = 5
     nSamples_y = 5
-
+    
     xmin, xmax = 0.0, 1.0
     ymin, ymax = 0.0, 1.0
-
+    
     xVals = np.linspace(xmin, xmax, nSamples_x)
     yVals = np.linspace(ymin, ymax, nSamples_y)
-
+    
     zVals = np.zeros((nSamples_y, nSamples_x))
-
-    for j in range(nSamples_y): # iterate over y values
-        for i in range(nSamples_x): # iterate over x values
+    
+    for j in range(nSamples_y):         # iterate over y values
+        for i in range(nSamples_x):     # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
-
+    
     #################################################################################
     print("xVals.shape =", xVals.shape)
     print("yVals.shape =", yVals.shape)
@@ -279,7 +286,7 @@ if __name__ == '__main__':
     xFormat = ['linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'x axis label']
     yFormat = ['linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'y axis label']
     
-    cMap = cm.viridis #cm.plasma
+    cMap = cm.viridis
     zmin = np.min(zVals)
     zmax = np.max(zVals)
     zColor = [cMap, zmin, zmax, r'z label (cbar)']

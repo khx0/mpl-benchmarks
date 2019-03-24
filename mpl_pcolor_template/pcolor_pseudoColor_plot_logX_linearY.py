@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: pcolor_pseudoColor_plot_logX_linearY.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -17,20 +17,17 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
 from matplotlib import ticker
+from matplotlib.ticker import FuncFormatter
 
 from mplUtils import getFigureProps
 from mplUtils import getPcolorBoxCoordinates
+from ticker import cleanFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
-
-def ensure_dir(dir):
-    if not os.path.exists(dir):
-        os.makedirs(dir)
 
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
@@ -39,7 +36,7 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
-ensure_dir(OUTDIR)
+os.makedirs(OUTDIR, exist_ok = True)
 
 def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
                 outname, outdir, showlabels, grid = False, saveSVG = False, 
@@ -110,7 +107,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         cax.tick_params('both', length = 3.0, width = 0.5, which = 'major')
         cax.tick_params('both', length = 2.0, width = 0.25, which = 'minor') 
         cax.tick_params(axis = 'both', which = 'major', pad = 2)  
-
+        
         cb1 = mpl.colorbar.ColorbarBase(cax, 
                                         cmap = cMap,
                                         norm = cNorm,
@@ -189,13 +186,17 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         print("Error: Unknown yFormat[0] type encountered.")
         sys.exit(1)
     
+    # tick label formatting
+    majorFormatter = FuncFormatter(cleanFormatter)
+    ax1.yaxis.set_major_formatter(majorFormatter)
+    
     ######################################################################################
     # grid options
     if grid:
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.4)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', 
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor',
                  linewidth = 0.2)
         ax1.grid('on', which = 'minor')
     ######################################################################################
@@ -237,8 +238,8 @@ if __name__ == '__main__':
     
     zVals = np.zeros((nSamples_y, nSamples_x))
     
-    for j in range(nSamples_y):     # iterate over y values
-        for i in range(nSamples_x): # iterate over x values
+    for j in range(nSamples_y):         # iterate over y values
+        for i in range(nSamples_x):     # iterate over x values
             zVals[i, j] = 0.2 * yVals[i]
     
     #################################################################################
@@ -261,7 +262,7 @@ if __name__ == '__main__':
     xFormat = ['log', 0.23 * 1.0e-1, 4.5 * 1.0e3, 0.0, 1.05, 0.5, 0.1, r'x axis label']
     yFormat = ['linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'y axis label']
     
-    cMap = cm.viridis # cm.plasma
+    cMap = cm.viridis
     zmin = np.min(zVals)
     zmax = np.max(zVals)
     zColor = [cMap, zmin, zmax, r'z label (cbar)']
