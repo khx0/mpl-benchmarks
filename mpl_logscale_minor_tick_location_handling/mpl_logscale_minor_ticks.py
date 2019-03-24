@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_logscale_minor_ticks.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -30,7 +30,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 from matplotlib import ticker
 from matplotlib.ticker import LogFormatter 
@@ -137,7 +136,7 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
              lw = 1.0,
              zorder = 2,
              label = r'plot label')
-     
+    
     ######################################################################################
     # legend
     leg = ax1.legend(loc = 'upper left',
@@ -158,9 +157,9 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
         
         ax1.xaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 10,
                                     subs = np.arange(2, 10) * 0.1))
-                     
+    
     elif (type == 'B'):
-             
+        
         locmin = mpl.ticker.LogLocator(base = 10.0, 
                                        subs = np.arange(2, 10) * 0.1,  
                                        numticks = 100)
@@ -174,7 +173,7 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
         sys.exit(1)
     
     ax1.set_xlim(5.0e-13, 2.5e-6)
-     
+    
     # uncomment the two lines below for only using every second x-tick major label                                             
     #     for label in ax1.xaxis.get_ticklabels()[::2]:
     #         label.set_visible(False)
@@ -207,7 +206,7 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     plt.clf()
     plt.close()
     return outname
-                
+
 if __name__ == '__main__':
 
     # create data to plot
@@ -237,7 +236,7 @@ if __name__ == '__main__':
 #     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
 #           ' ' + os.path.join(OUTDIR, returnname + '.svg')
 #     os.system(cmd)
-                   
+    
     outname = 'mpl_logscale_minor_tick_location_handling_version_B'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__

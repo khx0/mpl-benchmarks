@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_logscale_minor_ticks_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -59,7 +59,7 @@ def  plot_minimal_version_A(X, filename):
              color = 'C0',
              alpha = 1.0,
              lw = 1.0)
-             
+    
     # set plot range and scale
 
     ax1.set_xscale('log')
@@ -70,7 +70,7 @@ def  plot_minimal_version_A(X, filename):
                                 subs = np.arange(2, 10) * 0.1))
     
     ax1.set_xlim(5.0e-13, 2.5e-6)
-        
+    
     ax1.set_ylim(-0.02, 1.05)
     major_y_ticks = np.arange(0.0, 1.1, 0.5)
     minor_y_ticks = np.arange(0.0, 1.1, 0.1)
@@ -91,7 +91,7 @@ def  plot_minimal_version_A(X, filename):
     plt.close()
 
     return None
-    
+
 def  plot_minimal_version_B(X, filename):
     
     f, ax1 = plt.subplots(1)
@@ -115,7 +115,7 @@ def  plot_minimal_version_B(X, filename):
     locmin = mpl.ticker.LogLocator(base = 10.0, 
                                    subs = np.arange(2, 10) * 0.1,  
                                    numticks = 100)
-                    
+    
     locminArray = locmin.tick_values(1.0e-10, 9.0e-8)
     # use to manually set the range for the minor ticks in logarithmic scaling
     print(locminArray) 
