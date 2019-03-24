@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-11
+# date: 2019-03-24
 # file: mpl_manually_set_axis_zorder_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -15,7 +15,6 @@ import platform
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib import rc
 from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -42,8 +41,8 @@ if __name__ == '__main__':
     nVisPoints = 500
     
     xVals = np.linspace(-0.5, 1.5, nVisPoints)
-    yVals1 = np.array([np.sin(x) for x in xVals])
-    yVals2 = np.array([np.sin(2.0 * x) - 0.1 for x in xVals])
+    yVals1 = np.sin(xVals)
+    yVals2 = np.sin(2.0 * xVals) - 0.1
     X = np.zeros((nVisPoints, 3))
     X[:, 0] = xVals
     X[:, 1] = yVals1
@@ -93,7 +92,7 @@ if __name__ == '__main__':
                      markerscale = 1.0,
                      ncol = 1)
     leg.draw_frame(False)
-        
+    
     ######################################################################################
     # set plot range and scale
     ax1.set_xlim(-0.05, 1.05)              
