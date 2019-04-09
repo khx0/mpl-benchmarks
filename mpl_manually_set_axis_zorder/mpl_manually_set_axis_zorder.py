@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mpl_manually_set_axis_zorder.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -39,7 +39,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     returns:
         fWidth = figure width
         fHeight = figure height
-    These figure width and height values can then be used to create a figure instance 
+    These figure width and height values can then be used to create a figure instance
     of the desired size, such that the actual plotting canvas has the specified
     target width and height, as provided by the input parameters of this function.
     '''
@@ -51,25 +51,25 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
 
 def Plot(titlestr, X, outname, outdir, pColors,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
-    
+
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
     mpl.rcParams['ytick.right'] = False
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
-    
+
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 7.5})
-    mpl.rc("axes", linewidth = 0.5)    
-    
+    mpl.rc("axes", linewidth = 0.5)
+
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    mpl.rcParams['pdf.fonttype'] = 42  
+    mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
                                           r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)      
-    
+    mpl.rcParams.update(fontparams)
+
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
@@ -77,7 +77,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
                        lFrac = 0.20, rFrac = 0.9,
                        bFrac = 0.17, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
-    f.set_size_inches(fWidth, fHeight)    
+    f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
@@ -86,10 +86,10 @@ def Plot(titlestr, X, outname, outdir, pColors,
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
-    
+
     ax1.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
-    
+
     ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
     ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
@@ -100,7 +100,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ax1.xaxis.labelpad = 3.0
     ax1.yaxis.labelpad = 3.0
     ######################################################################################
-    
+
     ax1.plot(X[:, 0], X[:, 1],
              alpha = 1.0,
              color = pColors[0],
@@ -116,7 +116,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
              label = 'data 2',
              clip_on = False,
              zorder = 11)
-    
+
     '''
     Using the zorder keyword we plot the first line below the
     axis, whereas we put the second line above it.
@@ -124,35 +124,35 @@ def Plot(titlestr, X, outname, outdir, pColors,
     zorder = 1 and 11 for the two lines
     and zorder = 10 for the axis, as manually set below.
     The value of zoder = 10 for the axis should be adjusted
-    for your individual needs. The actual zorder value you need 
-    for your purpose will depend on how many plot layers your 
+    for your individual needs. The actual zorder value you need
+    for your purpose will depend on how many plot layers your
     given plot contains.
     '''
-    
+
     ###############################################################
     ###############################################################
     # manually set the axis zorder here
     ax1.set_axisbelow(False)
-    
+
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
     ###############################################################
     ###############################################################
-    
+
     # legend
-    leg = ax1.legend(handlelength = 1.35, 
+    leg = ax1.legend(handlelength = 1.35,
                      scatterpoints = 1,
                      markerscale = 1.0,
                      ncol = 1)
     leg.draw_frame(False)
-    
+
     ######################################################################################
     # set plot range and scale
-    ax1.set_xlim(-0.05, 1.05) 
+    ax1.set_xlim(-0.05, 1.05)
     ######################################################################################
     # grid options
     if grid:
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.4)
         ax1.grid('on')
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor',
@@ -181,7 +181,7 @@ if __name__ == '__main__':
 
     # create synthetic data
     nVisPoints = 500
-    
+
     xVals = np.linspace(-0.5, 1.5, nVisPoints)
     yVals1 = np.sin(xVals)
     yVals2 = np.sin(2.0 * xVals) - 0.1
@@ -189,11 +189,11 @@ if __name__ == '__main__':
     X[:, 0] = xVals
     X[:, 1] = yVals1
     X[:, 2] = yVals2
-    
-    # plot data                    
+
+    # plot data
     Plot(titlestr = '',
-         X = X, 
+         X = X,
          outname = outname,
-         outdir = OUTDIR, 
+         outdir = OUTDIR,
          pColors = ['C0', 'C1'],
          grid = False)

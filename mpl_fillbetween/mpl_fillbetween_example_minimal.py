@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mpl_fillbetween_example_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -34,39 +34,39 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
-    
+
     nPoints = 400
     xVals = np.linspace(-6.0, 6.0, nPoints)
     yVals = norm.pdf(xVals, 0.0, 1.0)
     X = np.zeros((nPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
-    outname = 'mpl_fillbetween_example_minimal' 
+
+    outname = 'mpl_fillbetween_example_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     outname += '_' + now # set datestamp
-    
+
     f, ax1 = plt.subplots(1)
-    
+
     ax1.set_xlabel(r'x label', fontsize = 8.0)
     ax1.set_ylabel(r'y label', fontsize = 8.0)
     ax1.xaxis.labelpad = 2.0
-    ax1.yaxis.labelpad = 2.0  
-    
+    ax1.yaxis.labelpad = 2.0
+
     ax1.fill_between(X[:, 0], 0, X[:, 1],
                      color = 'C0',
                      alpha = 0.5,
                      lw = 0.0)
-    
-    ax1.plot(X[:, 0], X[:, 1], 
+
+    ax1.plot(X[:, 0], X[:, 1],
              color = 'C0',
              alpha = 1.0,
              lw = 1.5,
              zorder = 3,
              label = r'legend')
-    
-    leg = ax1.legend(handlelength = 1.5, 
+
+    leg = ax1.legend(handlelength = 1.5,
                      scatterpoints = 1,
                      markerscale = 1.0,
                      ncol = 1)

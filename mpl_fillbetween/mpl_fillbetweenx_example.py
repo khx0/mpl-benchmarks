@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-23
+# date: 2019-04-09
 # file: mpl_fillbetweenx_example.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -40,7 +40,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     returns:
         fWidth = figure width
         fHeight = figure height
-    These figure width and height values can then be used to create a figure instance 
+    These figure width and height values can then be used to create a figure instance
     of the desired size, such that the actual plotting canvas has the specified
     target width and height, as provided by the input parameters of this function.
     '''
@@ -50,8 +50,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, params, outname, outdir, pColors, 
-         grid = False, drawLegend = True, xFormat = None, yFormat = None, 
+def Plot(titlestr, X, params, outname, outdir, pColors,
+         grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -62,16 +62,16 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 7.0})
-    mpl.rc("axes", linewidth = 0.5)    
-    
+    mpl.rc("axes", linewidth = 0.5)
+
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
-    mpl.rcParams['pdf.fonttype'] = 42  
+    mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
                                           r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)     
-    
+    mpl.rcParams.update(fontparams)
+
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
@@ -79,7 +79,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                        lFrac = 0.20, rFrac = 0.9,
                        bFrac = 0.16, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
-    f.set_size_inches(fWidth, fHeight)    
+    f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
@@ -89,7 +89,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
-    
+
     ax1.tick_params('both', length = 3.0, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
 
@@ -101,58 +101,58 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.set_xlabel(r'x label', fontsize = 8.0)
     ax1.set_ylabel(r'y label', fontsize = 8.0)
     ax1.xaxis.labelpad = 2.0
-    ax1.yaxis.labelpad = 2.0  
+    ax1.yaxis.labelpad = 2.0
     ######################################################################################
     # plotting
-    
+
     ######################################################################################
     # To account for the switched roles of x and y you need to properly understand
     # the syntax of the fill_betweenx command.
-    # The API specifies 
-    # matplotlib.axes.Axes.fill_betweenx(y, x1, x2=0, where=None, step=None, 
+    # The API specifies
+    # matplotlib.axes.Axes.fill_betweenx(y, x1, x2=0, where=None, step=None,
     #                                    interpolate=False, *, data = None, **kwargs)
     # [from https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.fill_betweenx.html]
     # as of 2018-08-14
-    # Above the first argument is the array with the y coordinates and the second argument 
+    # Above the first argument is the array with the y coordinates and the second argument
     # is the array with the x coordinates.
     #
-    # In the example below we first pass the x-coordinates and then the y-coordinates, 
-    # since we consider a normal x-y-plot turned by 90 degree and then flipped along 
+    # In the example below we first pass the x-coordinates and then the y-coordinates,
+    # since we consider a normal x-y-plot turned by 90 degree and then flipped along
     # the horizontal axis. Hence the conventional x-coordinates become the
-    # new y-coordinates and vice versa, such that the first argument is basically 
-    # the array of new y coordinates. This might be confusing, but here it is precisely 
+    # new y-coordinates and vice versa, such that the first argument is basically
+    # the array of new y coordinates. This might be confusing, but here it is precisely
     # the desired behavior.
-    # This might differ for different applications of yours and you should 
+    # This might differ for different applications of yours and you should
     # in all cases make sure to clearly understand the API and think about what you want.
     # As always.
     ######################################################################################
-    
+
     ax1.fill_betweenx(X[:, 0], X[:, 1], 0.0,
                       color = pColors[0],
                       alpha = 0.5,
                       lw = 0.0)
-    
-    ax1.plot(X[:, 1], X[:, 0], 
+
+    ax1.plot(X[:, 1], X[:, 0],
              color = pColors[0],
              alpha = 1.0,
              lw = 0.5,
              zorder = 3,
              label = r'legend')
-    
+
     ######################################################################################
     # legend
     if drawLegend:
         leg = ax1.legend(# bbox_to_anchor = [0.7, 0.8],
                          # loc = 'upper left',
-                         handlelength = 1.5, 
+                         handlelength = 1.5,
                          scatterpoints = 1,
                          markerscale = 1.0,
                          ncol = 1)
         leg.draw_frame(False)
         plt.gca().add_artist(leg)
-    
+
     ######################################################################################
-    # set plot range  
+    # set plot range
     if (xFormat == None):
         pass
     else:
@@ -161,7 +161,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xFormat[0], xFormat[1])
-    
+
     if (yFormat == None):
         pass
     else:
@@ -170,19 +170,19 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
         ax1.set_ylim(yFormat[0], yFormat[1])
-    
+
     ax1.set_axisbelow(False)
 
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
-    
+
     ######################################################################################
     # grid options
     if grid:
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major', 
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.2)
         ax1.grid('on')
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor', 
+        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor',
                  linewidth = 0.1)
         ax1.grid('on', which = 'minor')
     ######################################################################################
@@ -212,19 +212,19 @@ if __name__ == '__main__':
     X = np.zeros((nPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
+
     xFormat = [0.0, 0.423, 0.0, 0.41, 0.2, 0.1]
     yFormat = [-4.3, 4.3, -4.0, 4.1, 2.0, 1.0]
-    
+
     pColors = ['C0']
-    
+
     Plot(titlestr = '',
          X = X,
-         params = [], 
+         params = [],
          outname = outname,
-         outdir = OUTDIR, 
-         pColors = pColors, 
-         grid = False, 
-         drawLegend = True, 
+         outdir = OUTDIR,
+         pColors = pColors,
+         grid = False,
+         drawLegend = True,
          xFormat = xFormat,
          yFormat = yFormat)

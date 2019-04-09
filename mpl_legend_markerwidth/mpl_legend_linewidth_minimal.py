@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mpl_legend_linewidth_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -35,32 +35,32 @@ if __name__ == '__main__':
     X = np.zeros((nDatapoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
+
     outname = 'mpl_legend_linewidth_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    
+
     f, ax1 = plt.subplots(1)
-    f.set_size_inches(3.0, 3.0)   
-    
+    f.set_size_inches(3.0, 3.0)
+
     ax1.plot(X[:, 0], X[:, 1],
              color = 'C0',
              alpha = 1.0,
              lw = 0.5,
              zorder = 2,
              label = r'line label')
-    
+
     ####################################################
     ####################################################
-    # legend handling           
+    # legend handling
     leg = ax1.legend(handlelength = 2.0)
-    
+
     '''
     The linewidth of the legend object can be manually
     adjusted by the two code lines below, using the
     legobj.set_linewidth(WIDTH)
     function call.
-    Here this is used to adjust the linewidth of the 
+    Here this is used to adjust the linewidth of the
     scatter symbols.
     '''
 
@@ -70,13 +70,13 @@ if __name__ == '__main__':
 
     leg.draw_frame(False)
     ####################################################
-    #################################################### 
-    
+    ####################################################
+
     outname += '_' + now
     f.savefig(os.path.join(OUTDIR, outname + '.pdf'),
               dpi = 300,
               transparent = True)
-    
+
     plt.cla()
     plt.clf()
     plt.close()

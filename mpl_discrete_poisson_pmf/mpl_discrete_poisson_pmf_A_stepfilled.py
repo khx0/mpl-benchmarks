@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-23
+# date: 2019-04-09
 # file: mpl_discrete_poisson_pmf_A_stepfilled.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -39,7 +39,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     returns:
         fWidth = figure width
         fHeight = figure height
-    These figure width and height values can then be used to create a figure instance 
+    These figure width and height values can then be used to create a figure instance
     of the desired size, such that the actual plotting canvas has the specified
     target width and height, as provided by the input parameters of this function.
     '''
@@ -49,8 +49,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, params, outname, outdir, pColors, 
-         grid = False, drawLegend = True, xFormat = None, yFormat = None, 
+def Plot(titlestr, X, params, outname, outdir, pColors,
+         grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -61,34 +61,34 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 6.0})
-    mpl.rc("axes", linewidth = 0.5)    
-    
+    mpl.rc("axes", linewidth = 0.5)
+
     # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    mpl.rcParams['pdf.fonttype'] = 42  
+    mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
                                           r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)     
-    
+    mpl.rcParams.update(fontparams)
+
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 4.1, height = 2.9,
                        lFrac = 0.18, rFrac = 0.95, bFrac = 0.18, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
-    f.set_size_inches(fWidth, fHeight)    
+    f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
     labelfontsize = 6.0
-    
+
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
-    
+
     ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
 
@@ -100,21 +100,21 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.set_xlabel(r'$k$', fontsize = 6.0)
     ax1.set_ylabel(r'$p(k\, ; \mu)$', fontsize = 6.0)
     ax1.xaxis.labelpad = 2.0
-    ax1.yaxis.labelpad = 2.0 
+    ax1.yaxis.labelpad = 2.0
     ######################################################################################
     # plotting
-    
-    lineWidth = 0.5    
-    
-    ax1.plot([-1.0, 21.0], [0.0, 0.0], 
+
+    lineWidth = 0.5
+
+    ax1.plot([-1.0, 21.0], [0.0, 0.0],
              color = pColors[0],
              alpha = 1.0,
              lw = lineWidth,
              zorder = 2,
              dashes = [4.0, 2.0])
-    
+
     for i in range(len(muVals)):
-        
+
         ax1.scatter(X[:, 0], X[:, i + 1],
                     s = 2.5,
                     lw = lineWidth,
@@ -122,41 +122,41 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                     edgecolor = 'None',
                     zorder = 3,
                     label = labels[i])
-    
+
         ax1.plot(X[:, 0], X[:, i + 1],
                  color = pColors[i + 1],
                  lw = 0.5,
                  alpha = 1.0,
                  zorder = 2,
                  drawstyle = 'steps-mid')
-    
+
     ######################################################################################
     # annotations
-    
+
     label = r'$p(k\, ; \mu) = \dfrac{\mu^k}{k!} e^{-\mu}$'
-    
+
     x_pos = 0.25
-    
+
     ax1.annotate(label,
                  xy = (x_pos, 0.85),
                  xycoords = 'axes fraction',
-                 fontsize = 6.0, 
+                 fontsize = 6.0,
                  horizontalalignment = 'left')
-    
+
     ######################################################################################
     # legend
     if (drawLegend):
         leg = ax1.legend(# bbox_to_anchor = [0.7, 0.8],
                          # loc = 'upper left',
-                         handlelength = 0.25, 
+                         handlelength = 0.25,
                          scatterpoints = 1,
                          markerscale = 1.0,
                          ncol = 1)
         leg.draw_frame(False)
         plt.gca().add_artist(leg)
-    
+
     ######################################################################################
-    # set plot range  
+    # set plot range
     if (xFormat == None):
         pass
     else:
@@ -165,7 +165,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xFormat[0], xFormat[1])
-    
+
     if (yFormat == None):
         pass
     else:
@@ -174,12 +174,12 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
         ax1.set_ylim(yFormat[0], yFormat[1])
-    
+
     ax1.set_axisbelow(False)
 
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
-    
+
     ######################################################################################
     # grid options
     if grid:
@@ -207,27 +207,27 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 if __name__ == '__main__':
 
     '''
-    pmf = probability mass function   
+    pmf = probability mass function
     pmf function signature
     poisson.pmf(k, mu, loc = 0)
-    where k is the random variable, mu the shape parameter and loc 
+    where k is the random variable, mu the shape parameter and loc
     the distribution of the corresponding Poisson distribution
     '''
-    
+
     ######################################################################################
     # create Poisson distribution
     muVals = [1.0, 5.0, 9.0]
-    
+
     xVals = np.arange(0, 30, 1)
 
     X = np.zeros((len(xVals), len(muVals) + 1))
     X[:, 0] = xVals
-    
+
     for i, mu in enumerate(muVals):
 
         yVals = poisson.pmf(xVals, mu)
         assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    
+
         X[:, i + 1] = yVals
 
         ##################################################################################
@@ -236,30 +236,30 @@ if __name__ == '__main__':
         print("Normalization = np.sum(yVals) = ", norm)
         assert np.isclose(norm, 1.0), \
                "Error: Poisson distribution seems NOT to be normalized."
-    
+
     ######################################################################################
     # call plotting function
-    
+
     labels = [r'$\mu = 1$',
               r'$\mu = 5$',
               r'$\mu = 9$']
-    
+
     outname = 'mpl_discrete_poisson_pmf_A_stepfilled'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    
+
     xFormat = [-0.5, 19.5, 0.0, 19.1, 5.0, 1.0]
     yFormat = [-0.02, 0.42, 0.0, 0.405, 0.1, 0.05]
-    
+
     pColors = ['#CCCCCC', 'C0', 'C1', 'C2']
-    
+
     outname = Plot(titlestr = '',
                    X = X,
-                   params = [], 
+                   params = [],
                    outname = outname,
-                   outdir = OUTDIR, 
-                   pColors = pColors, 
-                   grid = False, 
-                   drawLegend = True, 
+                   outdir = OUTDIR,
+                   pColors = pColors,
+                   grid = False,
+                   drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)

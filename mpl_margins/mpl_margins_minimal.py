@@ -3,17 +3,17 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mpl_margins_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
 ##########################################################################################
 
 ##########################################################################################
-# Matplolib's pyplot.margins command: 
+# Matplolib's pyplot.margins command:
 #
 # Syntax used in this script: plt.margins(x = xMargin, y = yMargin)
-# 
+#
 # The margin command will add padding to each axis according to the simple rule:
 # additional axis padding = margin * dataInterval
 # Hence the axis limits using the plt.margins command are the following:
@@ -51,13 +51,13 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
-    
+
     xMargin, yMargin = 0.073, 0.073
     outname = 'mpl_margins_D_xMargin_{}_yMargin_{}_minimal'.format(xMargin, yMargin)
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     outname += '_' + now
-    
+
     # create synthetic data
     nVisPoints = 300
     xVals = np.linspace(0.0, 1.0, nVisPoints)
@@ -65,14 +65,14 @@ if __name__ == '__main__':
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
+
     # minimal plot
     f, ax1 = plt.subplots(1)
-    
+
     # labeling
     ax1.set_xlabel(r'x label')
     ax1.set_ylabel(r'y label')
-    
+
     # plotting
     ax1.plot(X[:, 0], X[:, 1],
              alpha = 1.0,
@@ -81,10 +81,10 @@ if __name__ == '__main__':
              label = 'data',
              clip_on = True,
              zorder = 1)
-    
+
     # annotation
     labelString = 'x margin: {}\ny margin: {}'.format(xMargin, yMargin)
-    
+
     ax1.annotate(labelString,
                  xy = (0.0, 1.03),
                  xycoords = 'axes fraction',
@@ -92,12 +92,12 @@ if __name__ == '__main__':
                  zorder = 8)
 
     # legend
-    leg = ax1.legend(handlelength = 1.35, 
+    leg = ax1.legend(handlelength = 1.35,
                      scatterpoints = 1,
                      markerscale = 1.0,
                      ncol = 1)
     leg.draw_frame(False)
-    
+
     # set axes limits
     # use plt.margins instead of absolute set_xlim and set_ylim axis limit specifications.
     plt.margins(x = xMargin, y = yMargin)

@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mpl_empty_contour.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -38,7 +38,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     returns:
         fWidth = figure width
         fHeight = figure height
-    These figure width and height values can then be used to create a figure instance 
+    These figure width and height values can then be used to create a figure instance
     of the desired size, such that the actual plotting canvas has the specified
     target width and height, as provided by the input parameters of this function.
     '''
@@ -50,24 +50,24 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
 
 def Plot(titlestr, X, outname, outdir, pColors,
          grid = True, saveEPS = False, savePDF = True, savePNG = False, datestamp = True):
-    
+
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = False
     mpl.rcParams['ytick.right'] = False
     mpl.rcParams['xtick.direction'] = 'out'
     mpl.rcParams['ytick.direction'] = 'out'
-    
+
     mpl.rc('font', **{'size': 10})
-    mpl.rc("axes", linewidth = 0.5)    
-    
+    mpl.rc("axes", linewidth = 0.5)
+
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
-    mpl.rcParams['pdf.fonttype'] = 42  
+    mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}', 
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
                                           r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)      
-    
+    mpl.rcParams.update(fontparams)
+
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
@@ -75,38 +75,38 @@ def Plot(titlestr, X, outname, outdir, pColors,
                        lFrac = 0.1, rFrac = 0.9,
                        bFrac = 0.1, tFrac = 0.9)
     f, ax1 = plt.subplots(1)
-    f.set_size_inches(fWidth, fHeight)    
+    f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
-    
+
     ######################################################################################
     # labeling
-    
+
     ######################################################################################
     # plotting
-    
+
     ax1.plot(X[:, 0], X[:, 1],
              alpha = 1.0,
              color = pColors[0],
              lw = 1.0,
              clip_on = True,
              zorder = 1)
-    
+
     # plt.axes().set_aspect('equal')
-    
+
     ######################################################################################
     # set plot range and scale
     #ax1.set_xlim(0.0, 628.0)
     #ax1.set_ylim(0.0, 628.0)
     ax1.set_axisbelow(False)
     ######################################################################################
-    
+
     ax1.set_xticks([])
     ax1.set_yticks([])
-    
+
     plt.axis('off')
-    
+
     ######################################################################################
     # save to file
     if datestamp:
@@ -123,27 +123,27 @@ def Plot(titlestr, X, outname, outdir, pColors,
     return outname
 
 if __name__ == '__main__':
-    
+
     outname = 'mpl_empty_contour'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    
+
 	# create data
     nDataPoints = 500
     radius = 50.0
     angles = np.linspace(0.0, 2.0 * np.pi, nDataPoints)
     xVals = radius * np.cos(angles)
     yVals = radius * np.sin(angles)
-    
+
     X = np.zeros((nDataPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
     print("X.shape =", X.shape)
-    
-    # plot data                    
+
+    # plot data
     outname = Plot(titlestr = '',
          		   X = X,
          		   outname = outname,
-         		   outdir = OUTDIR, 
+         		   outdir = OUTDIR,
          		   pColors = ['k'],
          		   grid = False)
