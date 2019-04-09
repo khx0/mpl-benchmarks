@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mplUtils.py
 ##########################################################################################
 
@@ -19,7 +19,7 @@ def ensure_dir(dir):
         os.makedirs(dir)
 
 def nextHigher(value, baseUnit):
-    return np.ceil(value / baseUnit) * baseUnit 
+    return np.ceil(value / baseUnit) * baseUnit
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
@@ -32,7 +32,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     returns:
         fWidth = figure width
         fHeight = figure height
-    These figure width and height values can then be used to create a figure instance 
+    These figure width and height values can then be used to create a figure instance
     of the desired size, such that the actual plotting canvas has the specified
     target width and height, as provided by the input parameters of this function.
     '''
@@ -50,10 +50,10 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
     input:
         X = 1D array (i.e. the x or y axis values)
     returns:
-        Xcoords = xoordinate values for the recatangular patches of the 
+        Xcoords = xoordinate values for the recatangular patches of the
                   corresponding pcolor plot.
     Note:
-        When X is a (N, 1) od (N,) numpy array, then Xcoords will always be created 
+        When X is a (N, 1) od (N,) numpy array, then Xcoords will always be created
         to be a (N+1, 1) or (N+1,) numpy array.
     '''
     if (type == 'linear'):
@@ -73,19 +73,19 @@ def getHistogramCoordinates(X, nBins, density = True):
     '''
     Creates (x, y) data pairs of the histogram data using
     numpy's histogram function.
-    
+
     Numpy's histogram normed keyword is deprecated and has been replaced
     by density = True / False.
     '''
     hist, bin_edges = np.histogram(X, bins = nBins, density = density)
     bin_centers = (bin_edges[1:] + bin_edges[0:-1]) / 2.0
     assert hist.shape == bin_centers.shape, "Error: Shape assertion failed."
-    
+
     res = np.zeros((nBins, 2))
     res[:, 0] = bin_centers
     res[:, 1] = hist
     return res
-    
+
 if __name__ == '__main__':
 
     pass

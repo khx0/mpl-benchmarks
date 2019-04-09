@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mpl_offset_text_handling_03.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -28,7 +28,7 @@ OUTDIR  = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir, 
+def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
 
     xmin = xFormat[0]
@@ -107,26 +107,26 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
                          markerscale = 1.0,
                          ncol = 1)
         leg.draw_frame(False)
-    
-    ###################################################################################### 
+
+    ######################################################################################
     ######################################################################################
     # offset text handling
     ax1 = plt.gca()
-    ax1.ticklabel_format(axis = 'y', style = 'sci', scilimits = (0, 2))    
-    
+    ax1.ticklabel_format(axis = 'y', style = 'sci', scilimits = (0, 2))
+
     f.savefig('./dummy_figure_TMP.svg')
-    
+
     offset = ax1.get_yaxis().get_offset_text()
     ax1.yaxis.offsetText.set_visible(False)
     # print(offset.get_text())
     ax1.annotate(offset.get_text(),
                  xy = (0.0, 1.02),
                  xycoords = 'axes fraction',
-                 fontsize = 4.0, 
+                 fontsize = 4.0,
                  horizontalalignment = 'left')
     os.remove('./dummy_figure_TMP.svg')
     ######################################################################################
-    ######################################################################################   
+    ######################################################################################
 
     ######################################################################################
     # set plot range
@@ -135,7 +135,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     ######################################################################################
     # grid options
     if grid:
-        ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed', 
+        ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed',
                  dashes = [7.5, 3.0])
         ax1.grid(True)
     ######################################################################################
@@ -148,17 +148,17 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
-    plt.cla() 
+    plt.cla()
     plt.clf()
     plt.close()
     return None
 
 if __name__ == '__main__':
-    
+
     outname = 'figure_03' + \
               '_Python_' + platform.python_version() + \
               '_mpl_' + mpl.__version__
-    
+
     # create dummy data to plot
     nPoints = 200
     xVals = np.linspace(0, 100.0, nPoints)
@@ -166,11 +166,11 @@ if __name__ == '__main__':
     X = np.zeros((nPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
+
     # set formatting
     xFormat = [0.0, 100.0, 20.0, 5.0 , r'x label']
     yFormat = [0.0, 1.0e6, 200000.0, 100000.0 , r'y label']
-    
+
     # plot data
     Plot(titlestr = '',
          X = X,

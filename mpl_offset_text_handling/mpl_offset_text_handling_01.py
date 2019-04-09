@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mpl_offset_text_handling_01.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -29,7 +29,7 @@ OUTDIR  = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir, 
+def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
 
     xmin = xFormat[0]
@@ -109,7 +109,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
                          ncol = 1)
         leg.draw_frame(False)
 
-    ######################################################################################        
+    ######################################################################################
     ######################################################################################
     # offset text handling
     # Comment: In this solution I use the provided offset together with
@@ -119,7 +119,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     plt.gca().yaxis.set_major_formatter(mf)
     ax1.yaxis.offsetText.set_fontsize(4.0)
     ######################################################################################
-    ######################################################################################   
+    ######################################################################################
 
     ######################################################################################
     # set plot range
@@ -128,7 +128,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     ######################################################################################
     # grid options
     if grid:
-        ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed', 
+        ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed',
                  dashes = [7.5, 3.0])
         ax1.grid(True)
     ######################################################################################
@@ -141,7 +141,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
-    plt.cla() 
+    plt.cla()
     plt.clf()
     plt.close()
     return None
@@ -151,7 +151,7 @@ if __name__ == '__main__':
     outname = 'figure_01' + \
               '_Python_' + platform.python_version() + \
               '_mpl_' + mpl.__version__
-    
+
     # create dummy data to plot
     nPoints = 200
     xVals = np.linspace(0, 100.0, nPoints)
@@ -159,11 +159,11 @@ if __name__ == '__main__':
     X = np.zeros((nPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
+
     # set formatting
     xFormat = [0.0, 100.0, 20.0, 5.0 , r'x label']
     yFormat = [0.0, 1.0e6, 200000.0, 100000.0 , r'y label']
-    
+
     # plot data
     Plot(titlestr = '',
          X = X,

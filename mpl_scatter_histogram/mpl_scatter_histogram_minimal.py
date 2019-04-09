@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mpl_scatter_histogram_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -41,31 +41,31 @@ def getHistogramCoordinates(X, nBins, density = True):
     hist, bin_edges = np.histogram(X, bins = nBins, density = density)
     bin_centers = (bin_edges[1:] + bin_edges[0:-1]) / 2.0
     assert hist.shape == bin_centers.shape, "Error: Shape assertion failed."
-    
+
     res = np.zeros((nBins, 2))
     res[:, 0] = bin_centers
     res[:, 1] = hist
     return res
 
 if __name__ == '__main__':
-    
+
     outname = 'mpl_scatter_histogram_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     outname += '_' + now
-    
+
     # create data
     meanValue = 1.5
     nBins = 25
     nSamples = 20000
-    
+
     # fix random seed for reproducibility
     np.random.seed(123456789)
     samples = np.random.exponential(meanValue, nSamples)
-    scatterData = getHistogramCoordinates(samples, 
+    scatterData = getHistogramCoordinates(samples,
                                           nBins = nBins,
-                                          density = True) 
-    
+                                          density = True)
+
     # create analytical curve
     nVisPoints = 500
     xVals = np.linspace(0.0, 15.0, nVisPoints)
@@ -73,44 +73,44 @@ if __name__ == '__main__':
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
+
     ######################################################################################
     # minimal plot
     f, ax1 = plt.subplots(1)
-    
+
     ax1.plot([-0.25, 15.0], [0.0, 0.0],
              dashes = [4.0, 2.0],
              color = '#CCCCCC',
              zorder = 1)
-    
+
     ax1.plot(X[:, 0], X[:, 1],
              alpha = 1.0,
              color = 'C3',
              label = 'analytical data',
              zorder = 1)
-    
+
     ax1.scatter(scatterData[:, 0], scatterData[:, 1],
                 facecolor = 'None',
                 edgecolor = 'C3',
                 zorder = 2,
                 label = r'sampled data')
-    
+
     # set plot range and scale
     ax1.set_xlim(-0.25, 14.25)
-    ax1.set_ylim(-0.05, 0.625)     
-    
+    ax1.set_ylim(-0.05, 0.625)
+
     # legend
-    leg = ax1.legend(handlelength = 2.0, 
+    leg = ax1.legend(handlelength = 2.0,
                      scatterpoints = 1,
                      markerscale = 1.0,
                      ncol = 1)
     leg.draw_frame(False)
-    
+
     f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
               dpi = 300,
               transparent = True)
     plt.show()
-    
+
     # close handles
     plt.cla()
     plt.clf()

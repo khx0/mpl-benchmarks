@@ -6,7 +6,7 @@ to provide them for easy reusability and as interesting showcases with the hope
 that they might prove to be useful for interested other parties.
 This repository consist of many examples which can also be understood as
 template plot scripts for different plotting scenarios.
-In particular, many of these are meant to illustrate how much potential matplotlib 
+In particular, many of these are meant to illustrate how much potential matplotlib
 has if one goes beyond the defaults.
 
 For some cases both a full and minimal version of the same plotting example is provided.

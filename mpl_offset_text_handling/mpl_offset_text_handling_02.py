@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-03-24
+# date: 2019-04-09
 # file: mpl_offset_text_handling_02.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -28,9 +28,9 @@ OUTDIR  = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir, 
+def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
-    
+
     xmin = xFormat[0]
     xmax = xFormat[1]
     ymin = yFormat[0]
@@ -38,12 +38,12 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
 
     mpl.rc('legend', **{'fontsize': 3.0})
     mpl.rc('axes', linewidth = 0.3)
-    
+
     mpl.rcParams['xtick.top'] = True
     mpl.rcParams['ytick.right'] = True
     mpl.rcParams['xtick.direction'] = 'in'
     mpl.rcParams['ytick.direction'] = 'in'
-    
+
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
@@ -51,7 +51,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
                                           r'\usepackage{amsmath}']}
     plt.rcParams.update(fontparams)
-    
+
     ######################################################################################
     # set up figure
     f, ax1 = plt.subplots(1)
@@ -60,22 +60,22 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     f.subplots_adjust(wspace = 2.5)
     f.subplots_adjust(left = 0.18)
     f.subplots_adjust(bottom = 0.22)
-    
+
     major_x_ticks = np.arange(xmin, xmax + 10.0, xFormat[2])
     minor_x_ticks = np.arange(xmin, xmax + 10.0, xFormat[3])
     ax1.set_xticks(major_x_ticks)
     ax1.set_xticks(minor_x_ticks, minor = True)
-    
+
     major_y_ticks = np.arange(ymin, ymax + 0.5, yFormat[2])
     minor_y_ticks = np.arange(ymin, ymax + 0.5, yFormat[3])
     ax1.set_yticks(major_y_ticks)
     ax1.set_yticks(minor_y_ticks, minor = True)
-    
+
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(4.0)
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(4.0)
-    
+
     ax1.tick_params('both', length = 1.5, width = 0.3, which = 'major', pad = 1.5)
     ax1.tick_params('both', length = 0.8, width = 0.2, which = 'minor', pad = 1.5)
     ######################################################################################
@@ -107,24 +107,24 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
                          markerscale = 1.0,
                          ncol = 1)
         leg.draw_frame(False)
-    
-    ######################################################################################  
+
+    ######################################################################################
     ######################################################################################
     # offset text handling
     # Comment: In this solution I turn off the automatically provided offset text
     # and manually annotate instead. One needs to be careful to get the manual
     # annotation right as soon as the data changes.
-    
+
     ax1.ticklabel_format(axis = 'y', style = 'sci', scilimits = (0, 2))
     ax1.yaxis.offsetText.set_visible(False)
     ax1.annotate(r'$\times \, 10^{6}$',
                  xy = (0.0, 1.02),
                  xycoords = 'axes fraction',
-                 fontsize = 4.0, 
+                 fontsize = 4.0,
                  horizontalalignment = 'left')
-    
+
     ######################################################################################
-    ######################################################################################   
+    ######################################################################################
 
     ######################################################################################
     # set plot range
@@ -133,7 +133,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     ######################################################################################
     # grid options
     if grid:
-        ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed', 
+        ax1.grid(color = 'gray', alpha = 0.15, lw = 0.2, linestyle = 'dashed',
                  dashes = [7.5, 3.0])
         ax1.grid(True)
     ######################################################################################
@@ -146,17 +146,17 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     ######################################################################################
     # close handles
-    plt.cla() 
+    plt.cla()
     plt.clf()
     plt.close()
     return None
 
 if __name__ == '__main__':
-    
+
     outname = 'figure_02' + \
               '_Python_' + platform.python_version() + \
               '_mpl_' + mpl.__version__
-    
+
     # create dummy data to plot
     nPoints = 200
     xVals = np.linspace(0, 100.0, nPoints)
@@ -164,11 +164,11 @@ if __name__ == '__main__':
     X = np.zeros((nPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
+
     # set formatting
     xFormat = [0.0, 100.0, 20.0, 5.0 , r'x label']
     yFormat = [0.0, 1.0e6, 200000.0, 100000.0 , r'y label']
-    
+
     # plot data
     Plot(titlestr = '',
          X = X,
