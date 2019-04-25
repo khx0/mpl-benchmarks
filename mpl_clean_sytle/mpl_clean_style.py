@@ -57,7 +57,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, params, outname, outdir, pColors,
+def Plot(titlestr, X, outname, outdir, pColors,
          grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
@@ -111,8 +111,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ######################################################################################
     # labeling
     plt.title(titlestr)
-    ax1.set_xlabel(r'x label', fontsize = 6.0)
-    ax1.set_ylabel(r'y label', fontsize = 6.0)
+    ax1.set_xlabel(r'x label $x$', fontsize = 6.0)
+    ax1.set_ylabel(r'y label $y$', fontsize = 6.0)
     ax1.xaxis.labelpad = 4.0
     ax1.yaxis.labelpad = 4.0
     ######################################################################################
@@ -120,67 +120,12 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
     lineWidth = 0.65
 
-    Lx = xFormat[1] - xFormat[0]
-    Ly = yFormat[1] - yFormat[0]
-    XoverY = Lx / Ly
-
-    # x axis arrow head
-    dx = 0.02 # x displacement of the arrow head
-    hWidth = 0.0115
-    hLength = 0.1
-#     ax1.arrow(7.0, 0.0, dx, 0.0,
-#               lw = 0.5,
-#               color = 'k',
-#               head_width = hWidth,
-#               head_length = hLength,
-#               length_includes_head = True,
-#               clip_on = False,
-#               zorder = 3)
-# 
-#     # y axis arrow head
-#     dy = dx / XoverY
-#     ax1.arrow(0.0, 0.55, 0.0, dy,
-#               lw = 0.5,
-#               color = 'k',
-#               head_width = hLength,
-#               head_length = hWidth,
-#               length_includes_head = True,
-#               clip_on = False,
-#               zorder = 3)
-
     ax1.plot(X[:, 0], X[:, 1],
              color = pColors[0],
              alpha = 1.0,
              lw = lineWidth,
              zorder = 2,
              label = r'')
-
-#     ax1.arrow(mu, yLeft, - 0.94 * np.sqrt(var), 0.0,
-#               lw = 0.5,
-#               color = 'k',
-#               head_width = hWidth,
-#               head_length = hLength,
-#               length_includes_head = True)
-# 
-#     ax1.arrow(mu, yRight, 0.94 * np.sqrt(var), 0.0,
-#               lw = 0.5,
-#               color = 'k',
-#               head_width = hWidth,
-#               head_length = hLength,
-#               length_includes_head = True)
-
-    ######################################################################################
-    # annotations
-
-#     label = r'$2\sigma$'
-# 
-#     x_pos = 0.5
-# 
-#     ax1.annotate(label,
-#                  xy = (x_pos, 0.47),
-#                  xycoords = 'axes fraction',
-#                  fontsize = 6.0,
-#                  horizontalalignment = 'center')
 
     ######################################################################################
     # legend
@@ -193,7 +138,6 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                          ncol = 1)
         leg.draw_frame(False)
         plt.gca().add_artist(leg)
-
 
     ######################################################################################
     # set plot range and scale
@@ -254,7 +198,7 @@ if __name__ == '__main__':
 
     # create synthetic data
     nVisPoints = 800
-    xVals = np.linspace(0.1, 0.9, nVisPoints)
+    xVals = np.linspace(0.05, 0.95, nVisPoints)
     yVals = np.array([x for x in xVals])
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
@@ -263,7 +207,7 @@ if __name__ == '__main__':
     ######################################################################################
     # call the plotting function
 
-    outname = 'mpl_arrows'
+    outname = 'mpl_clean_sylte'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
@@ -274,7 +218,6 @@ if __name__ == '__main__':
 
     outname = Plot(titlestr = '',
                    X = X,
-                   params = [],
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
