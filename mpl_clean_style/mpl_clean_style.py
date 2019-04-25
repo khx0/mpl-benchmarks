@@ -207,7 +207,7 @@ if __name__ == '__main__':
     ######################################################################################
     # call the plotting function
 
-    outname = 'mpl_clean_sylte'
+    outname = 'mpl_clean_style'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
