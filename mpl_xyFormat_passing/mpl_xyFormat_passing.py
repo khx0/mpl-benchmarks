@@ -11,9 +11,8 @@
 
 ##########################################################################################
 # Description:
-# xFormat and yFormat are two 6-tuples each for x- and y-format passing to
-# any given plotting function.
-# The syntax is the following:
+# xFormat and yFormat are 6-tuples each for x- and y-format passing.
+# The syntax is as follows:
 # xFormat = (xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor)
 # yFormat = (ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor)
 # Often I wish to set the x- and y-scaling and ticks after a manual inspection
