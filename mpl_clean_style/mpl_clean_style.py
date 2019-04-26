@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-25
+# date: 2019-04-26
 # file: mpl_clean_style.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -204,15 +204,18 @@ if __name__ == '__main__':
     X[:, 0] = xVals
     X[:, 1] = yVals
 
-    ######################################################################################
     # call the plotting function
-
     outname = 'mpl_clean_style'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-
+    
+    ################################################################
+    # xyFormat syntax:
+    # xFormat = (xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor)
+    # yFormat = (ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor)
     xFormat = (0.0, 1.0, 0.0, 1.1, 0.5, 0.25)
     yFormat = (0.0, 1.0, 0.0, 1.1, 0.5, 0.25)
+    ################################################################
 
     pColors = ['k']
 
