@@ -159,12 +159,12 @@ def Plot(titlestr, X, outname, outdir, pColors,
         minor_y_ticks = np.arange(yTicksMin, yTicksMax, dyMinor)
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-    
+
     # tick label formatting
     majorFormatter = FuncFormatter(cleanFormatter)
     ax1.xaxis.set_major_formatter(majorFormatter)
     ax1.yaxis.set_major_formatter(majorFormatter)
-    
+
     ax1.set_axisbelow(False)
 
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
@@ -208,7 +208,7 @@ if __name__ == '__main__':
     outname = 'mpl_clean_style'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    
+
     ################################################################
     # xyFormat syntax:
     # xFormat = (xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor)
