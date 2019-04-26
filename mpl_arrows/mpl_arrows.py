@@ -120,14 +120,50 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
     lineWidth = 0.65
 
+    ax1.plot([0.5, 0.7], [0.5, 0.5],
+             color = pColors[0],
+             alpha = 1.0,
+             lw = lineWidth,
+             zorder = 2,
+             label = r'')
+
+    ax1.plot([0.1, 0.1], [0.3, 0.5],
+             color = pColors[0],
+             alpha = 1.0,
+             lw = lineWidth,
+             zorder = 2,
+             label = r'')
+
+
     Lx = xFormat[1] - xFormat[0]
     Ly = yFormat[1] - yFormat[0]
     XoverY = Lx / Ly
 
     # x axis arrow head
-    dx = 0.02 # x displacement of the arrow head
-    hWidth = 0.0115
-    hLength = 0.1
+    dx = 0.2 # x displacement of the arrow head
+    hWidth = 0.05
+    hLength = 0.05
+
+    ax1.arrow(0.5, 0.6, dx, 0.0,
+              lw = 0.5,
+              color = 'k',
+              head_width = hWidth,
+              head_length = hLength,
+              length_includes_head = True,
+              clip_on = False,
+              zorder = 3)
+
+    ax1.arrow(0.5, 0.7, dx, 0.0,
+              lw = 0.5,
+              color = 'k',
+              head_width = hWidth,
+              head_length = hLength,
+              length_includes_head = False,
+              clip_on = False,
+              zorder = 3)
+
+
+
 #     ax1.arrow(7.0, 0.0, dx, 0.0,
 #               lw = 0.5,
 #               color = 'k',
@@ -148,12 +184,12 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 #               clip_on = False,
 #               zorder = 3)
 
-    ax1.plot(X[:, 0], X[:, 1],
-             color = pColors[0],
-             alpha = 1.0,
-             lw = lineWidth,
-             zorder = 2,
-             label = r'')
+    # ax1.plot(X[:, 0], X[:, 1],
+    #          color = pColors[0],
+    #          alpha = 1.0,
+    #          lw = lineWidth,
+    #          zorder = 2,
+    #          label = r'')
 
 #     ax1.arrow(mu, yLeft, - 0.94 * np.sqrt(var), 0.0,
 #               lw = 0.5,
@@ -267,8 +303,8 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    xFormat = (0.0, 1.0, 0.0, 1.1, 0.5, 0.25)
-    yFormat = (0.0, 1.0, 0.0, 1.1, 0.5, 0.25)
+    xFormat = (0.0, 1.0, 0.0, 1.1, 0.5, 0.1)
+    yFormat = (0.0, 1.0, 0.0, 1.1, 0.5, 0.1)
 
     pColors = ['k']
 
