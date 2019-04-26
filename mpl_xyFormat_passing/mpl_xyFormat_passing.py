@@ -3,13 +3,14 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-09
+# date: 2019-04-26
 # file: mpl_xyFormat_passing.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
 ##########################################################################################
 
 ##########################################################################################
+# Description:
 # xFormat and yFormat are two 6-tuples each for x- and y-format passing to
 # any given plotting function.
 # The syntax is the following:
