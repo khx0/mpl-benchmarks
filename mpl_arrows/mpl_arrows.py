@@ -120,6 +120,12 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     lineWidth = 0.5
 
+    '''
+	mpl.arrows example
+	In this example the arrow position and in particular the arrow head size are
+	specified by absolute scaling.
+    '''
+
     ######################################################################################
     # horizontal reference line
     ax1.plot([0.6, 0.8], [0.5, 0.5],
@@ -266,12 +272,12 @@ def Plot(titlestr, X, outname, outdir, pColors,
         minor_y_ticks = np.arange(yTicksMin, yTicksMax, dyMinor)
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-    
+
     # tick label formatting
     majorFormatter = FuncFormatter(cleanFormatter)
     ax1.xaxis.set_major_formatter(majorFormatter)
     ax1.yaxis.set_major_formatter(majorFormatter)
-    
+
     ax1.set_axisbelow(False)
 
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
