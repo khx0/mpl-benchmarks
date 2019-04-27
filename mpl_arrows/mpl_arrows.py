@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-25
+# date: 2019-04-27
 # file: mpl_arrows.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -57,7 +57,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, params, outname, outdir, pColors,
+def Plot(titlestr, X, outname, outdir, pColors,
          grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
@@ -118,8 +118,9 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ######################################################################################
     # plotting
 
-    lineWidth = 0.65
+    lineWidth = 0.5
 
+    ######################################################################################
     # horizontal reference line
     ax1.plot([0.6, 0.8], [0.5, 0.5],
              color = pColors[0],
@@ -128,20 +129,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
              zorder = 2,
              label = r'')
 
-    # vertical reference line
-    ax1.plot([0.1, 0.1], [0.6, 0.8],
-             color = pColors[0],
-             alpha = 1.0,
-             lw = lineWidth,
-             zorder = 2,
-             label = r'')
-
-
-    Lx = xFormat[1] - xFormat[0]
-    Ly = yFormat[1] - yFormat[0]
-    XoverY = Lx / Ly
-
-    # x axis arrow head
+    # horizontal arrows
     dx = 0.2 # x displacement of the arrow head
     hWidth = 0.05
     hLength = 0.05
@@ -164,7 +152,16 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
+    ######################################################################################
+    # vertical reference line
+    ax1.plot([0.1, 0.1], [0.6, 0.8],
+             color = pColors[0],
+             alpha = 1.0,
+             lw = lineWidth,
+             zorder = 2,
+             label = r'')
 
+    # vertical arrows
     dy = 0.2 # y displacement of the arrow head
     ax1.arrow(0.2, 0.6, 0.0, dy,
               lw = 0.5,
@@ -184,13 +181,13 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-
-
-
+    ######################################################################################
+    # 45 degree tilted reference line
     radius = 0.2
     phi = np.pi / 4.0 # = 45 degrees
     dx = radius * np.cos(phi)
     dy = radius * np.sin(phi)
+
     ax1.plot([0.1, 0.1 + dx], [0.3, 0.3 + dy],
              color = pColors[0],
              alpha = 1.0,
@@ -216,61 +213,26 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-
-
-#     ax1.arrow(7.0, 0.0, dx, 0.0,
-#               lw = 0.5,
-#               color = 'k',
-#               head_width = hWidth,
-#               head_length = hLength,
-#               length_includes_head = True,
-#               clip_on = False,
-#               zorder = 3)
-# 
-#     # y axis arrow head
-#     dy = dx / XoverY
-#     ax1.arrow(0.0, 0.55, 0.0, dy,
-#               lw = 0.5,
-#               color = 'k',
-#               head_width = hLength,
-#               head_length = hWidth,
-#               length_includes_head = True,
-#               clip_on = False,
-#               zorder = 3)
-
-    # ax1.plot(X[:, 0], X[:, 1],
-    #          color = pColors[0],
-    #          alpha = 1.0,
-    #          lw = lineWidth,
-    #          zorder = 2,
-    #          label = r'')
-
-#     ax1.arrow(mu, yLeft, - 0.94 * np.sqrt(var), 0.0,
-#               lw = 0.5,
-#               color = 'k',
-#               head_width = hWidth,
-#               head_length = hLength,
-#               length_includes_head = True)
-# 
-#     ax1.arrow(mu, yRight, 0.94 * np.sqrt(var), 0.0,
-#               lw = 0.5,
-#               color = 'k',
-#               head_width = hWidth,
-#               head_length = hLength,
-#               length_includes_head = True)
-
     ######################################################################################
     # annotations
 
-#     label = r'$2\sigma$'
-# 
-#     x_pos = 0.5
-# 
-#     ax1.annotate(label,
-#                  xy = (x_pos, 0.47),
-#                  xycoords = 'axes fraction',
-#                  fontsize = 6.0,
-#                  horizontalalignment = 'center')
+    ax1.annotate(r'horizontal arrows',
+                 xy = (0.6, 0.78),
+                 xycoords = 'axes fraction',
+                 fontsize = 4.0,
+                 horizontalalignment = 'left')
+
+    ax1.annotate(r'vertical arrows',
+                 xy = (0.1, 0.90),
+                 xycoords = 'axes fraction',
+                 fontsize = 4.0,
+                 horizontalalignment = 'left')
+
+    ax1.annotate(r'45$^{\circ}$ tilted arrows',
+                 xy = (0.4, 0.1),
+                 xycoords = 'axes fraction',
+                 fontsize = 4.0,
+                 horizontalalignment = 'left')
 
     ######################################################################################
     # legend
@@ -283,7 +245,6 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
                          ncol = 1)
         leg.draw_frame(False)
         plt.gca().add_artist(leg)
-
 
     ######################################################################################
     # set plot range and scale
@@ -342,17 +303,6 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
 if __name__ == '__main__':
 
-    # create synthetic data
-    nVisPoints = 800
-    xVals = np.linspace(0.1, 0.9, nVisPoints)
-    yVals = np.array([x for x in xVals])
-    X = np.zeros((nVisPoints, 2))
-    X[:, 0] = xVals
-    X[:, 1] = yVals
-
-    ######################################################################################
-    # call the plotting function
-
     outname = 'mpl_arrows'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
@@ -362,9 +312,9 @@ if __name__ == '__main__':
 
     pColors = ['k']
 
+    # call the plotting function
     outname = Plot(titlestr = '',
-                   X = X,
-                   params = [],
+                   X = None,
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
