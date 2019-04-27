@@ -120,14 +120,16 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
     lineWidth = 0.65
 
-    ax1.plot([0.5, 0.7], [0.5, 0.5],
+    # horizontal reference line
+    ax1.plot([0.6, 0.8], [0.5, 0.5],
              color = pColors[0],
              alpha = 1.0,
              lw = lineWidth,
              zorder = 2,
              label = r'')
 
-    ax1.plot([0.1, 0.1], [0.3, 0.5],
+    # vertical reference line
+    ax1.plot([0.1, 0.1], [0.6, 0.8],
              color = pColors[0],
              alpha = 1.0,
              lw = lineWidth,
@@ -144,7 +146,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     hWidth = 0.05
     hLength = 0.05
 
-    ax1.arrow(0.5, 0.6, dx, 0.0,
+    ax1.arrow(0.6, 0.6, dx, 0.0,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -153,7 +155,59 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-    ax1.arrow(0.5, 0.7, dx, 0.0,
+    ax1.arrow(0.6, 0.7, dx, 0.0,
+              lw = 0.5,
+              color = 'k',
+              head_width = hWidth,
+              head_length = hLength,
+              length_includes_head = False,
+              clip_on = False,
+              zorder = 3)
+
+
+    dy = 0.2 # y displacement of the arrow head
+    ax1.arrow(0.2, 0.6, 0.0, dy,
+              lw = 0.5,
+              color = 'k',
+              head_width = hWidth,
+              head_length = hLength,
+              length_includes_head = True,
+              clip_on = False,
+              zorder = 3)
+
+    ax1.arrow(0.3, 0.6, 0.0, dy,
+              lw = 0.5,
+              color = 'k',
+              head_width = hWidth,
+              head_length = hLength,
+              length_includes_head = False,
+              clip_on = False,
+              zorder = 3)
+
+
+
+
+    radius = 0.2
+    phi = np.pi / 4.0 # = 45 degrees
+    dx = radius * np.cos(phi)
+    dy = radius * np.sin(phi)
+    ax1.plot([0.1, 0.1 + dx], [0.3, 0.3 + dy],
+             color = pColors[0],
+             alpha = 1.0,
+             lw = lineWidth,
+             zorder = 2,
+             label = r'')
+
+    ax1.arrow(0.2, 0.2, dx, dy,
+              lw = 0.5,
+              color = 'k',
+              head_width = hWidth,
+              head_length = hLength,
+              length_includes_head = True,
+              clip_on = False,
+              zorder = 3)
+
+    ax1.arrow(0.3, 0.1, dx, dy,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,

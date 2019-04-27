@@ -2,7 +2,7 @@
 
 * mpl 3.0.3 update / consolidation
 
-* Add a markdown guide on how to install custom fonts for matplotlib using macOS.
+* Add a markdown guide on how to install custom fonts for matplotlib using macOS and Windows 10. Make this guide for all relevant OS.
 
 * Refactor those parts from the examples that are generic and put them in a deployable lib.
 
