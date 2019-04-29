@@ -163,7 +163,12 @@ def Plot(titlestr, X, outname, outdir, pColors,
     x_direct = 0.0
     y_direct = 1.0
 
-    ax1.quiver(x_pos, y_pos, x_direct, y_direct)
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'x',
+               scale = 5.0,
+               scale_units = 'x',
+               linewidth = 1.5,
+               headwidth = 5.0,
+               headlength = 7.0)
 
     ######################################################################################
     # vertical reference line
