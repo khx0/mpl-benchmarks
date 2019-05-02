@@ -4,7 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2019-05-02
-# file: mpl_arrows_absScale_aspect_1.py
+# file: mpl_arrows_vs_quiver_aspect_1.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
 ##########################################################################################
@@ -260,6 +260,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
              zorder = 2,
              label = r'')
 
+    ax1.plot([0.05, 0.35], [0.35, 0.05],
+    		 linewidth = lineWidth,
+    		 color = '#CCCCCC',
+    		 zorder = 1)
+
     ax1.arrow(0.15, 0.25, dx, dy,
               lw = 0.5,
               color = 'k',
@@ -392,7 +397,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
 if __name__ == '__main__':
 
-    outname = 'mpl_arrows_quiver_absScale_aspect_1'
+    outname = 'mpl_arrows_vs_quiver_aspect_1'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
