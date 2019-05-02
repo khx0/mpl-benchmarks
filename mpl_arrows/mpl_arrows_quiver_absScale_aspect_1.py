@@ -179,8 +179,6 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     x_pos = 0.6
     y_pos = 0.8
-    x_direct = 1.0
-    y_direct = 0.0
 
     ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
                scale = 4.0,
@@ -239,8 +237,6 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     x_pos = 0.5
     y_pos = 0.6
-    x_direct = 0.0
-    y_direct = 1.0
 
     ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'height',
                scale = 4.0,
@@ -264,7 +260,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
              zorder = 2,
              label = r'')
 
-    ax1.arrow(0.2, 0.2, dx, dy,
+    ax1.arrow(0.15, 0.25, dx, dy,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -273,7 +269,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-    ax1.arrow(0.3, 0.1, dx, dy,
+    ax1.arrow(0.25, 0.15, dx, dy,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -281,6 +277,30 @@ def Plot(titlestr, X, outname, outdir, pColors,
               length_includes_head = False,
               clip_on = False,
               zorder = 3)
+
+    x_pos = 0.2
+    y_pos = 0.2
+    x_direct = 1.0 / np.sqrt(2.0)
+    y_direct = 1.0 / np.sqrt(2.0)
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
+               scale = 5.0,
+               scale_units = 'xy',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
+    x_pos = 0.3
+    y_pos = 0.1
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
+               scale = 4.0,
+               scale_units = 'xy',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
 
     ######################################################################################
     # annotations
