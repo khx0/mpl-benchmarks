@@ -128,24 +128,25 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     ######################################################################################
     # horizontal reference line
-    ax1.plot([0.6, 0.8], [0.5, 0.5],
+    ax1.plot([0.6, 0.8], [0.4, 0.4],
              color = pColors[0],
              alpha = 1.0,
              lw = lineWidth,
              zorder = 2,
              label = r'')
 
-    ax1.plot([0.075, 0.55], [0.6, 0.6],
+    ax1.plot([0.6, 0.6], [0.35, 0.85],
     		 linewidth = lineWidth,
     		 color = '#CCCCCC',
     		 zorder = 1)
+
 
     # horizontal arrows
     dx = 0.2 # x displacement of the arrow head
     hWidth = 0.05
     hLength = 0.05
 
-    ax1.arrow(0.6, 0.6, dx, 0.0,
+    ax1.arrow(0.6, 0.5, dx, 0.0,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -163,6 +164,32 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
+    x_pos = 0.6
+    y_pos = 0.6
+    x_direct = 1.0
+    y_direct = 0.0
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
+               scale = 5.0,
+               scale_units = 'width',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
+    x_pos = 0.6
+    y_pos = 0.8
+    x_direct = 1.0
+    y_direct = 0.0
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
+               scale = 4.0,
+               scale_units = 'width',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
     ######################################################################################
     # vertical reference line
     ax1.plot([0.1, 0.1], [0.6, 0.8],
@@ -171,6 +198,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
              lw = lineWidth,
              zorder = 2,
              label = r'')
+
+    ax1.plot([0.075, 0.55], [0.6, 0.6],
+    		 linewidth = lineWidth,
+    		 color = '#CCCCCC',
+    		 zorder = 1)
 
     # vertical arrows
     dy = 0.2 # y displacement of the arrow head
@@ -254,7 +286,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     # annotations
 
     ax1.annotate(r'horizontal arrows',
-                 xy = (0.6, 0.78),
+                 xy = (0.6, 0.88),
                  xycoords = 'axes fraction',
                  fontsize = 4.0,
                  horizontalalignment = 'left')
