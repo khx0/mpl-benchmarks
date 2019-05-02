@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-28
+# date: 2019-05-02
 # file: mpl_arrows_absScale_aspect_1.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -135,6 +135,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
              zorder = 2,
              label = r'')
 
+    ax1.plot([0.075, 0.55], [0.6, 0.6],
+    		 linewidth = lineWidth,
+    		 color = '#CCCCCC',
+    		 zorder = 1)
+
     # horizontal arrows
     dx = 0.2 # x displacement of the arrow head
     hWidth = 0.05
@@ -157,18 +162,6 @@ def Plot(titlestr, X, outname, outdir, pColors,
               length_includes_head = False,
               clip_on = False,
               zorder = 3)
-              
-    x_pos = 0.3
-    y_pos = 0.6
-    x_direct = 0.0
-    y_direct = 1.0
-
-    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'x',
-               scale = 5.0,
-               scale_units = 'x',
-               linewidth = 1.5,
-               headwidth = 5.0,
-               headlength = 7.0)
 
     ######################################################################################
     # vertical reference line
@@ -198,6 +191,32 @@ def Plot(titlestr, X, outname, outdir, pColors,
               length_includes_head = False,
               clip_on = False,
               zorder = 3)
+
+    x_pos = 0.3
+    y_pos = 0.6
+    x_direct = 0.0
+    y_direct = 1.0
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'height',
+               scale = 5.0,
+               scale_units = 'height',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
+    x_pos = 0.5
+    y_pos = 0.6
+    x_direct = 0.0
+    y_direct = 1.0
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'height',
+               scale = 4.0,
+               scale_units = 'height',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
 
     ######################################################################################
     # 45 degree tilted reference line
