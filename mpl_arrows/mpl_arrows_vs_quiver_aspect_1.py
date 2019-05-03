@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-02
+# date: 2019-05-03
 # file: mpl_arrows_vs_quiver_aspect_1.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -121,7 +121,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     lineWidth = 0.5
 
     '''
-	mpl.arrows example
+    mpl.arrows example
 	In this example the arrow position and in particular the arrow head size are
 	specified by absolute scaling.
     '''

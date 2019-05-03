@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-28
+# date: 2019-05-03
 # file: mpl_arrows_absScale_aspect_2.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -138,6 +138,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
              lw = lineWidth,
              zorder = 2,
              label = r'')
+             
+    ax1.plot([1.2, 1.2], [0.45, 0.75],
+    		 linewidth = lineWidth,
+    		 color = '#CCCCCC',
+    		 zorder = 1)
 
     # horizontal arrows
     dx = 0.4 # x displacement of the arrow head
@@ -170,6 +175,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
              lw = lineWidth,
              zorder = 2,
              label = r'')
+             
+    ax1.plot([0.1, 0.7], [0.6, 0.6],
+    		 linewidth = lineWidth,
+    		 color = '#CCCCCC',
+    		 zorder = 1)
 
     hWidth = 0.05 * ratio
     hLength = 0.05
