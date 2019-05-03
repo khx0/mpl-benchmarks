@@ -121,15 +121,15 @@ def Plot(titlestr, X, outname, outdir, pColors,
     lineWidth = 0.5
 
     '''
-	  mpl.arrows example
-	  In this example the arrow position and in particular the arrow head size are
-	  specified by absolute scaling.
+	mpl.arrows example
+	In this example the arrow position and in particular the arrow head size are
+	specified by absolute scaling.
     '''
 
     Lx = xFormat[1] - xFormat[0]
     Ly = yFormat[1] - yFormat[0]
     ratio = Lx / Ly
-    
+
     ######################################################################################
     # horizontal reference line
     ax1.plot([1.2, 1.6], [0.5, 0.5],
@@ -138,7 +138,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
              lw = lineWidth,
              zorder = 2,
              label = r'')
-             
+
     ax1.plot([1.2, 1.2], [0.45, 0.75],
     		 linewidth = lineWidth,
     		 color = '#CCCCCC',
@@ -175,7 +175,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
              lw = lineWidth,
              zorder = 2,
              label = r'')
-             
+
     ax1.plot([0.1, 0.7], [0.6, 0.6],
     		 linewidth = lineWidth,
     		 color = '#CCCCCC',
