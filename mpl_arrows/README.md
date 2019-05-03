@@ -1,5 +1,7 @@
 # README mpl_arrows
 
-I am not really happy with the current status of the mpl.arrow
-implementation. Looking at the scripts in this directory I illustrated
-why I prefer mpl's quiver over the arrow implementation.
+The current implementation of ax.arrow is not straight forward applicable
+to work as relative size non-orthogonally oriented arrows.
+For these reasons I currently prefer mpl's quiver mpl_arrows
+over the arrow implementation. The scripts contained in this section
+demonstrate this behavior.
