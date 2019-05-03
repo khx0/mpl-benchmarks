@@ -4,7 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2019-05-03
-# file: mpl_arrows_absScale_aspect_2.py
+# file: mpl_arrows_vs_quiver_aspect_2.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
 ##########################################################################################
@@ -132,24 +132,25 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     ######################################################################################
     # horizontal reference line
-    ax1.plot([1.2, 1.6], [0.5, 0.5],
+    ax1.plot([1.2, 1.6], [0.4, 0.4],
              color = pColors[0],
              alpha = 1.0,
              lw = lineWidth,
              zorder = 2,
              label = r'')
 
-    ax1.plot([1.2, 1.2], [0.45, 0.75],
+    ax1.plot([1.2, 1.2], [0.35, 0.85],
     		 linewidth = lineWidth,
     		 color = '#CCCCCC',
     		 zorder = 1)
+
 
     # horizontal arrows
     dx = 0.4 # x displacement of the arrow head
     hWidth = 0.05
     hLength = 0.05 * ratio
 
-    ax1.arrow(1.2, 0.6, dx, 0.0,
+    ax1.arrow(1.2, 0.5, dx, 0.0,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -167,6 +168,30 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
+    x_pos = 1.2
+    y_pos = 0.6
+    x_direct = 1.0
+    y_direct = 0.0
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
+               scale = 5.0,
+               scale_units = 'width',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
+    x_pos = 1.2
+    y_pos = 0.8
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
+               scale = 4.0,
+               scale_units = 'width',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
     ######################################################################################
     # vertical reference line
     ax1.plot([0.2, 0.2], [0.6, 0.8],
@@ -176,7 +201,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
              zorder = 2,
              label = r'')
 
-    ax1.plot([0.1, 0.7], [0.6, 0.6],
+    ax1.plot([0.1, 1.1], [0.6, 0.6],
     		 linewidth = lineWidth,
     		 color = '#CCCCCC',
     		 zorder = 1)
@@ -195,7 +220,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-    ax1.arrow(0.6, 0.6, 0.0, dy,
+    ax1.arrow(0.8, 0.6, 0.0, dy,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -204,17 +229,90 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
+    x_pos = 0.6
+    y_pos = 0.6
+    x_direct = 0.0
+    y_direct = 1.0
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'height',
+               scale = 5.0,
+               scale_units = 'height',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
+    x_pos = 1.0
+    y_pos = 0.6
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'height',
+               scale = 4.0,
+               scale_units = 'height',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
+    ######################################################################################
+    # 45 degree tilted reference line
+    radius = 0.2
+    phi = np.pi / 4.0 # = 45 degrees
+    dx = ratio * radius * np.cos(phi)
+    dy = radius * np.sin(phi)
+
+    ax1.plot([0.2, 0.2 + dx], [0.3, 0.3 + dy],
+             color = pColors[0],
+             alpha = 1.0,
+             lw = lineWidth,
+             zorder = 2,
+             label = r'')
+
+    ax1.plot([0.1, 0.7], [0.35, 0.05],
+    		 linewidth = lineWidth,
+    		 color = '#CCCCCC',
+    		 zorder = 1)
+
+    x_pos = 0.4
+    y_pos = 0.2
+    x_direct = 1.0 / np.sqrt(2.0)
+    y_direct = 1.0 / np.sqrt(2.0)
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
+               scale = 5.0,
+               scale_units = 'xy',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
+    x_pos = 0.6
+    y_pos = 0.1
+
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
+               scale = 4.0,
+               scale_units = 'xy',
+               linewidth = 1.5,
+               headwidth = 6.0,
+               headlength = 8.0,
+               headaxislength = 6.0)
+
     ######################################################################################
     # annotations
 
     ax1.annotate(r'horizontal arrows',
-                 xy = (0.6, 0.78),
+                 xy = (0.6, 0.88),
                  xycoords = 'axes fraction',
                  fontsize = 4.0,
                  horizontalalignment = 'left')
 
     ax1.annotate(r'vertical arrows',
                  xy = (0.1, 0.90),
+                 xycoords = 'axes fraction',
+                 fontsize = 4.0,
+                 horizontalalignment = 'left')
+
+    ax1.annotate(r'45$^{\circ}$ tilted arrows',
+                 xy = (0.4, 0.1),
                  xycoords = 'axes fraction',
                  fontsize = 4.0,
                  horizontalalignment = 'left')
@@ -288,7 +386,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
 if __name__ == '__main__':
 
-    outname = 'mpl_arrows_absScale_aspect_2'
+    outname = 'mpl_arrows_vs_quiver_aspect_2'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
