@@ -4,7 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2019-05-03
-# file: mpl_arrows_vs_quiver_aspect_1.py
+# file: mpl_arrows.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
 ##########################################################################################
@@ -57,7 +57,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, outname, outdir, pColors,
+def Plot(titlestr, X, params, outname, outdir, pColors,
          grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
@@ -118,35 +118,35 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ######################################################################################
     # plotting
 
-    lineWidth = 0.5
+    lineWidth = 0.65
 
-    '''
-    mpl.arrows example
-    In this example the arrow position and in particular the arrow head size are
-    specified by absolute scaling.
-    '''
-
-    ######################################################################################
     # horizontal reference line
-    ax1.plot([0.6, 0.8], [0.4, 0.4],
+    ax1.plot([0.6, 0.8], [0.5, 0.5],
              color = pColors[0],
              alpha = 1.0,
              lw = lineWidth,
              zorder = 2,
              label = r'')
 
-    ax1.plot([0.6, 0.6], [0.35, 0.85],
-    		 linewidth = lineWidth,
-    		 color = '#CCCCCC',
-    		 zorder = 1)
+    # vertical reference line
+    ax1.plot([0.1, 0.1], [0.6, 0.8],
+             color = pColors[0],
+             alpha = 1.0,
+             lw = lineWidth,
+             zorder = 2,
+             label = r'')
 
 
-    # horizontal arrows
+    Lx = xFormat[1] - xFormat[0]
+    Ly = yFormat[1] - yFormat[0]
+    XoverY = Lx / Ly
+
+    # x axis arrow head
     dx = 0.2 # x displacement of the arrow head
     hWidth = 0.05
     hLength = 0.05
 
-    ax1.arrow(0.6, 0.5, dx, 0.0,
+    ax1.arrow(0.6, 0.6, dx, 0.0,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -164,45 +164,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-    x_pos = 0.6
-    y_pos = 0.6
-    x_direct = 1.0
-    y_direct = 0.0
 
-    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
-               scale = 5.0,
-               scale_units = 'width',
-               linewidth = 1.5,
-               headwidth = 6.0,
-               headlength = 8.0,
-               headaxislength = 6.0)
-
-    x_pos = 0.6
-    y_pos = 0.8
-
-    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
-               scale = 4.0,
-               scale_units = 'width',
-               linewidth = 1.5,
-               headwidth = 6.0,
-               headlength = 8.0,
-               headaxislength = 6.0)
-
-    ######################################################################################
-    # vertical reference line
-    ax1.plot([0.1, 0.1], [0.6, 0.8],
-             color = pColors[0],
-             alpha = 1.0,
-             lw = lineWidth,
-             zorder = 2,
-             label = r'')
-
-    ax1.plot([0.05, 0.55], [0.6, 0.6],
-    		 linewidth = lineWidth,
-    		 color = '#CCCCCC',
-    		 zorder = 1)
-
-    # vertical arrows
     dy = 0.2 # y displacement of the arrow head
     ax1.arrow(0.2, 0.6, 0.0, dy,
               lw = 0.5,
@@ -213,7 +175,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-    ax1.arrow(0.4, 0.6, 0.0, dy,
+    ax1.arrow(0.3, 0.6, 0.0, dy,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -222,37 +184,13 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-    x_pos = 0.3
-    y_pos = 0.6
-    x_direct = 0.0
-    y_direct = 1.0
 
-    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'height',
-               scale = 5.0,
-               scale_units = 'height',
-               linewidth = 1.5,
-               headwidth = 6.0,
-               headlength = 8.0,
-               headaxislength = 6.0)
 
-    x_pos = 0.5
-    y_pos = 0.6
 
-    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'height',
-               scale = 4.0,
-               scale_units = 'height',
-               linewidth = 1.5,
-               headwidth = 6.0,
-               headlength = 8.0,
-               headaxislength = 6.0)
-
-    ######################################################################################
-    # 45 degree tilted reference line
     radius = 0.2
     phi = np.pi / 4.0 # = 45 degrees
     dx = radius * np.cos(phi)
     dy = radius * np.sin(phi)
-
     ax1.plot([0.1, 0.1 + dx], [0.3, 0.3 + dy],
              color = pColors[0],
              alpha = 1.0,
@@ -260,12 +198,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
              zorder = 2,
              label = r'')
 
-    ax1.plot([0.05, 0.35], [0.35, 0.05],
-    		 linewidth = lineWidth,
-    		 color = '#CCCCCC',
-    		 zorder = 1)
-
-    ax1.arrow(0.15, 0.25, dx, dy,
+    ax1.arrow(0.2, 0.2, dx, dy,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -274,7 +207,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-    ax1.arrow(0.25, 0.15, dx, dy,
+    ax1.arrow(0.3, 0.1, dx, dy,
               lw = 0.5,
               color = 'k',
               head_width = hWidth,
@@ -283,50 +216,61 @@ def Plot(titlestr, X, outname, outdir, pColors,
               clip_on = False,
               zorder = 3)
 
-    x_pos = 0.2
-    y_pos = 0.2
-    x_direct = 1.0 / np.sqrt(2.0)
-    y_direct = 1.0 / np.sqrt(2.0)
 
-    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
-               scale = 5.0,
-               scale_units = 'xy',
-               linewidth = 1.5,
-               headwidth = 6.0,
-               headlength = 8.0,
-               headaxislength = 6.0)
 
-    x_pos = 0.3
-    y_pos = 0.1
+#     ax1.arrow(7.0, 0.0, dx, 0.0,
+#               lw = 0.5,
+#               color = 'k',
+#               head_width = hWidth,
+#               head_length = hLength,
+#               length_includes_head = True,
+#               clip_on = False,
+#               zorder = 3)
+#
+#     # y axis arrow head
+#     dy = dx / XoverY
+#     ax1.arrow(0.0, 0.55, 0.0, dy,
+#               lw = 0.5,
+#               color = 'k',
+#               head_width = hLength,
+#               head_length = hWidth,
+#               length_includes_head = True,
+#               clip_on = False,
+#               zorder = 3)
 
-    ax1.quiver(x_pos, y_pos, x_direct, y_direct, units = 'width',
-               scale = 4.0,
-               scale_units = 'xy',
-               linewidth = 1.5,
-               headwidth = 6.0,
-               headlength = 8.0,
-               headaxislength = 6.0)
+    # ax1.plot(X[:, 0], X[:, 1],
+    #          color = pColors[0],
+    #          alpha = 1.0,
+    #          lw = lineWidth,
+    #          zorder = 2,
+    #          label = r'')
+
+#     ax1.arrow(mu, yLeft, - 0.94 * np.sqrt(var), 0.0,
+#               lw = 0.5,
+#               color = 'k',
+#               head_width = hWidth,
+#               head_length = hLength,
+#               length_includes_head = True)
+#
+#     ax1.arrow(mu, yRight, 0.94 * np.sqrt(var), 0.0,
+#               lw = 0.5,
+#               color = 'k',
+#               head_width = hWidth,
+#               head_length = hLength,
+#               length_includes_head = True)
 
     ######################################################################################
     # annotations
 
-    ax1.annotate(r'horizontal arrows',
-                 xy = (0.6, 0.88),
-                 xycoords = 'axes fraction',
-                 fontsize = 4.0,
-                 horizontalalignment = 'left')
-
-    ax1.annotate(r'vertical arrows',
-                 xy = (0.1, 0.90),
-                 xycoords = 'axes fraction',
-                 fontsize = 4.0,
-                 horizontalalignment = 'left')
-
-    ax1.annotate(r'45$^{\circ}$ tilted arrows',
-                 xy = (0.4, 0.1),
-                 xycoords = 'axes fraction',
-                 fontsize = 4.0,
-                 horizontalalignment = 'left')
+#     label = r'$2\sigma$'
+#
+#     x_pos = 0.5
+#
+#     ax1.annotate(label,
+#                  xy = (x_pos, 0.47),
+#                  xycoords = 'axes fraction',
+#                  fontsize = 6.0,
+#                  horizontalalignment = 'center')
 
     ######################################################################################
     # legend
@@ -339,6 +283,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
                          ncol = 1)
         leg.draw_frame(False)
         plt.gca().add_artist(leg)
+
 
     ######################################################################################
     # set plot range and scale
@@ -397,23 +342,29 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
 if __name__ == '__main__':
 
-    outname = 'mpl_arrows_vs_quiver_aspect_1'
+    # create synthetic data
+    nVisPoints = 800
+    xVals = np.linspace(0.1, 0.9, nVisPoints)
+    yVals = np.array([x for x in xVals])
+    X = np.zeros((nVisPoints, 2))
+    X[:, 0] = xVals
+    X[:, 1] = yVals
+
+    ######################################################################################
+    # call the plotting function
+
+    outname = 'mpl_quiver_coordinate_axis_example'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    ################################################################
-    # xyFormat syntax:
-    # xFormat = (xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor)
-    # yFormat = (ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor)
     xFormat = (0.0, 1.0, 0.0, 1.1, 0.5, 0.1)
     yFormat = (0.0, 1.0, 0.0, 1.1, 0.5, 0.1)
-    ################################################################
 
     pColors = ['k']
 
-    # call the plotting function
     outname = Plot(titlestr = '',
-                   X = None,
+                   X = X,
+                   params = [],
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
