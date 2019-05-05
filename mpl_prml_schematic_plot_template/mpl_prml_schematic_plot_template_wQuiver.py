@@ -154,16 +154,17 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
                 clip_on = False)
 
     ######################################################################################
-
-    ax1.plot([8.35, 10.0], [xLeft, xLeft],
-             lw = lineWidth,
-             color = '#CCCCCC',
-             zorder = 1)
-
-    ax1.plot([8.35, 10.0], [xRight, xRight],
-             lw = lineWidth,
-             color = '#CCCCCC',
-             zorder = 1)
+    # DEBUG guides to check arrow length quantitatively
+    # ax1.plot([8.35, 10.0], [xLeft, xLeft],
+    #          lw = lineWidth,
+    #          color = '#CCCCCC',
+    #          zorder = 1)
+    # 
+    # ax1.plot([8.35, 10.0], [xRight, xRight],
+    #          lw = lineWidth,
+    #          color = '#CCCCCC',
+    #          zorder = 1)
+    ######################################################################################
 
 
     heightVal = yFormat[1] - yFormat[0]
@@ -178,6 +179,7 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
 
     inverseRatio = 1.0 / ratio
 
+    ######################################################################################
     # variance width arrows (<--> = 2 \sigma)
     x_pos = yLeft + 9.0
     y_pos = 0.0
