@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-09
+# date: 2019-05-05
 # file: mpl_prml_schematic_plot_template_wQuiver.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -154,19 +154,60 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
                 clip_on = False)
 
     ######################################################################################
+
+    ax1.plot([8.35, 10.0], [xLeft, xLeft],
+             lw = lineWidth,
+             color = '#CCCCCC',
+             zorder = 1)
+
+    ax1.plot([8.35, 10.0], [xRight, xRight],
+             lw = lineWidth,
+             color = '#CCCCCC',
+             zorder = 1)
+
+
+    heightVal = yFormat[1] - yFormat[0]
+    print("heightVal =", heightVal)
+
+    targetLength = np.sqrt(var)
+    print("targetLength =", targetLength)
+
+    ratio = targetLength / heightVal
+    print("ratio =", ratio)
+    print("inverse ratio =", 1.0 / ratio)
+
+    inverseRatio = 1.0 / ratio
+
     # variance width arrows (<--> = 2 \sigma)
-    ax1.arrow(yLeft + 9.0, mu, 0.0, - 0.94 * np.sqrt(var),
-              lw = 0.5,
-              color = 'k',
-              head_width = 0.25,
-              head_length = 0.3,
-              length_includes_head = True)
-    ax1.arrow(yRight + 9.0, mu, 0.0,  0.94 * np.sqrt(var),
-              lw = 0.5,
-              color = 'k',
-              head_width = 0.25,
-              head_length = 0.3,
-              length_includes_head = True)
+    x_pos = yLeft + 9.0
+    y_pos = 0.0
+    x_direct = 0.0
+    y_direct = 1.0
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, 
+               units = 'dots',
+               scale = inverseRatio,
+               scale_units = 'height',
+               width = 0.5,
+               headwidth = 4.5,
+               headlength = 5.0,
+               headaxislength = 4.0,
+               clip_on = False,
+               zorder = 2)
+
+    x_pos = yRight + 9.0
+    y_pos = 0.0
+    x_direct = 0.0
+    y_direct = -1.0
+    ax1.quiver(x_pos, y_pos, x_direct, y_direct, 
+               units = 'dots',
+               scale = inverseRatio,
+               scale_units = 'height',
+               width = 0.5,
+               headwidth = 4.5,
+               headlength = 5.0,
+               headaxislength = 4.0,
+               clip_on = False,
+               zorder = 2)
 
     ######################################################################################
     # coordinate axis arrows (using mpl quiver)
