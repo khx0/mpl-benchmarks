@@ -166,28 +166,21 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
     #          zorder = 1)
     ######################################################################################
 
-
-    heightVal = yFormat[1] - yFormat[0]
-    print("heightVal =", heightVal)
-
-    targetLength = np.sqrt(var)
-    print("targetLength =", targetLength)
-
-    ratio = targetLength / heightVal
-    print("ratio =", ratio)
-    print("inverse ratio =", 1.0 / ratio)
-
-    inverseRatio = 1.0 / ratio
-
     ######################################################################################
     # variance width arrows (<--> = 2 \sigma)
+    yExtent = yFormat[1] - yFormat[0]
+    targetLength = np.sqrt(var)
+    # ratio in (here y) axis plot units
+    ratio = targetLength / heightVal
+    invRatio = 1.0 / ratio
+    
     x_pos = yLeft + 9.0
     y_pos = 0.0
     x_direct = 0.0
     y_direct = 1.0
     ax1.quiver(x_pos, y_pos, x_direct, y_direct, 
                units = 'dots',
-               scale = inverseRatio,
+               scale = invRatio,
                scale_units = 'height',
                width = 0.5,
                headwidth = 4.5,
@@ -202,7 +195,7 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
     y_direct = -1.0
     ax1.quiver(x_pos, y_pos, x_direct, y_direct, 
                units = 'dots',
-               scale = inverseRatio,
+               scale = invRatio,
                scale_units = 'height',
                width = 0.5,
                headwidth = 4.5,
