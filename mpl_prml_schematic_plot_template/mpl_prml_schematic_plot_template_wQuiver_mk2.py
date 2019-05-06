@@ -4,7 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2019-05-06
-# file: mpl_prml_schematic_plot_template_wQuiver.py
+# file: mpl_prml_schematic_plot_template_wQuiver_mk2.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
 ##########################################################################################
@@ -77,8 +77,8 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
-        getFigureProps(width = 5.0, height = 4.0,
-                       lFrac = 0.18, rFrac = 0.95,
+        getFigureProps(width = 4.5, height = 4.0,
+                       lFrac = 0.20, rFrac = 0.95,
                        bFrac = 0.09, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
@@ -171,10 +171,10 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
     yExtent = yFormat[1] - yFormat[0]
     targetLength = np.sqrt(var)
     # ratio in (here y) axis plot units
-    ratio = targetLength / heightVal
+    ratio = targetLength / yExtent
     invRatio = 1.0 / ratio
 
-    x_pos = yLeft + 9.0
+    x_pos = yLeft + 5.6
     y_pos = 0.0
     x_direct = 0.0
     y_direct = 1.0
@@ -189,7 +189,7 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
                clip_on = False,
                zorder = 2)
 
-    x_pos = yRight + 9.0
+    x_pos = yRight + 5.6
     y_pos = 0.0
     x_direct = 0.0
     y_direct = -1.0
@@ -243,15 +243,15 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
     # annotations
 
     label = r'$p(t\, | \, x_0, \mathbf{w}, \beta)$'
-    x_pos = 0.70
+    x_pos = 0.72
     ax1.annotate(label,
-                 xy = (x_pos, 0.32),
+                 xy = (x_pos, 0.30),
                  xycoords = 'axes fraction',
                  fontsize = 8.0,
                  horizontalalignment = 'center')
 
     label = r'$y(x, \mathbf{w})$'
-    x_pos = 0.80
+    x_pos = 0.77
     ax1.annotate(label,
                  xy = (x_pos, 0.86),
                  xycoords = 'axes fraction',
@@ -259,7 +259,7 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
                  horizontalalignment = 'center')
 
     label = r'$2\sigma$'
-    x_pos = 0.965
+    x_pos = 0.935
     ax1.annotate(label,
                  xy = (x_pos, 0.49),
                  xycoords = 'axes fraction',
@@ -336,8 +336,8 @@ if __name__ == '__main__':
 
     # create the synthetic data for the polynomial (red) curve
     nVisPoints = 1000
-    xVals = np.linspace(-10.0, 10.0, nVisPoints)
-    yVals = np.array([0.005 * (x ** 3 + x ** 2 + 80.0 * x)  for x in xVals])
+    xVals = np.linspace(-6.5, 6.5, nVisPoints)
+    yVals = np.array([0.005 * ((1.8 * x) ** 3 + (1.8 * x) ** 2 + 80.0 * (1.8 * x))  for x in xVals])
     Xm = np.zeros((nVisPoints, 2))
     Xm[:, 0] = xVals
     Xm[:, 1] = yVals
@@ -347,7 +347,7 @@ if __name__ == '__main__':
     # scipy.stats.norm(x, loc, scale)
 
     mu = 0.0            # mean of the normal distribution $\mu$
-    var = 1.5 ** 2      # variance of the normal distribution $\sigma^2§
+    var = 2.5 ** 2 #1.5 ** 2      # variance of the normal distribution $\sigma^2§
 
     ######################################################################################
     # IMPORTANT: Scipy's norm.pdf() takes the standard deviation and
@@ -356,7 +356,7 @@ if __name__ == '__main__':
     ######################################################################################
 
     nVisPoints = 1000
-    xVals = np.linspace(-12.0, 12.0, nVisPoints)
+    xVals = np.linspace(-15.0, 15.0, nVisPoints)
     yVals = 10.0 * norm.pdf(xVals, loc = mu, scale = np.sqrt(var))
 
     X = np.zeros((nVisPoints, 2))
@@ -377,12 +377,12 @@ if __name__ == '__main__':
     ######################################################################################
     # call the plotting function
 
-    outname = 'mpl_prml_schematic_plot_template_wQuiver'
+    outname = 'mpl_prml_schematic_plot_template_wQuiver_mk2'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    xFormat = [-11.1, 11.1]
-    yFormat = [-10.5, 10.5]
+    xFormat = [-7.5, 7.5]
+    yFormat = [-15.0, 15.0]
 
     outname = Plot(titlestr = '',
                    Xm = Xm,
