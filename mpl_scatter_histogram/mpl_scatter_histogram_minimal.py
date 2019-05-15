@@ -57,7 +57,7 @@ if __name__ == '__main__':
     # create data
     meanValue = 1.5
     nBins = 25
-    nSamples = 20000
+    nSamples = 50000
 
     # fix random seed for reproducibility
     np.random.seed(123456789)
