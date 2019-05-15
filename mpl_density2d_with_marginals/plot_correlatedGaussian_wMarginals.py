@@ -5,8 +5,10 @@
 # contact: khx0@posteo.net
 # date: 2019-05-15
 # file: plot_correlatedGaussian_wMarginals.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.0.3
+# tested with python 3.7.2 in conjunction with mpl version 3.0.3
+##########################################################################################
+# description: plots the correlated data samples that can be generated using the
+# provided create_samples.py script
 ##########################################################################################
 
 import os

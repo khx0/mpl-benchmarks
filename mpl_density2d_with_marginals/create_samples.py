@@ -5,8 +5,11 @@
 # contact: khx0@posteo.net
 # date: 2019-05-15
 # file: create_samples.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.0.3
+# tested with python 3.7.2
+##########################################################################################
+# description:
+# Creates fully correlated (1) and fully independent (2) normally distributed
+# random samples using inverse transform sampling.
 ##########################################################################################
 
 import os
@@ -32,6 +35,7 @@ def inverseTransformSamplingJoint(mu1, sigma1, mu2, sigma2):
 
 if __name__ == '__main__':
 
+    print("using np.__version__ =", np.__version__)
     print("using scipy.__version__ =", scipy.__version__)
 
     # set parameters
