@@ -31,6 +31,10 @@ The python script which produces the above two figures can be found under
 /mpl_heatmap_log_xy-scale/demo/
 ```
 
+### Example 2d correlation plot with marginal densities
+
+![Demo2](/mpl_correlation2d_with_marginals/out/![Demo](/mpl_heatmap_log_xy-scale/demo/out/pcolor_showcase_figure_composition.png)
+
 ### Testing
 For some modules unit tests are provided in the
 ```
