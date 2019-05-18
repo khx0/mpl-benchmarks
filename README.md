@@ -35,7 +35,7 @@ The python script which produces the above two figures can be found under
 
 ![Demo2](/mpl_correlation2d_with_marginals/out/demo_composition.png)
 
-The python script which produces the above examples is place in
+The python scripts which produce the above example are placed in
 ```
 /mpl_correlation2d_with_marginals/
 ```
