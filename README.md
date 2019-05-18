@@ -33,7 +33,7 @@ The python script which produces the above two figures can be found under
 
 ### Example 2d correlation plot with marginal densities
 
-![Demo2](/mpl_correlation2d_with_marginals/out/uncorrelated_gaussian_RVs_with_marginal_distributions_2019-05-18.png)
+![Demo2](/mpl_correlation2d_with_marginals/out/demo_composition.png)
 
 ### Testing
 For some modules unit tests are provided in the
