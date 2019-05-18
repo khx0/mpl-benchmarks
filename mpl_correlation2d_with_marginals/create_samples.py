@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-15
+# date: 2019-05-18
 # file: create_samples.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -27,8 +27,8 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(RAWDIR, exist_ok = True)
 
-def inverseTransformSamplingJoint(mu1, sigma1, mu2, sigma2):
-    u = np.random.uniform()    
+def inverseTransformSamplingJoint(nSamples, mu1, sigma1, mu2, sigma2):
+    u = np.random.uniform(size = nSamples)    
     x1 = norm.ppf(u, loc = mu1, scale = sigma1)
     x2 = norm.ppf(u, loc = mu2, scale = sigma2)
     return x1, x2
@@ -51,12 +51,8 @@ if __name__ == '__main__':
     samples = np.zeros((nSamples, 2))
     
     np.random.seed(seedValue)
-
-    for i in range(nSamples):
     
-        x1, x2 = inverseTransformSamplingJoint(mu1, sigma1, mu2, sigma2)
-        samples[i, 0] = x1
-        samples[i, 1] = x2
+    samples[:, 0], samples[:, 1] = inverseTransformSamplingJoint(nSamples, mu1, sigma1, mu2, sigma2)
 
     np.savetxt(os.path.join(RAWDIR, 'GaussianSamples_correlated.txt'), samples, fmt = '%.8f')
 
