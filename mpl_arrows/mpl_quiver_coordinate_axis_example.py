@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-03
+# date: 2019-05-19
 # file: mpl_quiver_coordinate_axis_example.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.0.3
+# tested with python 3.7.2  in conjunction with mpl version 3.1.0
 ##########################################################################################
 
 import os
