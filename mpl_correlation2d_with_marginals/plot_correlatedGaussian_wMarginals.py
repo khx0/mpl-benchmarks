@@ -50,7 +50,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
 
     mpl.rc('font', **{'size': 7.0})
     mpl.rc('legend', **{'fontsize': 7.0})
-    mpl.rc("axes", linewidth = 0.5)
+    mpl.rc('axes', linewidth = 0.5)
 
     # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})

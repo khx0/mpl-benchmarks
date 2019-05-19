@@ -60,7 +60,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 7.5})
-    mpl.rc("axes", linewidth = 0.5)
+    mpl.rc('axes', linewidth = 0.5)
 
     ######################################################################################
     mpl.rcParams['font.family'] = 'sans-serif'
