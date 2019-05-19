@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-15
+# date: 2019-05-19
 # file: plot_correlatedGaussian_wMarginals.py
-# tested with python 3.7.2 in conjunction with mpl version 3.0.3
+# tested with python 3.7.2 in conjunction with mpl version 3.1.0
 ##########################################################################################
 # description: plots the correlated data samples that can be generated using the
 # provided create_samples.py script
@@ -315,7 +315,7 @@ if __name__ == '__main__':
     mu1, sigma1 = 87.25, 8.124
     mu2, sigma2 = 125.75, 11.25
     
-    X = np.genfromtxt(os.path.join(RAWDIR, 'GaussianSamples_correlated.txt'))
+    X = np.genfromtxt(os.path.join(RAWDIR, 'GaussianSamples_correlated_seed_987654321.txt'))
     sample1, sample2 = X[:, 0], X[:, 1]
     
     ######################################################################################

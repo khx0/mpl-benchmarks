@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-18
+# date: 2019-05-19
 # file: plot_uncorrelateGaussian_wMarginals.py
-# tested with python 3.7.2 in conjunction with mpl version 3.0.3
+# tested with python 3.7.2 in conjunction with mpl version 3.1.0
 ##########################################################################################
 # description: plots the uncorrelated data samples that can be generated using the
 # provided create_samples.py script
@@ -315,7 +315,7 @@ if __name__ == '__main__':
     mu1, sigma1 = 87.25, 8.124
     mu2, sigma2 = 125.75, 11.25
     
-    X = np.genfromtxt(os.path.join(RAWDIR, 'GaussianSamples_uncorrelated.txt'))
+    X = np.genfromtxt(os.path.join(RAWDIR, 'GaussianSamples_uncorrelated_seed_987654321.txt'))
     sample1, sample2 = X[:, 0], X[:, 1]
     
     ######################################################################################
