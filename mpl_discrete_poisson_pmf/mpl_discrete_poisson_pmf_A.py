@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-09
+# date: 2019-05-19
 # file: mpl_discrete_poisson_pmf_A.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.0.3
@@ -61,7 +61,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 6.0})
-    mpl.rc("axes", linewidth = 0.5)
+    mpl.rc('axes', linewidth = 0.5)
 
     # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
@@ -82,23 +82,23 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
-    labelfontsize = 6.0
+    labelfontsize = 5.0
 
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
 
-    ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
-    ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
+    ax1.tick_params('both', length = 2.0, width = 0.5, which = 'major', pad = 3.0)
+    ax1.tick_params('both', length = 1.0, width = 0.25, which = 'minor', pad = 3.0)
 
-    ax1.tick_params(axis = 'x', which = 'major', pad = 1.5)
-    ax1.tick_params(axis = 'y', which = 'major', pad = 1.5, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
     ax1.set_xlabel(r'$k$', fontsize = 6.0)
-    ax1.set_ylabel(r'$p(k\, ; \mu)$', fontsize = 6.0)
+    ax1.set_ylabel(r'$p(k\, |\, \mu)$', fontsize = 6.0)
     ax1.xaxis.labelpad = 2.0
     ax1.yaxis.labelpad = 2.0
     ######################################################################################
@@ -133,7 +133,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ######################################################################################
     # annotations
 
-    label = r'$p(k\, ; \mu) = \dfrac{\mu^k}{k!} e^{-\mu}$'
+    label = r'$p(k\, |\, \mu) = \dfrac{\mu^k}{k!} e^{-\mu}$'
 
     x_pos = 0.25
 
@@ -248,8 +248,8 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    xFormat = [-0.5, 19.5, 0.0, 19.1, 5.0, 1.0]
-    yFormat = [-0.02, 0.42, 0.0, 0.405, 0.1, 0.05]
+    xFormat = (-0.5, 19.5, 0.0, 19.1, 5.0, 1.0)
+    yFormat = (-0.02, 0.42, 0.0, 0.405, 0.1, 0.05)
 
     pColors = ['#CCCCCC', 'C0', 'C1', 'C2']
 
