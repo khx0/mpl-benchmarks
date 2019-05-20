@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-19
+# date: 2019-05-20
 # file: mpl_scatter_histogram_minimal.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.0.3
+# tested with python 3.7.2  in conjunction with mpl version 3.1.0
 ##########################################################################################
 
 import os
@@ -65,6 +65,8 @@ if __name__ == '__main__':
     scatterData = getHistogramCoordinates(samples,
                                           nBins = nBins,
                                           density = True)
+                                          
+    print("scatterData =", scatterData)
 
     # create analytical curve
     nVisPoints = 500
