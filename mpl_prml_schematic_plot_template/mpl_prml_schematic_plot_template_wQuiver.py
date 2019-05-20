@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-19
+# date: 2019-05-20
 # file: mpl_prml_schematic_plot_template_wQuiver.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.1.0
@@ -171,7 +171,7 @@ def Plot(titlestr, Xm, X, params, outname, outdir, pColors,
     yExtent = yFormat[1] - yFormat[0]
     targetLength = np.sqrt(var)
     # ratio in (here y) axis plot units
-    ratio = targetLength / heightVal
+    ratio = targetLength / yExtent
     invRatio = 1.0 / ratio
 
     x_pos = yLeft + 9.0
