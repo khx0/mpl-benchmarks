@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-09
+# date: 2019-05-23
 # file: mpl_offset_text_handling_04.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.0.3
+# tested with python 3.7.2  in conjunction with mpl version 3.1.0
 ##########################################################################################
 
 import os
@@ -35,7 +35,7 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     ymin, ymax = yFormat[0], yFormat[1]
 
     mpl.rc('legend', **{'fontsize': 3.0})
-    mpl.rc("axes", linewidth = 0.3)
+    mpl.rc('axes', linewidth = 0.3)
 
     mpl.rcParams['xtick.top'] = True
     mpl.rcParams['ytick.right'] = True
