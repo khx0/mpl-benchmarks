@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-09
+# date: 2019-05-24
 # file: mpl_multiple_legends_minimal_mk3.py
 # tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.0.3
+# tested with python 3.7.2  in conjunction with mpl version 3.1.0
 ##########################################################################################
 
 import os
@@ -16,6 +16,7 @@ import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import legend
+from matplotlib.ticker import FuncFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -27,6 +28,13 @@ RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
+
+def cleanFormatter(x, pos):
+    '''
+    will format 0.0 as 0 and
+    will format 1.0 as 1
+    '''
+    return '{:g}'.format(x)
 
 if __name__ == '__main__':
 
@@ -82,6 +90,11 @@ if __name__ == '__main__':
                           fontsize = 10.0)
         pLeg.draw_frame(False)
         plt.gca().add_artist(pLeg)
+        
+    # tick label formatting
+    majorFormatter = FuncFormatter(cleanFormatter)
+    ax1.xaxis.set_major_formatter(majorFormatter)
+    ax1.yaxis.set_major_formatter(majorFormatter)
 
     # labeling
     ax1.set_xlabel(r'$x$ label')
