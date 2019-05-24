@@ -31,10 +31,8 @@ os.makedirs(OUTDIR, exist_ok = True)
 def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
 
-    xmin = xFormat[0]
-    xmax = xFormat[1]
-    ymin = yFormat[0]
-    ymax = yFormat[1]
+    xmin, xmax = xFormat[0], xFormat[1]
+    ymin, ymax = yFormat[0], yFormat[1]
 
     mpl.rc('legend', **{'fontsize': 3.0})
     mpl.rc('axes', linewidth = 0.3)

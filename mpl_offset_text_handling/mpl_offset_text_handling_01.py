@@ -19,7 +19,6 @@ from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
-
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
 
@@ -32,10 +31,8 @@ os.makedirs(OUTDIR, exist_ok = True)
 def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
 
-    xmin = xFormat[0]
-    xmax = xFormat[1]
-    ymin = yFormat[0]
-    ymax = yFormat[1]
+    xmin, xmax = xFormat[0], xFormat[1]
+    ymin, ymax = yFormat[0], yFormat[1]
 
     mpl.rc('legend', **{'fontsize': 3.0})
     mpl.rc('axes', linewidth = 0.3)
