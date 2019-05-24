@@ -3,10 +3,10 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-09
+# date: 2019-05-24
 # file: mpl_legend_element_order.py
 # tested with python 2.7.15 using matplotlib 2.2.3
-# tested with python 3.7.2  using matplotlib 3.0.3
+# tested with python 3.7.2  using matplotlib 3.1.0
 ##########################################################################################
 
 import os
@@ -59,7 +59,7 @@ def Plot(titlestr, X, data, outname, outdir,
 
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 4.0})
-    mpl.rc("axes", linewidth = 0.5)
+    mpl.rc('axes', linewidth = 0.5)
 
     # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
