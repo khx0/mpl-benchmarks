@@ -3,10 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-24
+# date: 2019-05-30
 # file: mpl_logscale_minor_ticks_minimal.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.1.0
+# tested with python 3.7.2 in conjunction with mpl version 3.1.0
 ##########################################################################################
 
 """
@@ -42,7 +41,7 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def  plot_minimal_version_A(X, filename):
+def plot_minimal_version_A(X, filename):
 
     f, ax1 = plt.subplots(1)
 
@@ -88,7 +87,7 @@ def  plot_minimal_version_A(X, filename):
 
     return None
 
-def  plot_minimal_version_B(X, filename):
+def plot_minimal_version_B(X, filename):
 
     f, ax1 = plt.subplots(1)
 
