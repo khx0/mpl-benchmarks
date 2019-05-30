@@ -3,9 +3,8 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-09
+# date: 2019-05-30
 # file: mpl_axis_label_rotation_xy-45-degree.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.1.0
 ##########################################################################################
 
@@ -186,15 +185,13 @@ if __name__ == '__main__':
     X[:, 0] = xVals
     X[:, 1] = yVals
 
-    ######################################################################################
     # call the plotting function
-
     outname = 'mpl_axis_label_rotation_xy-45-degree'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    xFormat = [-0.05, 1.05, 0.0, 1.1, 1.0, 1.0]
-    yFormat = [-1.35, 1.35, -1.0, 1.1, 1.0, 1.0]
+    xFormat = (-0.05, 1.05, 0.0, 1.1, 1.0, 1.0)
+    yFormat = (-1.35, 1.35, -1.0, 1.1, 1.0, 1.0)
 
     pColors = ['C0']
 
