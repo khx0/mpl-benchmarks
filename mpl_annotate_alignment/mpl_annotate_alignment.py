@@ -3,9 +3,8 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-04-09
+# date: 2019-05-30
 # file: mpl_annotate_alignment.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.1.0
 ##########################################################################################
 
@@ -208,7 +207,7 @@ if __name__ == '__main__':
     # create data
     nVisPoints = 500
     xVals = np.linspace(0.0, 1.0, nVisPoints)
-    yVals = np.array([np.sin(x) ** 3 for x in xVals])
+    yVals = np.sin(xVals) ** 3
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
