@@ -3,10 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-19
+# date: 2019-05-30
 # file: mpl_scatter_histogram.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.1.0
+# tested with python 3.7.2 in conjunction with mpl version 3.1.0
 ##########################################################################################
 
 import sys
@@ -104,8 +103,8 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
     ax1.tick_params('both', length = 3.5, width = 0.5, which = 'major', pad = 3.0)
     ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
 
-    ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
-    ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
