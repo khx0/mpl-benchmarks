@@ -3,9 +3,8 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-19
+# date: 2019-05-30
 # file: mpl_clean_style.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.1.0
 ##########################################################################################
 
@@ -199,7 +198,7 @@ if __name__ == '__main__':
     # create synthetic data
     nVisPoints = 800
     xVals = np.linspace(0.05, 0.95, nVisPoints)
-    yVals = np.array([x for x in xVals])
+    yVals = xVals
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
