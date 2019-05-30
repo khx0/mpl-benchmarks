@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-19
+# date: 2019-05-30
 # file: plot_correlatedGaussian_wMarginals.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.0
 ##########################################################################################

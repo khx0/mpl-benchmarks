@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-19
+# date: 2019-05-30
 # file: create_samples.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -52,7 +52,8 @@ if __name__ == '__main__':
     
     np.random.seed(seedValue)
     
-    samples[:, 0], samples[:, 1] = inverseTransformSamplingJoint(nSamples, mu1, sigma1, mu2, sigma2)
+    samples[:, 0], samples[:, 1] = \
+        inverseTransformSamplingJoint(nSamples, mu1, sigma1, mu2, sigma2)
     outname = 'GaussianSamples_correlated_seed_{:d}.txt'.format(seedValue)
     np.savetxt(os.path.join(RAWDIR, outname), samples, fmt = '%.8f')
 
