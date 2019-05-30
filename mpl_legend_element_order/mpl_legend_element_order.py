@@ -3,10 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-24
+# date: 2019-05-30
 # file: mpl_legend_element_order.py
-# tested with python 2.7.15 using matplotlib 2.2.3
-# tested with python 3.7.2  using matplotlib 3.1.0
+# tested with python 3.7.2 in conjunction with mpl version 3.1.0
 ##########################################################################################
 
 import os
@@ -225,8 +224,8 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    xFormat = [-0.035, 1.035, 0.0, 1.1, 1.0, 0.25]
-    yFormat = [-1.65, 1.65, -1.0, 1.1, 1.0, 1.0]
+    xFormat = (-0.035, 1.035, 0.0, 1.1, 1.0, 0.25)
+    yFormat = (-1.65, 1.65, -1.0, 1.1, 1.0, 1.0)
 
     outname = Plot(titlestr = '',
                    X = X,
