@@ -3,9 +3,8 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-19
+# date: 2019-05-30
 # file: mpl_arrows_vs_quiver_aspect_1.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.1.0
 ##########################################################################################
 
