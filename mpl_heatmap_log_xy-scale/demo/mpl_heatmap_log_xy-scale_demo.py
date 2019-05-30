@@ -3,9 +3,8 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-19
+# date: 2019-05-30
 # file: mpl_heatmap_log_xy-scale_demo.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
 # tested with python 3.7.2  in conjunction with mpl version 3.1.0
 ##########################################################################################
 
@@ -170,10 +169,8 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         ax1.set_xticks(minor_x_ticks, minor = True)
 
     elif (xFormat[0] == 'log'):
-
         ax1.set_xscale('log')
-        ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 3))
-
+        ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 4))
         xMinorTicks = getLogTicksBase10(1.0e1, 1.0e3)
         ax1.xaxis.set_minor_locator(ticker.FixedLocator((xMinorTicks)))
         ax1.xaxis.set_minor_formatter(mpl.ticker.NullFormatter())
@@ -194,8 +191,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
 
     elif (yFormat[0] == 'log'):
         ax1.set_yscale('log')
-
-        ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 3))
+        ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 4))
         yMinorTicks = getLogTicksBase10(1.0e-3, 1.0e-1)
         ax1.yaxis.set_minor_locator(ticker.FixedLocator((yMinorTicks)))
         ax1.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())
