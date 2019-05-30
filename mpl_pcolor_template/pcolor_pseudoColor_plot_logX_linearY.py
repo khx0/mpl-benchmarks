@@ -3,10 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-20
+# date: 2019-05-30
 # file: pcolor_pseudoColor_plot_logX_linearY.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.1.0
+# tested with python 3.7.2 in conjunction with mpl version 3.1.0
 ##########################################################################################
 
 import sys
@@ -225,7 +224,6 @@ if __name__ == '__main__':
                '_mpl_' + mpl.__version__
 
     # create synthetic plot data
-
     nSamples_x = 5
     nSamples_y = 5
 
@@ -257,16 +255,15 @@ if __name__ == '__main__':
     assert yBoxCoords.shape == (nSamples_y + 1,), "Error: Shape assertion failed."
 
     # call plot function
-
-    fProps = [4.0, 4.0, 0.16, 0.80, 0.20, 0.88]
-    xFormat = ['log', 0.23 * 1.0e-1, 4.5 * 1.0e3, 0.0, 1.05, 0.5, 0.1, r'x axis label']
-    yFormat = ['linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'y axis label']
+    fProps = (4.0, 4.0, 0.16, 0.80, 0.20, 0.88)
+    xFormat = ('log', 0.23 * 1.0e-1, 4.5 * 1.0e3, 0.0, 1.05, 0.5, 0.1, r'x axis label')
+    yFormat = ('linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'y axis label')
 
     cMap = cm.viridis
     zmin = np.min(zVals)
     zmax = np.max(zVals)
-    zColor = [cMap, zmin, zmax, r'z label (cbar)']
-    zFormat = ['linear', 0.0, 0.21, 0.05]
+    zColor = (cMap, zmin, zmax, r'z label (cbar)')
+    zFormat = ('linear', 0.0, 0.21, 0.05)
 
     outname = plot_pcolor(X = xBoxCoords,
                           Y = yBoxCoords,

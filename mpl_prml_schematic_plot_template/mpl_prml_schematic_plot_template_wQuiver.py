@@ -3,10 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-20
+# date: 2019-05-30
 # file: mpl_prml_schematic_plot_template_wQuiver.py
-# tested with python 2.7.15 in conjunction with mpl version 2.2.3
-# tested with python 3.7.2  in conjunction with mpl version 3.1.0
+# tested with python 3.7.2 in conjunction with mpl version 3.1.0
 ##########################################################################################
 
 import os
@@ -381,8 +380,8 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    xFormat = [-11.1, 11.1]
-    yFormat = [-10.5, 10.5]
+    xFormat = (-11.1, 11.1)
+    yFormat = (-10.5, 10.5)
 
     outname = Plot(titlestr = '',
                    Xm = Xm,
