@@ -12,6 +12,7 @@
 
 * generic imshow routines
 
+* Write font guide to use custom fonts within matplotlib.
 
 to pcolor exampels:
 * add absolute padding scaling functionality
