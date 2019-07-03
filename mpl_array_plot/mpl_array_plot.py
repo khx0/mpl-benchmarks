@@ -24,7 +24,7 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(OUTDIR, exist_ok = True)
 
 def plot_patch_array(X, nrows, ncols, outname, outdir, cmap,
-                     transparent = True, savePNG = True, datestamp = False):
+                     transparent = True, savePNG = True, datestamp = True):
 
     f, axs = plt.subplots(nrows = nrows, ncols = ncols, figsize = (5, 5),
                             subplot_kw = {'xticks': [], 'yticks': []})
@@ -40,8 +40,12 @@ def plot_patch_array(X, nrows, ncols, outname, outdir, cmap,
         outname += '_transparent_background'
     else:
         outname += '_white_background'
+        
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
+    
     if datestamp:
-        outname += '_' + now
+        outname += '_' + now               
     if savePNG:
         f.savefig(os.path.join(OUTDIR, outname) + '.png', dpi = 600, transparent = transparent)
 
@@ -69,7 +73,8 @@ if __name__ == '__main__':
     print("len(patches) =", len(patches))
 
     # call plotting function
-    outname = 'patch_array_' + str(randomSeed + 1).zfill(2)
+    outname = 'array_plot_seed_' + str(randomSeed).zfill(2)
+
     plot_patch_array(patches, 5, 5, outname, OUTDIR, cmap = 'gray')
     plot_patch_array(patches, 5, 5, outname, OUTDIR, cmap = 'gray', transparent = False)
     plot_patch_array(patches, 5, 5, outname, OUTDIR, cmap = 'viridis')
