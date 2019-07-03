@@ -21,6 +21,7 @@ Support for Python 2 is dropped.
 However copying some snippets from the scripts will
 most likely also work with Python 2.7, as they were originally
 developed using python 2.7 and matplotlib 2.2.3.
+Update to mpl version 3.1.1 is underway.
 
 ### Example pseudo color plot
 
