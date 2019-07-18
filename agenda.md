@@ -12,6 +12,12 @@
 
 * generic imshow routines
 
+* add adaptive colorbar and autowindow-colorbar functionality
+
+* medical gray scale image using imshow with appropriate colorbar
+
+* Window / Level labels for mpl's colorbars
+
 * Write font guide to use custom fonts within matplotlib.
 
 to pcolor exampels:
