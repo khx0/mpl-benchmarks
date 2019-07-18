@@ -2,6 +2,8 @@
 
 * mpl 3.1.1 update 
 
+* fast auto-parsing boxplot scripts (plug'n play and robust data loading)
+
 * automated mpl update testing routines
 
 * automated pixel level output image comparison
