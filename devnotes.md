@@ -1,9 +1,9 @@
-# Devnotes
+# Development notes
 
-## Python 2 Deprecation
+## Python 2 deprecation
 
 As of 2018-03-24 Python 2 support is dropped.
-Below I collect the parts, which I am aware of which do not work with python 2.
+Below I collect parts, of which I am aware of, which do not work with python 2 any longer.
 
 I started using
 ```
