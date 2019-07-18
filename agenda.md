@@ -1,6 +1,12 @@
 # Agenda
 
-* mpl 3.0.3 update / consolidation
+* mpl 3.1.1 update 
+
+* automated mpl update testing routines
+
+* automated pixel level output image comparison
+
+* automated pdf vector graphic level output image comparison
 
 * Add a markdown guide on how to install custom fonts for matplotlib using macOS and Windows 10. Make this guide for all relevant OS.
 
