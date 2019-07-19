@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-30
+# date: 2019-07-19
 # file: plot_correlatedGaussian_wMarginals.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.0
+# tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
 # description: plots the correlated data samples that can be generated using the
 # provided create_samples.py script
@@ -255,6 +255,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
     marginX.set_yticks(mX_major_y_ticks)
     marginX.set_yticks(mX_minor_y_ticks, minor = True)
     marginX.set_xlim(xFormat[0], xFormat[1])
+    marginX.set_ylim(0.0528, 0.0)
     
     # set marginY
     marginY.set_yticks(major_y_ticks)
