@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-20
+# date: 2019-07-21
 # file: mpl_imshow_autowindow.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
@@ -247,15 +247,13 @@ if __name__ == '__main__':
     outname = 'mpl_imshow_autowindow'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-               
-    print("outname =", outname)
 
-    '''
     # create synthetic plot data
 
     nSamples_x = 5
     nSamples_y = 5
 
+    # at some point convert back to pixel coordinates for this assay
     xmin, xmax = 0.0, 1.0
     ymin, ymax = 0.0, 1.0
 
@@ -275,7 +273,7 @@ if __name__ == '__main__':
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nSamples_x, nSamples_y), "Error: Shape assertion failed."
     #################################################################################
-
+    '''
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
 
