@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-31
+# date: 2019-07-21
 # file: axisPadding.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -44,7 +44,7 @@ def getLogAxisPadding(xminData, xmaxData, paddingFraction):
     xmin and xmax value pair, such that a desired padding of paddingFraction
     to the left and to the right of the data width along this axis is set.
     This assumes base 10 logarithms and that you want to have an equal padding to the left
-    as to the right.
+    as to the right. Unequal padding at the left and right is not implemented yet.
     The returned xmin, xmax values can then for example be used by the
     ax.set_xlim(xmin, xmax) command, to achieve the desired effect.
     Or alternatively by ax.set_ylim(xmin, xmax) for a given y-axis.
@@ -70,7 +70,7 @@ def getLogAxisPadding(xminData, xmaxData, paddingFraction):
 	for xmin simply gives
 	$xmin = xminData * 10^{-pF * \Delta w}$.
     """
-
+    
     # data width measured in log-10 decades
     dataWidth = np.log10(xmaxData / xminData)
     xmin = xminData * 10.0 ** (- paddingFraction * dataWidth)
