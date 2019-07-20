@@ -273,13 +273,13 @@ if __name__ == '__main__':
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nSamples_x, nSamples_y), "Error: Shape assertion failed."
     #################################################################################
-    '''
+    
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
 
     assert xBoxCoords.shape == (nSamples_x + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (nSamples_y + 1,), "Error: Shape assertion failed."
-
+    
     # call plot function
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.20, 0.88)
@@ -307,4 +307,4 @@ if __name__ == '__main__':
                           showlabels = True,
                           grid = False,
                           saveSVG = False)
-    '''
+
