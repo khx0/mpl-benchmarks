@@ -259,14 +259,19 @@ if __name__ == '__main__':
     xmin, xmax = 0.0, 1.0 * nPxs_x
     ymin, ymax = 0.0, 1.0 * nPxs_y
     
-    '''
-    xVals = np.linspace(xmin, xmax, nSamples_x)
-    yVals = np.linspace(ymin, ymax, nSamples_y)
+    
+    xVals = np.arange(xmin, xmax, 1)
+    yVals = np.arange(ymin, ymax, 1)
+    
+    # keep to change to coordinate based x-y-axes
+    # xVals = np.linspace(xmin, xmax, nSamples_x)
+    # yVals = np.linspace(ymin, ymax, nSamples_y)
 
-    zVals = np.zeros((nSamples_y, nSamples_x))
+    zVals = np.zeros((nPxs_x, nPxs_y))
 
-    for j in range(nSamples_y):         # iterate over y values
-        for i in range(nSamples_x):     # iterate over x values
+    
+    for j in range(nPxs_y):         # iterate over y values
+        for i in range(nPxs_x):     # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
     #################################################################################
@@ -274,20 +279,21 @@ if __name__ == '__main__':
     print("yVals.shape =", yVals.shape)
     print("zVals.shape =", zVals.shape)
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert zVals.shape == (nSamples_x, nSamples_y), "Error: Shape assertion failed."
+    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
     #################################################################################
-
+    
+    # still necessary? --> check
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
 
-    assert xBoxCoords.shape == (nSamples_x + 1,), "Error: Shape assertion failed."
-    assert yBoxCoords.shape == (nSamples_y + 1,), "Error: Shape assertion failed."
+    assert xBoxCoords.shape == (nPxs_x + 1,), "Error: Shape assertion failed."
+    assert yBoxCoords.shape == (nPxs_y + 1,), "Error: Shape assertion failed."
     
     # call plot function
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.20, 0.88)
-    xFormat = ('linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'x axis label')
-    yFormat = ('linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'y axis label')
+    xFormat = ('linear', -0.16 * 4.0, 4.0 + 4.0 * 0.16, 0.0, 1.05, 0.5, 0.1, r'x axis label')
+    yFormat = ('linear', -0.16 * 4.0, 4.0 + 4.0 * 0.16, 0.0, 1.05, 0.5, 0.1, r'y axis label')
 
     cMap = cm.viridis
     zmin = np.min(zVals)
@@ -310,4 +316,4 @@ if __name__ == '__main__':
                           showlabels = True,
                           grid = False,
                           saveSVG = False)
-    '''
+
