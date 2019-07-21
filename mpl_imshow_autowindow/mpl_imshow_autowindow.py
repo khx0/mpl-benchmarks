@@ -250,13 +250,16 @@ if __name__ == '__main__':
 
     # create synthetic plot data
 
-    nSamples_x = 5
-    nSamples_y = 5
+    nPxs_x = 5
+    nPxs_y = 5
 
     # at some point convert back to pixel coordinates for this assay
-    xmin, xmax = 0.0, 1.0
-    ymin, ymax = 0.0, 1.0
-
+    # first start with pixel coordinates, and the allow as an additional feature to
+    #  also have other coordinates
+    xmin, xmax = 0.0, 1.0 * nPxs_x
+    ymin, ymax = 0.0, 1.0 * nPxy_y
+    
+    '''
     xVals = np.linspace(xmin, xmax, nSamples_x)
     yVals = np.linspace(ymin, ymax, nSamples_y)
 
@@ -273,7 +276,7 @@ if __name__ == '__main__':
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nSamples_x, nSamples_y), "Error: Shape assertion failed."
     #################################################################################
-    
+
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
 
@@ -307,4 +310,4 @@ if __name__ == '__main__':
                           showlabels = True,
                           grid = False,
                           saveSVG = False)
-
+    '''
