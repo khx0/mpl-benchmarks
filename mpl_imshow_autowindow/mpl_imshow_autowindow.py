@@ -257,7 +257,7 @@ if __name__ == '__main__':
     # first start with pixel coordinates, and the allow as an additional feature to
     #  also have other coordinates
     xmin, xmax = 0.0, 1.0 * nPxs_x
-    ymin, ymax = 0.0, 1.0 * nPxy_y
+    ymin, ymax = 0.0, 1.0 * nPxs_y
     
     '''
     xVals = np.linspace(xmin, xmax, nSamples_x)
