@@ -15,12 +15,12 @@ versions are meant to be minimal requirement python scripts that focus on
 a single issue, without further ado.
 
 ## Python and matplotlib versions
-All shown examples have been tested with python 3 (version 3.7.2)
+All shown examples have been tested with Python 3 (version 3.7.2)
 and matplotlib version 3.1.1.
 Support for Python 2 is dropped.
 However copying some snippets from the scripts will
 most likely also work with Python 2.7, as they were originally
-developed using python 2.7 and matplotlib 2.2.3.
+developed using Python 2.7 and matplotlib 2.2.3.
 
 ### Example pseudo color plot
 
