@@ -248,15 +248,14 @@ if __name__ == '__main__':
 
     # create synthetic plot data
 
-    nPxs_x = 5
-    nPxs_y = 5
+    nPxs_x = 10
+    nPxs_y = 10
 
     # at some point convert back to pixel coordinates for this assay
     # first start with pixel coordinates, and the allow as an additional feature to
     #  also have other coordinates
     xmin, xmax = 0.0, 1.0 * nPxs_x
     ymin, ymax = 0.0, 1.0 * nPxs_y
-    
     
     xVals = np.arange(xmin, xmax, 1)
     yVals = np.arange(ymin, ymax, 1)
@@ -290,14 +289,14 @@ if __name__ == '__main__':
     # call plot function
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.20, 0.88)
-    xFormat = ('linear', -0.16 * 4.0, 4.0 + 4.0 * 0.16, 0.0, 4.05, 1.0, 1.0, r'x axis label')
-    yFormat = ('linear', -0.16 * 4.0, 4.0 + 4.0 * 0.16, 0.0, 4.05, 1.0, 1.0, r'y axis label')
+    xFormat = ('linear', -0.16 * 9.0, 9.0 + 9.0 * 0.16, 0.0, 9.05, 2.0, 1.0, r'x axis label')
+    yFormat = ('linear', -0.16 * 9.0, 9.0 + 9.0 * 0.16, 0.0, 9.05, 2.0, 1.0, r'y axis label')
 
     cMap = cm.viridis
     zmin = np.min(zVals)
     zmax = np.max(zVals)
     zColor = (cMap, zmin, zmax, r'z label (cbar)')
-    zFormat = ('linear', 0.0, 0.21, 0.05)
+    zFormat = ('linear', 0.0, 1.05, 0.10)
     
     outname = 'mpl_imshow_autowindow'
     outname += '_cmap_' + cMap.name
