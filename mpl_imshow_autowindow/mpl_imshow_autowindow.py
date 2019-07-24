@@ -85,8 +85,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(tick_fontsize)
 
-    ax1.tick_params('both', length = 3.0, width = 0.5, which = 'major', pad = 3.0)
-    ax1.tick_params('both', length = 2.0, width = 0.25, which = 'minor', pad = 3.0)
+    ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
+    ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
 
     ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
@@ -244,8 +244,6 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
 
 if __name__ == '__main__':
 
-
-
     # create synthetic plot data
 
     nPxs_x = 10
@@ -266,7 +264,6 @@ if __name__ == '__main__':
 
     zVals = np.zeros((nPxs_x, nPxs_y))
 
-    
     for j in range(nPxs_y):         # iterate over y values
         for i in range(nPxs_x):     # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
@@ -288,16 +285,22 @@ if __name__ == '__main__':
     
     # call plot function
 
-    fProps = (4.0, 4.0, 0.16, 0.80, 0.20, 0.88)
-    xFormat = ('linear', -0.16 * 9.0, 9.0 + 9.0 * 0.16, 0.0, 9.05, 2.0, 1.0, r'x axis label')
-    yFormat = ('linear', -0.16 * 9.0, 9.0 + 9.0 * 0.16, 0.0, 9.05, 2.0, 1.0, r'y axis label')
+    fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
+    xFormat = ('linear', -0.08 * 9.0, 9.0 + 9.0 * 0.08, 0.0, 9.05, 2.0, 1.0, r'x axis label')
+    yFormat = ('linear', -0.08 * 9.0, 9.0 + 9.0 * 0.08, 0.0, 9.05, 2.0, 1.0, r'y axis label')
 
     cMap = cm.viridis
     zmin = np.min(zVals)
     zmax = np.max(zVals)
     zColor = (cMap, zmin, zmax, r'z label (cbar)')
-    zFormat = ('linear', 0.0, 1.05, 0.10)
+    zFormat = ('linear', 0.0, 1.85, 0.20)
     
+    print("zmin =", zmin)
+    print("zmax =", zmax)
+    
+    
+    
+    # call plot function
     outname = 'mpl_imshow_autowindow'
     outname += '_cmap_' + cMap.name
     outname += '_Python_' + platform.python_version() + \
