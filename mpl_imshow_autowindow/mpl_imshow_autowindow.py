@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-21
+# date: 2019-07-27
 # file: mpl_imshow_autowindow.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
@@ -286,6 +286,7 @@ if __name__ == '__main__':
     # call plot function
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
+    relPaddingFrac = 0.05 # relative padding fraction
     xFormat = ('linear', -0.08 * 9.0, 9.0 + 9.0 * 0.08, 0.0, 9.05, 2.0, 1.0, r'x axis label')
     yFormat = ('linear', -0.08 * 9.0, 9.0 + 9.0 * 0.08, 0.0, 9.05, 2.0, 1.0, r'y axis label')
 
