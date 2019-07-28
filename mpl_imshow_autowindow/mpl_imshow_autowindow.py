@@ -229,6 +229,19 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     return outname
 
 def getPcolorBoxCoordinates(X, type = 'linear'):
+    '''
+    Create coordinates for the x and y axis of a pseudo-color 2D plot in matplotlib.
+    This function was tailored to provide the BoxCoordinates with the mpl function
+    pcolor.
+    input:
+        X = 1D array (i.e. the x or y axis values)
+    returns:
+        Xcoords = xoordinate values for the recatangular patches of the
+                  corresponding pcolor plot.
+    Note:
+        When X is a (N, 1) od (N,) numpy array, then Xcoords will always be created
+        to be a (N+1, 1) or (N+1,) numpy array.
+    '''
     if (type == 'linear'):
         dx = X[1] - X[0]
         Xcoords = np.linspace(X[0] - dx / 2.0, X[-1] + dx / 2.0, len(X) + 1)
@@ -253,7 +266,7 @@ if __name__ == '__main__':
     width_X = nPxs_x * pixelWidth
     height_Y = nPxs_y * pixelHeight
 
-    
+
     '''
     ######################################################################################
     # ToDo: at some point convert back to pixel coordinates for this assay
