@@ -245,23 +245,29 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
 if __name__ == '__main__':
 
     # create synthetic plot data
-
+    
     nPxs_x = 10
     nPxs_y = 10
 
-    # at some point convert back to pixel coordinates for this assay
+    ######################################################################################
+    # ToDo: at some point convert back to pixel coordinates for this assay
     # first start with pixel coordinates, and the allow as an additional feature to
     #  also have other coordinates
+    ######################################################################################
+    
     xmin, xmax = 0.0, 1.0 * nPxs_x
     ymin, ymax = 0.0, 1.0 * nPxs_y
     
     xVals = np.arange(xmin, xmax, 1)
     yVals = np.arange(ymin, ymax, 1)
     
+    ######################################################################################
     # keep to change to coordinate based x-y-axes
     # xVals = np.linspace(xmin, xmax, nSamples_x)
     # yVals = np.linspace(ymin, ymax, nSamples_y)
-
+    ######################################################################################
+    
+    # fill matrix
     zVals = np.zeros((nPxs_x, nPxs_y))
 
     for j in range(nPxs_y):         # iterate over y values
@@ -298,7 +304,6 @@ if __name__ == '__main__':
     
     print("zmin =", zmin)
     print("zmax =", zmax)
-    
     
     
     # call plot function
