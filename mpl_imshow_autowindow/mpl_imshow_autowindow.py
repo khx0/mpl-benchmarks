@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-27
+# date: 2019-07-29
 # file: mpl_imshow_autowindow.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
@@ -274,17 +274,10 @@ if __name__ == '__main__':
 
     xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
     ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
-    
+
     xVals = np.linspace(xmin, xmax, nPxs_x)
     yVals = np.linspace(ymin, ymax, nPxs_y)
 
-    '''
-    ######################################################################################
-    # ToDo: keep to change to coordinate based x-y-axes
-    # xVals = np.linspace(xmin, xmax, nSamples_x)
-    # yVals = np.linspace(ymin, ymax, nSamples_y)
-    ######################################################################################
-    
     # fill matrix
     zVals = np.zeros((nPxs_x, nPxs_y))
 
@@ -311,16 +304,16 @@ if __name__ == '__main__':
     # plot settings
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
-    relativePaddingFrac = 0.05 # relative padding fraction
+    relativePaddingFrac = 0.02 # relative padding fraction
 
     xlim_left = xmin - pixelWidth / 2.0 - relativePaddingFrac * width_X
     xlim_right = xmax + pixelWidth / 2.0 + relativePaddingFrac * width_X
-    print("xlim_left =", xlim_left) 
-    print("xlim_right =", xlim_right)
+    ylim_left = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
+    ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
 
 
     xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
-    yFormat = ('linear', -0.08 * 9.0, 9.0 + 9.0 * 0.08, 0.0, 9.05, 2.0, 1.0, r'y axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
 
     zmin = np.min(zVals)
     zmax = np.max(zVals)
@@ -380,4 +373,3 @@ if __name__ == '__main__':
                           showlabels = True,
                           grid = False,
                           saveSVG = False)
-    '''
