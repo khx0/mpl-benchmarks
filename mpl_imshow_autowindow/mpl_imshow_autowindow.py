@@ -274,20 +274,21 @@ if __name__ == '__main__':
         for i in range(nPxs_x):     # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
-    #################################################################################
+    ######################################################################################
     print("xVals.shape =", xVals.shape)
     print("yVals.shape =", yVals.shape)
     print("zVals.shape =", zVals.shape)
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
-    #################################################################################
+    ######################################################################################
     
+    ######################################################################################
     # still necessary? --> check
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
-
     assert xBoxCoords.shape == (nPxs_x + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (nPxs_y + 1,), "Error: Shape assertion failed."
+    ######################################################################################
     
     # call plot function
 
@@ -351,4 +352,4 @@ if __name__ == '__main__':
                           showlabels = True,
                           grid = False,
                           saveSVG = False)
-
+    '''
