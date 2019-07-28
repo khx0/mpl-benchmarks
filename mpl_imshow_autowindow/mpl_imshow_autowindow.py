@@ -266,20 +266,19 @@ if __name__ == '__main__':
     width_X = nPxs_x * pixelWidth
     height_Y = nPxs_y * pixelHeight
 
-
-    '''
     ######################################################################################
     # ToDo: at some point convert back to pixel coordinates for this assay
     # first start with pixel coordinates, and the allow as an additional feature to
     #  also have other coordinates
     ######################################################################################
+
+    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
     
-    xmin, xmax = 0.0, 1.0 * nPxs_x
-    ymin, ymax = 0.0, 1.0 * nPxs_y
-    
-    xVals = np.arange(xmin, xmax, 1)
-    yVals = np.arange(ymin, ymax, 1)
-    
+    xVals = np.linspace(xmin, xmax, nPxs_x)
+    yVals = np.linspace(ymin, ymax, nPxs_y)
+
+    '''
     ######################################################################################
     # ToDo: keep to change to coordinate based x-y-axes
     # xVals = np.linspace(xmin, xmax, nSamples_x)
