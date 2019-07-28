@@ -245,10 +245,16 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
 if __name__ == '__main__':
 
     # create synthetic plot data
-    
+
     nPxs_x = 10
     nPxs_y = 10
+    pixelWidth = 1.0
+    pixelHeight = 1.0
+    width_X = nPxs_x * pixelWidth
+    height_Y = nPxs_y * pixelHeight
 
+    
+    '''
     ######################################################################################
     # ToDo: at some point convert back to pixel coordinates for this assay
     # first start with pixel coordinates, and the allow as an additional feature to
@@ -262,7 +268,7 @@ if __name__ == '__main__':
     yVals = np.arange(ymin, ymax, 1)
     
     ######################################################################################
-    # keep to change to coordinate based x-y-axes
+    # ToDo: keep to change to coordinate based x-y-axes
     # xVals = np.linspace(xmin, xmax, nSamples_x)
     # yVals = np.linspace(ymin, ymax, nSamples_y)
     ######################################################################################
@@ -283,31 +289,41 @@ if __name__ == '__main__':
     ######################################################################################
     
     ######################################################################################
-    # still necessary? --> check
+    # ToDo: still necessary? --> check
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
     assert xBoxCoords.shape == (nPxs_x + 1,), "Error: Shape assertion failed."
     assert yBoxCoords.shape == (nPxs_y + 1,), "Error: Shape assertion failed."
     ######################################################################################
     
-    # call plot function
+    # plot settings
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
-    relPaddingFrac = 0.05 # relative padding fraction
-    xFormat = ('linear', -0.08 * 9.0, 9.0 + 9.0 * 0.08, 0.0, 9.05, 2.0, 1.0, r'x axis label')
+    relativePaddingFrac = 0.05 # relative padding fraction
+
+    xlim_left = xmin - pixelWidth / 2.0 - relativePaddingFrac * width_X
+    xlim_right = xmax + pixelWidth / 2.0 + relativePaddingFrac * width_X
+    print("xlim_left =", xlim_left) 
+    print("xlim_right =", xlim_right)
+
+
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
     yFormat = ('linear', -0.08 * 9.0, 9.0 + 9.0 * 0.08, 0.0, 9.05, 2.0, 1.0, r'y axis label')
 
-    cMap = cm.viridis
     zmin = np.min(zVals)
     zmax = np.max(zVals)
-    zColor = (cMap, zmin, zmax, r'z label (cbar)')
     zFormat = ('linear', 0.0, 1.85, 0.20)
-    
+
+    cMap = cm.viridis
+    zColor = (cMap, zmin, zmax, r'z label (cbar)')
+
+    print("/////////////////////////////////////////////////////////////////////////////")
     print("zmin =", zmin)
     print("zmax =", zmax)
-    
-    
+    print("/////////////////////////////////////////////////////////////////////////////")
+
     # call plot function
+
     outname = 'mpl_imshow_autowindow'
     outname += '_cmap_' + cMap.name
     outname += '_Python_' + platform.python_version() + \
