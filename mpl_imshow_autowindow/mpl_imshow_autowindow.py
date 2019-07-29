@@ -294,7 +294,7 @@ if __name__ == '__main__':
     ######################################################################################
     
     ######################################################################################
-    # ToDo: still necessary? --> check
+    # retrieve box coordinates
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
     assert xBoxCoords.shape == (nPxs_x + 1,), "Error: Shape assertion failed."
@@ -310,7 +310,6 @@ if __name__ == '__main__':
     xlim_right = xmax + pixelWidth / 2.0 + relativePaddingFrac * width_X
     ylim_left = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
     ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
-
 
     xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
     yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
