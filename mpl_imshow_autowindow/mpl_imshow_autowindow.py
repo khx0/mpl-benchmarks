@@ -286,6 +286,7 @@ def test_01():
             zVals[i, j] = 0.2 * xVals[i]
 
     ######################################################################################
+    # print infor for development purposes and sanity checks
     print("xVals.shape =", xVals.shape)
     print("yVals.shape =", yVals.shape)
     print("zVals.shape =", zVals.shape)
