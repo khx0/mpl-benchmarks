@@ -133,7 +133,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
 
         cb1.outline.set_linewidth(0.5)
         cb1.ax.tick_params(axis = 'y', direction = 'out', which = 'both')
-        cb1.ax.tick_params(labelsize = 8.0)
+        cb1.ax.tick_params(labelsize = 6.0)
 
         if (zFormat[0] == 'linear'):
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
@@ -255,7 +255,7 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
         sys.exit(1)
     return Xcoords
 
-if __name__ == '__main__':
+def test_01():
 
     # create synthetic plot data
 
@@ -328,7 +328,7 @@ if __name__ == '__main__':
 
     # call plot function
 
-    outname = 'mpl_imshow_autowindow'
+    outname = 'mpl_imshow_autowindow_test_01'
     outname += '_cmap_' + cMap.name
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
@@ -352,7 +352,7 @@ if __name__ == '__main__':
     cMap = cm.gray
     zColor = (cMap, zmin, zmax, r'z label (cbar)')
     
-    outname = 'mpl_imshow_autowindow'
+    outname = 'mpl_imshow_autowindow_test_01'
     outname += '_cmap_' + cMap.name
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
@@ -372,3 +372,9 @@ if __name__ == '__main__':
                           showlabels = True,
                           grid = False,
                           saveSVG = False)
+
+    return None
+
+if __name__ == '__main__':
+
+	test_01()
