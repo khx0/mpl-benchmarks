@@ -304,7 +304,7 @@ if __name__ == '__main__':
     # plot settings
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
-    relativePaddingFrac = 0.02 # relative padding fraction
+    relativePaddingFrac = 0.015 # relative padding fraction
 
     xlim_left = xmin - pixelWidth / 2.0 - relativePaddingFrac * width_X
     xlim_right = xmax + pixelWidth / 2.0 + relativePaddingFrac * width_X
