@@ -51,6 +51,12 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
                 outname, outdir, showlabels, grid = False, saveSVG = False,
                 savePDF = True, savePNG = False, datestamp = True):
 
+    # retrieve box coordinates
+    xBoxCoords = getPcolorBoxCoordinates(X)
+    yBoxCoords = getPcolorBoxCoordinates(Y)
+    assert xBoxCoords.shape == (len(X) + 1,), "Error: Shape assertion failed."
+    assert yBoxCoords.shape == (len(Y) + 1,), "Error: Shape assertion failed."
+    
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
     mpl.rcParams['ytick.right'] = False
@@ -140,7 +146,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
             cb1.set_ticks(cb_labels)
         # cb1.ax.minorticks_on()
 
-    ax1.pcolormesh(X, Y, Z,
+    ax1.pcolormesh(xBoxCoords, yBoxCoords, Z,
                    cmap = cMap,
                    norm = cNorm,
                    edgecolors = 'none')
@@ -266,12 +272,6 @@ def test_01(cMaps = [cm.viridis]):
     width_X = nPxs_x * pixelWidth
     height_Y = nPxs_y * pixelHeight
 
-    ######################################################################################
-    # ToDo: at some point convert back to pixel coordinates for this assay
-    # first start with pixel coordinates, and the allow as an additional feature to
-    #  also have other coordinates
-    ######################################################################################
-
     xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
     ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
 
@@ -294,19 +294,14 @@ def test_01(cMaps = [cm.viridis]):
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
     ######################################################################################
 
-    ######################################################################################
-    # retrieve box coordinates
-    xBoxCoords = getPcolorBoxCoordinates(xVals)
-    yBoxCoords = getPcolorBoxCoordinates(yVals)
-    assert xBoxCoords.shape == (nPxs_x + 1,), "Error: Shape assertion failed."
-    assert yBoxCoords.shape == (nPxs_y + 1,), "Error: Shape assertion failed."
-    ######################################################################################
-
     # plot settings
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
     relativePaddingFrac = 0.015 # relative padding fraction
-
+    
+    print(np.min(xVals))
+    print(np.max(yVals))
+    
     xlim_left = xmin - pixelWidth / 2.0 - relativePaddingFrac * width_X
     xlim_right = xmax + pixelWidth / 2.0 + relativePaddingFrac * width_X
     ylim_left = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
@@ -335,8 +330,8 @@ def test_01(cMaps = [cm.viridis]):
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
 
-        outname = plot_pcolor(X = xBoxCoords,
-                              Y = yBoxCoords,
+        outname = plot_pcolor(X = xVals,
+                              Y = yVals,
                               Z = zVals,
                               titlestr = '',
                               fProps = fProps,
