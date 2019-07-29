@@ -255,7 +255,7 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
         sys.exit(1)
     return Xcoords
 
-def test_01():
+def test_01(cMaps = [cm.viridis]):
 
     # create synthetic plot data
 
@@ -319,63 +319,40 @@ def test_01():
     zmax = np.max(zVals)
     zFormat = ('linear', 0.0, 1.85, 0.20)
 
-    cMap = cm.viridis
-    zColor = (cMap, zmin, zmax, r'z label (cbar)')
-
     print("/////////////////////////////////////////////////////////////////////////////")
     print("zmin =", zmin)
     print("zmax =", zmax)
     print("/////////////////////////////////////////////////////////////////////////////")
 
-    # call plot function
+    # loop over color maps
+    for cMap in cMaps:
 
-    outname = 'mpl_imshow_autowindow_test_01'
-    outname += '_cmap_' + cMap.name
-    outname += '_Python_' + platform.python_version() + \
-               '_mpl_' + mpl.__version__
+        zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
-    outname = plot_pcolor(X = xBoxCoords,
-                          Y = yBoxCoords,
-                          Z = zVals,
-                          titlestr = '',
-                          fProps = fProps,
-                          xFormat = xFormat,
-                          yFormat = yFormat,
-                          zFormat = zFormat,
-                          zColor = zColor,
-                          show_cBar = True,
-                          outname = outname,
-                          outdir = OUTDIR,
-                          showlabels = True,
-                          grid = False,
-                          saveSVG = False)
+        # call plot function
+        outname = 'mpl_imshow_autowindow_test_01'
+        outname += '_cmap_' + cMap.name
+        outname += '_Python_' + platform.python_version() + \
+                   '_mpl_' + mpl.__version__
 
-    cMap = cm.gray
-    zColor = (cMap, zmin, zmax, r'z label (cbar)')
-    
-    outname = 'mpl_imshow_autowindow_test_01'
-    outname += '_cmap_' + cMap.name
-    outname += '_Python_' + platform.python_version() + \
-               '_mpl_' + mpl.__version__
-
-    outname = plot_pcolor(X = xBoxCoords,
-                          Y = yBoxCoords,
-                          Z = zVals,
-                          titlestr = '',
-                          fProps = fProps,
-                          xFormat = xFormat,
-                          yFormat = yFormat,
-                          zFormat = zFormat,
-                          zColor = zColor,
-                          show_cBar = True,
-                          outname = outname,
-                          outdir = OUTDIR,
-                          showlabels = True,
-                          grid = False,
-                          saveSVG = False)
+        outname = plot_pcolor(X = xBoxCoords,
+                              Y = yBoxCoords,
+                              Z = zVals,
+                              titlestr = '',
+                              fProps = fProps,
+                              xFormat = xFormat,
+                              yFormat = yFormat,
+                              zFormat = zFormat,
+                              zColor = zColor,
+                              show_cBar = True,
+                              outname = outname,
+                              outdir = OUTDIR,
+                              showlabels = True,
+                              grid = False,
+                              saveSVG = False)
 
     return None
 
 if __name__ == '__main__':
 
-	test_01()
+	test_01(cMaps = [cm.viridis, cm.gray])
