@@ -352,9 +352,100 @@ def test_01(cMaps = [cm.viridis]):
                               saveSVG = False)
 
     return None
+    
+def test_02(cMaps = [cm.viridis]):
+
+    # create synthetic plot data
+
+    nPxs_x = 10
+    nPxs_y = 10
+    pixelWidth = 1.0
+    pixelHeight = 1.0
+        
+    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+
+    xVals = np.linspace(xmin, xmax, nPxs_x)
+    yVals = np.linspace(ymin, ymax, nPxs_y)
+
+    width_X = nPxs_x * pixelWidth
+    height_Y = nPxs_y * pixelHeight
+
+    # fill matrix
+    zVals = np.zeros((nPxs_x, nPxs_y))
+
+    for j in range(nPxs_y):         # iterate over y values
+        for i in range(nPxs_x):     # iterate over x values
+            zVals[i, j] = 0.2 * xVals[i]
+            
+    zVals -= 1.0 / 3.0
+    
+    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
+    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+
+    zmin = np.min(zVals)
+    zmax = np.max(zVals)
+
+    ######################################################################################
+    # print info for development purposes and sanity checks
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("xVals.shape =", xVals.shape)
+    print("yVals.shape =", yVals.shape)
+    print("zVals.shape =", zVals.shape)
+    print("(zmin, zmax) =", zmin, zmax)
+    print("/////////////////////////////////////////////////////////////////////////////")
+    ######################################################################################
+
+    # plot settings
+
+    fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
+    relativePaddingFrac = 0.015 # relative padding fraction
+        
+    xlim_left = xmin - pixelWidth / 2.0 - relativePaddingFrac * width_X
+    xlim_right = xmax + pixelWidth / 2.0 + relativePaddingFrac * width_X
+    ylim_left = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
+    ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
+
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
+    zFormat = ('linear', -0.4, 1.85, 0.20)
+
+    # loop over color maps
+    for cMap in cMaps:
+
+        zColor = (cMap, zmin, zmax, r'z label (cbar)')
+
+        # assemble outname string
+        outname = 'mpl_imshow_autowindow_test_02'
+        outname += '_cmap_' + cMap.name
+        outname += '_Python_' + platform.python_version() + \
+                   '_mpl_' + mpl.__version__
+        
+        # call plot function
+        outname = plot_pcolor(X = xVals,
+                              Y = yVals,
+                              Z = zVals,
+                              titlestr = '',
+                              fProps = fProps,
+                              xFormat = xFormat,
+                              yFormat = yFormat,
+                              zFormat = zFormat,
+                              zColor = zColor,
+                              show_cBar = True,
+                              outname = outname,
+                              outdir = OUTDIR,
+                              showlabels = True,
+                              grid = False,
+                              saveSVG = False)
+
+    return None
 
 if __name__ == '__main__':
 
 	test_01(cMaps = [cm.viridis, cm.gray])
 	
-	# test_02(cMaps = [cm.viridis, cm.gray])
+	test_02(cMaps = [cm.viridis, cm.gray])
+	
+	# ToDo: define window modes:
+	# 1 ) set zmin and zmax
+	# 2 ) apply restriced window / level range
