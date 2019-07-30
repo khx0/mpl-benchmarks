@@ -321,21 +321,20 @@ def test_01(cMaps = [cm.viridis]):
 
     xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
     yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
-
     zFormat = ('linear', 0.0, 1.85, 0.20)
-
 
     # loop over color maps
     for cMap in cMaps:
 
         zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
-        # call plot function
+        # assemble outname string
         outname = 'mpl_imshow_autowindow_test_01'
         outname += '_cmap_' + cMap.name
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
-
+        
+        # call plot function
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
                               Z = zVals,
@@ -357,3 +356,5 @@ def test_01(cMaps = [cm.viridis]):
 if __name__ == '__main__':
 
 	test_01(cMaps = [cm.viridis, cm.gray])
+	
+	# test_02(cMaps = [cm.viridis, cm.gray])
