@@ -292,14 +292,21 @@ def test_01(cMaps = [cm.viridis]):
     for j in range(nPxs_y):         # iterate over y values
         for i in range(nPxs_x):     # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
+            
+    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
+    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+
+    zmin = np.min(zVals)
+    zmax = np.max(zVals)
 
     ######################################################################################
     # print info for development purposes and sanity checks
+    print("/////////////////////////////////////////////////////////////////////////////")
     print("xVals.shape =", xVals.shape)
     print("yVals.shape =", yVals.shape)
     print("zVals.shape =", zVals.shape)
-    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+    print("(zmin, zmax) =", zmin, zmax)
+    print("/////////////////////////////////////////////////////////////////////////////")
     ######################################################################################
 
     # plot settings
@@ -315,14 +322,8 @@ def test_01(cMaps = [cm.viridis]):
     xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
     yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
 
-    zmin = np.min(zVals)
-    zmax = np.max(zVals)
     zFormat = ('linear', 0.0, 1.85, 0.20)
 
-    print("/////////////////////////////////////////////////////////////////////////////")
-    print("zmin =", zmin)
-    print("zmax =", zmax)
-    print("/////////////////////////////////////////////////////////////////////////////")
 
     # loop over color maps
     for cMap in cMaps:
