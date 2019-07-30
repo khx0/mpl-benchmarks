@@ -119,8 +119,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         # relative to the figure size
         cax = f.add_axes([0.82, bFrac, 0.03, (tFrac - bFrac)])
 
-        cax.tick_params('both', length = 3.0, width = 0.5, which = 'major')
-        cax.tick_params('both', length = 2.0, width = 0.25, which = 'minor')
+        cax.tick_params('both', length = 2.5, width = 0.5, which = 'major')
+        cax.tick_params('both', length = 1.5, width = 0.25, which = 'minor')
         cax.tick_params(axis = 'both', which = 'major', pad = 2)
 
         cb1 = mpl.colorbar.ColorbarBase(cax,
@@ -128,6 +128,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
                                         norm = cNorm,
                                         orientation = 'vertical')
 
+        # ToDo: clean up
 #         cb1.set_label(zColor[3],
 #                       labelpad = 2.5, fontsize = 6)
 
@@ -144,9 +145,13 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         if (zFormat[0] == 'linear'):
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
+        
+        # ToDo: clean up
         # cb1.ax.minorticks_on()
 
-    ax1.pcolormesh(xBoxCoords, yBoxCoords, Z,
+    ax1.pcolormesh(xBoxCoords, 
+                   yBoxCoords, 
+                   Z,
                    cmap = cMap,
                    norm = cNorm,
                    edgecolors = 'none')
@@ -161,7 +166,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-
+        
+        # ToDo: clean up
         # manual formatting here:
         # ax1.set_xticklabels([0, 0.5, 1])
 
@@ -186,6 +192,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
 
+        # ToDo: clean up
         # manual formatting here:
         # ax1.set_yticklabels([0, 0.5, 1])
 
@@ -269,14 +276,15 @@ def test_01(cMaps = [cm.viridis]):
     nPxs_y = 10
     pixelWidth = 1.0
     pixelHeight = 1.0
-    width_X = nPxs_x * pixelWidth
-    height_Y = nPxs_y * pixelHeight
-
+        
     xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
     ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
 
     xVals = np.linspace(xmin, xmax, nPxs_x)
     yVals = np.linspace(ymin, ymax, nPxs_y)
+
+    width_X = nPxs_x * pixelWidth
+    height_Y = nPxs_y * pixelHeight
 
     # fill matrix
     zVals = np.zeros((nPxs_x, nPxs_y))
@@ -298,10 +306,7 @@ def test_01(cMaps = [cm.viridis]):
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
     relativePaddingFrac = 0.015 # relative padding fraction
-    
-    print(np.min(xVals))
-    print(np.max(yVals))
-    
+        
     xlim_left = xmin - pixelWidth / 2.0 - relativePaddingFrac * width_X
     xlim_right = xmax + pixelWidth / 2.0 + relativePaddingFrac * width_X
     ylim_left = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
