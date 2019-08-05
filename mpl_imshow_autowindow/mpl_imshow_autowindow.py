@@ -496,8 +496,8 @@ def test_03(cMaps = [cm.viridis]):
         ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
         print(xlim_left, xlim_right)
         print(ylim_left, ylim_right)
-        xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.55, 1.0, 1.0, r'x axis label')
-        yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.55, 1.0, 1.0, r'y axis label')
+        xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.02 * xmax, 1.0, 1.0, r'x axis label')
+        yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * ymax, 1.0, 1.0, r'y axis label')
         zFormat = ('linear', -0.4, 1.85, 0.20)
 
         # loop over color maps
