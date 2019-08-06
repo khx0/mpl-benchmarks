@@ -255,6 +255,9 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
         When X is a (N, 1) od (N,) numpy array, then Xcoords will always be created
         to be a (N+1, 1) or (N+1,) numpy array.
     '''
+    if (len(X) == 1) or (X.shape == (1,)) or (X.shape == (1, 1)):
+        print("Error in getPcolorBoxCoordinates: Expected array of size larger than 1.")
+        return None
     if (type == 'linear'):
         dx = X[1] - X[0]
         Xcoords = np.linspace(X[0] - dx / 2.0, X[-1] + dx / 2.0, len(X) + 1)
@@ -444,7 +447,8 @@ def test_03(cMaps = [cm.viridis]):
 
     # create synthetic plot data
     
-    for n in np.arange(2, 10, 1):
+    for n in np.arange(1, 3, 1):
+    # for n in np.arange(2, 10, 1):
         # crashes for nPxs_x = nPxs_y = 1 (ToDo: fix)
         nPxs_x = n
         nPxs_y = n
@@ -510,7 +514,7 @@ def test_03(cMaps = [cm.viridis]):
             outname += '_cmap_' + cMap.name
             outname += '_Python_' + platform.python_version() + \
                        '_mpl_' + mpl.__version__
-        
+
             # call plot function
             outname = plot_pcolor(X = xVals,
                                   Y = yVals,
