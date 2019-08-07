@@ -57,7 +57,7 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
         to be a (N+1, 1) or (N+1,) numpy ndarray.
     '''
     if (len(X) == 1) or (X.shape == (1,)) or (X.shape == (1, 1)):
-        print("Error in getPcolorBoxCoordinates: Expected array of size larger than 1.")
+        print("Warning(getPcolorBoxCoordinates): Expected array of size larger than 1.")
         return None
     if (type == 'linear'):
         dx = X[1] - X[0]

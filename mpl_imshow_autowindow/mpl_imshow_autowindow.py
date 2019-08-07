@@ -246,17 +246,16 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
     Create coordinates for the x and y axis of a pseudo-color 2D plot in matplotlib.
     This function was tailored to provide the BoxCoordinates with the mpl function
     pcolor.
-    input:
-        X = 1D array (i.e. the x or y axis values)
-    returns:
-        Xcoords = xoordinate values for the recatangular patches of the
-                  corresponding pcolor plot.
+    :param X: numpy ndarray, X = 1D array (i.e. the x or y axis values)
+    :param type: string, specifying the axis scaling type, default is 'linear'
+    :returns Xcoords: x coordinate values for the recatangular patches of the
+        corresponding pcolor plot.
     Note:
-        When X is a (N, 1) od (N,) numpy array, then Xcoords will always be created
-        to be a (N+1, 1) or (N+1,) numpy array.
+        When X is a (N, 1) od (N,) numpy ndarray, then Xcoords will always be created
+        to be a (N+1, 1) or (N+1,) numpy ndarray.
     '''
     if (len(X) == 1) or (X.shape == (1,)) or (X.shape == (1, 1)):
-        print("Error in getPcolorBoxCoordinates: Expected array of size larger than 1.")
+        print("Warning(getPcolorBoxCoordinates):: Expected array of size larger than 1.")
         return None
     if (type == 'linear'):
         dx = X[1] - X[0]
