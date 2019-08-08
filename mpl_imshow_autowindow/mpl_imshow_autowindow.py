@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-29
+# date: 2019-08-07
 # file: mpl_imshow_autowindow.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
