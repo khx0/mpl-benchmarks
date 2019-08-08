@@ -16,6 +16,8 @@ $python -m pytest
 where python is your chosen python interpreter or
 alternatively simply call
 $pytest
+or
+$pytest -v
 using the default python interpreter.
 '''
 

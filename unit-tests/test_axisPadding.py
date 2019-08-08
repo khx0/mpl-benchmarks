@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-31
+# date: 2019-08-08
 # file: test_axisPadding.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -16,6 +16,8 @@ $python -m pytest
 where python is your chosen python interpreter or
 alternatively simply call
 $pytest
+or
+$pytest -v
 using the default python interpreter.
 '''
 
@@ -86,7 +88,7 @@ if __name__ == '__main__':
 
     print("/////////////////////////////////////////////////////////////////////////////")
     print("/////////////////////////////////////////////////////////////////////////////")
-    print("Running ", __file__)
+    print("Running", __file__)
     print("/////////////////////////////////////////////////////////////////////////////")
     print("/////////////////////////////////////////////////////////////////////////////")
     print("Python Interpreter Version =", platform.python_version())
