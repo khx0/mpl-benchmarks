@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-08
+# date: 2019-08-10
 # file: create_samples.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -13,6 +13,7 @@
 
 import os
 import datetime
+import platform
 import numpy as np
 
 now = datetime.datetime.now()
@@ -26,13 +27,14 @@ os.makedirs(RAWDIR, exist_ok = True)
 
 if __name__ == '__main__':
 
+    print("running on python", platform.python_version())
     print("using np.__version__ =", np.__version__)
 
     # set parameters
     nSamples = 200
-    
+
     seedValue = 987654321
-    
+
     np.random.seed(seedValue)
 
     # create samples
