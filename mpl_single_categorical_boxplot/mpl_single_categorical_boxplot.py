@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-11
+# date: 2019-08-12
 # file: mpl_single_categorical_boxplot.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -24,14 +24,57 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(RAWDIR, exist_ok = True)
 os.makedirs(OUTDIR, exist_ok = True)
 
-def create_boxplot(X, outname, outdir = './',
-        datestamp = True, savePDF = True, savePNG = False):
+def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
+    '''
+    True size scaling auxiliary function to setup mpl plots with a desired size.
+    Specify widht and height in cm.
+    lFrac = left fraction   in [0, 1]
+    rFrac = right fraction  in [0, 1]
+    bFrac = bottom fraction in [0, 1]
+    tFrac = top fraction    in [0, 1]
+    returns:
+        fWidth = figure width
+        fHeight = figure height
+    These figure width and height values can then be used to create a figure instance
+    of the desired size, such that the actual plotting canvas has the specified
+    target width and height, as provided by the input parameters of this function.
+    '''
+    axesWidth = width / 2.54    # convert to inches
+    axesHeight = height / 2.54  # convert to inches
+    fWidth = axesWidth / (rFrac - lFrac)
+    fHeight = axesHeight / (tFrac - bFrac)
+    return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
+
+def create_boxplot(X, outname, outdir = './', datestamp = True, 
+    savePDF = True, savePNG = False):
     '''
     cretaes a single categorical (x - axis) boxplot using the given data sample X
     :params X: numpy.ndarray
     '''
 
-    f, ax1 = plt.subplots()
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
+    mpl.rcParams['pdf.fonttype'] = 42
+    mpl.rcParams['text.usetex'] = False
+    mpl.rcParams['mathtext.fontset'] = 'cm'
+    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
+                                          r'\usepackage{amsmath}']}
+    mpl.rcParams.update(fontparams)
+
+    # f, ax1 = plt.subplots()
+
+    ######################################################################################
+    # set up figure
+    fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
+        getFigureProps(width = 3.0, height = 4.0,
+                       lFrac = 0.17, rFrac = 0.95, bFrac = 0.20, tFrac = 0.95)
+    f, ax1 = plt.subplots(1)
+    f.set_size_inches(fWidth, fHeight)
+    f.subplots_adjust(left = lFrac, right = rFrac)
+    f.subplots_adjust(bottom = bFrac, top = tFrac)
+    ######################################################################################
+    
+    ax1.spines['right'].set_visible(False)
+    ax1.spines['top'].set_visible(False)
 
     ax1.boxplot(X)
 
@@ -67,4 +110,3 @@ if __name__ == '__main__':
     create_boxplot(X = data,
                    outname = outname,
                    outdir = OUTDIR)
-
