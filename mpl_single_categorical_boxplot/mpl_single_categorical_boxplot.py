@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-10
+# date: 2019-08-11
 # file: mpl_single_categorical_boxplot.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -28,18 +28,7 @@ if __name__ == '__main__':
     print("running on python", platform.python_version())
     print("using mpl.__version__ =", mpl.__version__)
 
-#     set parameters
-#     nSamples = 200
-# 
-#     seedValue = 987654321
-# 
-#     np.random.seed(seedValue)
-# 
-#     create samples
-#     samples = np.random.normal(loc = 2.0, scale = 1.0, size = nSamples)
-#     print("samples.shape =", samples.shape)
-# 
-#     save samples to file
-#     outname = 'normal_samples_np_seed_{:d}'.format(seedValue)
-#     np.savetxt(os.path.join(RAWDIR, outname + '.dat'), samples, fmt = '%.8f')
-#     np.save(os.path.join(RAWDIR, outname), samples)
+    filename = r'normal_samples_np_seed_987654321.npy'
+
+    data = np.load(os.path.join(RAWDIR, filename))
+    print(data.shape)
