@@ -18,8 +18,7 @@ from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
-now = datetime.datetime.now()
-now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
+today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
@@ -51,7 +50,7 @@ if __name__ == '__main__':
     outname = 'mpl_scatter_histogram_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    outname += '_' + now
+    outname += '_' + today
 
     # create data
     meanValue = 1.5

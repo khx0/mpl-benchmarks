@@ -32,8 +32,8 @@ if __name__ == '__main__':
     # set parameters
     nSamples = 200
 
+    # fixing random state for reproducibility of results
     seedValue = 987654321
-
     np.random.seed(seedValue)
 
     # create samples

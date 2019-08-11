@@ -13,6 +13,7 @@ import datetime
 import platform
 import numpy as np
 import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -29,7 +30,11 @@ def create_boxplot(X):
     :params X: numpy.ndarray
     '''
 
-    pass
+    f, ax1 = plt.subplots()
+
+    ax1.boxplot(X)
+
+    # plt.show()
     
     return None
 
