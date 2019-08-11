@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-04
+# date: 2019-08-11
 # file: mpl_array_plot.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
