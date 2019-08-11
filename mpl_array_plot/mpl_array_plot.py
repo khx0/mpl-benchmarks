@@ -15,8 +15,7 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-now = datetime.datetime.now()
-now = "{}-{}-{}".format(now.year, str(now.month).zfill(2), str(now.day).zfill(2))
+today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
@@ -41,12 +40,12 @@ def plot_patch_array(X, nrows, ncols, outname, outdir, cmap,
         outname += '_transparent_background'
     else:
         outname += '_white_background'
-        
+
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    
+
     if datestamp:
-        outname += '_' + now               
+        outname += '_' + today         
     if savePNG:
         f.savefig(os.path.join(OUTDIR, outname) + '.png', dpi = 600, transparent = transparent)
 
@@ -60,11 +59,12 @@ if __name__ == '__main__':
 
     # (pseudo) random number handling
     randomSeed = 123456789
+    # fix random state for reproducibility
     np.random.seed(randomSeed)
-    
+
     # create synthetic data
     patchShape = (5, 5)
-    
+
     nPatches = 25
     patches = []
     for idx in range(nPatches):
