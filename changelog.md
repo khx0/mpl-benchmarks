@@ -9,6 +9,7 @@ now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfi
 ```
 by the way more simple
 ```
+import datetime
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 ```
-.
+to get a string variable of today's date in the military format YYYY-MM-DD.

@@ -24,7 +24,8 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(RAWDIR, exist_ok = True)
 os.makedirs(OUTDIR, exist_ok = True)
 
-def create_boxplot(X):
+def create_boxplot(X, outname, outdir = './',
+        datestamp = True, savePDF = True, savePNG = False):
     '''
     cretaes a single categorical (x - axis) boxplot using the given data sample X
     :params X: numpy.ndarray
@@ -34,9 +35,20 @@ def create_boxplot(X):
 
     ax1.boxplot(X)
 
-    # plt.show()
-    
-    return None
+    ######################################################################################
+    # save to file
+    if datestamp:
+        outname += '_' + today
+    if savePDF: # save to file using pdf backend
+        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
+    if savePNG:
+        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
+    ######################################################################################
+    # close handles
+    plt.cla()
+    plt.clf()
+    plt.close()
+    return outname
 
 if __name__ == '__main__':
 
@@ -47,7 +59,10 @@ if __name__ == '__main__':
 
     data = np.load(os.path.join(RAWDIR, filename))
     print(data.shape)
-    
-    create_boxplot(X = data)
-    
-    
+
+    outname = 'mpl_single_categorical_boxplot'
+
+    create_boxplot(X = data,
+                   outname = outname,
+                   outdir = OUTDIR)
+
