@@ -61,6 +61,8 @@ if __name__ == '__main__':
     print(data.shape)
 
     outname = 'mpl_single_categorical_boxplot'
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
 
     create_boxplot(X = data,
                    outname = outname,

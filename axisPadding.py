@@ -1,9 +1,9 @@
- #!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-21
+# date: 2019-08-11
 # file: axisPadding.py
 # tested with python 3.7.2
 ##########################################################################################
