@@ -23,6 +23,16 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(RAWDIR, exist_ok = True)
 os.makedirs(OUTDIR, exist_ok = True)
 
+def create_boxplot(X):
+    '''
+    cretaes a single categorical (x - axis) boxplot using the given data sample X
+    :params X: numpy.ndarray
+    '''
+
+    pass
+    
+    return None
+
 if __name__ == '__main__':
 
     print("running on python", platform.python_version())
@@ -32,3 +42,7 @@ if __name__ == '__main__':
 
     data = np.load(os.path.join(RAWDIR, filename))
     print(data.shape)
+    
+    create_boxplot(X = data)
+    
+    
