@@ -1,6 +1,6 @@
-# mpl-benchmarks changelog
+# mpl-benchmarks' changelog
 
-### 2019-08-11
+### 2019-08-11 date str using datetime
 I replaced my old datetime strings in the form of
 ```
 import datetime
