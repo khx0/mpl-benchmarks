@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-12
+# date: 2019-08-13
 # file: mpl_single_categorical_boxplot.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -45,8 +45,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def create_boxplot(X, outname, outdir = './', datestamp = True, 
-    savePDF = True, savePNG = False):
+def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
+	pColors = None, datestamp = True, savePDF = True, savePNG = False):
     '''
     cretaes a single categorical (x - axis) boxplot using the given data sample X
     :params X: numpy.ndarray
@@ -60,13 +60,11 @@ def create_boxplot(X, outname, outdir = './', datestamp = True,
                                           r'\usepackage{amsmath}']}
     mpl.rcParams.update(fontparams)
 
-    # f, ax1 = plt.subplots()
-
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 3.0, height = 4.0,
-                       lFrac = 0.17, rFrac = 0.95, bFrac = 0.20, tFrac = 0.95)
+                       lFrac = 0.28, rFrac = 0.95, bFrac = 0.20, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -76,7 +74,21 @@ def create_boxplot(X, outname, outdir = './', datestamp = True,
     ax1.spines['right'].set_visible(False)
     ax1.spines['top'].set_visible(False)
 
-    ax1.boxplot(X)
+    width = 0.2
+    
+    bp1 = ax1.boxplot(X,
+    				  widths = width)
+
+    if pColors:
+    	plt.setp(bp1['medians'], color = pColors[0])
+
+    if xLabel:
+    	ax1.set_xlabel(xLabel)
+    if yLabel:
+    	ax1.set_ylabel(yLabel)
+
+    ax1.set_xticks([1.0])
+    ax1.set_xticklabels([r'category'])
 
     ######################################################################################
     # save to file
@@ -107,6 +119,12 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
+    xLabel = r'categorical $x$ label'
+    yLabel = r'$y$ label'
+
     create_boxplot(X = data,
                    outname = outname,
-                   outdir = OUTDIR)
+                   outdir = OUTDIR,
+                   pColors = ['C3'],
+                   xLabel = xLabel,
+                   yLabel = yLabel)
