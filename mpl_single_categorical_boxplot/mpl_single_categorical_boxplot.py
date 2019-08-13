@@ -74,6 +74,8 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     ax1.spines['right'].set_visible(False)
     ax1.spines['top'].set_visible(False)
 
+    # boxplot parameter
+    xPos = [1.0]
     width = 0.2
     
     bp1 = ax1.boxplot(X,
@@ -87,7 +89,7 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     if yLabel:
     	ax1.set_ylabel(yLabel)
 
-    ax1.set_xticks([1.0])
+    ax1.set_xticks(xPos)
     ax1.set_xticklabels([r'category'])
 
     ######################################################################################
