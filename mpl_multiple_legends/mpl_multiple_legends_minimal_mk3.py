@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-15
+# date: 2019-08-13
 # file: mpl_multiple_legends_minimal_mk3.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
@@ -19,8 +19,7 @@ from matplotlib.ticker import FuncFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
-now = datetime.datetime.now()
-now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
+today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
@@ -89,7 +88,7 @@ if __name__ == '__main__':
                           fontsize = 10.0)
         pLeg.draw_frame(False)
         plt.gca().add_artist(pLeg)
-        
+
     # tick label formatting
     majorFormatter = FuncFormatter(cleanFormatter)
     ax1.xaxis.set_major_formatter(majorFormatter)
@@ -101,7 +100,7 @@ if __name__ == '__main__':
     ax1.xaxis.labelpad = 3.5
     ax1.yaxis.labelpad = 5.5
 
-    outname += '_' + now
+    outname += '_' + today
     f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
               dpi = 300,
               transparent = True)
