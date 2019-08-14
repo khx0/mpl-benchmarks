@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-11
+# date: 2019-08-14
 # file: create_samples.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -44,3 +44,16 @@ if __name__ == '__main__':
     outname = 'normal_samples_np_seed_{:d}'.format(seedValue)
     np.savetxt(os.path.join(RAWDIR, outname + '.dat'), samples, fmt = '%.8f')
     np.save(os.path.join(RAWDIR, outname), samples)
+
+    sample_B = np.random.normal(loc = 1.4, scale = 1.25, size = nSamples)
+    print("sample_B.shape =", sample_B.shape)
+
+    data = np.zeros((nSamples, 2))
+    data[:, 0] = samples
+    data[:, 1] = sample_B
+
+    # save samples to file
+    outname = 'normal_samples_np_seed_{:d}'.format(seedValue)
+    np.savetxt(os.path.join(RAWDIR, outname + '.dat'), samples, fmt = '%.8f')
+    np.save(os.path.join(RAWDIR, outname), samples)
+
