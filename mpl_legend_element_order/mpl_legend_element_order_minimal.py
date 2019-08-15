@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-14
+# date: 2019-08-15
 # file: mpl_legend_element_order_minimal.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
@@ -16,8 +16,7 @@ import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import legend
 
-now = datetime.datetime.now()
-now = "{}-{}-{}".format(now.year, str(now.month).zfill(2), str(now.day).zfill(2))
+today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 OUTDIR = os.path.join(BASEDIR, 'out')
@@ -28,7 +27,7 @@ if __name__ == '__main__':
 
     outname = 'mpl_legend_element_order_minimal'
     outname += '_Python_' + platform.python_version() + \
-               '_mpl_' + mpl.__version__ + '_' + now
+               '_mpl_' + mpl.__version__ + '_' + today
 
     # create synthetic data
     nVisPoints = 500
