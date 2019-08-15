@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-14
+# date: 2019-08-15
 # file: create_samples.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -37,23 +37,22 @@ if __name__ == '__main__':
     np.random.seed(seedValue)
 
     # create samples
-    samples = np.random.normal(loc = 2.0, scale = 1.0, size = nSamples)
-    print("samples.shape =", samples.shape)
+    sample_A = np.random.normal(loc = 2.0, scale = 1.0, size = nSamples)
+    print("sample_A.shape =", sample_A.shape)
 
     # save samples to file
     outname = 'normal_samples_np_seed_{:d}'.format(seedValue)
-    np.savetxt(os.path.join(RAWDIR, outname + '.dat'), samples, fmt = '%.8f')
-    np.save(os.path.join(RAWDIR, outname), samples)
+    np.savetxt(os.path.join(RAWDIR, outname + '.dat'), sample_A, fmt = '%.8f')
+    np.save(os.path.join(RAWDIR, outname), sample_A)
 
     sample_B = np.random.normal(loc = 1.4, scale = 1.25, size = nSamples)
     print("sample_B.shape =", sample_B.shape)
 
     data = np.zeros((nSamples, 2))
-    data[:, 0] = samples
+    data[:, 0] = sample_A
     data[:, 1] = sample_B
 
     # save samples to file
-    outname = 'normal_samples_np_seed_{:d}'.format(seedValue)
-    np.savetxt(os.path.join(RAWDIR, outname + '.dat'), samples, fmt = '%.8f')
-    np.save(os.path.join(RAWDIR, outname), samples)
-
+    outname = 'normal_samples_AB_np_seed_{:d}'.format(seedValue)
+    np.savetxt(os.path.join(RAWDIR, outname + '.dat'), data, fmt = '%.8f')
+    np.save(os.path.join(RAWDIR, outname), data)
