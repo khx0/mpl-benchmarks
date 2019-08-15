@@ -8,7 +8,7 @@
 # tested with python 3.7.2
 ##########################################################################################
 # description:
-# Creates a 1d normal random sample and saves it to the disk as *.dat and *.npy file.
+# Creates 1d normal random samples and save them to the disk as *.dat and *.npy file.
 ##########################################################################################
 
 import os
