@@ -126,9 +126,9 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                  lw = 1.25,
                  color = pColors[0],
                  label = r'reference')
-    
+
     marginX.invert_yaxis() 
-        
+
     marginY.hist(X[:, 1], histtype = 'stepfilled',
                  orientation = 'horizontal',
                  color = pColors[1],
@@ -141,9 +141,9 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                  lw = 1.25,
                  color = pColors[0],
                  label = r'reference')
-    
+
     marginY.invert_xaxis()
-    
+
     ######################################################################################
     # annotations
 
@@ -155,7 +155,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                   horizontalalignment = 'left',
                   zorder = 20,
                   clip_on = False)
-    
+
     label = r'$p(x_2\, |\, \mu_2, \sigma_2)$'
     marginY.annotate(label,
                   xy = (0.075, 0.04),
@@ -180,7 +180,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                  horizontalalignment = 'left',
                  zorder = 20,
                  clip_on = False)
-                 
+     
     ax1.annotate(params[0],
                  xy = (-0.465, -0.21),
                  xycoords = 'axes fraction',
@@ -188,7 +188,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                  horizontalalignment = 'left',
                  zorder = 20,
                  clip_on = False)
-                 
+     
     ax1.annotate(r'# samples $= 2\cdot 10^{4}$',
                  xy = (-0.465, -0.28),
                  xycoords = 'axes fraction',
@@ -196,7 +196,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                  horizontalalignment = 'left',
                  zorder = 20,
                  clip_on = False)
-    
+
     ######################################################################################
     # legend
     if drawLegend:
@@ -207,11 +207,11 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                              markerscale = 1.0,
                              ncol = 1)
         leg.draw_frame(False)
-        
+
         # set the linewidth of the legend object
         for legobj in leg.legendHandles:
             legobj.set_linewidth(2.25)
-        
+
         leg2 = marginY.legend(# bbox_to_anchor = [0.7, 0.8],
                               # loc = 'upper left',
                               handlelength = 1.75,
@@ -219,10 +219,10 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                               markerscale = 1.0,
                               ncol = 1)
         leg2.draw_frame(False)
-        
+
         for legobj in leg2.legendHandles:
             legobj.set_linewidth(2.25)
-    
+
     ######################################################################################
     # set plot range and ticks
 
@@ -314,25 +314,25 @@ if __name__ == '__main__':
     # set loc and scale parameters
     mu1, sigma1 = 87.25, 8.124
     mu2, sigma2 = 125.75, 11.25
-    
+
     X = np.genfromtxt(os.path.join(RAWDIR, 'GaussianSamples_uncorrelated_seed_987654321.txt'))
     sample1, sample2 = X[:, 0], X[:, 1]
-    
+
     ######################################################################################
     # inspect random samples
     print("sample1.shape =", sample1.shape)
     print("sample2.shape =", sample2.shape)
-    
+
     print("np.min(sample1) =", np.min(sample1))
     print("np.max(sample1) =", np.max(sample1))
     print("np.min(sample2) =", np.min(sample2))
     print("np.max(sample2) =", np.max(sample2))
     ######################################################################################
-    
+
     # check correlation by computing the Pearson correlation coefficient
     rhoPearson = scipy.stats.pearsonr(sample1, sample2)    
     print("rho(Pearson) =", rhoPearson)
-    
+
     rhoString = r'$\rho = {}$'.format(np.round(rhoPearson[0], 4))
 
     ######################################################################################
@@ -342,16 +342,16 @@ if __name__ == '__main__':
     gaussianDist1 = np.zeros((len(xVals1), 2))
     gaussianDist1[:, 0] = xVals1
     gaussianDist1[:, 1] = yVals1
-    
+
     xVals2 = np.linspace(0.0, 175.0, 700)
     yVals2 = norm.pdf(xVals2, loc = mu2, scale = sigma2)
     gaussianDist2 = np.zeros((len(xVals2), 2))
     gaussianDist2[:, 0] = xVals2
     gaussianDist2[:, 1] = yVals2
-    
+
     ######################################################################################
     # plotting
-    
+
     ####################################################################
     # xFormat and yFormat are 6-tuples each for x- and y-format passing.
     # The syntax is as follows:
@@ -360,9 +360,9 @@ if __name__ == '__main__':
     xFormat = (48.0, 123.0, 40.0, 1.02 * 123.0, 20.0, 5.0)
     yFormat = (78.0, 177.0, 60.0, 1.02 * 177.0, 20.0, 5.0)
     ####################################################################
-    
+
     pColors = ['C0', '#999999']
-    
+
     outname = 'uncorrelated_gaussian_RVs_with_marginal_distributions'
 
     outname = Plot(titlestr = '',
@@ -376,7 +376,7 @@ if __name__ == '__main__':
                    drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)
-    
+
     cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
           ' ' + os.path.join(OUTDIR, outname + '.svg')
     print(cmd)
