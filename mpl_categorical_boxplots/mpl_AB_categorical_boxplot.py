@@ -76,7 +76,7 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
 
     # boxplot parameter
     xPos = [1.0, 2.0]
-    width = 0.2
+    width = 0.4
     
     bp1 = ax1.boxplot(X,
     				  widths = width)
