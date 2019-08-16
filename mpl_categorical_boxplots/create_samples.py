@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-15
+# date: 2019-08-16
 # file: create_samples.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     np.savetxt(os.path.join(RAWDIR, outname + '.dat'), sample_A, fmt = '%.8f')
     np.save(os.path.join(RAWDIR, outname), sample_A)
 
-    sample_B = np.random.normal(loc = 1.4, scale = 1.25, size = nSamples)
+    sample_B = np.random.normal(loc = 1.4, scale = 0.45, size = nSamples)
     print("sample_B.shape =", sample_B.shape)
 
     data = np.zeros((nSamples, 2))

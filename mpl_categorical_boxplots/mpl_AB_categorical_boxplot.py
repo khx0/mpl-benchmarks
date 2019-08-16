@@ -121,7 +121,7 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    xLabel = r'optional $x$ label'
+    xLabel = r''
     yLabel = r'$y$ label'
 
     create_boxplot(X = data,
