@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-15
+# date: 2019-08-17
 # file: mpl_legend_scatter_linewidth_minimal.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
@@ -16,8 +16,7 @@ import matplotlib as mpl
 from matplotlib import pyplot as plt
 from matplotlib.pyplot import legend
 
-now = datetime.datetime.now()
-now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
+today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 RAWDIR = os.path.join(BASEDIR, 'raw')
@@ -78,7 +77,7 @@ if __name__ == '__main__':
     ####################################################
     ####################################################
 
-    outname += '_' + now
+    outname += '_' + today
     f.savefig(os.path.join(OUTDIR, outname + '.pdf'),
               dpi = 300,
               transparent = True)
