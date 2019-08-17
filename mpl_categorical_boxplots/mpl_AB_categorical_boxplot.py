@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-16
+# date: 2019-08-17
 # file: mpl_AB_categorical_boxplot.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -78,11 +78,17 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     xPos = [1.0, 2.0]
     width = 0.4
     
-    bp1 = ax1.boxplot(X,
+    bp1 = ax1.boxplot(X[:, 0],
+                      positions = [xPos[0]],
+    				  widths = width)
+
+    bp2 = ax1.boxplot(X[:, 1],
+                      positions = [xPos[1]],
     				  widths = width)
 
     if pColors:
     	plt.setp(bp1['medians'], color = pColors[0])
+    	plt.setp(bp2['medians'], color = pColors[1])
 
     if xLabel:
     	ax1.set_xlabel(xLabel)
@@ -127,6 +133,6 @@ if __name__ == '__main__':
     create_boxplot(X = data,
                    outname = outname,
                    outdir = OUTDIR,
-                   pColors = ['C3'],
+                   pColors = ['C3', 'C0'],
                    xLabel = xLabel,
                    yLabel = yLabel)
