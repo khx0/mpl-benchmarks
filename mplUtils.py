@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-08
+# date: 2019-08-17
 # file: mplUtils.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -12,8 +12,7 @@ import sys
 import numpy as np
 import datetime
 
-now = datetime.datetime.now()
-now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2))
+today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 def ensure_dir(dir):
     if not os.path.exists(dir):
