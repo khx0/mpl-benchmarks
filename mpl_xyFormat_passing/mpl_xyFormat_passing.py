@@ -163,10 +163,10 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
     if grid:
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
                  linewidth = 0.4)
-        ax1.grid('on')
+        ax1.grid(True)
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor',
                  linewidth = 0.2)
-        ax1.grid('on', which = 'minor')
+        ax1.grid(True, which = 'minor')
     ######################################################################################
     # save to file
     if datestamp:
