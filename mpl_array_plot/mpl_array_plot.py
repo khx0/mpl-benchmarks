@@ -27,9 +27,11 @@ def plot_patch_array(X, nrows, ncols, outname, outdir, cmap,
                      transparent = True, savePNG = True, datestamp = True):
 
     f, axs = plt.subplots(nrows = nrows, ncols = ncols, figsize = (5, 5),
-                            subplot_kw = {'xticks': [], 'yticks': []})
+                          subplot_kw = {'xticks': [], 'yticks': []})
 
-    plt.subplots_adjust(wspace = 0.1, hspace = 0.005, left = 0.01, right = 0.99, bottom = 0.01, top = 0.99)
+    plt.subplots_adjust(wspace = 0.1, hspace = 0.005,
+                        left = 0.01, right = 0.99,
+                        bottom = 0.01, top = 0.99)
 
     for i, ax in enumerate(axs.flat):
         ax.imshow(X[i], cmap = cmap)
@@ -47,7 +49,9 @@ def plot_patch_array(X, nrows, ncols, outname, outdir, cmap,
     if datestamp:
         outname += '_' + today         
     if savePNG:
-        f.savefig(os.path.join(OUTDIR, outname) + '.png', dpi = 600, transparent = transparent)
+        f.savefig(os.path.join(OUTDIR, outname) + '.png',
+                  dpi = 600,
+                  transparent = transparent)
 
     # close handles
     plt.cla()
