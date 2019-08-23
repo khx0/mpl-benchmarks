@@ -1,6 +1,7 @@
 # Agenda
 
-* mpl 3.1.1 update 
+* implement a nice bee scatter algorithm for the data points in 
+boxplots
 
 * fast auto-parsing boxplot scripts (plug'n play and robust data loading)
 
