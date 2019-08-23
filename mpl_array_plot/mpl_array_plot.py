@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-11
+# date: 2019-08-23
 # file: mpl_array_plot.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
@@ -26,7 +26,9 @@ os.makedirs(OUTDIR, exist_ok = True)
 def plot_patch_array(X, nrows, ncols, outname, outdir, cmap,
                      transparent = True, savePNG = True, datestamp = True):
 
-    f, axs = plt.subplots(nrows = nrows, ncols = ncols, figsize = (5, 5),
+    f, axs = plt.subplots(nrows = nrows,
+                          ncols = ncols,
+                          figsize = (5, 5),
                           subplot_kw = {'xticks': [], 'yticks': []})
 
     plt.subplots_adjust(wspace = 0.1, hspace = 0.005,
