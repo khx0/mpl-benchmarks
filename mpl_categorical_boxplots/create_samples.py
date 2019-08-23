@@ -24,6 +24,8 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(RAWDIR, exist_ok = True)
 
+CREATE_TXT = False
+
 if __name__ == '__main__':
 
     print("running on python", platform.python_version())
@@ -42,8 +44,10 @@ if __name__ == '__main__':
 
     # save samples to file
     outname = 'normal_samples_np_seed_{:d}'.format(seedValue)
-    np.savetxt(os.path.join(RAWDIR, outname + '.dat'), sample_A, fmt = '%.8f')
     np.save(os.path.join(RAWDIR, outname), sample_A)
+    if CREATE_TXT:
+        np.savetxt(os.path.join(RAWDIR, outname + '.txt'), sample_A, fmt = '%.8f')
+
 
     sample_B = np.random.normal(loc = 1.4, scale = 0.45, size = nSamples)
     print("sample_B.shape =", sample_B.shape)
@@ -54,5 +58,6 @@ if __name__ == '__main__':
 
     # save samples to file
     outname = 'normal_samples_AB_np_seed_{:d}'.format(seedValue)
-    np.savetxt(os.path.join(RAWDIR, outname + '.dat'), data, fmt = '%.8f')
     np.save(os.path.join(RAWDIR, outname), data)
+    if CREATE_TXT:
+        np.savetxt(os.path.join(RAWDIR, outname + '.txt'), data, fmt = '%.8f')
