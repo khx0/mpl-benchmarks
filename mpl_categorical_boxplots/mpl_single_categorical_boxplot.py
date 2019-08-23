@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-13
+# date: 2019-08-23
 # file: mpl_single_categorical_boxplot.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -70,14 +70,14 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
-    
+
     ax1.spines['right'].set_visible(False)
     ax1.spines['top'].set_visible(False)
 
     # boxplot parameter
     xPos = [1.0]
     width = 0.2
-    
+
     bp1 = ax1.boxplot(X,
     				  widths = width)
 
@@ -116,17 +116,23 @@ if __name__ == '__main__':
 
     data = np.load(os.path.join(RAWDIR, filename))
     print(data.shape)
-
-    outname = 'mpl_single_categorical_boxplot'
-    outname += '_Python_' + platform.python_version() + \
-               '_mpl_' + mpl.__version__
-
+    
     xLabel = r'optional $x$ label'
     yLabel = r'$y$ label'
 
-    create_boxplot(X = data,
-                   outname = outname,
-                   outdir = OUTDIR,
-                   pColors = ['C3'],
-                   xLabel = xLabel,
-                   yLabel = yLabel)
+    pColors_list = [['C3'], ['C0'], ['C1'], ['k']]
+    
+    # iterate over different median bar colors
+    for pColors in pColors_list:
+
+        outname = 'mpl_single_categorical_boxplot'  
+        outname += '_' + pColors[0]
+        outname += '_Python_' + platform.python_version() + \
+                   '_mpl_' + mpl.__version__
+
+        create_boxplot(X = data,
+                       outname = outname,
+                       outdir = OUTDIR,
+                       pColors = pColors,
+                       xLabel = xLabel,
+                       yLabel = yLabel)
