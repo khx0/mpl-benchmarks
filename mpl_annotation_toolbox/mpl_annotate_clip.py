@@ -79,15 +79,15 @@ def Plot(titlestr, X, outname, outdir, pColors,
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 5.0, height = 4.0,
-                       lFrac = 0.15, rFrac = 0.70,
-                       bFrac = 0.20, tFrac = 0.85)
- 
+                       lFrac = 0.12, rFrac = 0.65,
+                       bFrac = 0.15, tFrac = 0.92)
+
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
-    labelfontsize = 8.0
+    labelfontsize = 6.0
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
@@ -124,57 +124,61 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     # annotations
     '''
-    This example uses relative coordinates for the placement of annotations.
-    This is realized by setting xycoords = 'axes fraction'. Then the specified xy
-    position is set relative to the axis canvas, where both the x and y position is
-    specified by their fractional value between [0, 1].
-    Additionally this example demonstrates the use of alignment specifications,
-    using the "horizontalalignment" and "verticalalignment" keywords.
-    For the horizontal alignment keyword use left, right or center and
-    for the vertical alignment keyword use top, center or bottom, respectively.
+    This example illustrates two things.
+    a) The difference between using xycoords = 'data' to
+    						   using xycoords = 'axes fraction'
+    b) To showcase that when using 'data' coordinates outside the plot axes,
+    	the annotation_clip = False keyword is required.
+    	For some reason this is not the case, when we use xycoords = 'axes fraction'
     '''
 
-    ax1.annotate('upper right label',
-                 xy = (1.0, 1.03),
-                 xycoords = 'axes fraction',
-                 fontsize = 6.0,
-                 horizontalalignment = 'right',
-                 zorder = 8)
-
-    ax1.annotate('upper left label',
-                 xy = (0.0, 1.03),
-                 xycoords = 'axes fraction',
-                 fontsize = 6.0,
-                 horizontalalignment = 'left',
-                 zorder = 8)
-
-    ax1.annotate('center label',
-                 xy = (0.5, 0.5),
-                 xycoords = 'axes fraction',
+    # place a center label using data coordinates
+    ax1.annotate('center label in data coords',
+                 xy = (500.0, 500.0),
+                 xycoords = 'data',
                  fontsize = 6.0,
                  horizontalalignment = 'center',
                  verticalalignment = 'center',
                  zorder = 8)
 
-    ax1.annotate('right margin top label',
-                 xy = (1.02, 1.0),
+    ax1.annotate('label crossing the right axis',
+                 xy = (800.0, 500.0),
+                 xycoords = 'data',
+                 fontsize = 6.0,
+                 horizontalalignment = 'left',
+                 verticalalignment = 'center',
+                 zorder = 8)
+
+    # specify the (x, y) position in data coordinates
+    xPos_data = 900.0
+    yPos_data = 400.0
+    ax1.annotate('label outside the right axis',
+                 xy = (xPos_data, yPos_data),
+                 xycoords = 'data',
+                 fontsize = 6.0,
+                 horizontalalignment = 'left',
+                 verticalalignment = 'center',
+                 zorder = 8,
+                 annotation_clip = False)
+
+    yPos_data = 300.0
+
+    xmin, xmax = plt.xlim() # return the current xlim
+    ymin, ymax = plt.ylim()	# return the current ylim
+    dx, dy = xmax - xmin, ymax - ymin
+    xPos_axes = (xPos_data - xmin) / dx
+    yPos_axes = (yPos_data - ymin) / dy
+    print("xPos = ", xPos_axes)
+    print("yPos = ", yPos_axes)
+
+    ax1.annotate('label outside the right axis',
+                 xy = (xPos_axes, yPos_axes),
                  xycoords = 'axes fraction',
                  fontsize = 6.0,
                  horizontalalignment = 'left',
-                 verticalalignment = 'top',
+                 verticalalignment = 'center',
                  zorder = 8)
 
-    ax1.annotate('right margin bottom label',
-                 xy = (1.02, 0.0),
-                 xycoords = 'axes fraction',
-                 fontsize = 6.0,
-                 horizontalalignment = 'left',
-                 verticalalignment = 'bottom',
-                 zorder = 8)
-
-    ######################################################################################
-    # set plot range and scale (axis limits)
-    # ax1.set_xlim(-0.05, 1.05)
     ######################################################################################
     # grid options
     if grid:
