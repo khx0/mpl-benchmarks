@@ -150,7 +150,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
                  zorder = 8)
 
     # specify the (x, y) position in data coordinates
-    xPos_data = 900.0
+    xPos_data = 870.0
     yPos_data = 400.0
     ax1.annotate('label outside the right axis',
                  xy = (xPos_data, yPos_data),
