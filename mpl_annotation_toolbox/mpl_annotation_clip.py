@@ -133,7 +133,9 @@ def Plot(titlestr, X, outname, outdir, pColors,
     xcoords = 'axes fraction' this is possible without further ado. For some reason
     (not sure if this is intended) one has to add the keyword
         annotation_clip = False
-    when using xycoords = 'data'.
+    when using xycoords = 'data'. Using the clip_on = False keyword, which works to extend
+    regular plot commands to regions outside of the axes, does also not seem to work for 
+    matplotlib annotations.
     c) How to use the (manually or automatically) set x- and y-limits to convert
     an absolute coordinate placement ('data') into a relative placement ('axes fraction').
     For this conversion we use pyplot's plt.xlim() and plt.ylim() functions.
@@ -184,6 +186,19 @@ def Plot(titlestr, X, outname, outdir, pColors,
                  horizontalalignment = 'left',
                  verticalalignment = 'center',
                  zorder = 8)
+                 
+    # Using xycoords = 'data' and the keyword clip_on = False does not work to place 
+    # annotations outside of the axes.
+    xPos_data = 870.0
+    yPos_data = 200.0
+    ax1.annotate(r"outside label ('data') (clip_on = False)",
+                 xy = (xPos_data, yPos_data),
+                 xycoords = 'data',
+                 fontsize = 6.0,
+                 horizontalalignment = 'left',
+                 verticalalignment = 'center',
+                 zorder = 8,
+                 clip_on = False)
 
     ######################################################################################
     # grid options
