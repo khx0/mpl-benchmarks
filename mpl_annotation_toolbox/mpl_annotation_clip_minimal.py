@@ -42,16 +42,6 @@ an absolute coordinate placement ('data') into a relative placement ('axes fract
 For this conversion we use pyplot's plt.xlim() and plt.ylim() functions.
 '''
 
-'''
-
-
-
-
-
-
-
-'''
-
 if __name__ == '__main__':
 
     outname = 'mpl_annotation_clip_minimal'
@@ -66,18 +56,14 @@ if __name__ == '__main__':
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-
+    
+    # plotting
     f, ax1 = plt.subplots(1)
     f.subplots_adjust(right = 0.7)
     
-    ax1.plot(X[:, 0], X[:, 1],
-             alpha = 1.0,
-             color = 'C0',
-             clip_on = False,
-             zorder = 1)
+    ax1.plot(X[:, 0], X[:, 1])
 
     # annotations
- 
     # place a center label using data coordinates
     ax1.annotate('center label in data coords',
                  xy = (500.0, 500.0),
@@ -115,7 +101,7 @@ if __name__ == '__main__':
                  xycoords = 'axes fraction',
                  horizontalalignment = 'left',
                  verticalalignment = 'center')
-             
+
     # Using xycoords = 'data' and the keyword clip_on = False does not work to place 
     # annotations outside of the axes.
     xPos_data = 870.0
