@@ -3,8 +3,8 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-30
-# file: mpl_annotate_clip.py
+# date: 2019-08-31
+# file: mpl_annotation_clip.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
 
@@ -123,13 +123,19 @@ def Plot(titlestr, X, outname, outdir, pColors,
     leg.draw_frame(False)
 
     # annotations
+
     '''
-    This example illustrates two things.
-    a) The difference between using xycoords = 'data' to
-    						   using xycoords = 'axes fraction'
-    b) To showcase that when using 'data' coordinates outside the plot axes,
-    	the annotation_clip = False keyword is required.
-    	For some reason this is not the case, when we use xycoords = 'axes fraction'
+    mpl_annotation_clip example
+    This example illustrates three annotation related findings:
+    a) The difference between using xycoords = 'data' and xycoords = 'axes fraction' to 
+    place an annotation in a matplotlib plot.
+    b) How to place annotations outside of the plot / figure axes. When using
+    xcoords = 'axes fraction' this is possible without further ado. For some reason
+    (not sure if this is intended) one has to add the keyword
+        annotation_clip = False
+    when using xycoords = 'data'.
+    c) How to use the (manually or automatically) set x- and y-limits to convert
+    an absolute coordinate placement ('data') into a relative placement ('axes fraction').
     '''
 
     # place a center label using data coordinates
