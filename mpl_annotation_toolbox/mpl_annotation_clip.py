@@ -136,6 +136,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     when using xycoords = 'data'.
     c) How to use the (manually or automatically) set x- and y-limits to convert
     an absolute coordinate placement ('data') into a relative placement ('axes fraction').
+    For this conversion we use pyplot's plt.xlim() and plt.ylim() functions.
     '''
 
     # place a center label using data coordinates
@@ -168,14 +169,13 @@ def Plot(titlestr, X, outname, outdir, pColors,
                  annotation_clip = False)
 
     yPos_data = 300.0
-
+    
+    # convert absolute ('data') coordinates into relative ('axes fraction') coordinates
     xmin, xmax = plt.xlim() # return the current xlim
     ymin, ymax = plt.ylim()	# return the current ylim
     dx, dy = xmax - xmin, ymax - ymin
     xPos_axes = (xPos_data - xmin) / dx
     yPos_axes = (yPos_data - ymin) / dy
-    print("xPos = ", xPos_axes)
-    print("yPos = ", yPos_axes)
 
     ax1.annotate('label outside the right axis',
                  xy = (xPos_axes, yPos_axes),
