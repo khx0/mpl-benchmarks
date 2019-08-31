@@ -111,7 +111,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
              alpha = 1.0,
              color = pColors[0],
              lw = 1.0,
-             label = 'data',
+             label = 'data legend',
              clip_on = False,
              zorder = 1)
 
@@ -159,7 +159,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     # specify the (x, y) position in data coordinates
     xPos_data = 870.0
     yPos_data = 400.0
-    ax1.annotate('label outside the right axis',
+    ax1.annotate(r"outside label ('data')",
                  xy = (xPos_data, yPos_data),
                  xycoords = 'data',
                  fontsize = 6.0,
@@ -177,7 +177,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
     xPos_axes = (xPos_data - xmin) / dx
     yPos_axes = (yPos_data - ymin) / dy
 
-    ax1.annotate('label outside the right axis',
+    ax1.annotate(r"outside label ('axes fraction')",
                  xy = (xPos_axes, yPos_axes),
                  xycoords = 'axes fraction',
                  fontsize = 6.0,
