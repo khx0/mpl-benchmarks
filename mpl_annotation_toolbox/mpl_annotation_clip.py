@@ -211,11 +211,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
 if __name__ == '__main__':
 
-    outname = 'mpl_annotate_clip'
+    outname = 'mpl_annotation_clip'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    # create data
+    # create dummy data
     nVisPoints = 500
     xVals = np.linspace(120.0, 820.0, nVisPoints)
     yVals = xVals
