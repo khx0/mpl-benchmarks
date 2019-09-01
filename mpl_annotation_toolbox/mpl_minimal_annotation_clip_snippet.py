@@ -15,24 +15,20 @@ import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 
+# set output filename
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 outname = 'mpl_minimal_annotation_clip_snippet'
 outname += '_Python_' + platform.python_version() + \
            '_mpl_' + mpl.__version__ + '_' + today
 
 # create dummy data
-nVisPoints = 500
-xVals = np.linspace(120.0, 820.0, nVisPoints)
+xVals = np.linspace(120.0, 820.0, 100)
 yVals = xVals
-X = np.zeros((nVisPoints, 2))
-X[:, 0] = xVals
-X[:, 1] = yVals
-
 
 # plotting
 f, ax1 = plt.subplots(1)
 f.subplots_adjust(right = 0.7)
-ax1.plot(X[:, 0], X[:, 1])
+ax1.plot(xVals, yVals)
 plt.show()
 
 
