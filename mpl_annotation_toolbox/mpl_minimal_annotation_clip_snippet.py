@@ -31,8 +31,6 @@ f.subplots_adjust(right = 0.7)
 ax1.plot(xVals, yVals)
 plt.show()
 
-
-
 '''
     # annotations
     # place a center label using data coordinates
@@ -41,13 +39,13 @@ plt.show()
                  xycoords = 'data',
                  horizontalalignment = 'center',
                  verticalalignment = 'center')
-                 
+
     ax1.annotate('label crossing the right axis',
                  xy = (800.0, 500.0),
                  xycoords = 'data',
                  horizontalalignment = 'left',
                  verticalalignment = 'center')
-                 
+
     # specify the (x, y) position in data coordinates
     xPos_data = 870.0
     yPos_data = 400.0
@@ -93,4 +91,3 @@ plt.show()
               dpi = 300, 
               transparent = True)
 '''
-
