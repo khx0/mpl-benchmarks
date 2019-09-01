@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-31
+# date: 2019-09-01
 # file: mpl_minimal_annotation_clip_snippet.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
@@ -15,54 +15,29 @@ import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 
-mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
-
 today = datetime.datetime.now().strftime("%Y-%m-%d")
+outname = 'mpl_minimal_annotation_clip_snippet'
+outname += '_Python_' + platform.python_version() + \
+           '_mpl_' + mpl.__version__ + '_' + today
 
-BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
-OUTDIR = os.path.join(BASEDIR, 'out')
+# create dummy data
+nVisPoints = 500
+xVals = np.linspace(120.0, 820.0, nVisPoints)
+yVals = xVals
+X = np.zeros((nVisPoints, 2))
+X[:, 0] = xVals
+X[:, 1] = yVals
 
-os.makedirs(OUTDIR, exist_ok = True)
+
+# plotting
+f, ax1 = plt.subplots(1)
+f.subplots_adjust(right = 0.7)
+ax1.plot(X[:, 0], X[:, 1])
+plt.show()
+
+
 
 '''
-mpl_annotation_clip example
-This example illustrates three annotation related findings:
-a) The difference between using xycoords = 'data' and xycoords = 'axes fraction' to 
-place an annotation in a matplotlib plot.
-b) How to place annotations outside of the plot / figure axes. When using
-xcoords = 'axes fraction' this is possible without further ado. For some reason
-(not sure if this is intended) one has to add the keyword
-    annotation_clip = False
-when using xycoords = 'data'. Using the clip_on = False keyword, which works to extend
-regular plot commands to regions outside of the axes, does also not seem to work for 
-matplotlib annotations.
-c) How to use the (manually or automatically) set x- and y-limits to convert
-an absolute coordinate placement ('data') into a relative placement ('axes fraction').
-For this conversion we use pyplot's plt.xlim() and plt.ylim() functions.
-'''
-
-if __name__ == '__main__':
-
-    outname = 'mpl_annotation_clip_minimal'
-    outname += '_Python_' + platform.python_version() + \
-               '_mpl_' + mpl.__version__
-    outname += '_' + today
-
-    # create dummy data
-    nVisPoints = 500
-    xVals = np.linspace(120.0, 820.0, nVisPoints)
-    yVals = xVals
-    X = np.zeros((nVisPoints, 2))
-    X[:, 0] = xVals
-    X[:, 1] = yVals
-    
-    # plotting
-    f, ax1 = plt.subplots(1)
-    f.subplots_adjust(right = 0.7)
-    
-    ax1.plot(X[:, 0], X[:, 1])
-
     # annotations
     # place a center label using data coordinates
     ax1.annotate('center label in data coords',
@@ -121,10 +96,5 @@ if __name__ == '__main__':
     f.savefig(os.path.join(OUTDIR, outname) + '.pdf', 
               dpi = 300, 
               transparent = True)
+'''
 
-    plt.show()
-
-    # close handles
-    plt.cla()
-    plt.clf()
-    plt.close()
