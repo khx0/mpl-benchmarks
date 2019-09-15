@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-07-11
+# date: 2019-09-15
 # file: available_fonts.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.1
 ##########################################################################################
@@ -18,6 +18,7 @@ if __name__ == '__main__':
     print("matplotlib version =", mpl.__version__)
 
     print("mpl.matplotlib_fname():", mpl.matplotlib_fname())
+    print("mpl.get_configdir() =", mpl.get_configdir())
 
     mpl.font_manager.findSystemFonts()
 
@@ -27,3 +28,4 @@ if __name__ == '__main__':
     for i, fname in enumerate(flist):
 
         print("font no.", i, "==>", fname)
+
