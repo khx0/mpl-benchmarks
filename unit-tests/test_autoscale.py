@@ -3,13 +3,13 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-08
+# date: 2019-10-28
 # file: test_autoscale.py
 # tested with python 3.7.2
 ##########################################################################################
 
 '''
-Also tested with pytest (version 4.3.1)
+Also tested with pytest (version 5.5.2)
 cd to the directory containing this script (here ../unit-tests/) and
 then invoke
 $python -m pytest
