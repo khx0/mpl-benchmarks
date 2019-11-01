@@ -20,7 +20,7 @@ $pytest
 or
 $pytest -v
 using the default python interpreter on your system.
-The -v flag (equal to --verbose) sets the pytest more to verbose.
+The -v flag (equal to --verbose) sets the pytest mode to verbose.
 '''
 
 import sys

@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-10-28
+# date: 2019-11-01
 # file: test_axisPadding.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -20,7 +20,7 @@ $pytest
 or
 $pytest -v
 using the default python interpreter on your system.
-The -v flag (equal to --verbose) sets the pytest more to verbose.
+The -v flag (equal to --verbose) sets the pytest mode to verbose.
 '''
 
 import sys
