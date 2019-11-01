@@ -1,5 +1,7 @@
 # Agenda
 
+* Provide mpl and python env settings for reproducability (e.g. set up a corresponding *.yml file)
+
 * implement a nice bee scatter algorithm for the data points in 
 boxplots
 
