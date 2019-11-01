@@ -9,16 +9,18 @@
 ##########################################################################################
 
 '''
-Also tested with pytest (version 5.5.2)
+Tested with pytest version 5.5.2.
+Invocation:
 cd to the directory containing this script (here ../unit-tests/) and
 then invoke
-$python -m pytest
+$python -m pytest (-v)
 where python is your chosen python interpreter or
 alternatively simply call
 $pytest
 or
 $pytest -v
-using the default python interpreter.
+using the default python interpreter on your system.
+The -v flag (equal to --verbose) sets the pytest more to verbose.
 '''
 
 import sys
