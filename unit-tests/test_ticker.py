@@ -56,7 +56,7 @@ class TickerTest(unittest.TestCase):
         self.assertTrue(np.allclose(ticks, ticks_ref))
 
         #####################################################
-        # ToDo item added [2019-02-18]
+        # TODO item added [2019-02-18]
         # self.assertTrue(np.array_equal(ticks, ticks_ref))
         # np.array_equal will return False due to
         # numerical round off issues.
@@ -247,24 +247,43 @@ class TickerTest(unittest.TestCase):
 
     def test_cleanFormatter(self):
 
-        ticklabel = cleanFormatter(0.0, 0.0)
+        ticklabel = cleanFormatter(0.0)
         self.assertTrue(ticklabel == '0')
 
-        ticklabel = cleanFormatter(1.0, 1.0)
+        ticklabel = cleanFormatter(1.0)
         self.assertTrue(ticklabel == '1')
 
-        ticklabel = cleanFormatter(0.50, 0.50)
+        ticklabel = cleanFormatter(0.50)
         self.assertTrue(ticklabel == '0.5')
 
-        ticklabel = cleanFormatter(0.00, 0.00)
+        ticklabel = cleanFormatter(0.00)
         self.assertTrue(ticklabel == '0')
 
-        ticklabel = cleanFormatter(1.000, 1.000)
+        ticklabel = cleanFormatter(1.000)
         self.assertTrue(ticklabel == '1')
 
-        ticklabel = cleanFormatter(10.0000, 10.0000)
+        ticklabel = cleanFormatter(10.0000)
         self.assertTrue(ticklabel == '10')
 
+        return None
+    
+    def test_cleanFormatterWithInts(self):
+    
+        ticklabel = cleanFormatter(0)
+        self.assertTrue(ticklabel == '0')
+        
+        ticklabel = cleanFormatter(int(0))
+        self.assertTrue(ticklabel == '0')
+
+        ticklabel = cleanFormatter(00)
+        self.assertTrue(ticklabel == '0')
+
+        ticklabel = cleanFormatter(000000)
+        self.assertTrue(ticklabel == '0')
+        
+        ticklabel = cleanFormatter(90000)
+        self.assertTrue(ticklabel == '90000')
+        
         return None
 
 if __name__ == '__main__':
@@ -279,4 +298,3 @@ if __name__ == '__main__':
     print("/////////////////////////////////////////////////////////////////////////////")
 
     unittest.main()
-    

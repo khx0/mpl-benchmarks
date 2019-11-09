@@ -3,14 +3,16 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-05-30
+# date: 2019-11-08
 # file: ticker.py
 # tested with python 3.7.2
 ##########################################################################################
 
 import numpy as np
+from typing import Union
 
-def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
+def getLogTicksBase10(min: float, max: float,\
+    comb: np.ndarray = np.arange(1, 10)) -> np.ndarray:
     '''
     Returns logarithmic base 10 ticks between min and max (inclusive at both ends).
     [min, max]
@@ -65,7 +67,7 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
 
     return ticks
 
-def cleanFormatter(x, pos):
+def cleanFormatter(x: Union[float, int]) -> str:
     '''
     will format 0.0 as 0 and
     will format 1.0 as 1
