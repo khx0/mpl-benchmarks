@@ -49,5 +49,5 @@ directory which can be run using the unittest module or via pytest.
 All tests were done using pytest version 5.5.2.
 
 ### Changes
-For changes made to this repository see the provided changelog.md file in root.
+For changes made to this repository see the provided `changelog.md` file in root.
 
