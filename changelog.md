@@ -10,6 +10,13 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
     # function body
     return ...
 ```
+This changes to the following below with type hints:
+```
+def getLogTicksBase10(min: float, max: float,\
+    comb: np.ndarray = np.arange(1, 10)) -> np.ndarray:
+    # function body
+    return ...
+```
 
 ### 2019-08-11 date str using datetime
 I replaced my old datetime strings in the form of
