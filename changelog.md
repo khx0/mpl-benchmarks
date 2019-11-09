@@ -3,7 +3,7 @@
 ### 2019-11-08 using type hints
 As of python 3.5, type hints are supported to allow for function annotations.
 Below I exemplary show how the function syntax changes when using type hints using the
-ticker.py module of this repository. This module contains a function `getLogTicksBase10',
+ticker.py module of this repository. This module contains a function `getLogTicksBase10`,
 which has the conventional function signature
 ```
 def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
@@ -12,8 +12,7 @@ def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
 ```
 This changes to the following below with type hints:
 ```
-def getLogTicksBase10(min: float, max: float,\
-    comb: np.ndarray = np.arange(1, 10)) -> np.ndarray:
+def getLogTicksBase10(min: float, max: float, comb: np.ndarray = np.arange(1, 10)) -> np.ndarray:
     # function body
     return ...
 ```
