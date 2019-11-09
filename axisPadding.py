@@ -3,14 +3,15 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-11
+# date: 2019-11-08
 # file: axisPadding.py
 # tested with python 3.7.2
 ##########################################################################################
 
 import numpy as np
 
-def getLinearAxisPadding(xminData, xmaxData, paddingFraction):
+def getLinearAxisPadding(xminData: float, xmaxData: float, paddingFraction: float) \
+    -> (float, float):
     """
     Input arguments:
     xminData: minimal data value along a given axis
@@ -26,7 +27,8 @@ def getLinearAxisPadding(xminData, xmaxData, paddingFraction):
     xmin = xminData - dataWidth * paddingFraction
     return xmin, xmax
 
-def getLogAxisPadding(xminData, xmaxData, paddingFraction):
+def getLogAxisPadding(xminData: float, xmaxData: float, paddingFraction: float) \
+    -> (float, float):
     """
     Input arguments:
     xminData: minimal data value along a given axis
@@ -70,7 +72,7 @@ def getLogAxisPadding(xminData, xmaxData, paddingFraction):
 	for xmin simply gives
 	$xmin = xminData * 10^{-pF * \Delta w}$.
     """
-    
+
     # data width measured in log-10 decades
     dataWidth = np.log10(xmaxData / xminData)
     xmin = xminData * 10.0 ** (- paddingFraction * dataWidth)
