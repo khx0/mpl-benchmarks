@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-11
+# date: 2019-12-05
 # file: mpl_annotate_alignment_minimal.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.1
+# tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
 
 import os
@@ -61,13 +61,13 @@ if __name__ == '__main__':
     # annotations
     '''
     This example uses relative coordinates for the placement of annotations.
-    This is realized by setting xycoords = 'axes fraction'. Then the specified xy
-    position is set relative to the axis canvas, where both the x and y position is
-    specified by their fractional value between [0, 1].
+    This is realized by setting xycoords = 'axes fraction'. 
+    Then the specified xy position is set relative to the axis canvas, 
+    where both the x and y position is specified by their fractional value between [0, 1].
     Additionally this example demonstrates the use of alignment specifications,
     using the "horizontalalignment" and "verticalalignment" keywords.
-    For the horizontal alignment keyword use left, right or center and
-    for the vertical alignment keyword use top, center or bottom, respectively.
+    For the horizontal alignment keyword use 'left', 'right' or 'center' and
+    for the vertical alignment keyword use 'top', 'center' or 'bottom', respectively.
     '''
 
     ax1.annotate('upper right label',
