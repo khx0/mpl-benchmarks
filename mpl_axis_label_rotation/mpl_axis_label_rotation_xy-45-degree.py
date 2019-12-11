@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-10
+# date: 2019-12-11
 # file: mpl_axis_label_rotation_xy-45-degree.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
