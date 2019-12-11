@@ -3,12 +3,12 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-16
+# date: 2019-12-11
 # file: create_samples.py
 # tested with python 3.7.2
 ##########################################################################################
 # description:
-# Creates 1d normal random samples and save them to the disk as *.dat and *.npy file.
+# Creates 1d normal random samples and saves them to the disk as *.dat and *.npy files.
 ##########################################################################################
 
 import os
