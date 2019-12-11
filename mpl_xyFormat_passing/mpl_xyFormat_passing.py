@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-11
+# date: 2019-12-11
 # file: mpl_xyFormat_passing.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.1
+# tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
 
 ##########################################################################################
@@ -18,12 +18,12 @@
 # of the data. Hence a full automatization with autoscaling is not
 # always desired for me, since many plots are simply a lot of individual custom work.
 # However, often I wish to reuse a plotting function, and the only thing that
-# needs to be changed is the x- and y-scaling. Thus using these two 6-tuples is a
-# convenient way for me to quickly pass this kind of information to
-# any kind of plotting function.
-# By passing xFormat = None to the plotting function, matplotlib's default
+# needs to be changed is the x- and y-scaling. Thus, using these two 6-tuples is a
+# convenient way for me to quickly pass this kind of information to any kind of plotting 
+# function. By passing xFormat = None to the plotting function, matplotlib's default
 # autoscaling will be used, as illustrated in the first plot function call of
-# this script.
+# this script. Autoscaling is of course the method of choice in the initial data
+# exploration phase.
 ##########################################################################################
 
 import os
