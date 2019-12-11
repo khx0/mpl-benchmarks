@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-22
+# date: 2019-12-11
 # file: mpl_fillbetween_example.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.1
+# tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
 
 import os
