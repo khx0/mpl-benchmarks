@@ -8,7 +8,8 @@
 # tested with python 3.7.2 and matplotlib 3.1.2
 ##########################################################################################
 
-# ToDo: update with bee scatter algorithm
+# TODO: update with bee scatter algorithm
+# TODO: find alternative better scatter point visualizations
 
 import os
 import datetime
