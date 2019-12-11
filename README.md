@@ -22,6 +22,8 @@ However copying some snippets from the scripts will
 most likely also (still) work with Python 2.7, as they were originally
 developed using Python 2.7 and matplotlib 2.2.3.
 
+Update to mpl 3.1.2 is in progress.
+
 ### Example pseudo color plot
 
 ![Demo](/mpl_heatmap_log_xy-scale/demo/out/pcolor_showcase_figure_composition.png)
@@ -46,7 +48,7 @@ For some modules unit tests are provided in the
 /unit-tests/
 ```
 directory which can be run using the unittest module or via pytest.
-All tests were done using pytest version 5.5.2.
+All tests were done using pytest version 5.3.1.
 
 ### Changes
 For changes made to this repository see the provided `changelog.md` file in root.
