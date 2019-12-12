@@ -66,11 +66,20 @@ def getLogTicksBase10(min: float, max: float,\
     ticks = np.concatenate((ticks, tmp[tmp <= max]), axis = 0)
 
     return ticks
-
-def cleanFormatter(x: Union[float, int]) -> str:
+    
+def cleanFormatter(x: Union[float, int], pos) -> str:
     '''
     will format 0.0 as 0 and
     will format 1.0 as 1
+    The second argument seems redundant but is necessary to work in the context as a tick
+    formatter as outlined in the snippet below:
+    ##############################################
+    from matplotlib.ticker import FuncFormatter
+    # other code ...
+    majorFormatter = FuncFormatter(cleanFormatter)
+    ax1.xaxis.set_major_formatter(majorFormatter)
+    # other code ...
+    ##############################################
     '''
     return '{:g}'.format(x)
 

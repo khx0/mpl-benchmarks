@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-22
+# date: 2019-12-12
 # file: pcolor_pseudoColor_plot_linearX_linearY_standalone.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.1
+# tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
 
 import os
@@ -18,6 +18,7 @@ from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
 from matplotlib.ticker import FuncFormatter
+from typing import Union
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -29,10 +30,19 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def cleanFormatter(x, pos):
+def cleanFormatter(x: Union[float, int], pos) -> str:
     '''
     will format 0.0 as 0 and
     will format 1.0 as 1
+    The second argument seems redundant but is necessary to work in the context as a tick
+    formatter as outlined in the snippet below:
+    ##############################################
+    from matplotlib.ticker import FuncFormatter
+    # other code ...
+    majorFormatter = FuncFormatter(cleanFormatter)
+    ax1.xaxis.set_major_formatter(majorFormatter)
+    # other code ...
+    ##############################################
     '''
     return '{:g}'.format(x)
 
