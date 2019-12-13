@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-11
+# date: 2019-12-13
 # file: mpl_xyFormat_passing.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -144,20 +144,20 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
         pass # mpl autoscale
     else:
         xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormat
-        ax1.set_xlim(xmin, xmax)
         major_x_ticks = np.arange(xTicksMin, xTicksMax, dxMajor)
         minor_x_ticks = np.arange(xTicksMin, xTicksMax, dxMinor)
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
+        ax1.set_xlim(xmin, xmax) # set x limits last (order matters here)
     if (yFormat == None):
         pass # mpl autoscale
     else:
         ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormat
-        ax1.set_ylim(ymin, ymax)
         major_y_ticks = np.arange(yTicksMin, yTicksMax, dyMajor)
         minor_y_ticks = np.arange(yTicksMin, yTicksMax, dyMinor)
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
+        ax1.set_ylim(ymin, ymax) # set y limits last (order matters here)
     ######################################################################################
     # grid options
     if grid:
