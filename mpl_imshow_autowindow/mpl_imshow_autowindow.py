@@ -293,7 +293,7 @@ def test_01(cMaps = [cm.viridis]):
     for j in range(nPxs_y):     # iterate over y values
         for i in range(nPxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
-            
+
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
 
@@ -314,10 +314,10 @@ def test_01(cMaps = [cm.viridis]):
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
     relativePaddingFrac = 0.015 # relative padding fraction
-        
-    xlim_left = xmin - pixelWidth / 2.0 - relativePaddingFrac * width_X
-    xlim_right = xmax + pixelWidth / 2.0 + relativePaddingFrac * width_X
-    ylim_left = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
+
+    xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
+    xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
+    ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
     ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
 
     xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
@@ -444,7 +444,7 @@ def test_02(cMaps = [cm.viridis]):
 def test_03(cMaps = [cm.viridis]):
 
     # create synthetic plot data
-    
+
     for n in np.arange(1, 3, 1):
     # for n in np.arange(2, 10, 1):
         # crashes for nPxs_x = nPxs_y = 1 (ToDo: fix)
@@ -534,7 +534,15 @@ def test_03(cMaps = [cm.viridis]):
 
 def create_2d_image_matrix(nx, ny, dx, dy):
 	'''
-
+	Creates dummy 2d image matrix
+	Parameters:
+	-----------
+	nx : int
+	ny : int
+	dx : float
+	dy : flaot
+	Returns:
+	--------
 	'''
 
 	pass
