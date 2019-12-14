@@ -277,7 +277,7 @@ def test_01(cMaps = [cm.viridis]):
     nPxs_y = 10
     pixelWidth = 1.0
     pixelHeight = 1.0
-        
+
     xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
     ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
 
@@ -290,8 +290,8 @@ def test_01(cMaps = [cm.viridis]):
     # fill matrix
     zVals = np.zeros((nPxs_x, nPxs_y))
 
-    for j in range(nPxs_y):         # iterate over y values
-        for i in range(nPxs_x):     # iterate over x values
+    for j in range(nPxs_y):     # iterate over y values
+        for i in range(nPxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
             
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
@@ -356,13 +356,13 @@ def test_01(cMaps = [cm.viridis]):
 
 def test_02(cMaps = [cm.viridis]):
 
-    # create synthetic plot data
+    # create synthetic 10 x 10 2d image array
 
     nPxs_x = 10
     nPxs_y = 10
     pixelWidth = 1.0
     pixelHeight = 1.0
-        
+
     xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
     ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
 
@@ -375,12 +375,12 @@ def test_02(cMaps = [cm.viridis]):
     # fill matrix
     zVals = np.zeros((nPxs_x, nPxs_y))
 
-    for j in range(nPxs_y):         # iterate over y values
-        for i in range(nPxs_x):     # iterate over x values
+    for j in range(nPxs_y):     # iterate over y values
+        for i in range(nPxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
-            
+
     zVals -= 1.0 / 3.0
-    
+
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
 
@@ -401,7 +401,7 @@ def test_02(cMaps = [cm.viridis]):
 
     fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
     relativePaddingFrac = 0.015 # relative padding fraction
-    
+
     xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
     xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
     ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
@@ -421,7 +421,7 @@ def test_02(cMaps = [cm.viridis]):
         outname += '_cmap_' + cMap.name
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
-        
+
         # call plot function
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
@@ -532,12 +532,21 @@ def test_03(cMaps = [cm.viridis]):
 
     return None
 
+def create_2d_image_matrix(nx, ny, dx, dy):
+	'''
+
+	'''
+
+	pass
+
+	return None
+
 if __name__ == '__main__':
 
 	test_01(cMaps = [cm.viridis, cm.gray])
 
-	# test_02(cMaps = [cm.viridis, cm.gray])
-	
+	test_02(cMaps = [cm.viridis, cm.gray])
+
 	# test_03(cMaps = [cm.viridis])
 
 	# ToDo: define window modes:
