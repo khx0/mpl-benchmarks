@@ -271,7 +271,7 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
 
 def test_01(cMaps = [cm.viridis]):
 
-    # create synthetic plot data
+    # create synthetic 10 x 10 2d image array
 
     nPxs_x = 10
     nPxs_y = 10
@@ -334,7 +334,7 @@ def test_01(cMaps = [cm.viridis]):
         outname += '_cmap_' + cMap.name
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
-        
+
         # call plot function
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
@@ -353,7 +353,7 @@ def test_01(cMaps = [cm.viridis]):
                               saveSVG = False)
 
     return None
-    
+
 def test_02(cMaps = [cm.viridis]):
 
     # create synthetic plot data
@@ -534,12 +534,12 @@ def test_03(cMaps = [cm.viridis]):
 
 if __name__ == '__main__':
 
-	#test_01(cMaps = [cm.viridis, cm.gray])
-	
+	test_01(cMaps = [cm.viridis, cm.gray])
+
 	# test_02(cMaps = [cm.viridis, cm.gray])
 	
-	test_03(cMaps = [cm.viridis])
-	
+	# test_03(cMaps = [cm.viridis])
+
 	# ToDo: define window modes:
 	# 1 ) set zmin and zmax
 	# 2 ) apply restriced window / level range
