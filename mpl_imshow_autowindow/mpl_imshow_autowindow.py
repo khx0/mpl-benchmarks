@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-08-22
+# date: 2019-12-15
 # file: mpl_imshow_autowindow.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.1
+# tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
 
 import os
@@ -293,7 +293,7 @@ def test_01(cMaps = [cm.viridis]):
     for j in range(nPxs_y):     # iterate over y values
         for i in range(nPxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
-
+            
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
 
@@ -532,31 +532,56 @@ def test_03(cMaps = [cm.viridis]):
 
     return None
 
+'''
+# create a 2d image matrix class
+# which has the following members
+# xVals (centerd pixel coordinate)
+# yVals (Centered pixel coordinate)
+'''
+
+
+# use this function elsewhere (TODO: deploy to different code section)
 def create_2d_image_matrix(nx, ny, dx, dy):
-	'''
-	Creates dummy 2d image matrix
-	Parameters:
-	-----------
-	nx : int
-	ny : int
-	dx : float
-	dy : flaot
-	Returns:
-	--------
-	'''
+    '''
+    Creates synthetic 2d image matrix of size nx x ny with pixel size dx and dx,
+    respectively.
+    Parameters:
+    -----------
+    nx : int, number of pixels in x direction
+    ny : int, number of pixels in y direction
+    dx : float, pixel width in x direction
+    dy : flaot, pixel width in y direction
+    Returns:
+    --------
+    '''
+    xmin, xmax = 0.0, dx  * (nx - 1)
+    ymin, ymax = 0.0, dy * (ny - 1)
 
-	pass
+    xVals = np.linspace(xmin, xmax, nx)
+    yVals = np.linspace(ymin, ymax, ny)
 
-	return None
+    width_X  = nx * dx
+    height_Y = ny * dy
+
+    # fill matrix
+    zVals = np.zeros((nx, ny))
+
+    for j in range(ny):     # iterate over y values
+        for i in range(nx): # iterate over x values
+            zVals[i, j] = 0.2 * xVals[i]
+
+    assert zVals.shape == (nx, ny), "Error: Shape assertion failed."
+
+    return xVals, yVals, zVals
 
 if __name__ == '__main__':
 
-	test_01(cMaps = [cm.viridis, cm.gray])
+    test_01(cMaps = [cm.viridis, cm.gray])
 
-	test_02(cMaps = [cm.viridis, cm.gray])
+    test_02(cMaps = [cm.viridis, cm.gray])
 
-	# test_03(cMaps = [cm.viridis])
+    # test_03(cMaps = [cm.viridis])
 
-	# ToDo: define window modes:
-	# 1 ) set zmin and zmax
-	# 2 ) apply restriced window / level range
+    # TODO: define window modes:
+    # 1 ) set zmin and zmax
+    # 2 ) apply restriced window / level range
