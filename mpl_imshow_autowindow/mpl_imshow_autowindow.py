@@ -271,8 +271,10 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
 
 def test_01(cMaps = [cm.viridis]):
 
-    # create synthetic 10 x 10 2d image array
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("Running test 01 /////////////////////////////////////////////////////////////")
 
+    # create synthetic 10 x 10 2d image array
     nPxs_x = 10
     nPxs_y = 10
     pixelWidth = 1.0
@@ -356,8 +358,10 @@ def test_01(cMaps = [cm.viridis]):
 
 def test_02(cMaps = [cm.viridis]):
 
-    # create synthetic 10 x 10 2d image array
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("Running test 02 /////////////////////////////////////////////////////////////")
 
+    # create synthetic 10 x 10 2d image array
     nPxs_x = 10
     nPxs_y = 10
     pixelWidth = 1.0
@@ -443,21 +447,22 @@ def test_02(cMaps = [cm.viridis]):
 
 def test_03(cMaps = [cm.viridis]):
 
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("Running test 03 /////////////////////////////////////////////////////////////")
+
     # create synthetic image array data
     # TODO clean up # create synthetic 10 x 10 2d image array
+    # crashes for nPxs_x = nPxs_y = 1 (ToDo: fix)
+    for n in np.arange(2, 10 + 1, 1): # (from, to (excluding), increment)
+    # for n in np.arange(1, 3, 1):
 
-    for n in np.arange(1, 3, 1):
         print("n =", n)
-
-    # for n in np.arange(2, 10, 1):
-
-        # crashes for nPxs_x = nPxs_y = 1 (ToDo: fix)
 
         nPxs_x = n
         nPxs_y = n
         pixelWidth = 1.0
         pixelHeight = 1.0
-
+        
         xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
         ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
 
@@ -480,7 +485,7 @@ def test_03(cMaps = [cm.viridis]):
         zmin = np.min(zVals)
         zmax = np.max(zVals)
 
-        ######################################################################################
+        ##################################################################################
         # print info for development purposes and sanity checks
         print("/////////////////////////////////////////////////////////////////////////////")
         print("xVals.shape =", xVals.shape)
@@ -488,19 +493,18 @@ def test_03(cMaps = [cm.viridis]):
         print("zVals.shape =", zVals.shape)
         print("(zmin, zmax) =", zmin, zmax)
         print("/////////////////////////////////////////////////////////////////////////////")
-        ######################################################################################
+        ##################################################################################
 
         # plot settings
 
         fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
         relativePaddingFrac = 0.015 # relative padding fraction
-    
+
         xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
         xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
         ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
         ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
-        print(xlim_left, xlim_right)
-        print(ylim_left, ylim_right)
+
         xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.02 * xmax, 1.0, 1.0, r'x axis label')
         yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * ymax, 1.0, 1.0, r'y axis label')
         zFormat = ('linear', -0.4, 1.85, 0.20)
@@ -515,7 +519,7 @@ def test_03(cMaps = [cm.viridis]):
             outname += '_cmap_' + cMap.name
             outname += '_Python_' + platform.python_version() + \
                        '_mpl_' + mpl.__version__
-
+                       
             # call plot function
             outname = plot_pcolor(X = xVals,
                                   Y = yVals,
@@ -540,6 +544,8 @@ def test_03(cMaps = [cm.viridis]):
 
 
 
+
+
 '''
 # create a 2d image matrix class
 # which has the following members
@@ -558,7 +564,7 @@ def create_2d_image_matrix(nx, ny, dx, dy):
     nx : int, number of pixels in x direction
     ny : int, number of pixels in y direction
     dx : float, pixel width in x direction
-    dy : flaot, pixel width in y direction
+    dy : float, pixel width in y direction
     Returns:
     --------
     '''
@@ -584,16 +590,16 @@ def create_2d_image_matrix(nx, ny, dx, dy):
 
 if __name__ == '__main__':
 
-    test_01(cMaps = [cm.viridis, cm.gray])
+#     test_01(cMaps = [cm.viridis, cm.gray])
+# 
+#     test_02(cMaps = [cm.viridis, cm.gray])
 
-    test_02(cMaps = [cm.viridis, cm.gray])
+    test_03(cMaps = [cm.viridis])
 
-    # test_03(cMaps = [cm.viridis])
 
     # TODO: define window modes:
     # 1 ) set zmin and zmax
     # 2 ) apply restriced window / level range
-    
-    
+
     # TODO: create test for non-square image matrices
     # make this test_04
