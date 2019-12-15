@@ -443,11 +443,16 @@ def test_02(cMaps = [cm.viridis]):
 
 def test_03(cMaps = [cm.viridis]):
 
-    # create synthetic plot data
+    # create synthetic image array data
+    # TODO clean up # create synthetic 10 x 10 2d image array
 
     for n in np.arange(1, 3, 1):
+        print("n =", n)
+        
     # for n in np.arange(2, 10, 1):
+        
         # crashes for nPxs_x = nPxs_y = 1 (ToDo: fix)
+        
         nPxs_x = n
         nPxs_y = n
         pixelWidth = 1.0
@@ -465,11 +470,9 @@ def test_03(cMaps = [cm.viridis]):
         # fill matrix
         zVals = np.zeros((nPxs_x, nPxs_y))
 
-        for j in range(nPxs_y):         # iterate over y values
-            for i in range(nPxs_x):     # iterate over x values
+        for j in range(nPxs_y):     # iterate over y values
+            for i in range(nPxs_x): # iterate over x values
                 zVals[i, j] = 0.2 * xVals[i]
-            
-        # zVals -= 1.0 / 3.0
 
         assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
         assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
@@ -585,3 +588,7 @@ if __name__ == '__main__':
     # TODO: define window modes:
     # 1 ) set zmin and zmax
     # 2 ) apply restriced window / level range
+    
+    
+    # TODO: create test for non-square image matrices
+    # make this test_04
