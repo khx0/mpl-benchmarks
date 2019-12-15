@@ -217,8 +217,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     if saveSVG:
-        cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
-              ' ' + os.path.join(OUTDIR, outname + '.svg')
+        cmd = 'pdf2svg ' + os.path.join(outdir, outname + '.pdf') + \
+              ' ' + os.path.join(outdir, outname + '.svg')
         os.system(cmd)
     ######################################################################################
     # close handles
