@@ -59,9 +59,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         xBoxCoords = getPcolorBoxCoordinates(X)
         yBoxCoords = getPcolorBoxCoordinates(Y)
 
-    print("xBoxCoords =", xBoxCoords)
-    # assert xBoxCoords.shape == (len(X) + 1,), "Error: Shape assertion failed."
-    # assert yBoxCoords.shape == (len(Y) + 1,), "Error: Shape assertion failed."
+    assert xBoxCoords.shape == (len(X) + 1,), "Error: Shape assertion failed."
+    assert yBoxCoords.shape == (len(Y) + 1,), "Error: Shape assertion failed."
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -172,10 +171,6 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-        
-        # ToDo: clean up
-        # manual formatting here:
-        # ax1.set_xticklabels([0, 0.5, 1])
 
     elif (xFormat[0] == 'log'):
         ax1.set_xscale('log')
@@ -197,10 +192,6 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-
-        # ToDo: clean up
-        # manual formatting here:
-        # ax1.set_yticklabels([0, 0.5, 1])
 
     elif (yFormat[0] == 'log'):
         ax1.set_yscale('log')
@@ -247,6 +238,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.close()
     return outname
 
+# TODO: auslagern in mplUtils library und mit unit tests versehen
 def getPcolorBoxCoordinates(X, type = 'linear', unitWidth = None):
     '''
     Create coordinates for the x and y axis of a pseudo-color 2D plot in matplotlib.
@@ -267,10 +259,11 @@ def getPcolorBoxCoordinates(X, type = 'linear', unitWidth = None):
     if (len(X) == 1) or (X.shape == (1,)) or (X.shape == (1, 1)):
         if unitWidth:
             Xcoords = np.array([X[0] - unitWidth / 2.0, X[0] + unitWidth / 2.0])
-            print("Xcoords =", Xcoords)
             return Xcoords
         else:
-            print("Warning(getPcolorBoxCoordinates):: No unitWidth specified to handle array of size 1. Returning None.")
+            warningStr = "Warning(getPcolorBoxCoordinates):: No unitWidth specified"
+            warningStr += "tohandle array of size 1. Returning None."
+            print(warningStr)
             return None
     if (type == 'linear'):
         dx = X[1] - X[0]
@@ -468,11 +461,7 @@ def test_03(cMaps = [cm.viridis]):
 
     # create synthetic image array data
 
-    # TODO clean up # create synthetic 10 x 10 2d image array
-    # crashes for nPxs_x = nPxs_y = 1 (ToDo: fix)
-
-    # for n in np.arange(2, 10 + 1, 1): # (from, to (excluding), increment)
-    for n in np.arange(1, 2, 1):
+    for n in np.arange(1, 10 + 1, 1): # (from, to (excluding), increment)
 
         nPxs_x = n
         nPxs_y = n
@@ -521,12 +510,14 @@ def test_03(cMaps = [cm.viridis]):
         ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
         ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
 
-        xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.02 * xmax, 1.0, 1.0, r'x axis label')
-        yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * ymax, 1.0, 1.0, r'y axis label')
-        zFormat = ('linear', -0.4, 1.85, 0.20)
+        if n == 1: # pathological handling of n == 1 case
+            xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.02 * xmax + 0.01, 1.0, 1.0, r'x axis label')
+            yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * ymax + 0.01, 1.0, 1.0, r'y axis label')
+        else:
+            xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.02 * xmax, 1.0, 1.0, r'x axis label')
+            yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * ymax, 1.0, 1.0, r'y axis label')
 
-        print("xmin, xmax =", xmin, xmax)
-        print("xlim_left, xlim_right =", xlim_left, xlim_right)
+        zFormat = ('linear', -0.4, 1.85, 0.20)
 
         # loop over color maps
         for cMap in cMaps:
@@ -534,7 +525,7 @@ def test_03(cMaps = [cm.viridis]):
             zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
             # assemble outname string
-            outname = 'mpl_imshow_autowindow_test_03_{}'.format(n)
+            outname = 'mpl_imshow_autowindow_test_03_nPxs_{}'.format(str(n).zfill(2))
             outname += '_cmap_' + cMap.name
             outname += '_Python_' + platform.python_version() + \
                        '_mpl_' + mpl.__version__
@@ -559,65 +550,27 @@ def test_03(cMaps = [cm.viridis]):
 
     return None
 
-
-'''
-# create a 2d image matrix class
-# which has the following members
-# xVals (centerd pixel coordinate)
-# yVals (Centered pixel coordinate)
-'''
-
-
-# use this function elsewhere (TODO: deploy to different code section)
-def create_2d_image_matrix(nx, ny, dx, dy):
-    '''
-    Creates synthetic 2d image matrix of size nx x ny with pixel size dx and dx,
-    respectively.
-    Parameters:
-    -----------
-    nx : int, number of pixels in x direction
-    ny : int, number of pixels in y direction
-    dx : float, pixel width in x direction
-    dy : float, pixel width in y direction
-    Returns:
-    --------
-    '''
-    xmin, xmax = 0.0, dx  * (nx - 1)
-    ymin, ymax = 0.0, dy * (ny - 1)
-
-    xVals = np.linspace(xmin, xmax, nx)
-    yVals = np.linspace(ymin, ymax, ny)
-
-    width_X  = nx * dx
-    height_Y = ny * dy
-
-    # fill matrix
-    zVals = np.zeros((nx, ny))
-
-    for j in range(ny):     # iterate over y values
-        for i in range(nx): # iterate over x values
-            zVals[i, j] = 0.2 * xVals[i]
-
-    assert zVals.shape == (nx, ny), "Error: Shape assertion failed."
-
-    return xVals, yVals, zVals
-
 if __name__ == '__main__':
 
-#     test_01(cMaps = [cm.viridis, cm.gray])
-# 
-#     test_02(cMaps = [cm.viridis, cm.gray])
+    test_01(cMaps = [cm.viridis])
 
+    test_02(cMaps = [cm.viridis])
 
     test_03(cMaps = [cm.viridis])
 
+    ######################################################################################
+    # Alternative usage
+    # To create the output with more colormaps call e.g.
+    # test_01(cMaps = [cm.viridis, cm.gray])
+    ######################################################################################
 
 
-
-    # X = np.array([0.0, 1.0])
-    # xBoxCoords = getPcolorBoxCoordinates(X)
-    # print("X =", X)
-    # print("xBoxCoords =", xBoxCoords)
+    '''
+    # create a 2d image matrix class
+    # which has the following members
+    # xVals (centerd pixel coordinate)
+    # yVals (Centered pixel coordinate)
+    '''
 
     # TODO: define window modes:
     # 1 ) set zmin and zmax
