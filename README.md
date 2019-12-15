@@ -24,7 +24,7 @@ developed using Python 2.7 and matplotlib 2.2.3.
 
 ### Example pcolomesh pseudo color plot
 
-![Demo1](/mpl_pcolormesh_with_fixed_size_and_relative_border_margins/demo/demo_composition.png)
+![Demo1](/mpl_pcolormesh_with_fixed_size_and_relative_border_margins/demo_composition.png)
 
 ### Example pseudo color plot
 
