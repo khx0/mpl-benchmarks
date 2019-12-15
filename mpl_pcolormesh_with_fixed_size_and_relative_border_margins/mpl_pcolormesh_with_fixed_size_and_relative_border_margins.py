@@ -4,10 +4,12 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2019-12-15
-# file: mpl_pcolormesh_visualization_with_fixed_size_and_relative_border_margins.py
+# file: mpl_pcolormesh_with_fixed_size_and_relative_border_margins.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
 
+import sys
+sys.path.append('./..')
 import os
 import platform
 import datetime
@@ -18,6 +20,8 @@ from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
 from matplotlib.ticker import FuncFormatter
+
+from mplUtils import getPcolorBoxCoordinates
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -237,46 +241,6 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.clf()
     plt.close()
     return outname
-
-# TODO: auslagern in mplUtils library und mit unit tests versehen
-def getPcolorBoxCoordinates(X, type = 'linear', unitWidth = None):
-    '''
-    Create coordinates for the x and y axis of a pseudo-color 2D plot in matplotlib.
-    This function was tailored to provide the BoxCoordinates for the mpl function
-    pcolor (for pseudo color plots).
-    :param X: numpy ndarray, X = 1D array (i.e. the x or y axis values)
-    :param type: string, specifying the axis scaling type, default is 'linear'
-    :param unitWidth: float, specifying the extent / width of the X array. For image data
-        this correponds to the pixel width and is here only required to allow processing
-        input arrays of size 1. Although this is a rather pathological case, it makes this
-        function more robust overall.
-    :returns Xcoords: x coordinate values for the recatangular patches of the
-        corresponding pcolor plot.
-    Note:
-        When X is a (N, 1) od (N,) numpy ndarray, then Xcoords will always be created
-        to be a (N+1, 1) or (N+1,) numpy ndarray.
-    '''
-    if (len(X) == 1) or (X.shape == (1,)) or (X.shape == (1, 1)):
-        if unitWidth:
-            Xcoords = np.array([X[0] - unitWidth / 2.0, X[0] + unitWidth / 2.0])
-            return Xcoords
-        else:
-            warningStr = "Warning(getPcolorBoxCoordinates):: No unitWidth specified"
-            warningStr += "tohandle array of size 1. Returning None."
-            print(warningStr)
-            return None
-    if (type == 'linear'):
-        dx = X[1] - X[0]
-        Xcoords = np.linspace(X[0] - dx / 2.0, X[-1] + dx / 2.0, len(X) + 1)
-    elif (type == 'log'):
-        dx = np.log10(X[1] / X[0])
-        minExp = np.log10(X[0])
-        maxExp = np.log10(X[-1])
-        Xcoords = np.logspace(minExp - dx / 2.0, maxExp + dx / 2.0, len(X) + 1)
-    else:
-        print("Error: Unknown type encountered.")
-        sys.exit(1)
-    return Xcoords
 
 def test_01(cMaps = [cm.viridis]):
 

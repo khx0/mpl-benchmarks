@@ -42,22 +42,32 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def getPcolorBoxCoordinates(X, type = 'linear'):
+def getPcolorBoxCoordinates(X, type = 'linear', unitWidth = None):
     '''
     Create coordinates for the x and y axis of a pseudo-color 2D plot in matplotlib.
-    This function was tailored to provide the BoxCoordinates with the mpl function
-    pcolor.
+    This function was tailored to provide the BoxCoordinates for the mpl function
+    pcolor (for pseudo color plots).
     :param X: numpy ndarray, X = 1D array (i.e. the x or y axis values)
     :param type: string, specifying the axis scaling type, default is 'linear'
-    :returns Xcoords: x coordinate values for the recatangular patches of the
+    :param unitWidth: float, specifying the extent / width of the X array. For image data
+        this correponds to the pixel width and is here only required to allow processing
+        of input arrays of size 1. Although this is a rather pathological case, it makes 
+        this function more robust overall. Default unitWidth is None.
+    :returns Xcoords: numpy ndarray, coordinate values for the recatangular patches of the
         corresponding pcolor plot.
     Note:
         When X is a (N, 1) od (N,) numpy ndarray, then Xcoords will always be created
         to be a (N+1, 1) or (N+1,) numpy ndarray.
     '''
     if (len(X) == 1) or (X.shape == (1,)) or (X.shape == (1, 1)):
-        print("Warning(getPcolorBoxCoordinates): Expected array of size larger than 1.")
-        return None
+        if unitWidth:
+            Xcoords = np.array([X[0] - unitWidth / 2.0, X[0] + unitWidth / 2.0])
+            return Xcoords
+        else:
+            warningStr = "Warning(getPcolorBoxCoordinates):: No unitWidth specified"
+            warningStr += "tohandle array of size 1. Returning None."
+            print(warningStr)
+            return None
     if (type == 'linear'):
         dx = X[1] - X[0]
         Xcoords = np.linspace(X[0] - dx / 2.0, X[-1] + dx / 2.0, len(X) + 1)
