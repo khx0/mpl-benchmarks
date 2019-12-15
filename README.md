@@ -26,6 +26,11 @@ developed using Python 2.7 and matplotlib 2.2.3.
 
 ![Demo1](/mpl_pcolormesh_with_fixed_size_and_relative_border_margins/demo_composition.png)
 
+The script which produces the shown panels is loacted in 
+```
+/mpl_pcolormesh_with_fixed_size_and_relative_border_marginsmpl_heatmap_log_xy-scale/
+```
+
 ### Example pseudo color plot
 
 ![Demo2](/mpl_heatmap_log_xy-scale/demo/out/pcolor_showcase_figure_composition.png)
