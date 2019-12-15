@@ -47,15 +47,22 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
 def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
-                outname, outdir, showlabels, grid = False, saveSVG = False,
+                outname, outdir, showlabels, params = None, grid = False, saveSVG = False,
                 savePDF = True, savePNG = False, datestamp = True):
 
     # retrieve box coordinates
-    xBoxCoords = getPcolorBoxCoordinates(X)
-    yBoxCoords = getPcolorBoxCoordinates(Y)
-    assert xBoxCoords.shape == (len(X) + 1,), "Error: Shape assertion failed."
-    assert yBoxCoords.shape == (len(Y) + 1,), "Error: Shape assertion failed."
-    
+    if params:
+        width_X, height_Y = params[0], params[1]
+        xBoxCoords = getPcolorBoxCoordinates(X, unitWidth = width_X)
+        yBoxCoords = getPcolorBoxCoordinates(Y, unitWidth = height_Y)
+    else:
+        xBoxCoords = getPcolorBoxCoordinates(X)
+        yBoxCoords = getPcolorBoxCoordinates(Y)
+
+    print("xBoxCoords =", xBoxCoords)
+    # assert xBoxCoords.shape == (len(X) + 1,), "Error: Shape assertion failed."
+    # assert yBoxCoords.shape == (len(Y) + 1,), "Error: Shape assertion failed."
+
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
     mpl.rcParams['ytick.right'] = False
@@ -127,9 +134,9 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
                                         norm = cNorm,
                                         orientation = 'vertical')
 
-        # ToDo: clean up
-#         cb1.set_label(zColor[3],
-#                       labelpad = 2.5, fontsize = 6)
+        # TODO: clean up
+        #  cb1.set_label(zColor[3],
+        #                labelpad = 2.5, fontsize = 6)
 
         ax1.annotate(zColor[3],
                      xy = (1.175, 1.06),
@@ -144,8 +151,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         if (zFormat[0] == 'linear'):
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
-        
-        # ToDo: clean up
+
+        # TODO: clean up
         # cb1.ax.minorticks_on()
 
     ax1.pcolormesh(xBoxCoords, 
@@ -240,13 +247,17 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.close()
     return outname
 
-def getPcolorBoxCoordinates(X, type = 'linear'):
+def getPcolorBoxCoordinates(X, type = 'linear', unitWidth = None):
     '''
     Create coordinates for the x and y axis of a pseudo-color 2D plot in matplotlib.
-    This function was tailored to provide the BoxCoordinates with the mpl function
-    pcolor.
+    This function was tailored to provide the BoxCoordinates for the mpl function
+    pcolor (for pseudo color plots).
     :param X: numpy ndarray, X = 1D array (i.e. the x or y axis values)
     :param type: string, specifying the axis scaling type, default is 'linear'
+    :param unitWidth: float, specifying the extent / width of the X array. For image data
+        this correponds to the pixel width and is here only required to allow processing
+        input arrays of size 1. Although this is a rather pathological case, it makes this
+        function more robust overall.
     :returns Xcoords: x coordinate values for the recatangular patches of the
         corresponding pcolor plot.
     Note:
@@ -254,8 +265,13 @@ def getPcolorBoxCoordinates(X, type = 'linear'):
         to be a (N+1, 1) or (N+1,) numpy ndarray.
     '''
     if (len(X) == 1) or (X.shape == (1,)) or (X.shape == (1, 1)):
-        print("Warning(getPcolorBoxCoordinates):: Expected array of size larger than 1.")
-        return None
+        if unitWidth:
+            Xcoords = np.array([X[0] - unitWidth / 2.0, X[0] + unitWidth / 2.0])
+            print("Xcoords =", Xcoords)
+            return Xcoords
+        else:
+            print("Warning(getPcolorBoxCoordinates):: No unitWidth specified to handle array of size 1. Returning None.")
+            return None
     if (type == 'linear'):
         dx = X[1] - X[0]
         Xcoords = np.linspace(X[0] - dx / 2.0, X[-1] + dx / 2.0, len(X) + 1)
@@ -451,18 +467,18 @@ def test_03(cMaps = [cm.viridis]):
     print("Running test 03 /////////////////////////////////////////////////////////////")
 
     # create synthetic image array data
+
     # TODO clean up # create synthetic 10 x 10 2d image array
     # crashes for nPxs_x = nPxs_y = 1 (ToDo: fix)
-    for n in np.arange(2, 10 + 1, 1): # (from, to (excluding), increment)
-    # for n in np.arange(1, 3, 1):
 
-        print("n =", n)
+    # for n in np.arange(2, 10 + 1, 1): # (from, to (excluding), increment)
+    for n in np.arange(1, 2, 1):
 
         nPxs_x = n
         nPxs_y = n
         pixelWidth = 1.0
         pixelHeight = 1.0
-        
+
         xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
         ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
 
@@ -509,6 +525,9 @@ def test_03(cMaps = [cm.viridis]):
         yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * ymax, 1.0, 1.0, r'y axis label')
         zFormat = ('linear', -0.4, 1.85, 0.20)
 
+        print("xmin, xmax =", xmin, xmax)
+        print("xlim_left, xlim_right =", xlim_left, xlim_right)
+
         # loop over color maps
         for cMap in cMaps:
 
@@ -519,11 +538,12 @@ def test_03(cMaps = [cm.viridis]):
             outname += '_cmap_' + cMap.name
             outname += '_Python_' + platform.python_version() + \
                        '_mpl_' + mpl.__version__
-                       
+
             # call plot function
             outname = plot_pcolor(X = xVals,
                                   Y = yVals,
                                   Z = zVals,
+                                  params = [width_X, height_Y],
                                   titlestr = '',
                                   fProps = fProps,
                                   xFormat = xFormat,
@@ -538,12 +558,6 @@ def test_03(cMaps = [cm.viridis]):
                                   saveSVG = False)
 
     return None
-
-
-
-
-
-
 
 
 '''
@@ -594,8 +608,16 @@ if __name__ == '__main__':
 # 
 #     test_02(cMaps = [cm.viridis, cm.gray])
 
+
     test_03(cMaps = [cm.viridis])
 
+
+
+
+    # X = np.array([0.0, 1.0])
+    # xBoxCoords = getPcolorBoxCoordinates(X)
+    # print("X =", X)
+    # print("xBoxCoords =", xBoxCoords)
 
     # TODO: define window modes:
     # 1 ) set zmin and zmax
@@ -603,3 +625,8 @@ if __name__ == '__main__':
 
     # TODO: create test for non-square image matrices
     # make this test_04
+    
+    # TODO: create unit test for the
+    # getPcolorBoxCoordinates function.
+
+
