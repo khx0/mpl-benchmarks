@@ -293,7 +293,7 @@ def test_01(cMaps = [cm.viridis]):
     for j in range(nPxs_y):     # iterate over y values
         for i in range(nPxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
-            
+
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
 
@@ -448,11 +448,11 @@ def test_03(cMaps = [cm.viridis]):
 
     for n in np.arange(1, 3, 1):
         print("n =", n)
-        
+
     # for n in np.arange(2, 10, 1):
-        
+
         # crashes for nPxs_x = nPxs_y = 1 (ToDo: fix)
-        
+
         nPxs_x = n
         nPxs_y = n
         pixelWidth = 1.0
@@ -534,6 +534,11 @@ def test_03(cMaps = [cm.viridis]):
                                   saveSVG = False)
 
     return None
+
+
+
+
+
 
 '''
 # create a 2d image matrix class
