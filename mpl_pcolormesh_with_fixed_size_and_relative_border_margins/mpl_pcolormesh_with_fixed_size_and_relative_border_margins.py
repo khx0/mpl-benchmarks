@@ -499,6 +499,261 @@ def test_03(cMaps = [cm.viridis]):
 
     return None
 
+def test_04(cMaps = [cm.viridis]):
+
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("Running test 04 /////////////////////////////////////////////////////////////")
+
+    # create synthetic 32 x 32 2d image array
+    nPxs_x, nPxs_y = 32, 32
+    pixelWidth, pixelHeight = 1.0, 1.0
+
+    xmin, xmax = 1.0, pixelWidth  * nPxs_x
+    ymin, ymax = 1.0, pixelHeight * nPxs_y
+
+    xVals = np.linspace(xmin, xmax, nPxs_x)
+    yVals = np.linspace(ymin, ymax, nPxs_y)
+
+    width_X = nPxs_x * pixelWidth
+    height_Y = nPxs_y * pixelHeight
+
+    # fill matrix
+    zVals = np.zeros((nPxs_x, nPxs_y))
+
+    for j in range(nPxs_y):     # iterate over y values
+        for i in range(nPxs_x): # iterate over x values
+            zVals[i, j] = 0.2 * xVals[i] - 0.2
+
+    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
+    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+
+    zmin = np.min(zVals)
+    zmax = np.max(zVals)
+
+    ######################################################################################
+    # print info for development purposes and sanity checks
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("xVals.shape =", xVals.shape)
+    print("yVals.shape =", yVals.shape)
+    print("zVals.shape =", zVals.shape)
+    print("(zmin, zmax) =", zmin, zmax)
+    print("/////////////////////////////////////////////////////////////////////////////")
+    ######################################################################################
+
+    # plot settings
+
+    fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
+    relativePaddingFrac = 0.015 # relative padding fraction
+
+    xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
+    xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
+    ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
+    ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
+
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.05 * float(nPxs_x), 8.0, 4.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.05 * float(nPxs_x), 8.0, 4.0, r'y axis label')
+    zFormat = ('linear', 0.0, 6.85, 1.0)
+
+    # loop over color maps
+    for cMap in cMaps:
+
+        zColor = (cMap, zmin, zmax, r'z label (cbar)')
+
+        # assemble outname string
+        outname = 'mpl_imshow_autowindow_test_04_32x32_matrix'
+        outname += '_cmap_' + cMap.name
+        outname += '_Python_' + platform.python_version() + \
+                   '_mpl_' + mpl.__version__
+
+        # call plot function
+        outname = plot_pcolor(X = xVals,
+                              Y = yVals,
+                              Z = zVals,
+                              titlestr = '',
+                              fProps = fProps,
+                              xFormat = xFormat,
+                              yFormat = yFormat,
+                              zFormat = zFormat,
+                              zColor = zColor,
+                              show_cBar = True,
+                              outname = outname,
+                              outdir = OUTDIR,
+                              showlabels = True,
+                              grid = False,
+                              saveSVG = False)
+
+    return None
+
+def test_05(cMaps = [cm.viridis]):
+
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("Running test 05 /////////////////////////////////////////////////////////////")
+
+    # create synthetic 64 x 64 2d image array
+    nPxs_x, nPxs_y = 64, 64
+    pixelWidth, pixelHeight = 1.0, 1.0
+
+    xmin, xmax = 1.0, pixelWidth  * nPxs_x
+    ymin, ymax = 1.0, pixelHeight * nPxs_y
+
+    xVals = np.linspace(xmin, xmax, nPxs_x)
+    yVals = np.linspace(ymin, ymax, nPxs_y)
+
+    width_X = nPxs_x * pixelWidth
+    height_Y = nPxs_y * pixelHeight
+
+    # fill matrix
+    zVals = np.zeros((nPxs_x, nPxs_y))
+
+    for j in range(nPxs_y):     # iterate over y values
+        for i in range(nPxs_x): # iterate over x values
+            zVals[i, j] = 0.2 * xVals[i] - 0.2
+
+    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
+    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+
+    zmin = np.min(zVals)
+    zmax = np.max(zVals)
+
+    ######################################################################################
+    # print info for development purposes and sanity checks
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("xVals.shape =", xVals.shape)
+    print("yVals.shape =", yVals.shape)
+    print("zVals.shape =", zVals.shape)
+    print("(zmin, zmax) =", zmin, zmax)
+    print("/////////////////////////////////////////////////////////////////////////////")
+    ######################################################################################
+
+    # plot settings
+
+    fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
+    relativePaddingFrac = 0.015 # relative padding fraction
+
+    xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
+    xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
+    ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
+    ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
+
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.05 * float(nPxs_x), 16.0, 8.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.05 * float(nPxs_x), 16.0, 8.0, r'y axis label')
+    zFormat = ('linear', 0.0, 12.62, 2.0)
+
+    # loop over color maps
+    for cMap in cMaps:
+
+        zColor = (cMap, zmin, zmax, r'z label (cbar)')
+
+        # assemble outname string
+        outname = 'mpl_imshow_autowindow_test_05_64x64_matrix'
+        outname += '_cmap_' + cMap.name
+        outname += '_Python_' + platform.python_version() + \
+                   '_mpl_' + mpl.__version__
+
+        # call plot function
+        outname = plot_pcolor(X = xVals,
+                              Y = yVals,
+                              Z = zVals,
+                              titlestr = '',
+                              fProps = fProps,
+                              xFormat = xFormat,
+                              yFormat = yFormat,
+                              zFormat = zFormat,
+                              zColor = zColor,
+                              show_cBar = True,
+                              outname = outname,
+                              outdir = OUTDIR,
+                              showlabels = True,
+                              grid = False,
+                              saveSVG = False)
+
+    return None
+
+def test_06(cMaps = [cm.viridis]):
+
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("Running test 06 /////////////////////////////////////////////////////////////")
+
+    # create synthetic 128 x 128 2d image array
+    nPxs_x, nPxs_y = 128, 128
+    pixelWidth, pixelHeight = 1.0, 1.0
+
+    xmin, xmax = 1.0, pixelWidth  * nPxs_x
+    ymin, ymax = 1.0, pixelHeight * nPxs_y
+
+    xVals = np.linspace(xmin, xmax, nPxs_x)
+    yVals = np.linspace(ymin, ymax, nPxs_y)
+
+    width_X = nPxs_x * pixelWidth
+    height_Y = nPxs_y * pixelHeight
+
+    # fill matrix
+    zVals = np.zeros((nPxs_x, nPxs_y))
+
+    for j in range(nPxs_y):     # iterate over y values
+        for i in range(nPxs_x): # iterate over x values
+            zVals[i, j] = 0.2 * xVals[i] - 0.2
+
+    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
+    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+
+    zmin = np.min(zVals)
+    zmax = np.max(zVals)
+
+    ######################################################################################
+    # print info for development purposes and sanity checks
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("xVals.shape =", xVals.shape)
+    print("yVals.shape =", yVals.shape)
+    print("zVals.shape =", zVals.shape)
+    print("(zmin, zmax) =", zmin, zmax)
+    print("/////////////////////////////////////////////////////////////////////////////")
+    ######################################################################################
+
+    # plot settings
+
+    fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
+    relativePaddingFrac = 0.015 # relative padding fraction
+
+    xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
+    xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
+    ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
+    ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
+
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.05 * float(nPxs_x), 32.0, 16.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.05 * float(nPxs_x), 32.0, 16.0, r'y axis label')
+    zFormat = ('linear', 0.0, 25.42, 4.0)
+
+    # loop over color maps
+    for cMap in cMaps:
+
+        zColor = (cMap, zmin, zmax, r'z label (cbar)')
+
+        # assemble outname string
+        outname = 'mpl_imshow_autowindow_test_06_128x128_matrix'
+        outname += '_cmap_' + cMap.name
+        outname += '_Python_' + platform.python_version() + \
+                   '_mpl_' + mpl.__version__
+
+        # call plot function
+        outname = plot_pcolor(X = xVals,
+                              Y = yVals,
+                              Z = zVals,
+                              titlestr = '',
+                              fProps = fProps,
+                              xFormat = xFormat,
+                              yFormat = yFormat,
+                              zFormat = zFormat,
+                              zColor = zColor,
+                              show_cBar = True,
+                              outname = outname,
+                              outdir = OUTDIR,
+                              showlabels = True,
+                              grid = False,
+                              saveSVG = False)
+
+    return None
+
 if __name__ == '__main__':
 
     test_01(cMaps = [cm.viridis])
@@ -507,11 +762,19 @@ if __name__ == '__main__':
 
     test_03(cMaps = [cm.viridis])
 
+    test_04(cMaps = [cm.viridis])
+
+    test_05(cMaps = [cm.viridis])
+    
+    test_06(cMaps = [cm.viridis])
+
     ######################################################################################
     # Alternative usage
     # To create the output with more colormaps call e.g.
     # test_01(cMaps = [cm.viridis, cm.gray])
     ######################################################################################
+
+
 
 
     '''
