@@ -22,6 +22,8 @@ import matplotlib.cm as cm
 from matplotlib.ticker import FuncFormatter
 
 from mplUtils import getPcolorBoxCoordinates
+from mplUtils import getFigureProps
+from ticker import cleanFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -32,23 +34,6 @@ RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
-
-def cleanFormatter(x, pos):
-    '''
-    will format 0.0 as 0 and
-    will format 1.0 as 1
-    '''
-    return '{:g}'.format(x)
-
-def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
-    '''
-    Specify widht and height in cm
-    '''
-    axesWidth = width / 2.54 # convert to inches
-    axesHeight = height / 2.54 # convert to inches
-    fWidth = axesWidth / (rFrac - lFrac)
-    fHeight = axesHeight / (tFrac - bFrac)
-    return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
 def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
                 outname, outdir, showlabels, params = None, grid = False, saveSVG = False,
