@@ -4,7 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2019-12-15
-# file: mpl_imshow_autowindow.py
+# file: mpl_pcolormesh_visualization_with_fixed_size_and_relative_border_margins.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
 
