@@ -774,9 +774,6 @@ if __name__ == '__main__':
     # test_01(cMaps = [cm.viridis, cm.gray])
     ######################################################################################
 
-
-
-
     '''
     # create a 2d image matrix class
     # which has the following members
