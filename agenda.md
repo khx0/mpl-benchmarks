@@ -1,7 +1,5 @@
 # Agenda
 
-* Add unit tests for mplUtils.getPcolorBoxCoordinates
-
 * Update code base using type hints. I do not see a reason to provide python < 3.5 compatibility.
 
 * Provide mpl and python env settings for reproducability (e.g. set up a corresponding *.yml file)
