@@ -28,4 +28,3 @@ if __name__ == '__main__':
     for i, fname in enumerate(flist):
 
         print("font no.", i, "==>", fname)
-

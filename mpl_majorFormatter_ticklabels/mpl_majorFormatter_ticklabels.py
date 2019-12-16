@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-13
+# date: 2019-12-16
 # file: mpl_axis_label_rotation_y-horizontal.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -27,7 +27,7 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def cleanFormatter(x, pos):
+def cleanFormatter(x, pos = None):
     '''
     will format 0.0 as 0 and
     will format 1.0 as 1
