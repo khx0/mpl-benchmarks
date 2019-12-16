@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-12
+# date: 2019-12-16
 # file: pcolor_pseudoColor_plot_logX_linearY.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################

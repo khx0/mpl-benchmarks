@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-12
+# date: 2019-12-16
 # file: pcolor_pseudoColor_plot_linearX_linearY_standalone.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -30,7 +30,7 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def cleanFormatter(x: Union[float, int], pos) -> str:
+def cleanFormatter(x: Union[float, int], pos = None) -> str:
     '''
     will format 0.0 as 0 and
     will format 1.0 as 1
