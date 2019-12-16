@@ -66,8 +66,8 @@ def getLogTicksBase10(min: float, max: float,\
     ticks = np.concatenate((ticks, tmp[tmp <= max]), axis = 0)
 
     return ticks
-    
-def cleanFormatter(x: Union[float, int], pos) -> str:
+
+def cleanFormatter(x: Union[float, int], pos = None) -> str:
     '''
     will format 0.0 as 0 and
     will format 1.0 as 1
