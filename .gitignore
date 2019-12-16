@@ -112,3 +112,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+!/mpl_pcolormesh_with_fixed_size_and_relative_border_margins/demonstration/*
+
