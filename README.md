@@ -22,7 +22,7 @@ However copying some snippets from the scripts will
 most likely also (still) work with Python 2.7, as they were originally
 developed using Python 2.7 and matplotlib 2.2.3.
 
-### Example: pcolomesh pseudo color plot
+### Example: pcolormesh pseudo color plot
 
 For visualizing small 2d matrices, this pcolormesh assay illustrates a nice way how to create fixed size figures with constant relative margins between data and figure borders. In this way the created panels can be nicely integrated into larger arrays and appear all homogeneously in terms of figure size, margins, borders and figure labels. This approach seems suitable for rather small matrices (around n < 64). For full image viewing matplotlib's imshow command seems more appropriate and up to the task.
 
@@ -33,7 +33,7 @@ The script which produces the shown panels is loacted in
 /mpl_pcolormesh_with_fixed_size_and_relative_border_margins/
 ```
 
-### Example: pseudo color plot
+### Example: pseudo color plot (mpl's pcolormesh)
 
 ![Demo2](/mpl_heatmap_log_xy-scale/demo/out/pcolor_showcase_figure_composition.png)
 
