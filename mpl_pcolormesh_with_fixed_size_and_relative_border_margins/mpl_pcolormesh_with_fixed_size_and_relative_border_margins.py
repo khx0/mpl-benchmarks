@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-15
+# date: 2019-12-17
 # file: mpl_pcolormesh_with_fixed_size_and_relative_border_margins.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -39,7 +39,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
                 outname, outdir, showlabels, params = None, grid = False, saveSVG = False,
                 savePDF = True, savePNG = False, datestamp = True):
 
-    # retrieve box coordinates
+    # retrieve box coordinates for pcolormesh plotting
     if params:
         width_X, height_Y = params[0], params[1]
         xBoxCoords = getPcolorBoxCoordinates(X, unitWidth = width_X)
@@ -109,7 +109,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     ######################################################################################
     # colorbar
     if show_cBar:
-        # add_axes(left, bottom, width, height) all between [0, 1]
+        # add_axes(left, bottom, width, height), all between [0, 1]
         # relative to the figure size
         cax = f.add_axes([0.82, bFrac, 0.03, (tFrac - bFrac)])
 
@@ -122,15 +122,21 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
                                         norm = cNorm,
                                         orientation = 'vertical')
 
-        # TODO: clean up
-        #  cb1.set_label(zColor[3],
-        #                labelpad = 2.5, fontsize = 6)
-
+        ##################################################################################
+        # color bar labels
+        # Here axes.annotate is used to set a color bar label.
+        # One can alternatively also use the colorbar.set_label function call, e.g. via:
+        # cb1.set_label(zColor[3],
+        #               labelpad = 2.5,
+        #               fontsize = 6)
+        # which creats a vertical color bar label along the color bar.
+        ##################################################################################
         ax1.annotate(zColor[3],
                      xy = (1.175, 1.06),
                      xycoords = 'axes fraction',
                      fontsize = 8.0,
                      horizontalalignment = 'right')
+        ##################################################################################
 
         cb1.outline.set_linewidth(0.5)
         cb1.ax.tick_params(axis = 'y', direction = 'out', which = 'both')
@@ -140,15 +146,18 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
 
-        # TODO: clean up
+        #################################################################################
+        # colorbar minor tick switch
+        # uncomment the line below to switch on minor ticks on the color bar axis
         # cb1.ax.minorticks_on()
+        #################################################################################
 
     ax1.pcolormesh(xBoxCoords, 
                    yBoxCoords, 
                    Z,
                    cmap = cMap,
                    norm = cNorm,
-                   edgecolors = 'none')
+                   edgecolors = 'None')
 
     #####################################################################################
     # axis formatting
@@ -760,7 +769,7 @@ if __name__ == '__main__':
 
     test_02(cMaps = [cm.viridis])
 
-    test_03(cMaps = [cm.viridis])
+    # test_03(cMaps = [cm.viridis])
 
     test_04(cMaps = [cm.viridis])
 
@@ -773,6 +782,11 @@ if __name__ == '__main__':
     # To create the output with more colormaps call e.g.
     # test_01(cMaps = [cm.viridis, cm.gray])
     ######################################################################################
+
+
+
+
+
 
     '''
     # create a 2d image matrix class
