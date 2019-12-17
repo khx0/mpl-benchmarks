@@ -3,13 +3,13 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-16
+# date: 2019-12-17
 # file: test_getPcolorBoxCoordinates.py
 # tested with python 3.7.2
 ##########################################################################################
 
 '''
-Tested with pytest version 5.3.1.
+Tested with pytest version 5.3.2.
 Invocation:
 cd to the directory containing this script (here ../unit-tests/) and
 then invoke
@@ -93,7 +93,7 @@ class PColorBoxCoordinatesTest(unittest.TestCase):
 
         return None
 
-    def test_04(self):
+    def test_05(self):
 
         xVals = np.array([0.2, 0.4, 0.6])
         res = np.array([0.1, 0.3, 0.5, 0.7])
@@ -101,6 +101,19 @@ class PColorBoxCoordinatesTest(unittest.TestCase):
         xBoxCoords = getPcolorBoxCoordinates(xVals)
 
         self.assertTrue(np.array_equal(xBoxCoords, res))
+        self.assertTrue(res.shape == xBoxCoords.shape)
+        self.assertTrue(len(xVals) + 1 == len(xBoxCoords))
+
+        return None
+        
+    def test_06(self):
+
+        xVals = np.array([0.1, 0.2, 0.3, 0.4, 0.5])
+        res = np.array([0.05, 0.15, 0.25, 0.35, 0.45, 0.55])
+
+        xBoxCoords = getPcolorBoxCoordinates(xVals)
+
+        self.assertTrue(np.allclose(xBoxCoords, res))
         self.assertTrue(res.shape == xBoxCoords.shape)
         self.assertTrue(len(xVals) + 1 == len(xBoxCoords))
 

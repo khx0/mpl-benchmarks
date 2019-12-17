@@ -769,7 +769,7 @@ if __name__ == '__main__':
 
     test_02(cMaps = [cm.viridis])
 
-    # test_03(cMaps = [cm.viridis])
+    test_03(cMaps = [cm.viridis])
 
     test_04(cMaps = [cm.viridis])
 
@@ -782,10 +782,6 @@ if __name__ == '__main__':
     # To create the output with more colormaps call e.g.
     # test_01(cMaps = [cm.viridis, cm.gray])
     ######################################################################################
-
-
-
-
 
 
     '''
@@ -801,8 +797,3 @@ if __name__ == '__main__':
 
     # TODO: create test for non-square image matrices
     # make this test_04
-    
-    # TODO: create unit test for the
-    # getPcolorBoxCoordinates function.
-
-

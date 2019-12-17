@@ -65,7 +65,7 @@ def getPcolorBoxCoordinates(X, type = 'linear', unitWidth = None):
             return Xcoords
         else:
             warningStr = "Warning(getPcolorBoxCoordinates):: No unitWidth specified"
-            warningStr += "tohandle array of size 1. Returning None."
+            warningStr += " tohandle array of size 1. Returning None."
             print(warningStr)
             return None
     if (type == 'linear'):
