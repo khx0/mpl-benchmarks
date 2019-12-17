@@ -299,7 +299,7 @@ def test_01(cMaps = [cm.viridis]):
         zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
         # assemble outname string
-        outname = 'mpl_imshow_autowindow_test_01'
+        outname = 'mpl_pcolormesh_test_01'
         outname += '_cmap_' + cMap.name
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
@@ -388,7 +388,7 @@ def test_02(cMaps = [cm.viridis]):
         zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
         # assemble outname string
-        outname = 'mpl_imshow_autowindow_test_02'
+        outname = 'mpl_pcolormesh_test_02'
         outname += '_cmap_' + cMap.name
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
@@ -483,7 +483,7 @@ def test_03(cMaps = [cm.viridis]):
             zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
             # assemble outname string
-            outname = 'mpl_imshow_autowindow_test_03_nPxs_{}'.format(str(n).zfill(2))
+            outname = 'mpl_pcolormesh_test_03_nPxs_{}'.format(str(n).zfill(2))
             outname += '_cmap_' + cMap.name
             outname += '_Python_' + platform.python_version() + \
                        '_mpl_' + mpl.__version__
@@ -569,7 +569,7 @@ def test_04(cMaps = [cm.viridis]):
         zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
         # assemble outname string
-        outname = 'mpl_imshow_autowindow_test_04_32x32_matrix'
+        outname = 'mpl_pcolormesh_test_04_32x32_matrix'
         outname += '_cmap_' + cMap.name
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
@@ -654,7 +654,7 @@ def test_05(cMaps = [cm.viridis]):
         zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
         # assemble outname string
-        outname = 'mpl_imshow_autowindow_test_05_64x64_matrix'
+        outname = 'mpl_pcolormesh_test_05_64x64_matrix'
         outname += '_cmap_' + cMap.name
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
@@ -739,7 +739,7 @@ def test_06(cMaps = [cm.viridis]):
         zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
         # assemble outname string
-        outname = 'mpl_imshow_autowindow_test_06_128x128_matrix'
+        outname = 'mpl_pcolormesh_test_06_128x128_matrix'
         outname += '_cmap_' + cMap.name
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
