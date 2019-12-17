@@ -783,17 +783,5 @@ if __name__ == '__main__':
     # test_01(cMaps = [cm.viridis, cm.gray])
     ######################################################################################
 
-
-    '''
-    # create a 2d image matrix class
-    # which has the following members
-    # xVals (centerd pixel coordinate)
-    # yVals (Centered pixel coordinate)
-    '''
-
-    # TODO: define window modes:
-    # 1 ) set zmin and zmax
-    # 2 ) apply restriced window / level range
-
     # TODO: create test for non-square image matrices
     # make this test_04

@@ -1,5 +1,9 @@
 # Agenda
 
+* create a 2d image matrix class which has the following members
+	* xVals (centerd pixel coordinate)
+    * yVals (Centered pixel coordinate)
+
 * Update code base using type hints. I do not see a reason to provide python < 3.5 compatibility.
 
 * Provide mpl and python env settings for reproducability (e.g. set up a corresponding *.yml file)
