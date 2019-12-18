@@ -44,6 +44,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         width_X, height_Y = params[0], params[1]
         xBoxCoords = getPcolorBoxCoordinates(X, unitWidth = width_X)
         yBoxCoords = getPcolorBoxCoordinates(Y, unitWidth = height_Y)
+        xyRatio = width_X / height_Y
     else:
         xBoxCoords = getPcolorBoxCoordinates(X)
         yBoxCoords = getPcolorBoxCoordinates(Y)
@@ -74,6 +75,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         getFigureProps(width = fProps[0], height = fProps[1],
                        lFrac = fProps[2], rFrac = fProps[3],
                        bFrac = fProps[4], tFrac = fProps[5])
+
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -111,7 +113,11 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     if show_cBar:
         # add_axes(left, bottom, width, height), all between [0, 1]
         # relative to the figure size
-        cax = f.add_axes([0.82, bFrac, 0.03, (tFrac - bFrac)])
+        
+        # reference color bar width gauge
+        cbWidthFrac = 0.03 / fWidth * 2.4
+
+        cax = f.add_axes([0.82, bFrac, cbWidthFrac, (tFrac - bFrac)])
 
         cax.tick_params('both', length = 2.5, width = 0.5, which = 'major')
         cax.tick_params('both', length = 1.5, width = 0.25, which = 'minor')
@@ -833,6 +839,7 @@ def test_07(cMaps = [cm.viridis]):
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
                               Z = zVals,
+                              params = [width_X, height_Y],
                               titlestr = '',
                               fProps = fProps,
                               xFormat = xFormat,
@@ -889,7 +896,7 @@ def test_08(cMaps = [cm.viridis]):
 
     # plot settings
 
-    fProps = (2.0, 4.0, 0.25, 0.78, 0.16, 0.88)
+    fProps = (2.0, 4.0, 0.25, 0.79, 0.16, 0.88)
     relativePaddingFrac = 0.015 # relative padding fraction
 
     xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
@@ -916,6 +923,7 @@ def test_08(cMaps = [cm.viridis]):
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
                               Z = zVals,
+                              params = [width_X, height_Y],
                               titlestr = '',
                               fProps = fProps,
                               xFormat = xFormat,
@@ -928,7 +936,6 @@ def test_08(cMaps = [cm.viridis]):
                               showlabels = True,
                               grid = False,
                               saveSVG = False)
-    
 
 if __name__ == '__main__':
 
@@ -938,11 +945,11 @@ if __name__ == '__main__':
 
     # test_03(cMaps = [cm.viridis])
 
-    # test_04(cMaps = [cm.viridis])
+    test_04(cMaps = [cm.viridis])
 
-    # test_05(cMaps = [cm.viridis])
+    test_05(cMaps = [cm.viridis])
     
-    # test_06(cMaps = [cm.viridis])
+    test_06(cMaps = [cm.viridis])
 
     test_07(cMaps = [cm.viridis])
 
