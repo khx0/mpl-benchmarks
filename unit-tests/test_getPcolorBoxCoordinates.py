@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-17
+# date: 2019-12-18
 # file: test_getPcolorBoxCoordinates.py
 # tested with python 3.7.2
 ##########################################################################################
@@ -47,6 +47,7 @@ class PColorBoxCoordinatesTest(unittest.TestCase):
         xBoxCoords = getPcolorBoxCoordinates(xVals, unitWidth = pixelWidth)
 
         self.assertTrue(np.array_equal(xBoxCoords, res))
+        self.assertTrue(np.allclose(xBoxCoords, res))
 
         return None
 
@@ -59,6 +60,7 @@ class PColorBoxCoordinatesTest(unittest.TestCase):
         xBoxCoords = getPcolorBoxCoordinates(xVals, unitWidth = pixelWidth)
 
         self.assertTrue(np.array_equal(xBoxCoords, res))
+        self.assertTrue(np.allclose(xBoxCoords, res))
 
         return None
 
@@ -88,6 +90,7 @@ class PColorBoxCoordinatesTest(unittest.TestCase):
         xBoxCoords = getPcolorBoxCoordinates(xVals)
 
         self.assertTrue(np.array_equal(xBoxCoords, res))
+        self.assertTrue(np.allclose(xBoxCoords, res))
         self.assertTrue(res.shape == xBoxCoords.shape)
         self.assertTrue(len(xVals) + 1 == len(xBoxCoords))
 
@@ -101,6 +104,7 @@ class PColorBoxCoordinatesTest(unittest.TestCase):
         xBoxCoords = getPcolorBoxCoordinates(xVals)
 
         self.assertTrue(np.array_equal(xBoxCoords, res))
+        self.assertTrue(np.allclose(xBoxCoords, res))
         self.assertTrue(res.shape == xBoxCoords.shape)
         self.assertTrue(len(xVals) + 1 == len(xBoxCoords))
 
