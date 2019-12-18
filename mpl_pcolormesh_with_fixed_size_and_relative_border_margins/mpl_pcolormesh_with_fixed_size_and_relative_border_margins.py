@@ -258,11 +258,12 @@ def test_01(cMaps = [cm.viridis]):
 
     # fill matrix
     zVals = np.zeros((nPxs_x, nPxs_y))
-
+    # first array dimension corresponds to the x axis
+    # second array dimension corresponds to the y axis
     for j in range(nPxs_y):     # iterate over y values
         for i in range(nPxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
-
+ 
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
 
@@ -860,19 +861,18 @@ def test_08(cMaps = [cm.viridis]):
 
 if __name__ == '__main__':
 
-    # test_01(cMaps = [cm.viridis])
+    test_01(cMaps = [cm.viridis])
 
-    # test_02(cMaps = [cm.viridis])
+    test_02(cMaps = [cm.viridis])
 
-    # test_03(cMaps = [cm.viridis])
+    test_03(cMaps = [cm.viridis])
 
-    # test_04(cMaps = [cm.viridis])
+    test_04(cMaps = [cm.viridis])
 
-    # test_05(cMaps = [cm.viridis])
+    test_05(cMaps = [cm.viridis])
     
-    # test_06(cMaps = [cm.viridis])
+    test_06(cMaps = [cm.viridis])
 
-    # TODO: check for xy mismatch (swap)
     test_07(cMaps = [cm.viridis])
 
     test_08(cMaps = [cm.viridis])
