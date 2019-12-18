@@ -523,8 +523,8 @@ def test_04(cMaps = [cm.viridis]):
     nPxs_x, nPxs_y = 32, 32
     pixelWidth, pixelHeight = 1.0, 1.0
 
-    xmin, xmax = 1.0, pixelWidth  * nPxs_x
-    ymin, ymax = 1.0, pixelHeight * nPxs_y
+    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
 
     xVals = np.linspace(xmin, xmax, nPxs_x)
     yVals = np.linspace(ymin, ymax, nPxs_y)
@@ -537,7 +537,7 @@ def test_04(cMaps = [cm.viridis]):
 
     for j in range(nPxs_y):     # iterate over y values
         for i in range(nPxs_x): # iterate over x values
-            zVals[i, j] = 0.2 * xVals[i] - 0.2
+            zVals[i, j] = 0.2 * xVals[i]
 
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
@@ -565,8 +565,8 @@ def test_04(cMaps = [cm.viridis]):
     ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
     ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
 
-    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.05 * float(nPxs_x), 8.0, 4.0, r'x axis label')
-    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.05 * float(nPxs_x), 8.0, 4.0, r'y axis label')
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.001 * float(xmax), 8.0, 4.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.001 * float(ymax), 8.0, 4.0, r'y axis label')
     zFormat = ('linear', 0.0, 6.85, 1.0)
 
     # loop over color maps
@@ -608,8 +608,8 @@ def test_05(cMaps = [cm.viridis]):
     nPxs_x, nPxs_y = 64, 64
     pixelWidth, pixelHeight = 1.0, 1.0
 
-    xmin, xmax = 1.0, pixelWidth  * nPxs_x
-    ymin, ymax = 1.0, pixelHeight * nPxs_y
+    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
 
     xVals = np.linspace(xmin, xmax, nPxs_x)
     yVals = np.linspace(ymin, ymax, nPxs_y)
@@ -622,7 +622,7 @@ def test_05(cMaps = [cm.viridis]):
 
     for j in range(nPxs_y):     # iterate over y values
         for i in range(nPxs_x): # iterate over x values
-            zVals[i, j] = 0.2 * xVals[i] - 0.2
+            zVals[i, j] = 0.2 * xVals[i]
 
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
@@ -650,8 +650,10 @@ def test_05(cMaps = [cm.viridis]):
     ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
     ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
 
-    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.05 * float(nPxs_x), 16.0, 8.0, r'x axis label')
-    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.05 * float(nPxs_x), 16.0, 8.0, r'y axis label')
+    print("xlim_right =", xlim_right)
+    print("1 = ", 1.001 * float(xmax))
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.001 * float(xmax), 16.0, 8.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.001 * float(ymax), 16.0, 8.0, r'y axis label')
     zFormat = ('linear', 0.0, 12.62, 2.0)
 
     # loop over color maps
@@ -693,8 +695,8 @@ def test_06(cMaps = [cm.viridis]):
     nPxs_x, nPxs_y = 128, 128
     pixelWidth, pixelHeight = 1.0, 1.0
 
-    xmin, xmax = 1.0, pixelWidth  * nPxs_x
-    ymin, ymax = 1.0, pixelHeight * nPxs_y
+    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
 
     xVals = np.linspace(xmin, xmax, nPxs_x)
     yVals = np.linspace(ymin, ymax, nPxs_y)
@@ -707,7 +709,7 @@ def test_06(cMaps = [cm.viridis]):
 
     for j in range(nPxs_y):     # iterate over y values
         for i in range(nPxs_x): # iterate over x values
-            zVals[i, j] = 0.2 * xVals[i] - 0.2
+            zVals[i, j] = 0.2 * xVals[i]
 
     assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
@@ -735,8 +737,8 @@ def test_06(cMaps = [cm.viridis]):
     ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
     ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
 
-    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.05 * float(nPxs_x), 32.0, 16.0, r'x axis label')
-    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.05 * float(nPxs_x), 32.0, 16.0, r'y axis label')
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.001 * xmax, 32.0, 16.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.001 * ymax, 32.0, 16.0, r'y axis label')
     zFormat = ('linear', 0.0, 25.42, 4.0)
 
     # loop over color maps
@@ -951,6 +953,6 @@ if __name__ == '__main__':
     
     test_06(cMaps = [cm.viridis])
 
-    test_07(cMaps = [cm.viridis])
+    # test_07(cMaps = [cm.viridis])
 
-    test_08(cMaps = [cm.viridis])
+    # test_08(cMaps = [cm.viridis])
