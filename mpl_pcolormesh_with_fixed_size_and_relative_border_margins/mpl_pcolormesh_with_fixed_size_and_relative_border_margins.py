@@ -164,11 +164,11 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     if (xFormat[0] == 'auto'):
         pass
     if (xFormat[0] == 'linear'):
-        ax1.set_xlim(xFormat[1], xFormat[2])
         major_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[5])
         minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
+        ax1.set_xlim(xFormat[1], xFormat[2])
 
     elif (xFormat[0] == 'log'):
         ax1.set_xscale('log')
@@ -185,12 +185,11 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     if (yFormat[0] == 'auto'):
         pass
     if (yFormat[0] == 'linear'):
-        ax1.set_ylim(yFormat[1], yFormat[2]) # xmin, xmax
         major_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[5])
         minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-
+        ax1.set_ylim(yFormat[1], yFormat[2]) # ymin, ymax
     elif (yFormat[0] == 'log'):
         ax1.set_yscale('log')
         ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
@@ -781,6 +780,7 @@ def test_07(cMaps = [cm.viridis]):
 
     width_X = nPxs_x * pixelWidth
     height_Y = nPxs_y * pixelHeight
+    xyRatio = width_X / height_Y # for non-square (image / data) matrices
 
     # fill matrix
     zVals = np.zeros((nPxs_x, nPxs_y))
@@ -805,10 +805,6 @@ def test_07(cMaps = [cm.viridis]):
     ######################################################################################
 
     # plot settings
-    print("width_X =", width_X)
-    print("height_Y =", height_Y)
-    xyRatio = width_X / height_Y
-    print("xyRatio =", xyRatio)
 
     fProps = (4.0, 2.0, 0.16, 0.80, 0.16, 0.84)
     relativePaddingFrac = 0.015 # relative padding fraction
@@ -818,8 +814,8 @@ def test_07(cMaps = [cm.viridis]):
     ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac   * xyRatio * height_Y
     ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac   * xyRatio * height_Y
 
-    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.05 * float(nPxs_x), 8.0, 4.0, r'x axis label')
-    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.05 * float(nPxs_y), 8.0, 4.0, r'y axis label')
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.02 * float(nPxs_x), 10.0, 5.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * float(nPxs_y), 10.0, 5.0, r'y axis label')
     zFormat = ('linear', 0.0, 6.21, 2.0)
 
     # loop over color maps
@@ -859,19 +855,94 @@ def test_08(cMaps = [cm.viridis]):
     nPxs_x, nPxs_y = 16, 32
     pixelWidth, pixelHeight = 1.0, 1.0
 
+    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+
+    xVals = np.linspace(xmin, xmax, nPxs_x)
+    yVals = np.linspace(ymin, ymax, nPxs_y)
+
+    width_X = nPxs_x * pixelWidth
+    height_Y = nPxs_y * pixelHeight
+    xyRatio = width_X / height_Y # for non-square (image / data) matrices
+
+    # fill matrix
+    zVals = np.zeros((nPxs_x, nPxs_y))
+
+    for j in range(nPxs_y):     # iterate over y values
+        for i in range(nPxs_x): # iterate over x values
+            zVals[i, j] = 0.2 * xVals[i]
+
+    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+
+    zmin = np.min(zVals)
+    zmax = np.max(zVals)
+
+    ######################################################################################
+    # print info for development purposes and sanity checks
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("xVals.shape =", xVals.shape)
+    print("yVals.shape =", yVals.shape)
+    print("zVals.shape =", zVals.shape)
+    print("(zmin, zmax) =", zmin, zmax)
+    print("/////////////////////////////////////////////////////////////////////////////")
+    ######################################################################################
+
+    # plot settings
+
+    fProps = (2.0, 4.0, 0.25, 0.78, 0.16, 0.88)
+    relativePaddingFrac = 0.015 # relative padding fraction
+
+    xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
+    xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
+    ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * xyRatio * height_Y
+    ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * xyRatio * height_Y
+
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.02 * float(nPxs_x), 10.0, 5.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * float(nPxs_y), 10.0, 5.0, r'y axis label')
+    zFormat = ('linear', 0.0, 3.01, 1.0)
+
+    # loop over color maps
+    for cMap in cMaps:
+
+        zColor = (cMap, zmin, zmax, r'z label (cbar)')
+
+        # assemble outname string
+        outname = 'mpl_pcolormesh_test_08_16x32_matrix'
+        outname += '_cmap_' + cMap.name
+        outname += '_Python_' + platform.python_version() + \
+                   '_mpl_' + mpl.__version__
+
+        # call plot function
+        outname = plot_pcolor(X = xVals,
+                              Y = yVals,
+                              Z = zVals,
+                              titlestr = '',
+                              fProps = fProps,
+                              xFormat = xFormat,
+                              yFormat = yFormat,
+                              zFormat = zFormat,
+                              zColor = zColor,
+                              show_cBar = True,
+                              outname = outname,
+                              outdir = OUTDIR,
+                              showlabels = True,
+                              grid = False,
+                              saveSVG = False)
+    
+
 if __name__ == '__main__':
 
-    test_01(cMaps = [cm.viridis])
+    # test_01(cMaps = [cm.viridis])
 
-    test_02(cMaps = [cm.viridis])
+    # test_02(cMaps = [cm.viridis])
 
-    test_03(cMaps = [cm.viridis])
+    # test_03(cMaps = [cm.viridis])
 
-    test_04(cMaps = [cm.viridis])
+    # test_04(cMaps = [cm.viridis])
 
-    test_05(cMaps = [cm.viridis])
+    # test_05(cMaps = [cm.viridis])
     
-    test_06(cMaps = [cm.viridis])
+    # test_06(cMaps = [cm.viridis])
 
     test_07(cMaps = [cm.viridis])
 
