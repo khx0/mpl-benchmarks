@@ -822,8 +822,8 @@ def test_07(cMaps = [cm.viridis]):
     ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac   * xyRatio * height_Y
     ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac   * xyRatio * height_Y
 
-    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.02 * float(nPxs_x), 10.0, 5.0, r'x axis label')
-    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * float(nPxs_y), 10.0, 5.0, r'y axis label')
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.001 * xmax, 10.0, 5.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.001 * ymax, 10.0, 5.0, r'y axis label')
     zFormat = ('linear', 0.0, 6.21, 2.0)
 
     # loop over color maps
@@ -906,8 +906,8 @@ def test_08(cMaps = [cm.viridis]):
     ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * xyRatio * height_Y
     ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * xyRatio * height_Y
 
-    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.02 * float(nPxs_x), 10.0, 5.0, r'x axis label')
-    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.02 * float(nPxs_y), 10.0, 5.0, r'y axis label')
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.001 * xmax, 10.0, 5.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.001 * ymax, 10.0, 5.0, r'y axis label')
     zFormat = ('linear', 0.0, 3.01, 1.0)
 
     # loop over color maps
@@ -941,11 +941,11 @@ def test_08(cMaps = [cm.viridis]):
 
 if __name__ == '__main__':
 
-    # test_01(cMaps = [cm.viridis])
+    test_01(cMaps = [cm.viridis])
 
-    # test_02(cMaps = [cm.viridis])
+    test_02(cMaps = [cm.viridis])
 
-    # test_03(cMaps = [cm.viridis])
+    test_03(cMaps = [cm.viridis])
 
     test_04(cMaps = [cm.viridis])
 
@@ -953,6 +953,6 @@ if __name__ == '__main__':
     
     test_06(cMaps = [cm.viridis])
 
-    # test_07(cMaps = [cm.viridis])
+    test_07(cMaps = [cm.viridis])
 
-    # test_08(cMaps = [cm.viridis])
+    test_08(cMaps = [cm.viridis])
