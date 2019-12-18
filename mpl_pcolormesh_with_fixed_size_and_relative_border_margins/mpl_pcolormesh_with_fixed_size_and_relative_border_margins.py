@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-17
+# date: 2019-12-18
 # file: mpl_pcolormesh_with_fixed_size_and_relative_border_margins.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -154,7 +154,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
 
     ax1.pcolormesh(xBoxCoords, 
                    yBoxCoords, 
-                   Z,
+                   Z.T,
                    cmap = cMap,
                    norm = cNorm,
                    edgecolors = 'None')
@@ -763,25 +763,116 @@ def test_06(cMaps = [cm.viridis]):
 
     return None
 
+def test_07(cMaps = [cm.viridis]):
+
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("Running test 07 /////////////////////////////////////////////////////////////")
+
+    # create synthetic 32 x 16 2d image array
+    nPxs_x, nPxs_y = 32, 16
+    pixelWidth, pixelHeight = 1.0, 1.0
+
+    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+
+    xVals = np.linspace(xmin, xmax, nPxs_x)
+    yVals = np.linspace(ymin, ymax, nPxs_y)
+
+    width_X = nPxs_x * pixelWidth
+    height_Y = nPxs_y * pixelHeight
+
+    # fill matrix
+    zVals = np.zeros((nPxs_x, nPxs_y))
+
+    for j in range(nPxs_y):     # iterate over y values
+        for i in range(nPxs_x): # iterate over x values
+            zVals[i, j] = 0.2 * xVals[i]
+
+    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+
+    zmin = np.min(zVals)
+    zmax = np.max(zVals)
+
+    ######################################################################################
+    # print info for development purposes and sanity checks
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("xVals.shape =", xVals.shape)
+    print("yVals.shape =", yVals.shape)
+    print("zVals.shape =", zVals.shape)
+    print("(zmin, zmax) =", zmin, zmax)
+    print("/////////////////////////////////////////////////////////////////////////////")
+    ######################################################################################
+
+    # plot settings
+    print("width_X =", width_X)
+    print("height_Y =", height_Y)
+    xyRatio = width_X / height_Y
+    print("xyRatio =", xyRatio)
+
+    fProps = (4.0, 2.0, 0.16, 0.80, 0.16, 0.84)
+    relativePaddingFrac = 0.015 # relative padding fraction
+
+    xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
+    xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
+    ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac   * xyRatio * height_Y
+    ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac   * xyRatio * height_Y
+
+    xFormat = ('linear', xlim_left, xlim_right, 0.0, 1.05 * float(nPxs_x), 8.0, 4.0, r'x axis label')
+    yFormat = ('linear', ylim_left, ylim_right, 0.0, 1.05 * float(nPxs_y), 8.0, 4.0, r'y axis label')
+    zFormat = ('linear', 0.0, 6.21, 2.0)
+
+    # loop over color maps
+    for cMap in cMaps:
+
+        zColor = (cMap, zmin, zmax, r'z label (cbar)')
+
+        # assemble outname string
+        outname = 'mpl_pcolormesh_test_07_32x16_matrix'
+        outname += '_cmap_' + cMap.name
+        outname += '_Python_' + platform.python_version() + \
+                   '_mpl_' + mpl.__version__
+
+        # call plot function
+        outname = plot_pcolor(X = xVals,
+                              Y = yVals,
+                              Z = zVals,
+                              titlestr = '',
+                              fProps = fProps,
+                              xFormat = xFormat,
+                              yFormat = yFormat,
+                              zFormat = zFormat,
+                              zColor = zColor,
+                              show_cBar = True,
+                              outname = outname,
+                              outdir = OUTDIR,
+                              showlabels = True,
+                              grid = False,
+                              saveSVG = False)
+
+def test_08(cMaps = [cm.viridis]):
+
+    print("/////////////////////////////////////////////////////////////////////////////")
+    print("Running test 08 /////////////////////////////////////////////////////////////")
+
+    # create synthetic 16 x 32 2d image array
+    nPxs_x, nPxs_y = 16, 32
+    pixelWidth, pixelHeight = 1.0, 1.0
+
 if __name__ == '__main__':
 
-    test_01(cMaps = [cm.viridis])
+    # test_01(cMaps = [cm.viridis])
 
-    test_02(cMaps = [cm.viridis])
+    # test_02(cMaps = [cm.viridis])
 
-    test_03(cMaps = [cm.viridis])
+    # test_03(cMaps = [cm.viridis])
 
-    test_04(cMaps = [cm.viridis])
+    # test_04(cMaps = [cm.viridis])
 
-    test_05(cMaps = [cm.viridis])
+    # test_05(cMaps = [cm.viridis])
     
-    test_06(cMaps = [cm.viridis])
+    # test_06(cMaps = [cm.viridis])
 
-    ######################################################################################
-    # Alternative usage
-    # To create the output with more colormaps call e.g.
-    # test_01(cMaps = [cm.viridis, cm.gray])
-    ######################################################################################
+    # TODO: check for xy mismatch (swap)
+    test_07(cMaps = [cm.viridis])
 
-    # TODO: create test for non-square image matrices
-    # make this test_04
+    test_08(cMaps = [cm.viridis])
