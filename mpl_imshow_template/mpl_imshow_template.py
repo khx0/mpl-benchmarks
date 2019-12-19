@@ -4,7 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2019-12-19
-# file: mpl_pcolormesh_with_fixed_size_and_relative_border_margins.py
+# file: mpl_imshow_template.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
 
@@ -941,18 +941,20 @@ def test_08(cMaps = [cm.viridis]):
 
 if __name__ == '__main__':
 
-    test_01(cMaps = [cm.viridis])
+    pass
 
-    test_02(cMaps = [cm.viridis])
+    # test_01(cMaps = [cm.viridis])
 
-    test_03(cMaps = [cm.viridis])
+    # test_02(cMaps = [cm.viridis])
 
-    test_04(cMaps = [cm.viridis])
+    # test_03(cMaps = [cm.viridis])
 
-    test_05(cMaps = [cm.viridis])
+    # test_04(cMaps = [cm.viridis])
 
-    test_06(cMaps = [cm.viridis])
+    # test_05(cMaps = [cm.viridis])
 
-    test_07(cMaps = [cm.viridis])
+    # test_06(cMaps = [cm.viridis])
 
-    test_08(cMaps = [cm.viridis])
+    # test_07(cMaps = [cm.viridis])
+
+    # test_08(cMaps = [cm.viridis])

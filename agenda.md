@@ -1,5 +1,10 @@
 # Agenda
 
+* create a imshow template, that is fast to use (good defaults)
+	* for image viewing (not quantitative axes)
+	* either plane, or with dimension labels
+	* optional color bar (with zmin, zmax values, or window leveled)
+
 * create a 2d image matrix class which has the following members
 	* xVals (centerd pixel coordinate)
     * yVals (Centered pixel coordinate)
