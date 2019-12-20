@@ -241,7 +241,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.close()
     return outname
 
-def test_01(cMaps = [cm.viridis]):
+def test_01(cMap = cm.viridis):
 
     print("/////////////////////////////////////////////////////////////////////////////")
     print("Running test 01 /////////////////////////////////////////////////////////////")
@@ -263,74 +263,76 @@ def test_01(cMaps = [cm.viridis]):
     # height_Y = nPxs_y * pixelHeight
 
     # fill matrix
-    zVals = np.zeros((nPxs_x, nPxs_y))
+    img = np.zeros((nPxs_x, nPxs_y))
     # first array dimension corresponds to the x axis
     # second array dimension corresponds to the y axis
     for j in range(nPxs_y):     # iterate over y values
         for i in range(nPxs_x): # iterate over x values
-            zVals[i, j] = 0.2 * xVals[i]
+            img[i, j] = 0.2 * i #xVals[i]
  
     # assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
     assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
 
-    zmin = np.min(zVals)
-    zmax = np.max(zVals)
+    v_min = np.min(img)
+    v_max = np.max(img)
 
     ######################################################################################
     # print info for development purposes and sanity checks
     print("/////////////////////////////////////////////////////////////////////////////")
     # print("xVals.shape =", xVals.shape)
     # print("yVals.shape =", yVals.shape)
-    print("zVals.shape =", zVals.shape)
-    print("(zmin, zmax) =", zmin, zmax)
+    print("img.shape =", img.shape)
+    print("(v_min, v_max) =", v_min, v_max)
     print("/////////////////////////////////////////////////////////////////////////////")
     ######################################################################################
 
     # plot settings
 
-    '''
     fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
-    relativePaddingFrac = 0.015 # relative padding fraction
+    # relativePaddingFrac = 0.015 # relative padding fraction
 
-    xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
-    xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
-    ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
-    ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
+    # xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
+    # xlim_right = xmax + pixelWidth  / 2.0 + relativePaddingFrac * width_X
+    # ylim_left  = ymin - pixelHeight / 2.0 - relativePaddingFrac * height_Y
+    # ylim_right = ymax + pixelHeight / 2.0 + relativePaddingFrac * height_Y
 
-    xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
-    yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
-    zFormat = ('linear', 0.0, 1.85, 0.20)
+    # xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
+    # yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
+    # zFormat = ('linear', 0.0, 1.85, 0.20)
 
-    # loop over color maps
-    for cMap in cMaps:
+    print("cMap =", cMap)
 
-        zColor = (cMap, zmin, zmax, r'z label (cbar)')
+    zColor = (cMap, zmin, zmax, r'z label (cbar)')
 
-        # assemble outname string
-        outname = 'mpl_pcolormesh_test_01'
-        outname += '_cmap_' + cMap.name
-        outname += '_Python_' + platform.python_version() + \
-                   '_mpl_' + mpl.__version__
+    # assemble outname string
+    outname = 'mpl_imshow_template_test_01'
+    outname += '_cmap_' + cMap.name
+    outname += '_Python_' + platform.python_version() + \
+               '_mpl_' + mpl.__version__
 
-        # call plot function
-        outname = plot_pcolor(X = xVals,
-                              Y = yVals,
-                              Z = zVals,
-                              titlestr = '',
-                              fProps = fProps,
-                              xFormat = xFormat,
-                              yFormat = yFormat,
-                              zFormat = zFormat,
-                              zColor = zColor,
-                              show_cBar = True,
-                              outname = outname,
-                              outdir = OUTDIR,
-                              showlabels = True,
-                              grid = False,
-                              saveSVG = False)
-	'''
+    print("outname =", outname)
+
+	# call plot function
+	outname = plot_image(img = img)
+
+    # outname = plot_pcolor(X = xVals,
+    #                       Y = yVals,
+    #                       Z = zVals,
+    #                       titlestr = '',
+    #                       fProps = fProps,
+    #                       xFormat = xFormat,
+    #                       yFormat = yFormat,
+    #                       zFormat = zFormat,
+    #                       zColor = zColor,
+    #                       show_cBar = True,
+    #                       outname = outname,
+    #                       outdir = OUTDIR,
+    #                       showlabels = True,
+    #                       grid = False,
+    #                       saveSVG = False)
+
     return None
 
 if __name__ == '__main__':
 
-    test_01(cMaps = [cm.viridis])
+    test_01(cMap = cm.viridis)
