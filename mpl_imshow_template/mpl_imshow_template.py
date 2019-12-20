@@ -35,8 +35,6 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-
-
 def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
                 outname, outdir, showlabels, params = None, grid = False, saveSVG = False,
                 savePDF = True, savePNG = False, datestamp = True):
@@ -243,12 +241,32 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.close()
     return outname
 
-def plot_image(img, outname, outdir,
+def plot_image(img, fProps, outname, outdir,
     savePDF = True, savePNG = False, saveSVG = False, datestamp = True):
 
-    f, ax1 = plt.subplots(1)
+    mpl.rcParams['ytick.left'] = False
+    mpl.rcParams['xtick.top'] = False
+    mpl.rcParams['xtick.bottom'] = False
+    mpl.rcParams['ytick.right'] = False
+    mpl.rcParams['xtick.direction'] = 'out'
+    mpl.rcParams['ytick.direction'] = 'out'
 
-    ax1.imshow(img)
+    ######################################################################################
+    # set up figure
+    fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
+        getFigureProps(width = fProps[0], height = fProps[1],
+                       lFrac = fProps[2], rFrac = fProps[3],
+                       bFrac = fProps[4], tFrac = fProps[5])
+
+    f, ax1 = plt.subplots(1)
+    f.set_size_inches(fWidth, fHeight)
+    f.subplots_adjust(left = lFrac, right = rFrac)
+    f.subplots_adjust(bottom = bFrac, top = tFrac)
+
+    # f, ax1 = plt.subplots(1)
+
+    ax1.imshow(img,
+               origin = 'lower')
 
 
 
@@ -261,9 +279,27 @@ def plot_image(img, outname, outdir,
     #                edgecolors = 'None')
 
 
+    ax1.set_xticks([])
+    ax1.set_yticks([])
+
+    tick_fontsize = 4.0
+    for tick in ax1.xaxis.get_major_ticks():
+        tick.label.set_fontsize(tick_fontsize)
+    for tick in ax1.yaxis.get_major_ticks():
+        tick.label.set_fontsize(tick_fontsize)
+
+    ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
+    ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
+
+    ax1.tick_params(axis = 'x', which = 'major', pad = 0.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 0.0, zorder = 10)
 
 
-
+    ax1.set_xticks([1])
+    ax1.set_yticks([1])
+    print(img.shape)
+    ax1.set_xticklabels(['{}'.format(img.shape[0])])
+    ax1.set_yticklabels(['{}'.format(img.shape[1])])
 
 
 
@@ -333,7 +369,7 @@ def test_01(cMap = cm.viridis):
 
     # plot settings
 
-    fProps = (4.0, 4.0, 0.16, 0.80, 0.16, 0.88)
+    fProps = (4.0, 4.0, 0.15, 0.85, 0.15, 0.85)
     # relativePaddingFrac = 0.015 # relative padding fraction
 
     # xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
@@ -355,6 +391,7 @@ def test_01(cMap = cm.viridis):
 
     # call plot function
     outname = plot_image(img = img,
+                         fProps = fProps,
                          outname = outname,
                          outdir = OUTDIR)
 
@@ -373,6 +410,10 @@ def test_01(cMap = cm.viridis):
     #                       showlabels = True,
     #                       grid = False,
     #                       saveSVG = False)
+
+    # 01 - default mode
+    # 02 - plain with black thin border
+    # 03 - plain without black thin border
 
     return None
 
