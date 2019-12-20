@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-19
+# date: 2019-12-20
 # file: mpl_imshow_template.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -34,6 +34,8 @@ RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
+
+
 
 def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
                 outname, outdir, showlabels, params = None, grid = False, saveSVG = False,
@@ -241,14 +243,57 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.close()
     return outname
 
+def plot_image(img, outname, outdir,
+    savePDF = True, savePNG = False, saveSVG = False, datestamp = True):
+
+    f, ax1 = plt.subplots(1)
+
+    ax1.imshow(img)
+
+
+
+
+    # ax1.pcolormesh(xBoxCoords, 
+    #                yBoxCoords, 
+    #                Z.T,
+    #                cmap = cMap,
+    #                norm = cNorm,
+    #                edgecolors = 'None')
+
+
+
+
+
+
+
+
+    ######################################################################################
+    # save to file
+    if datestamp:
+        outname += '_' + today
+    if savePDF: # save to file using pdf backend
+        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
+    if savePNG:
+        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
+    if saveSVG:
+        cmd = 'pdf2svg ' + os.path.join(outdir, outname + '.pdf') + \
+              ' ' + os.path.join(outdir, outname + '.svg')
+        os.system(cmd)
+    ######################################################################################
+    # close handles
+    plt.cla()
+    plt.clf()
+    plt.close()
+    return outname
+
 def test_01(cMap = cm.viridis):
 
     print("/////////////////////////////////////////////////////////////////////////////")
     print("Running test 01 /////////////////////////////////////////////////////////////")
 
-    # create synthetic 64 x 64 2d image array
-    nPxs_x = 64
-    nPxs_y = 64
+    # create synthetic 32 x 32 2d image array
+    nPxs_x = 32
+    nPxs_y = 32
 
     # pixelWidth = 1.0
     # pixelHeight = 1.0
@@ -271,7 +316,7 @@ def test_01(cMap = cm.viridis):
             img[i, j] = 0.2 * i #xVals[i]
  
     # assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+    assert img.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
 
     v_min = np.min(img)
     v_max = np.max(img)
@@ -300,9 +345,7 @@ def test_01(cMap = cm.viridis):
     # yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
     # zFormat = ('linear', 0.0, 1.85, 0.20)
 
-    print("cMap =", cMap)
-
-    zColor = (cMap, zmin, zmax, r'z label (cbar)')
+    zColor = (cMap, v_min, v_max, r'cb label (cbar)')
 
     # assemble outname string
     outname = 'mpl_imshow_template_test_01'
@@ -310,10 +353,10 @@ def test_01(cMap = cm.viridis):
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    print("outname =", outname)
-
-	# call plot function
-	outname = plot_image(img = img)
+    # call plot function
+    outname = plot_image(img = img,
+                         outname = outname,
+                         outdir = OUTDIR)
 
     # outname = plot_pcolor(X = xVals,
     #                       Y = yVals,
