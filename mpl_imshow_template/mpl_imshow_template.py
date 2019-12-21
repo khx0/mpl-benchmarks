@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-20
+# date: 2019-12-21
 # file: mpl_imshow_template.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
