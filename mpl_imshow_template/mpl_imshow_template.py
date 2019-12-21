@@ -279,8 +279,18 @@ def plot_image(img, fProps, outname, outdir,
     #                edgecolors = 'None')
 
 
+    for item in [f, ax1]:
+        item.patch.set_visible(False)
+
+    ax1.axis('off')
+
     ax1.set_xticks([])
     ax1.set_yticks([])
+
+
+
+
+
 
     tick_fontsize = 4.0
     for tick in ax1.xaxis.get_major_ticks():
@@ -300,6 +310,8 @@ def plot_image(img, fProps, outname, outdir,
     print(img.shape)
     ax1.set_xticklabels(['{}'.format(img.shape[0])])
     ax1.set_yticklabels(['{}'.format(img.shape[1])])
+
+
 
 
 
@@ -369,7 +381,7 @@ def test_01(cMap = cm.viridis):
 
     # plot settings
 
-    fProps = (4.0, 4.0, 0.15, 0.85, 0.15, 0.85)
+    fProps = (4.0, 4.0, 0.12, 0.88, 0.12, 0.88)
     # relativePaddingFrac = 0.015 # relative padding fraction
 
     # xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
