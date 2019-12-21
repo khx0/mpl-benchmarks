@@ -56,11 +56,11 @@ if __name__ == '__main__':
     X = np.zeros((nVisPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
-    
+
     # plotting
     f, ax1 = plt.subplots(1)
     f.subplots_adjust(right = 0.7)
-    
+
     ax1.plot(X[:, 0], X[:, 1])
 
     # annotations
@@ -70,13 +70,13 @@ if __name__ == '__main__':
                  xycoords = 'data',
                  horizontalalignment = 'center',
                  verticalalignment = 'center')
-                 
+
     ax1.annotate('label crossing the right axis',
                  xy = (800.0, 500.0),
                  xycoords = 'data',
                  horizontalalignment = 'left',
                  verticalalignment = 'center')
-                 
+       
     # specify the (x, y) position in data coordinates
     xPos_data = 870.0
     yPos_data = 400.0

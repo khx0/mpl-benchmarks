@@ -265,7 +265,7 @@ def plot_image(img, fProps, outname, outdir,
 
     # f, ax1 = plt.subplots(1)
 
-    ax1.imshow(img,
+    ax1.imshow(img.T,
                origin = 'lower')
 
 
@@ -279,41 +279,24 @@ def plot_image(img, fProps, outname, outdir,
     #                edgecolors = 'None')
 
 
-    for item in [f, ax1]:
-        item.patch.set_visible(False)
+    # for item in [f, ax1]:
+    #     item.patch.set_visible(False)
 
     ax1.axis('off')
 
     ax1.set_xticks([])
     ax1.set_yticks([])
 
+    dimensionLabel = True
 
-
-
-
-
-    tick_fontsize = 4.0
-    for tick in ax1.xaxis.get_major_ticks():
-        tick.label.set_fontsize(tick_fontsize)
-    for tick in ax1.yaxis.get_major_ticks():
-        tick.label.set_fontsize(tick_fontsize)
-
-    ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
-    ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
-
-    ax1.tick_params(axis = 'x', which = 'major', pad = 0.0)
-    ax1.tick_params(axis = 'y', which = 'major', pad = 0.0, zorder = 10)
-
-
-    ax1.set_xticks([1])
-    ax1.set_yticks([1])
-    print(img.shape)
-    ax1.set_xticklabels(['{}'.format(img.shape[0])])
-    ax1.set_yticklabels(['{}'.format(img.shape[1])])
-
-
-
-
+    if dimensionLabel:
+        dimension_str = r"{} x {}".format(img.shape[0], img.shape[1])
+        ax1.annotate(dimension_str,
+                     xy = (0.0, -0.025),
+                     xycoords = 'axes fraction',
+                     horizontalalignment = 'left',
+                     verticalalignment = 'center',
+                     fontsize = 4.0)
 
     ######################################################################################
     # save to file
