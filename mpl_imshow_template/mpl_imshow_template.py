@@ -320,11 +320,34 @@ def plot_image(img, fProps, outname, outdir,
 def test_01(cMap = cm.viridis):
 
     print("/////////////////////////////////////////////////////////////////////////////")
-    print("Running test 01 /////////////////////////////////////////////////////////////")
+    print("Running test 01")
 
     # create synthetic 32 x 32 2d image array
     nPxs_x = 32
     nPxs_y = 32
+
+    # fill image matrix
+    img = np.zeros((nPxs_x, nPxs_y))
+
+    # first array dimension corresponds to the x axis
+    # second array dimension corresponds to the y axis
+    for j in range(nPxs_y):     # iterate over y values
+        for i in range(nPxs_x): # iterate over x values
+            img[i, j] = 0.2 * i # xVals[i]
+ 
+    v_min = np.min(img)
+    v_max = np.max(img)
+
+    assert img.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+
+    ######################################################################################
+    print("  img.shape =", img.shape)
+    print("  (v_min, v_max) =", v_min, v_max)
+    ######################################################################################
+
+
+
+
 
     # pixelWidth = 1.0
     # pixelHeight = 1.0
@@ -337,34 +360,16 @@ def test_01(cMap = cm.viridis):
 
     # width_X = nPxs_x * pixelWidth
     # height_Y = nPxs_y * pixelHeight
-
-    # fill matrix
-    img = np.zeros((nPxs_x, nPxs_y))
-    # first array dimension corresponds to the x axis
-    # second array dimension corresponds to the y axis
-    for j in range(nPxs_y):     # iterate over y values
-        for i in range(nPxs_x): # iterate over x values
-            img[i, j] = 0.2 * i #xVals[i]
- 
     # assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert img.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
 
-    v_min = np.min(img)
-    v_max = np.max(img)
 
-    ######################################################################################
-    # print info for development purposes and sanity checks
-    print("/////////////////////////////////////////////////////////////////////////////")
-    # print("xVals.shape =", xVals.shape)
-    # print("yVals.shape =", yVals.shape)
-    print("img.shape =", img.shape)
-    print("(v_min, v_max) =", v_min, v_max)
-    print("/////////////////////////////////////////////////////////////////////////////")
-    ######################################################################################
+
+
 
     # plot settings
 
     fProps = (4.0, 4.0, 0.12, 0.88, 0.12, 0.88)
+
     # relativePaddingFrac = 0.015 # relative padding fraction
 
     # xlim_left  = xmin - pixelWidth  / 2.0 - relativePaddingFrac * width_X
@@ -375,6 +380,7 @@ def test_01(cMap = cm.viridis):
     # xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
     # yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
     # zFormat = ('linear', 0.0, 1.85, 0.20)
+
 
     zColor = (cMap, v_min, v_max, r'cb label (cbar)')
 
@@ -389,6 +395,8 @@ def test_01(cMap = cm.viridis):
                          fProps = fProps,
                          outname = outname,
                          outdir = OUTDIR)
+
+
 
     # outname = plot_pcolor(X = xVals,
     #                       Y = yVals,
@@ -406,6 +414,7 @@ def test_01(cMap = cm.viridis):
     #                       grid = False,
     #                       saveSVG = False)
 
+    # TODO:
     # 01 - default mode
     # 02 - plain with black thin border
     # 03 - plain without black thin border
@@ -415,3 +424,4 @@ def test_01(cMap = cm.viridis):
 if __name__ == '__main__':
 
     test_01(cMap = cm.viridis)
+
