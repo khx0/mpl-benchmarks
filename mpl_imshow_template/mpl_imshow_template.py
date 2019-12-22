@@ -241,7 +241,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.close()
     return outname
 
-def plot_image(img, fProps, outname, outdir,
+def plot_image(img, fProps, outname, outdir, show_colorbar = False,
     savePDF = True, savePNG = False, saveSVG = False, datestamp = True):
 
     mpl.rcParams['ytick.left'] = False
@@ -297,6 +297,9 @@ def plot_image(img, fProps, outname, outdir,
                      horizontalalignment = 'left',
                      verticalalignment = 'center',
                      fontsize = 4.0)
+
+    if show_colorbar:
+    	print("Colorbar")
 
     ######################################################################################
     # save to file
@@ -393,6 +396,7 @@ def test_01(cMap = cm.viridis):
     # call plot function
     outname = plot_image(img = img,
                          fProps = fProps,
+                         show_colorbar = True,
                          outname = outname,
                          outdir = OUTDIR)
 
