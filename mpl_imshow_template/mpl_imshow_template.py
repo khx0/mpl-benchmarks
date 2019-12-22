@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-21
+# date: 2019-12-22
 # file: mpl_imshow_template.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -241,7 +241,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     plt.close()
     return outname
 
-def plot_image(img, fProps, outname, outdir, show_colorbar = False,
+def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
     savePDF = True, savePNG = False, saveSVG = False, datestamp = True):
 
     mpl.rcParams['ytick.left'] = False
@@ -265,8 +265,12 @@ def plot_image(img, fProps, outname, outdir, show_colorbar = False,
 
     # f, ax1 = plt.subplots(1)
 
+
+    cMap = zColor[0]
+
     ax1.imshow(img.T,
-               origin = 'lower')
+               origin = 'lower',
+               cmap = cMap)
 
 
 
@@ -277,10 +281,6 @@ def plot_image(img, fProps, outname, outdir, show_colorbar = False,
     #                cmap = cMap,
     #                norm = cNorm,
     #                edgecolors = 'None')
-
-
-    # for item in [f, ax1]:
-    #     item.patch.set_visible(False)
 
     ax1.axis('off')
 
@@ -299,7 +299,8 @@ def plot_image(img, fProps, outname, outdir, show_colorbar = False,
                      fontsize = 4.0)
 
     if show_colorbar:
-    	print("Colorbar")
+
+        pass
 
     ######################################################################################
     # save to file
@@ -352,6 +353,8 @@ def test_01(cMap = cm.viridis):
 
 
 
+
+
     # pixelWidth = 1.0
     # pixelHeight = 1.0
 
@@ -364,6 +367,8 @@ def test_01(cMap = cm.viridis):
     # width_X = nPxs_x * pixelWidth
     # height_Y = nPxs_y * pixelHeight
     # assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
+
+
 
 
 
@@ -385,6 +390,8 @@ def test_01(cMap = cm.viridis):
     # zFormat = ('linear', 0.0, 1.85, 0.20)
 
 
+
+
     zColor = (cMap, v_min, v_max, r'cb label (cbar)')
 
     # assemble outname string
@@ -396,6 +403,7 @@ def test_01(cMap = cm.viridis):
     # call plot function
     outname = plot_image(img = img,
                          fProps = fProps,
+                         zColor = zColor,
                          show_colorbar = True,
                          outname = outname,
                          outdir = OUTDIR)
