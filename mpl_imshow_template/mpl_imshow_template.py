@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-22
+# date: 2019-12-24
 # file: mpl_imshow_template.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -102,12 +102,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     ax1.yaxis.labelpad = 4.0
     ######################################################################################
 
-    ######################################################################################
-    # color map settings
-    cMap = zColor[0]
-    cNorm = mpl.colors.Normalize(vmin = zColor[1], vmax = zColor[2])
-    scalarMap = cm.ScalarMappable(norm = cNorm, cmap = cMap)
-    print("Colormap colornorm limits =", scalarMap.get_clim())
+
     ######################################################################################
     # colorbar
     if show_cBar:
@@ -298,8 +293,15 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
                      verticalalignment = 'center',
                      fontsize = 4.0)
 
-    if show_colorbar:
+    ######################################################################################
+    # color map settings
+    cMap = zColor[0]
+    cNorm = mpl.colors.Normalize(vmin = zColor[1], vmax = zColor[2])
+    scalarMap = cm.ScalarMappable(norm = cNorm, cmap = cMap)
+    print("Colormap colornorm limits =", scalarMap.get_clim())
 
+    if show_colorbar:
+    
         pass
 
     ######################################################################################
