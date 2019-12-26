@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-24
+# date: 2019-12-26
 # file: mpl_imshow_template.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -301,8 +301,25 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
     print("Colormap colornorm limits =", scalarMap.get_clim())
 
     if show_colorbar:
-    
-        pass
+
+        # add_axes(left, bottom, width, height), all between [0, 1]
+        # relative to the figure size
+
+        # reference color bar width gauge
+        cbWidthFrac = 0.03 / fWidth * 2.4
+
+        cax = f.add_axes([0.82, bFrac, cbWidthFrac, (tFrac - bFrac)])
+
+    ####
+        # cax.tick_params('both', length = 2.5, width = 0.5, which = 'major')
+        # cax.tick_params('both', length = 1.5, width = 0.25, which = 'minor')
+        # cax.tick_params(axis = 'both', which = 'major', pad = 2)
+
+        # cb1 = mpl.colorbar.ColorbarBase(cax,
+        #                                 cmap = cMap,
+        #                                 norm = cNorm,
+        #                                 orientation = 'vertical')
+    ####
 
     ######################################################################################
     # save to file
@@ -427,6 +444,7 @@ def test_01(cMap = cm.viridis):
     #                       showlabels = True,
     #                       grid = False,
     #                       saveSVG = False)
+
 
     # TODO:
     # 01 - default mode
