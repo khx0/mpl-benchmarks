@@ -304,7 +304,7 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
 
         # add_axes(left, bottom, width, height), all between [0, 1]
         # relative to the figure size
-
+        
         # reference color bar width gauge
         cbWidthFrac = 0.025 / fWidth * 2.4
 
@@ -324,6 +324,22 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
                                         norm = cNorm,
                                         orientation = 'vertical')
     ####
+    
+    ########
+
+
+        
+
+
+        cax.tick_params('both', length = 2.5, width = 0.5, which = 'major')
+        cax.tick_params('both', length = 1.5, width = 0.25, which = 'minor')
+        cax.tick_params(axis = 'both', which = 'major', pad = 2)
+
+        cb1 = mpl.colorbar.ColorbarBase(cax,
+                                        cmap = cMap,
+                                        norm = cNorm,
+                                        orientation = 'vertical')
+    ########
 
 
 
@@ -452,7 +468,12 @@ def test_01(cMap = cm.viridis):
     #                       saveSVG = False)
 
 
+
+
+
     # TODO:
+    # make sure that all these modes below can be used and work
+    # test them thoroughly
     # 01 - default mode
     # 02 - plain with black thin border
     # 03 - plain without black thin border
