@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-26
+# date: 2020-01-01
 # file: mpl_imshow_template.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################
@@ -277,6 +277,10 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
     #                norm = cNorm,
     #                edgecolors = 'None')
 
+
+
+
+
     ax1.axis('off')
 
     ax1.set_xticks([])
@@ -310,11 +314,6 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
 
         cax = f.add_axes([0.90, bFrac, cbWidthFrac, (tFrac - bFrac)])
 
-
-
-
-    ####
-
         cax.tick_params('both', length = 2.5, width = 0.5, which = 'major')
         cax.tick_params('both', length = 1.5, width = 0.25, which = 'minor')
         cax.tick_params(axis = 'both', which = 'major', pad = 2)
@@ -323,22 +322,28 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
                                         cmap = cMap,
                                         norm = cNorm,
                                         orientation = 'vertical')
-    ####
+
+        ##################################################################################
+        # color bar labels
+        # Here axes.annotate is used to set a color bar label.
+        # One can alternatively also use the colorbar.set_label function call, e.g. via:
+        # cb1.set_label(zColor[3],
+        #               labelpad = 2.5,
+        #               fontsize = 6)
+        # which creats a vertical color bar label along the color bar.
+        ##################################################################################
+        ax1.annotate(zColor[3],
+                     xy = (1.1, 1.035),
+                     xycoords = 'axes fraction',
+                     fontsize = 4.0,
+                     horizontalalignment = 'right')
+        ##################################################################################
+
+
     
     ########
 
 
-        
-
-
-        cax.tick_params('both', length = 2.5, width = 0.5, which = 'major')
-        cax.tick_params('both', length = 1.5, width = 0.25, which = 'minor')
-        cax.tick_params(axis = 'both', which = 'major', pad = 2)
-
-        cb1 = mpl.colorbar.ColorbarBase(cax,
-                                        cmap = cMap,
-                                        norm = cNorm,
-                                        orientation = 'vertical')
     ########
 
 
