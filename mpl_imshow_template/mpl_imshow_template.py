@@ -258,17 +258,11 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
 
-    # f, ax1 = plt.subplots(1)
-
-
     cMap = zColor[0]
 
     ax1.imshow(img.T,
                origin = 'lower',
                cmap = cMap)
-
-
-
 
     # ax1.pcolormesh(xBoxCoords, 
     #                yBoxCoords, 
@@ -276,8 +270,6 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
     #                cmap = cMap,
     #                norm = cNorm,
     #                edgecolors = 'None')
-
-
 
 
 
