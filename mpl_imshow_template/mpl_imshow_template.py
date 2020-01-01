@@ -217,26 +217,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor',
                  linewidth = 0.2)
         ax1.grid(True, which = 'minor')
-    ######################################################################################
-    # save to file
-    if datestamp:
-        outname += '_' + today
-    if savePDF: # save to file using pdf backend
-        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
-    if savePNG:
-        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
-    if saveSVG:
-        cmd = 'pdf2svg ' + os.path.join(outdir, outname + '.pdf') + \
-              ' ' + os.path.join(outdir, outname + '.svg')
-        os.system(cmd)
-    ######################################################################################
-    # close handles
-    plt.cla()
-    plt.clf()
-    plt.close()
-    return outname
 
-def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
+def plot_image(img, fProps, zFormat, zColor, outname, outdir, show_colorbar = False,
     savePDF = True, savePNG = False, saveSVG = False, datestamp = True):
 
     mpl.rcParams['ytick.left'] = False
@@ -334,10 +316,21 @@ def plot_image(img, fProps, zColor, outname, outdir, show_colorbar = False,
 
     
     ########
+        cb1.outline.set_linewidth(0.5)
+        cb1.ax.tick_params(axis = 'y', direction = 'out', which = 'both')
+        cb1.ax.tick_params(labelsize = 6.0)
 
+        if (zFormat[0] == 'linear'):
+            cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
+            cb1.set_ticks(cb_labels)
+
+        #################################################################################
+        # colorbar minor tick switch
+        # uncomment the line below to switch on minor ticks on the color bar axis
+        # cb1.ax.minorticks_on()
+        #################################################################################
 
     ########
-
 
 
     ######################################################################################
@@ -425,11 +418,9 @@ def test_01(cMap = cm.viridis):
 
     # xFormat = ('linear', xlim_left, xlim_right, 0.0, 9.05, 2.0, 1.0, r'x axis label')
     # yFormat = ('linear', ylim_left, ylim_right, 0.0, 9.05, 2.0, 1.0, r'y axis label')
-    # zFormat = ('linear', 0.0, 1.85, 0.20)
 
 
-
-
+    zFormat = ('linear', 0.0, 6.25, 1.00)
     zColor = (cMap, v_min, v_max, r'cb label (cbar)')
 
     # assemble outname string
@@ -441,6 +432,7 @@ def test_01(cMap = cm.viridis):
     # call plot function
     outname = plot_image(img = img,
                          fProps = fProps,
+                         zFormat = zFormat,
                          zColor = zColor,
                          show_colorbar = True,
                          outname = outname,
@@ -450,7 +442,6 @@ def test_01(cMap = cm.viridis):
     # outname = plot_pcolor(...
     #                       xFormat = xFormat,
     #                       yFormat = yFormat,
-    #                       zFormat = zFormat,
     #                       showlabels = True,
 
     # TODO:
