@@ -452,29 +452,14 @@ def test_01(cMap = cm.viridis):
                          zColor = zColor,
                          show_colorbar = True,
                          outname = outname,
-                         outdir = OUTDIR)
+                         outdir = OUTDIR,
+                         saveSVG = False)
 
-
-
-    # outname = plot_pcolor(X = xVals,
-    #                       Y = yVals,
-    #                       Z = zVals,
-    #                       titlestr = '',
-    #                       fProps = fProps,
+    # outname = plot_pcolor(...
     #                       xFormat = xFormat,
     #                       yFormat = yFormat,
     #                       zFormat = zFormat,
-    #                       zColor = zColor,
-    #                       show_cBar = True,
-    #                       outname = outname,
-    #                       outdir = OUTDIR,
     #                       showlabels = True,
-    #                       grid = False,
-    #                       saveSVG = False)
-
-
-
-
 
     # TODO:
     # make sure that all these modes below can be used and work
