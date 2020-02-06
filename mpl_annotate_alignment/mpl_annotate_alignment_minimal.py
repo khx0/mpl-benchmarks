@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-05
+# date: 2020-02-06
 # file: mpl_annotate_alignment_minimal.py
 # tested with python 3.7.2 in conjunction with mpl version 3.1.2
 ##########################################################################################

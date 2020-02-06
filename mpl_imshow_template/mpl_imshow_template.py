@@ -313,10 +313,10 @@ def plot_image(img, fProps, zFormat, zColor, outname, outdir, show_colorbar = Fa
                      horizontalalignment = 'right')
         ##################################################################################
 
+        cb1.outline.set_linewidth(0.2)
+        # cb1.outline.set_linewidth(0.5)
 
-    
     ########
-        cb1.outline.set_linewidth(0.5)
         cb1.ax.tick_params(axis = 'y', direction = 'out', which = 'both')
         cb1.ax.tick_params(labelsize = 6.0)
 
@@ -331,7 +331,6 @@ def plot_image(img, fProps, zFormat, zColor, outname, outdir, show_colorbar = Fa
         #################################################################################
 
     ########
-
 
     ######################################################################################
     # save to file
