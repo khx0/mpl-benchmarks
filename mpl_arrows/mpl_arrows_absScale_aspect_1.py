@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-09
+# date: 2020-02-09
 # file: mpl_arrows_absScale_aspect_1.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.2
+# tested with python 3.7.2 in conjunction with mpl version 3.1.3
 ##########################################################################################
 
 import os
