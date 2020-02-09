@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-06
+# date: 2020-02-09
 # file: mpl_annotate_alignment.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.3git st
+# tested with python 3.7.2 in conjunction with mpl version 3.1.3
 ##########################################################################################
 
 import os
