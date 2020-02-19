@@ -16,7 +16,7 @@ a single issue, without further ado.
 
 ## Python and matplotlib versions
 All shown examples have been tested with Python 3 (version 3.7.2)
-and matplotlib version 3.1.2.
+and matplotlib version 3.1.2. (update to 3.1.3 in progress ...)
 Support for Python 2 is dropped.
 However copying some snippets from the scripts will
 most likely also (still) work with Python 2.7, as they were originally
@@ -56,7 +56,7 @@ For some modules unit tests are provided in the
 /unit-tests/
 ```
 directory which can be run using the unittest module or via pytest.
-All tests were done using pytest version 5.3.1.
+All tests were done using pytest version 5.3.2.
 
 ### Changes
 For changes made to this repository see the provided `changelog.md` file in root.
