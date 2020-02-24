@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-21
+# date: 2020-02-24
 # file: mpl_logscale_minor_ticks.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.3
+# tested with python 3.7.6 in conjunction with mpl version 3.1.3
 # dependency: pdf2svg cmd line tool
 ##########################################################################################
 

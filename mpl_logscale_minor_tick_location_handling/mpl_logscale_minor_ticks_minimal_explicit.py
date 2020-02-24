@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-16
+# date: 2020-02-24
 # file: mpl_logscale_minor_ticks_minimal_explicit.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.2
+# tested with python 3.7.6 in conjunction with mpl version 3.1.3
 ##########################################################################################
 
 """
