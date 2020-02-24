@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-21
+# date: 2020-02-24
 # file: mpl_legend_element_order_minimal.py
-# tested with python 3.7.2 in conjunction with mpl version 3.1.3
+# tested with python 3.7.6 in conjunction with mpl version 3.1.3
 ##########################################################################################
 
 import os
