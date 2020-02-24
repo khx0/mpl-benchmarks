@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-20
+# date: 2020-02-24
 # file: convert_pdf2svg.py
-# tested with python 3.7.2
+# tested with python 3.7.6
 ##########################################################################################
 
 import os
