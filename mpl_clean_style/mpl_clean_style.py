@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-23
+# date: 2020-03-08
 # file: mpl_clean_style.py
-# tested with python 3.7.6 in conjunction with mpl version 3.1.3
+# tested with python 3.7.6 in conjunction with mpl version 3.2.0
 ##########################################################################################
 
 import os
@@ -139,7 +139,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     ######################################################################################
     # set plot range and scale
-    if (xFormat == None):
+    if xFormat == None:
         pass # mpl autoscale
     else:
         xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormat
@@ -148,7 +148,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
         minor_x_ticks = np.arange(xTicksMin, xTicksMax, dxMinor)
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-    if (yFormat == None):
+    if yFormat == None:
         pass # mpl autoscale
     else:
         ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormat
