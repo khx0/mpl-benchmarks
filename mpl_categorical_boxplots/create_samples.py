@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-23
+# date: 2020-03-08
 # file: create_samples.py
 # tested with python 3.7.6
 ##########################################################################################
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     print("sample_A.shape =", sample_A.shape)
 
     # save samples to file
-    outname = 'normal_samples_np_seed_{:d}'.format(seedValue)
+    outname = f'normal_samples_np_seed_{seedValue}'
     np.save(os.path.join(RAWDIR, outname), sample_A)
     if CREATE_TXT:
         np.savetxt(os.path.join(RAWDIR, outname + '.txt'), sample_A, fmt = '%.8f')
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     data[:, 1] = sample_B
 
     # save samples to file
-    outname = 'normal_samples_AB_np_seed_{:d}'.format(seedValue)
+    outname = f'normal_samples_AB_np_seed_{seedValue}'.format(seedValue)
     np.save(os.path.join(RAWDIR, outname), data)
     if CREATE_TXT:
         np.savetxt(os.path.join(RAWDIR, outname + '.txt'), data, fmt = '%.8f')

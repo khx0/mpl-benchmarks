@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-23
+# date: 2020-03-08
 # file: mpl_AB_categorical_boxplot.py
-# tested with python 3.7.6 and matplotlib 3.1.3
+# tested with python 3.7.6 and matplotlib 3.2.0
 ##########################################################################################
 
 import os

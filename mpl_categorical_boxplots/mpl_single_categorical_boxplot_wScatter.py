@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-23
+# date: 2020-03-08
 # file: mpl_single_categorical_boxplot_wScatter.py
 # tested with python 3.7.6 and matplotlib 3.1.3
 ##########################################################################################
