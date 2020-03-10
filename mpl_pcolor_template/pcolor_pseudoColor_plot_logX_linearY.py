@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-24
+# date: 2020-03-10
 # file: pcolor_pseudoColor_plot_logX_linearY.py
-# tested with python 3.7.6 in conjunction with mpl version 3.1.3
+# tested with python 3.7.6 in conjunction with mpl version 3.2.0
 ##########################################################################################
 
 import sys
@@ -136,9 +136,9 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
 
     #####################################################################################
     # axis formatting
-    if (xFormat[0] == 'auto'):
+    if xFormat[0] == 'auto':
         pass
-    if (xFormat[0] == 'linear'):
+    if xFormat[0] == 'linear':
         ax1.set_xlim(xFormat[1], xFormat[2]) # xmin, xmax
         major_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[5])
         minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
@@ -148,7 +148,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         # manual formatting here:
         # ax1.set_xticklabels([0, 0.5, 1])
 
-    elif (xFormat[0] == 'log'):
+    elif xFormat[0] == 'log':
         ax1.set_xscale('log')
         ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
         ax1.xaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 8,
@@ -160,9 +160,9 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         print("Error: Unknown xFormat[0] type encountered.")
         sys.exit(1)
     #####################################################################################
-    if (yFormat[0] == 'auto'):
+    if yFormat[0] == 'auto':
         pass
-    if (yFormat[0] == 'linear'):
+    if yFormat[0] == 'linear':
         ax1.set_ylim(yFormat[1], yFormat[2]) # xmin, xmax
         major_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[5])
         minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
@@ -172,7 +172,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         # manual formatting here:
         # ax1.set_yticklabels([0, 0.5, 1])
 
-    elif (yFormat[0] == 'log'):
+    elif yFormat[0] == 'log':
         ax1.set_yscale('log')
         ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 5))
         ax1.yaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 5,
