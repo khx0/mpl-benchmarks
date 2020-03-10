@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-24
+# date: 2020-03-10
 # file: pcolor_pseudoColor_plot_linearX_linearY_standalone.py
-# tested with python 3.7.6 in conjunction with mpl version 3.1.3
+# tested with python 3.7.6 in conjunction with mpl version 3.2.0
 ##########################################################################################
 
 import os
@@ -48,10 +48,21 @@ def cleanFormatter(x: Union[float, int], pos = None) -> str:
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
-    Specify widht and height in cm
+    True size scaling auxiliary function to setup mpl plots with a desired size in cm.
+    Specify widht and height in cm.
+    lFrac = left fraction   in [0, 1]
+    rFrac = right fraction  in [0, 1]
+    bFrac = bottom fraction in [0, 1]
+    tFrac = top fraction    in [0, 1]
+    returns:
+        fWidth = figure width
+        fHeight = figure height
+    These figure width and height values can then be used to create a figure instance
+    of the desired size, such that the actual plotting canvas has the specified
+    target width and height, as provided by the input parameters of this function.
     '''
-    axesWidth = width / 2.54 # convert to inches
-    axesHeight = height / 2.54 # convert to inches
+    axesWidth = width / 2.54    # convert to inches (1 inch = 2.54 cm)
+    axesHeight = height / 2.54  # convert to inches
     fWidth = axesWidth / (rFrac - lFrac)
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
@@ -156,9 +167,9 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
 
     #####################################################################################
     # axis formatting
-    if (xFormat[0] == 'auto'):
+    if xFormat[0] == 'auto':
         pass
-    if (xFormat[0] == 'linear'):
+    if xFormat[0] == 'linear':
         ax1.set_xlim(xFormat[1], xFormat[2]) # xmin, xmax
         major_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[5])
         minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
@@ -168,7 +179,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         # manual formatting here:
         # ax1.set_xticklabels([0, 0.5, 1])
 
-    elif (xFormat[0] == 'log'):
+    elif xFormat[0] == 'log':
         ax1.set_xscale('log')
         ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
         ax1.xaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 8,
@@ -180,9 +191,9 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         print("Error: Unknown xFormat[0] type encountered.")
         sys.exit(1)
     #####################################################################################
-    if (yFormat[0] == 'auto'):
+    if yFormat[0] == 'auto':
         pass
-    if (yFormat[0] == 'linear'):
+    if yFormat[0] == 'linear':
         ax1.set_ylim(yFormat[1], yFormat[2]) # xmin, xmax
         major_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[5])
         minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
@@ -192,7 +203,7 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         # manual formatting here:
         # ax1.set_yticklabels([0, 0.5, 1])
 
-    elif (yFormat[0] == 'log'):
+    elif yFormat[0] == 'log':
         ax1.set_yscale('log')
         ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
         ax1.yaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 8,
