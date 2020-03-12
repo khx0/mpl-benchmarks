@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-24
+# date: 2020-03-12
 # file: mpl_logscale_minor_ticks.py
-# tested with python 3.7.6 in conjunction with mpl version 3.1.3
+# tested with python 3.7.6 in conjunction with mpl version 3.2.0
 # requires: pdf2svg installed
 ##########################################################################################
 
@@ -147,12 +147,12 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
 
     ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 10))
 
-    if (type == 'A'):
+    if type == 'A':
 
         ax1.xaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 10,
                                     subs = np.arange(2, 10) * 0.1))
 
-    elif (type == 'B'):
+    elif type == 'B':
 
         locmin = mpl.ticker.LogLocator(base = 10.0,
                                        subs = np.arange(2, 10) * 0.1,
