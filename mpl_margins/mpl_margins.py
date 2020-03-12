@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-24
+# date: 2020-03-12
 # file: mpl_margins.py
-# tested with python 3.7.6 in conjunction with mpl version 3.1.3
+# tested with python 3.7.6 in conjunction with mpl version 3.2.0
 ##########################################################################################
 
 ##########################################################################################
@@ -198,7 +198,7 @@ if __name__ == '__main__':
     ######################################################################################
 
     xMargin, yMargin = 0.5, 0.5
-    outname = 'mpl_margins_A_xMargin_{}_yMargin_{}'.format(xMargin, yMargin)
+    outname = f'mpl_margins_A_xMargin_{xMargin}_yMargin_{yMargin}y'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
@@ -214,7 +214,7 @@ if __name__ == '__main__':
     ######################################################################################
 
     xMargin, yMargin = 0.0, 0.25
-    outname = 'mpl_margins_B_xMargin_{}_yMargin_{}'.format(xMargin, yMargin)
+    outname = f'mpl_margins_B_xMargin_{xMargin}_yMargin_{yMargin}'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
@@ -230,7 +230,7 @@ if __name__ == '__main__':
     ######################################################################################
 
     xMargin, yMargin = 0.25, 0.0
-    outname = 'mpl_margins_C_xMargin_{}_yMargin_{}'.format(xMargin, yMargin)
+    outname = f'mpl_margins_C_xMargin_{xMargin}_yMargin_{yMargin}'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
@@ -246,7 +246,7 @@ if __name__ == '__main__':
     ######################################################################################
 
     xMargin, yMargin = 0.073, 0.073
-    outname = 'mpl_margins_D_xMargin_{}_yMargin_{}'.format(xMargin, yMargin)
+    outname = f'mpl_margins_D_xMargin_{xMargin}_yMargin_{yMargin}'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
