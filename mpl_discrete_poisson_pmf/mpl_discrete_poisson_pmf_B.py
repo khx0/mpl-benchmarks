@@ -163,18 +163,14 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
     ######################################################################################
     # set plot range
-    if xFormat == None:
-        pass
-    else:
+    if xFormat is not None: # else pass
         major_x_ticks = np.arange(xFormat[2], xFormat[3], xFormat[4])
         minor_x_ticks = np.arange(xFormat[2], xFormat[3], xFormat[5])
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xFormat[0], xFormat[1])
 
-    if yFormat == None:
-        pass
-    else:
+    if yFormat is not None: # else pass
         major_y_ticks = np.arange(yFormat[2], yFormat[3], yFormat[4])
         minor_y_ticks = np.arange(yFormat[2], yFormat[3], yFormat[5])
         ax1.set_yticks(major_y_ticks)
