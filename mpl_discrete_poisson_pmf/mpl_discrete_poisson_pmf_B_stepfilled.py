@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-23
+# date: 2020-03-15
 # file: mpl_discrete_poisson_pmf_B_stepfilled.py
-# tested with python 3.7.6 in conjunction with mpl version 3.1.3
+# tested with python 3.7.6 in conjunction with mpl version 3.2.0
 ##########################################################################################
 
 import os
@@ -163,7 +163,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
     ######################################################################################
     # set plot range
-    if (xFormat == None):
+    if xFormat == None:
         pass
     else:
         major_x_ticks = np.arange(xFormat[2], xFormat[3], xFormat[4])
@@ -172,7 +172,7 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xFormat[0], xFormat[1])
 
-    if (yFormat == None):
+    if yFormat == None:
         pass
     else:
         major_y_ticks = np.arange(yFormat[2], yFormat[3], yFormat[4])
