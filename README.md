@@ -22,7 +22,7 @@ However copying some snippets from the scripts will
 most likely also (still) work with Python 2.7, as they were originally
 developed using Python 2.7 with matplotlib 2.2.3.
 
-Update to mpl 3.2.0 is in progress.
+Update to mpl 3.2.1 is in progress.
 
 ### Example: pcolormesh pseudo color plot
 
