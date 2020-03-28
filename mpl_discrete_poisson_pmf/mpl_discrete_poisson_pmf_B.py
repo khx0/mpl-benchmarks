@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-03-15
+# date: 2020-03-28
 # file: mpl_discrete_poisson_pmf_B.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.0
+# tested with python 3.7.6 in conjunction with mpl version 3.2.1
 ##########################################################################################
 
 import os
