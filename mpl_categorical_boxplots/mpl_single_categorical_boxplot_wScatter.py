@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-03-08
+# date: 2020-03-28
 # file: mpl_single_categorical_boxplot_wScatter.py
-# tested with python 3.7.6 and matplotlib 3.1.3
+# tested with python 3.7.6 and matplotlib 3.2.1
 ##########################################################################################
 
 # TODO: update with bee scatter algorithm
