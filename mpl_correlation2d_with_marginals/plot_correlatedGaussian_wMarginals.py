@@ -376,7 +376,7 @@ if __name__ == '__main__':
                    drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)
-    
+
     cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
           ' ' + os.path.join(OUTDIR, outname + '.svg')
     print(cmd)
