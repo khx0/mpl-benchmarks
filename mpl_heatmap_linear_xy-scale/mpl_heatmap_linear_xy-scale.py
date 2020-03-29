@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-24
+# date: 2020-03-29
 # file: mpl_heatmap_linear_xy-scale.py
-# tested with python 3.7.6 in conjunction with mpl version 3.1.3
+# tested with python 3.7.6 in conjunction with mpl version 3.2.1.
 ##########################################################################################
 
 import sys
@@ -159,9 +159,9 @@ def plot_pcolor(X, Y, Z, titlestr, params,
 
     ######################################################################################
     # axis formatting
-    if (xFormatObj[0] == 'auto'):
+    if xFormatObj[0] == 'auto':
         pass
-    if (xFormatObj[0] == 'linear'):
+    if xFormatObj[0] == 'linear':
         xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormatObj[1]
         ax1.set_xlim(xmin, xmax)
         major_x_ticks = np.arange(xTicksMin, xTicksMax, dxMajor)
@@ -169,7 +169,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
 
-    elif (xFormatObj[0] == 'log'):
+    elif xFormatObj[0] == 'log':
         ax1.set_xscale('log')
         xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormatObj[1]
         ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
@@ -182,9 +182,9 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         print("Error: Unknown xFormatObj[0] type encountered.")
         sys.exit(1)
     ######################################################################################
-    if (yFormatObj[0] == 'auto'):
+    if yFormatObj[0] == 'auto':
         pass
-    if (yFormatObj[0] == 'linear'):
+    if yFormatObj[0] == 'linear':
         ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormatObj[1]
         ax1.set_ylim(ymin, ymax)
         major_y_ticks = np.arange(yTicksMin, yTicksMax, dyMajor)
@@ -192,7 +192,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
 
-    elif (yFormatObj[0] == 'log'):
+    elif yFormatObj[0] == 'log':
         ax1.set_yscale('log')
         ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormatObj[1]
         ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
