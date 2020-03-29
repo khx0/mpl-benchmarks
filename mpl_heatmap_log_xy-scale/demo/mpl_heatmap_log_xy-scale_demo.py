@@ -241,6 +241,8 @@ if __name__ == '__main__':
     for nDataPoints, paddingFraction, cMap, cMapString in params:
 
         filename = 'demo_nDataPoints_{}_cMap_{}'.format(nDataPoints, cMapString)
+        filename += '_Python_' + platform.python_version() + \
+                    '_mpl_' + mpl.__version__
 
         # create dummy data
         Z = np.zeros((nDataPoints, nDataPoints))
