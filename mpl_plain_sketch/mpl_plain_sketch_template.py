@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-03-10
+# date: 2020-03-30
 # file: mpl_plain_sketch_template.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.0
+# tested with python 3.7.6 in conjunction with mpl version 3.2.1
 ##########################################################################################
 
 import os
@@ -130,14 +130,14 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 
     ######################################################################################
     # set plot range
-    if (xFormat == None):
+    if xFormat == None:
         pass
     else:
         # modify this clause, if you want to get different axis ticking
         ax1.set_xticklabels([])
         ax1.set_xticks([])
 
-    if (yFormat == None):
+    if yFormat == None:
         pass
     else:
         # modify this clause, if you want to get different axis ticking
