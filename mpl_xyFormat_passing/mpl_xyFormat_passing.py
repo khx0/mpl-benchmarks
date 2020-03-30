@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-03-09
+# date: 2020-03-30
 # file: mpl_xyFormat_passing.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.0
+# tested with python 3.7.6 in conjunction with mpl version 3.2.1
 ##########################################################################################
 
 ##########################################################################################
@@ -140,7 +140,7 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
 
     ######################################################################################
     # set plot range and scale
-    if (xFormat == None):
+    if xFormat == None:
         pass # mpl autoscale
     else:
         xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormat
@@ -149,7 +149,7 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xmin, xmax) # set x limits last (order matters here)
-    if (yFormat == None):
+    if yFormat == None:
         pass # mpl autoscale
     else:
         ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormat
