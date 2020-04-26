@@ -195,9 +195,8 @@ if __name__ == '__main__':
     ######################################################################################
     # Create binned data:
     # Here the data is taken at discrete points from a normal distribution and then
-    # renormalized to create a proper discrete probability distribution.
-    # Wanting to plot this data as a histogram, requires using mpl's histogram function
-    # such that it can cope with already binned data.
+    # renormalized to create a properly normalized discrete probability distribution.
+    # Here we want to plot this pre-binned data using mpl's histogram function.
     ######################################################################################
 
     xmin, xmax = 0.0, 1.0
