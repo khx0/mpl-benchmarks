@@ -9,8 +9,8 @@
 ##########################################################################################
 
 import os
-import datetime
 import platform
+import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
@@ -67,7 +67,7 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
 
     mpl.rc('font', **{'size': 10})
     mpl.rc('legend', **{'fontsize': 7.0})
-    mpl.rc("axes", linewidth = 0.5)
+    mpl.rc('axes', linewidth = 0.5)
 
     # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
     mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
@@ -88,7 +88,6 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
-
     ######################################################################################
     labelfontsize = 6.0
 
@@ -112,7 +111,6 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     ax1.yaxis.labelpad = 4.0
     ######################################################################################
     # plotting
-
 
     ######################################################################################
     # CENTER PIECE
@@ -179,7 +177,7 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     # save to file
     if datestamp:
         outname += '_' + today
-    if savePDF: # use pdf backend
+    if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
