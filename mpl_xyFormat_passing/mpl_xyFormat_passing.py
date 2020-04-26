@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-03-30
+# date: 2020-04-26
 # file: mpl_xyFormat_passing.py
 # tested with python 3.7.6 in conjunction with mpl version 3.2.1
 ##########################################################################################
@@ -180,7 +180,7 @@ def Plot(titlestr, X, xFormat, yFormat, outname, outdir, pColors,
     plt.cla()
     plt.clf()
     plt.close()
-    return None
+    return outname
 
 if __name__ == '__main__':
 
