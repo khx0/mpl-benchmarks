@@ -56,7 +56,7 @@ For some modules unit tests are provided in the
 /unit-tests/
 ```
 directory which can be run using the unittest module or via pytest.
-All tests were done using pytest version 5.3.5.
+All tests were done using pytest version 5.4.1.
 
 ### Changes
 For changes made to this repository see the provided `changelog.md` file in root.
