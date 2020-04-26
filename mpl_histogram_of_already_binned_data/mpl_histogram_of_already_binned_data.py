@@ -217,6 +217,9 @@ if __name__ == '__main__':
 
     assert np.isclose(np.sum(pValues), 1.0), "Error: Normalization assertion failed."
 
+    # Now bins and pValues contains the pre-binned and (here) normalized data, 
+    # that we wish to plot using a histogram.
+
     ######################################################################################
     # plotting
 
