@@ -4,7 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2020-04-26
-# file: mpl_histogram_of_already_binned_data_minimal.py
+# file: mpl_histogram_of_already_binned_data.py
 # tested with python 3.7.6 in conjunction with mpl version 3.2.1
 ##########################################################################################
 
@@ -81,62 +81,79 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
-        getFigureProps(width = 6.6, height = 6.6,
-                       lFrac = 0.16, rFrac = 0.95,
-                       bFrac = 0.05, tFrac = 0.95)
+        getFigureProps(width = 5.0, height = 5.0,
+                       lFrac = 0.18, rFrac = 0.95,
+                       bFrac = 0.12, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
 
     ######################################################################################
-    labelfontsize = 8.0
+    labelfontsize = 6.0
 
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
     for tick in ax1.yaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
 
-    ax1.tick_params('both', length = 0.0, width = 0.5, which = 'major', pad = 3.0)
-    ax1.tick_params('both', length = 0.0, width = 0.25, which = 'minor', pad = 3.0)
+    ax1.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 3.0)
+    ax1.tick_params('both', length = 1.5, width = 0.25, which = 'minor', pad = 3.0)
 
-    ax1.tick_params(axis = 'x', which = 'major', pad = 2.0)
-    ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
+    ax1.tick_params(axis = 'x', which = 'major', pad = 1.0)
+    ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
     plt.title(titlestr)
-    ax1.set_xlabel(r'', fontsize = 8.0, x = 0.95)
+    ax1.set_xlabel(r'$x_i$', fontsize = 8.0)
     # rotation (angle) is expressed in degrees
-    ax1.set_ylabel(r'probabilities', fontsize = 8.0)
-    ax1.xaxis.labelpad = 0.0
-    ax1.yaxis.labelpad = 8.0
+    ax1.set_ylabel(r'probabilities  $ p(x_i)$', fontsize = 8.0)
+    ax1.xaxis.labelpad = 1.0
+    ax1.yaxis.labelpad = 4.0
     ######################################################################################
     # plotting
 
+
+    ######################################################################################
+    # CENTER PIECE
     # This way of calling mpl's hist function is suitable for plotting already
     # binned data, as it is the case here.
+    # The key is using the weights keyword in the hist command as below.
+    
     ax1.hist(bins[:-1], bins, weights = values,
              color = pColors['opaque_standard_blue'],
              edgecolor = 'k',
              linewidth = 1.0)
+             
+    # For further explanations, please see:
+    # https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.hist.html
+    # e.g. using
+    #   counts, bins = np.histogram(data)
+    #   plt.hist(bins[:-1], bins, weights=counts)
+    ######################################################################################
+
+
 
     ######################################################################################
     # annotations
     if labelString:
-        x_pos, y_pos = 0.5, 0.65
+        x_pos, y_pos = 0.025, 0.92
         ax1.annotate(labelString,
                      xy = (x_pos, y_pos),
                      xycoords = 'axes fraction',
-                     fontsize = 10.0,
-                     horizontalalignment = 'center')
+                     fontsize = 6.0,
+                     horizontalalignment = 'left')
 
     ######################################################################################
     # set plot range and scale
     if xFormat == None:
         pass # mpl autoscale
     else:
-        xmin, xmax = xFormat
-        ax1.set_xticks([])
+        xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormat
+        major_x_ticks = np.arange(xTicksMin, xTicksMax, dxMajor)
+        minor_x_ticks = np.arange(xTicksMin, xTicksMax, dxMinor)
+        ax1.set_xticks(major_x_ticks)
+        ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xmin, xmax) # set x limits last (order matters here)
     if yFormat == None:
         pass # mpl autoscale
@@ -173,22 +190,16 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     plt.close()
     return outname
 
-
-######################################################################################
-# color settings
-# #0000FF = RGB(0, 0, 255)
-# #6666ff roughly corresponds to #0000FF at 0.55 opacity
-# plot color dictionary
-pColors = {'blue': '#0000FF',
-           'opaque_standard_blue': '#6666ff'
-           }
-######################################################################################
-
 if __name__ == '__main__':
 
+    ######################################################################################
     # Create binned data:
     # Here the data is taken at discrete points from a normal distribution and then
     # renormalized to create a proper discrete probability distribution.
+    # Wanting to plot this data as a histogram, requires using mpl's histogram function
+    # such that it can cope with already binned data.
+    ######################################################################################
+
     xmin, xmax = 0.0, 1.0
     nBins = 30
     dx = (xmax - xmin) / float(nBins)
@@ -206,22 +217,31 @@ if __name__ == '__main__':
 
     assert np.isclose(np.sum(pValues), 1.0), "Error: Normalization assertion failed."
 
-    '''
+    ######################################################################################
     # plotting
 
-    xFormat = (0.0, 1.0)
-    yFormat = (0.0, 0.5, 0.0, 0.55, 0.25, 0.25)
+    xFormat = (0.0, 1.0, 0.0, 1.05, 0.5, 0.1)
+    yFormat = (0.0, 0.1547, 0.0, 0.55, 0.05, 0.025)
 
-    outname = 'prml_ch_01_figure_1.30_right'
+    outname = 'mpl_histogram_of_already_binned_data'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
+
+    ########################################################
+    # color settings
+    # #0000FF = RGB(0, 0, 255)
+    # #6666ff roughly corresponds to #0000FF at 0.55 opacity
+    # plot color dictionary
+    pColors = {'blue': '#0000FF',
+               'opaque_standard_blue': '#6666ff'
+               }
+    ########################################################
 
     outname = Plot(bins = bins,
                    values = pValues,
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
-                   labelString = rf'$H={H_value:.3}$',
+                   labelString = r"Using mpl's histogram with already binned data.",
                    xFormat = xFormat,
                    yFormat = yFormat)
-    '''
