@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-03-28
+# date: 2020-07-04
 # file: plot_correlatedGaussian_wMarginals.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.1
+# tested with python 3.7.6 in conjunction with mpl version 3.2.2
 ##########################################################################################
 # description: plots the correlated data samples that can be generated using the
 # provided create_samples.py script

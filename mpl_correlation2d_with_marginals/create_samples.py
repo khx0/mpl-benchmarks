@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-02-23
+# date: 2020-07-04
 # file: create_samples.py
 # tested with python 3.7.6
 ##########################################################################################
@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     # set parameters
     nSamples = 20000
-    
+
     mu1, sigma1 = 87.25, 8.124
     mu2, sigma2 = 125.75, 11.25
 
@@ -48,9 +48,9 @@ if __name__ == '__main__':
     ######################################################################################
     # 01 - Create fully correlated Gaussian samples using the inverse transform method
     samples = np.zeros((nSamples, 2))
-    
+
     np.random.seed(seedValue)
-    
+
     samples[:, 0], samples[:, 1] = \
         inverseTransformSamplingJoint(nSamples, mu1, sigma1, mu2, sigma2)
     outname = 'GaussianSamples_correlated_seed_{:d}.txt'.format(seedValue)
