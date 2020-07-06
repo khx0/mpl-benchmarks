@@ -1,0 +1,821 @@
+python version = 3.7.6
+matplotlib version = 3.2.2
+mpl.matplotlib_fname(): /Users/Nikolas/.matplotlib/matplotlibrc
+mpl.get_configdir() = /Users/Nikolas/.matplotlib
+font no. 0 ==> /Library/Fonts/Skia.ttf
+font no. 1 ==> /Library/Fonts/AppleGothic.ttf
+font no. 2 ==> /System/Library/Fonts/PingFang.ttc
+font no. 3 ==> /Library/Fonts/Microsoft/Corbel Bold Italic.ttf
+font no. 4 ==> /Library/Fonts/Microsoft/Palatino Linotype Bold.ttf
+font no. 5 ==> /System/Library/Fonts/Thonburi.ttc
+font no. 6 ==> /Library/Fonts/YuMincho.ttc
+font no. 7 ==> /Library/Fonts/Comic Sans MS Bold.ttf
+font no. 8 ==> /System/Library/Fonts/PingFang.ttc
+font no. 9 ==> /System/Library/Fonts/ヒラギノ角ゴシック W3.ttc
+font no. 10 ==> /Library/Fonts/PTSans.ttc
+font no. 11 ==> /System/Library/Fonts/PingFang.ttc
+font no. 12 ==> /Library/Fonts/AmericanTypewriter.ttc
+font no. 13 ==> /Library/Fonts/Kaiti.ttc
+font no. 14 ==> /System/Library/Fonts/GeezaPro.ttc
+font no. 15 ==> /Library/Fonts/Klee.ttc
+font no. 16 ==> /Library/Fonts/Hanzipen.ttc
+font no. 17 ==> /Library/Fonts/Kaiti.ttc
+font no. 18 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 19 ==> /Library/Fonts/Shree714.ttc
+font no. 20 ==> /Library/Fonts/Cochin.ttc
+font no. 21 ==> /Library/Fonts/YuMincho.ttc
+font no. 22 ==> /Library/Fonts/Trattatello.ttf
+font no. 23 ==> /Library/Fonts/Microsoft/Candara Bold Italic.ttf
+font no. 24 ==> /System/Library/Fonts/Avenir.ttc
+font no. 25 ==> /Library/Fonts/Microsoft/Wingdings.ttf
+font no. 26 ==> /System/Library/Fonts/Kohinoor.ttc
+font no. 27 ==> /Library/Fonts/Farah.ttc
+font no. 28 ==> /Library/Fonts/Yu Gothic Medium.otf
+font no. 29 ==> /Library/Fonts/Telugu Sangam MN.ttc
+font no. 30 ==> /Users/Nikolas/Library/Fonts/cmunbmr.ttf
+font no. 31 ==> /System/Library/Fonts/SFNSText-BoldItalic.otf
+font no. 32 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 33 ==> /Library/Fonts/Bodoni 72 OS.ttc
+font no. 34 ==> /System/Library/Fonts/Optima.ttc
+font no. 35 ==> /Library/Fonts/SignPainter.otf
+font no. 36 ==> /System/Library/Fonts/PingFang.ttc
+font no. 37 ==> /Library/Fonts/Damascus.ttc
+font no. 38 ==> /Users/Nikolas/Library/Fonts/cmunrb.ttf
+font no. 39 ==> /System/Library/Fonts/STHeiti UltraLight.ttc
+font no. 40 ==> /Library/Fonts/Impact.ttf
+font no. 41 ==> /Library/Fonts/Microsoft/Constantia Bold Italic.ttf
+font no. 42 ==> /Library/Fonts/Tahoma Bold.ttf
+font no. 43 ==> /System/Library/Fonts/SFNSText-Heavy.otf
+font no. 44 ==> /Library/Fonts/Lantinghei.ttc
+font no. 45 ==> /Library/Fonts/PTSerif.ttc
+font no. 46 ==> /System/Library/Fonts/ArialHB.ttc
+font no. 47 ==> /System/Library/Fonts/STHeiti Medium.ttc
+font no. 48 ==> /Library/Fonts/SukhumvitSet.ttc
+font no. 49 ==> /System/Library/Fonts/Optima.ttc
+font no. 50 ==> /Library/Fonts/Gurmukhi MN.ttc
+font no. 51 ==> /System/Library/Fonts/ヒラギノ角ゴシック W9.ttc
+font no. 52 ==> /Library/Fonts/SukhumvitSet.ttc
+font no. 53 ==> /System/Library/Fonts/ヒラギノ明朝 ProN W6.ttc
+font no. 54 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 55 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 56 ==> /Library/Fonts/Microsoft/MS PGothic.ttf
+font no. 57 ==> /Library/Fonts/Beirut.ttc
+font no. 58 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 59 ==> /Library/Fonts/Iowan Old Style.ttc
+font no. 60 ==> /Library/Fonts/Sathu.ttf
+font no. 61 ==> /Library/Fonts/Microsoft/Candara Bold.ttf
+font no. 62 ==> /Library/Fonts/SnellRoundhand.ttc
+font no. 63 ==> /Library/Fonts/Songti.ttc
+font no. 64 ==> /System/Library/Fonts/Keyboard.ttf
+font no. 65 ==> /Library/Fonts/Bodoni 72 OS.ttc
+font no. 66 ==> /Library/Fonts/Microsoft/Times New Roman Bold.ttf
+font no. 67 ==> /Users/Nikolas/Library/Fonts/cmunbsr.ttf
+font no. 68 ==> /Library/Fonts/Hoefler Text.ttc
+font no. 69 ==> /System/Library/Fonts/Menlo.ttc
+font no. 70 ==> /Library/Fonts/Microsoft/Gabriola.ttf
+font no. 71 ==> /Library/Fonts/Khmer MN.ttc
+font no. 72 ==> /Library/Fonts/NISC18030.ttf
+font no. 73 ==> /Library/Fonts/Microsoft/Constantia Italic.ttf
+font no. 74 ==> /Library/Fonts/Baskerville.ttc
+font no. 75 ==> /System/Library/Fonts/KohinoorTelugu.ttc
+font no. 76 ==> /System/Library/Fonts/Apple Braille Pinpoint 8 Dot.ttf
+font no. 77 ==> /Library/Fonts/Luminari.ttf
+font no. 78 ==> /Library/Fonts/Charter.ttc
+font no. 79 ==> /Library/Fonts/儷宋 Pro.ttf
+font no. 80 ==> /Library/Fonts/Andale Mono.ttf
+font no. 81 ==> /Library/Fonts/AmericanTypewriter.ttc
+font no. 82 ==> /Users/Nikolas/Library/Fonts/cmunbto.ttf
+font no. 83 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 84 ==> /Library/Fonts/Courier New Bold.ttf
+font no. 85 ==> /System/Library/Fonts/Apple Braille Pinpoint 6 Dot.ttf
+font no. 86 ==> /System/Library/Fonts/Hiragino Sans GB W3.ttc
+font no. 87 ==> /System/Library/Fonts/PingFang.ttc
+font no. 88 ==> /Library/Fonts/Farisi.ttf
+font no. 89 ==> /Library/Fonts/Microsoft/Arial Bold Italic.ttf
+font no. 90 ==> /Library/Fonts/Skia.ttf
+font no. 91 ==> /Library/Fonts/Mshtakan.ttc
+font no. 92 ==> /Users/Nikolas/Library/Fonts/cmuntx.ttf
+font no. 93 ==> /System/Library/Fonts/STHeiti Thin.ttc
+font no. 94 ==> /Library/Fonts/SuperClarendon.ttc
+font no. 95 ==> /Library/Fonts/Verdana.ttf
+font no. 96 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 97 ==> /Library/Fonts/Damascus.ttc
+font no. 98 ==> /System/Library/Fonts/GeezaPro.ttc
+font no. 99 ==> /Library/Fonts/STIXNonUni.otf
+font no. 100 ==> /System/Library/Fonts/AquaKana.ttc
+font no. 101 ==> /System/Library/Fonts/STHeiti Thin.ttc
+font no. 102 ==> /System/Library/Fonts/ヒラギノ角ゴシック W0.ttc
+font no. 103 ==> /Library/Fonts/Chalkduster.ttf
+font no. 104 ==> /System/Library/Fonts/SFNSText-Regular.otf
+font no. 105 ==> /System/Library/Fonts/Palatino.ttc
+font no. 106 ==> /System/Library/Fonts/AquaKana.ttc
+font no. 107 ==> /Users/Nikolas/Library/Fonts/cmunrm.ttf
+font no. 108 ==> /Library/Fonts/Apple Chancery.ttf
+font no. 109 ==> /System/Library/Fonts/PingFang.ttc
+font no. 110 ==> /Library/Fonts/Seravek.ttc
+font no. 111 ==> /Library/Fonts/Arial Italic.ttf
+font no. 112 ==> /Library/Fonts/Comic Sans MS.ttf
+font no. 113 ==> /Library/Fonts/Iowan Old Style.ttc
+font no. 114 ==> /System/Library/Fonts/ArialHB.ttc
+font no. 115 ==> /System/Library/Fonts/PingFang.ttc
+font no. 116 ==> /Library/Fonts/NanumMyeongjo.ttc
+font no. 117 ==> /System/Library/Fonts/KohinoorTelugu.ttc
+font no. 118 ==> /Library/Fonts/Microsoft/mingliu_hkscs.ttf
+font no. 119 ==> /System/Library/Fonts/STHeiti Light.ttc
+font no. 120 ==> /Library/Fonts/DIN Alternate Bold.ttf
+font no. 121 ==> /Library/Fonts/AmericanTypewriter.ttc
+font no. 122 ==> /System/Library/Fonts/PingFang.ttc
+font no. 123 ==> /Library/Fonts/Bradley Hand Bold.ttf
+font no. 124 ==> /Library/Fonts/Damascus.ttc
+font no. 125 ==> /System/Library/Fonts/Apple Braille Outline 8 Dot.ttf
+font no. 126 ==> /Library/Fonts/Microsoft/Lucida Console.ttf
+font no. 127 ==> /System/Library/Fonts/PingFang.ttc
+font no. 128 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 129 ==> /Library/Fonts/Microsoft/Candara.ttf
+font no. 130 ==> /Library/Fonts/DIN Condensed Bold.ttf
+font no. 131 ==> /Library/Fonts/DecoTypeNaskh.ttc
+font no. 132 ==> /System/Library/Fonts/STHeiti UltraLight.ttc
+font no. 133 ==> /System/Library/Fonts/Avenir.ttc
+font no. 134 ==> /Library/Fonts/Songti.ttc
+font no. 135 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 136 ==> /Users/Nikolas/Library/Fonts/cmuntt.ttf
+font no. 137 ==> /System/Library/Fonts/ヒラギノ角ゴシック W8.ttc
+font no. 138 ==> /Users/Nikolas/Library/Fonts/cmunbl.ttf
+font no. 139 ==> /Users/Nikolas/Library/Fonts/cmunbbx.ttf
+font no. 140 ==> /Library/Fonts/Devanagari Sangam MN.ttc
+font no. 141 ==> /Library/Fonts/Krungthep.ttf
+font no. 142 ==> /Library/Fonts/Hannotate.ttc
+font no. 143 ==> /Library/Fonts/DecoTypeNaskh.ttc
+font no. 144 ==> /Users/Nikolas/Library/Fonts/cmunbmo.ttf
+font no. 145 ==> /Library/Fonts/Raanana.ttc
+font no. 146 ==> /Users/Nikolas/Library/Fonts/cmunst.ttf
+font no. 147 ==> /System/Library/Fonts/PingFang.ttc
+font no. 148 ==> /Library/Fonts/Herculanum.ttf
+font no. 149 ==> /System/Library/Fonts/STHeiti UltraLight.ttc
+font no. 150 ==> /System/Library/Fonts/GeezaPro.ttc
+font no. 151 ==> /Users/Nikolas/Library/Fonts/MyriadPro-Regular.otf
+font no. 152 ==> /Library/Fonts/Silom.ttf
+font no. 153 ==> /System/Library/Fonts/Hiragino Sans GB W6.ttc
+font no. 154 ==> /Library/Fonts/Microsoft/Corbel.ttf
+font no. 155 ==> /Library/Fonts/Damascus.ttc
+font no. 156 ==> /System/Library/Fonts/SFNSText-Light.otf
+font no. 157 ==> /Library/Fonts/STIXSizOneSymBol.otf
+font no. 158 ==> /System/Library/Fonts/PingFang.ttc
+font no. 159 ==> /Library/Fonts/Raanana.ttc
+font no. 160 ==> /Library/Fonts/Charter.ttc
+font no. 161 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 162 ==> /Library/Fonts/Microsoft/Cambria Bold Italic.ttf
+font no. 163 ==> /System/Library/Fonts/SFNSDisplay-Light.otf
+font no. 164 ==> /System/Library/Fonts/SFNSText-RegularG3.otf
+font no. 165 ==> /System/Library/Fonts/PingFang.ttc
+font no. 166 ==> /Library/Fonts/Microsoft/Constantia Bold.ttf
+font no. 167 ==> /Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc
+font no. 168 ==> /Library/Fonts/Microsoft/Cambria Italic.ttf
+font no. 169 ==> /Library/Fonts/AppleMyungjo.ttf
+font no. 170 ==> /System/Library/Fonts/PingFang.ttc
+font no. 171 ==> /Library/Fonts/Klee.ttc
+font no. 172 ==> /Library/Fonts/Times New Roman.ttf
+font no. 173 ==> /System/Library/Fonts/SFNSText-RegularG2.otf
+font no. 174 ==> /Library/Fonts/PTSans.ttc
+font no. 175 ==> /Library/Fonts/Microsoft Sans Serif.ttf
+font no. 176 ==> /System/Library/Fonts/Menlo.ttc
+font no. 177 ==> /Library/Fonts/Arial Narrow Bold.ttf
+font no. 178 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 179 ==> /Library/Fonts/Waseem.ttc
+font no. 180 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 181 ==> /Library/Fonts/YuppyTC-Regular.otf
+font no. 182 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 183 ==> /Library/Fonts/Malayalam Sangam MN.ttc
+font no. 184 ==> /Library/Fonts/华文细黑.ttf
+font no. 185 ==> /Library/Fonts/Farah.ttc
+font no. 186 ==> /Library/Fonts/Seravek.ttc
+font no. 187 ==> /Library/Fonts/Microsoft/Times New Roman Italic.ttf
+font no. 188 ==> /Library/Fonts/AmericanTypewriter.ttc
+font no. 189 ==> /Library/Fonts/ChalkboardSE.ttc
+font no. 190 ==> /Library/Fonts/Kannada MN.ttc
+font no. 191 ==> /Library/Fonts/Cochin.ttc
+font no. 192 ==> /System/Library/Fonts/SFNSText-RegularG1.otf
+font no. 193 ==> /Library/Fonts/Microsoft/msyi.ttf
+font no. 194 ==> /Library/Fonts/STIXIntUpSmBol.otf
+font no. 195 ==> /System/Library/Fonts/SFNSText-Medium.otf
+font no. 196 ==> /Library/Fonts/Times New Roman Bold.ttf
+font no. 197 ==> /System/Library/Fonts/STHeiti UltraLight.ttc
+font no. 198 ==> /Library/Fonts/Microsoft/Franklin Gothic Medium.ttf
+font no. 199 ==> /Library/Fonts/NewPeninimMT.ttc
+font no. 200 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 201 ==> /Users/Nikolas/Library/Fonts/cmunorm.ttf
+font no. 202 ==> /System/Library/Fonts/ArialHB.ttc
+font no. 203 ==> /System/Library/Fonts/PingFang.ttc
+font no. 204 ==> /System/Library/Fonts/MarkerFelt.ttc
+font no. 205 ==> /System/Library/Fonts/ArialHB.ttc
+font no. 206 ==> /Library/Fonts/Myanmar MN.ttc
+font no. 207 ==> /Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc
+font no. 208 ==> /Library/Fonts/Malayalam MN.ttc
+font no. 209 ==> /Library/Fonts/Microsoft/Times New Roman.ttf
+font no. 210 ==> /System/Library/Fonts/ヒラギノ角ゴシック W7.ttc
+font no. 211 ==> /Library/Fonts/华文仿宋.ttf
+font no. 212 ==> /System/Library/Fonts/PingFang.ttc
+font no. 213 ==> /System/Library/Fonts/Optima.ttc
+font no. 214 ==> /Library/Fonts/Microsoft/Consolas Bold.ttf
+font no. 215 ==> /Library/Fonts/Arial Narrow.ttf
+font no. 216 ==> /Library/Fonts/Baskerville.ttc
+font no. 217 ==> /System/Library/Fonts/Optima.ttc
+font no. 218 ==> /Library/Fonts/Georgia Italic.ttf
+font no. 219 ==> /Library/Fonts/Osaka.ttf
+font no. 220 ==> /System/Library/Fonts/PingFang.ttc
+font no. 221 ==> /Library/Fonts/Savoye LET.ttc
+font no. 222 ==> /Users/Nikolas/Library/Fonts/cmunvt.ttf
+font no. 223 ==> /System/Library/Fonts/GeezaPro.ttc
+font no. 224 ==> /Library/Fonts/AmericanTypewriter.ttc
+font no. 225 ==> /Library/Fonts/Lao MN.ttc
+font no. 226 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 227 ==> /Library/Fonts/Verdana Bold.ttf
+font no. 228 ==> /System/Library/Fonts/LucidaGrande.ttc
+font no. 229 ==> /Library/Fonts/STIXVar.otf
+font no. 230 ==> /Users/Nikolas/Library/Fonts/Myriad Pro Bold.ttf
+font no. 231 ==> /Library/Fonts/Muna.ttc
+font no. 232 ==> /Library/Fonts/Hoefler Text.ttc
+font no. 233 ==> /Library/Fonts/NanumGothic.ttc
+font no. 234 ==> /Library/Fonts/Microsoft/Calibri Bold.ttf
+font no. 235 ==> /Library/Fonts/NanumGothic.ttc
+font no. 236 ==> /Library/Fonts/AlBayan.ttc
+font no. 237 ==> /System/Library/Fonts/STHeiti Thin.ttc
+font no. 238 ==> /System/Library/Fonts/STHeiti Thin.ttc
+font no. 239 ==> /Library/Fonts/Beirut.ttc
+font no. 240 ==> /System/Library/Fonts/Hiragino Sans GB W3.ttc
+font no. 241 ==> /Library/Fonts/Skia.ttf
+font no. 242 ==> /System/Library/Fonts/PingFang.ttc
+font no. 243 ==> /Library/Fonts/STIXGeneral.otf
+font no. 244 ==> /Library/Fonts/Arial.ttf
+font no. 245 ==> /Library/Fonts/OsakaMono.ttf
+font no. 246 ==> /Library/Fonts/Kannada Sangam MN.ttc
+font no. 247 ==> /Library/Fonts/STIXNonUniBolIta.otf
+font no. 248 ==> /Library/Fonts/Yuanti.ttc
+font no. 249 ==> /Library/Fonts/Myanmar Sangam MN.ttc
+font no. 250 ==> /Library/Fonts/Microsoft/Arial Bold.ttf
+font no. 251 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 252 ==> /Library/Fonts/Iowan Old Style.ttc
+font no. 253 ==> /Library/Fonts/STIXSizTwoSymBol.otf
+font no. 254 ==> /Library/Fonts/Microsoft/Palatino Linotype Italic.ttf
+font no. 255 ==> /Library/Fonts/STIXSizThreeSymBol.otf
+font no. 256 ==> /Library/Fonts/STIXVarBol.otf
+font no. 257 ==> /Library/Fonts/Microsoft/Wingdings 2.ttf
+font no. 258 ==> /Library/Fonts/Bodoni 72 Smallcaps Book.ttf
+font no. 259 ==> /Library/Fonts/Microsoft/himalaya.ttf
+font no. 260 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 261 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 262 ==> /Library/Fonts/Bodoni 72.ttc
+font no. 263 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 264 ==> /Library/Fonts/STIXIntUpDBol.otf
+font no. 265 ==> /Library/Fonts/SukhumvitSet.ttc
+font no. 266 ==> /System/Library/Fonts/Kohinoor.ttc
+font no. 267 ==> /Library/Fonts/Skia.ttf
+font no. 268 ==> /Library/Fonts/Damascus.ttc
+font no. 269 ==> /Library/Fonts/Microsoft/MS Reference Sans Serif.ttf
+font no. 270 ==> /Library/Fonts/Hoefler Text Ornaments.ttf
+font no. 271 ==> /Library/Fonts/STIXIntDBol.otf
+font no. 272 ==> /Library/Fonts/Microsoft/Verdana.ttf
+font no. 273 ==> /Library/Fonts/Microsoft/Meiryo Italic.ttf
+font no. 274 ==> /Library/Fonts/NewPeninimMT.ttc
+font no. 275 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 276 ==> /Library/Fonts/Georgia.ttf
+font no. 277 ==> /Library/Fonts/Georgia Bold.ttf
+font no. 278 ==> /System/Library/Fonts/ヒラギノ角ゴシック W6.ttc
+font no. 279 ==> /Library/Fonts/EuphemiaCAS.ttc
+font no. 280 ==> /System/Library/Fonts/Noteworthy.ttc
+font no. 281 ==> /Library/Fonts/Microsoft/monbaiti.ttf
+font no. 282 ==> /Library/Fonts/Iowan Old Style.ttc
+font no. 283 ==> /Library/Fonts/Muna.ttc
+font no. 284 ==> /Users/Nikolas/Library/Fonts/Myriad Bold.ttf
+font no. 285 ==> /Library/Fonts/Microsoft/MingLiU-ExtB.ttf
+font no. 286 ==> /Library/Fonts/SuperClarendon.ttc
+font no. 287 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 288 ==> /Library/Fonts/Kaiti.ttc
+font no. 289 ==> /System/Library/Fonts/Avenir.ttc
+font no. 290 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 291 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 292 ==> /Library/Fonts/PTMono.ttc
+font no. 293 ==> /System/Library/Fonts/SFNSText-RegularItalic.otf
+font no. 294 ==> /Library/Fonts/Waseem.ttc
+font no. 295 ==> /System/Library/Fonts/PingFang.ttc
+font no. 296 ==> /System/Library/Fonts/STHeiti Medium.ttc
+font no. 297 ==> /Library/Fonts/Sinhala MN.ttc
+font no. 298 ==> /Library/Fonts/Microsoft/Consolas Italic.ttf
+font no. 299 ==> /Library/Fonts/Songti.ttc
+font no. 300 ==> /Library/Fonts/SukhumvitSet.ttc
+font no. 301 ==> /Library/Fonts/Georgia Bold Italic.ttf
+font no. 302 ==> /Library/Fonts/Bangla Sangam MN.ttc
+font no. 303 ==> /Library/Fonts/Malayalam Sangam MN.ttc
+font no. 304 ==> /Library/Fonts/Microsoft/Verdana Bold.ttf
+font no. 305 ==> /System/Library/Fonts/ヒラギノ角ゴシック W8.ttc
+font no. 306 ==> /System/Library/Fonts/ヒラギノ明朝 ProN W3.ttc
+font no. 307 ==> /Library/Fonts/Kaiti.ttc
+font no. 308 ==> /Library/Fonts/STIXSizFourSymReg.otf
+font no. 309 ==> /Library/Fonts/Marion.ttc
+font no. 310 ==> /Library/Fonts/EuphemiaCAS.ttc
+font no. 311 ==> /Library/Fonts/SukhumvitSet.ttc
+font no. 312 ==> /Library/Fonts/Bodoni 72.ttc
+font no. 313 ==> /System/Library/Fonts/SFNSText-Semibold.otf
+font no. 314 ==> /Library/Fonts/Microsoft/Gill Sans MT.ttf
+font no. 315 ==> /Users/Nikolas/Library/Fonts/cmunbtl.ttf
+font no. 316 ==> /Library/Fonts/Hannotate.ttc
+font no. 317 ==> /Library/Fonts/Microsoft/Perpetua.ttf
+font no. 318 ==> /Library/Fonts/ChalkboardSE.ttc
+font no. 319 ==> /Library/Fonts/Kannada MN.ttc
+font no. 320 ==> /Library/Fonts/Damascus.ttc
+font no. 321 ==> /System/Library/Fonts/Palatino.ttc
+font no. 322 ==> /System/Library/Fonts/SFNSText-BoldItalicG1.otf
+font no. 323 ==> /Library/Fonts/STIXGeneralItalic.otf
+font no. 324 ==> /Library/Fonts/Yuanti.ttc
+font no. 325 ==> /Library/Fonts/Trebuchet MS Bold.ttf
+font no. 326 ==> /Library/Fonts/NanumGothic.ttc
+font no. 327 ==> /Library/Fonts/Al Tarikh.ttc
+font no. 328 ==> /System/Library/Fonts/PingFang.ttc
+font no. 329 ==> /Library/Fonts/STIXSizTwoSymReg.otf
+font no. 330 ==> /Library/Fonts/SukhumvitSet.ttc
+font no. 331 ==> /System/Library/Fonts/ZapfDingbats.ttf
+font no. 332 ==> /Library/Fonts/Corsiva.ttc
+font no. 333 ==> /Library/Fonts/SuperClarendon.ttc
+font no. 334 ==> /Library/Fonts/Microsoft/MingLiU.ttf
+font no. 335 ==> /Library/Fonts/PTSerif.ttc
+font no. 336 ==> /Library/Fonts/Oriya Sangam MN.ttc
+font no. 337 ==> /Library/Fonts/Microsoft/Meiryo Bold.ttf
+font no. 338 ==> /Library/Fonts/Oriya Sangam MN.ttc
+font no. 339 ==> /Library/Fonts/Bodoni 72.ttc
+font no. 340 ==> /Library/Fonts/Seravek.ttc
+font no. 341 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 342 ==> /Library/Fonts/GillSans.ttc
+font no. 343 ==> /Library/Fonts/Skia.ttf
+font no. 344 ==> /System/Library/Fonts/SFNSText-BoldItalicG3.otf
+font no. 345 ==> /Library/Fonts/Microsoft/Marlett.ttf
+font no. 346 ==> /System/Library/Fonts/PingFang.ttc
+font no. 347 ==> /Library/Fonts/SnellRoundhand.ttc
+font no. 348 ==> /Library/Fonts/Times New Roman Bold Italic.ttf
+font no. 349 ==> /Users/Nikolas/Library/Fonts/cmuntb.ttf
+font no. 350 ==> /Library/Fonts/Baskerville.ttc
+font no. 351 ==> /System/Library/Fonts/PingFang.ttc
+font no. 352 ==> /System/Library/Fonts/Avenir.ttc
+font no. 353 ==> /Library/Fonts/Al Tarikh.ttc
+font no. 354 ==> /Users/Nikolas/Library/Fonts/cmunit.ttf
+font no. 355 ==> /System/Library/Fonts/SFNSDisplay-Heavy.otf
+font no. 356 ==> /System/Library/Fonts/PingFang.ttc
+font no. 357 ==> /System/Library/Fonts/SFNSText-BoldItalicG2.otf
+font no. 358 ==> /Library/Fonts/Microsoft/MS Mincho.ttf
+font no. 359 ==> /Library/Fonts/STIXIntUpDReg.otf
+font no. 360 ==> /Library/Fonts/Charter.ttc
+font no. 361 ==> /System/Library/Fonts/KohinoorBangla.ttc
+font no. 362 ==> /System/Library/Fonts/PingFang.ttc
+font no. 363 ==> /Library/Fonts/Devanagari Sangam MN.ttc
+font no. 364 ==> /Library/Fonts/Lantinghei.ttc
+font no. 365 ==> /Library/Fonts/Mshtakan.ttc
+font no. 366 ==> /Library/Fonts/Courier New Bold Italic.ttf
+font no. 367 ==> /Library/Fonts/PTSerif.ttc
+font no. 368 ==> /Library/Fonts/Skia.ttf
+font no. 369 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 370 ==> /Library/Fonts/Songti.ttc
+font no. 371 ==> /Library/Fonts/Bangla MN.ttc
+font no. 372 ==> /Library/Fonts/Al Nile.ttc
+font no. 373 ==> /Library/Fonts/Myanmar Sangam MN.ttc
+font no. 374 ==> /Library/Fonts/Damascus.ttc
+font no. 375 ==> /Library/Fonts/Futura.ttc
+font no. 376 ==> /Library/Fonts/Yuanti.ttc
+font no. 377 ==> /Library/Fonts/Microsoft/Gulim.ttf
+font no. 378 ==> /Library/Fonts/Phosphate.ttc
+font no. 379 ==> /System/Library/Fonts/Avenir.ttc
+font no. 380 ==> /Library/Fonts/Gurmukhi Sangam MN.ttc
+font no. 381 ==> /Users/Nikolas/Library/Fonts/cmunobi.ttf
+font no. 382 ==> /System/Library/Fonts/Thonburi.ttc
+font no. 383 ==> /Library/Fonts/GillSans.ttc
+font no. 384 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 385 ==> /Library/Fonts/Copperplate.ttc
+font no. 386 ==> /System/Library/Fonts/Apple Braille.ttf
+font no. 387 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 388 ==> /System/Library/Fonts/Symbol.ttf
+font no. 389 ==> /Library/Fonts/DevanagariMT.ttc
+font no. 390 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 391 ==> /Library/Fonts/Webdings.ttf
+font no. 392 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 393 ==> /Library/Fonts/Sana.ttc
+font no. 394 ==> /Library/Fonts/Microsoft/Cambria.ttf
+font no. 395 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 396 ==> /System/Library/Fonts/KohinoorBangla.ttc
+font no. 397 ==> /Library/Fonts/Oriya MN.ttc
+font no. 398 ==> /Library/Fonts/Skia.ttf
+font no. 399 ==> /Library/Fonts/TsukushiBMaruGothic.ttc
+font no. 400 ==> /System/Library/Fonts/ヒラギノ角ゴシック W8.ttc
+font no. 401 ==> /System/Library/Fonts/LucidaGrande.ttc
+font no. 402 ==> /Library/Fonts/Microsoft/Gill Sans MT Italic.ttf
+font no. 403 ==> /System/Library/Fonts/SFNSText-HeavyItalic.otf
+font no. 404 ==> /Users/Nikolas/Library/Fonts/MyriadPro-Bold.otf
+font no. 405 ==> /System/Library/Fonts/Kohinoor.ttc
+font no. 406 ==> /Library/Fonts/Baghdad.ttc
+font no. 407 ==> /Library/Fonts/STIXGeneralBolIta.otf
+font no. 408 ==> /Library/Fonts/Arial Bold.ttf
+font no. 409 ==> /Users/Nikolas/Library/Fonts/cmunssdc.ttf
+font no. 410 ==> /Library/Fonts/Gurmukhi MN.ttc
+font no. 411 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 412 ==> /Library/Fonts/InaiMathi.ttf
+font no. 413 ==> /Users/Nikolas/Library/Fonts/cmunsl.ttf
+font no. 414 ==> /Library/Fonts/Hanzipen.ttc
+font no. 415 ==> /Library/Fonts/Arial Narrow Bold Italic.ttf
+font no. 416 ==> /System/Library/Fonts/ヒラギノ明朝 ProN W3.ttc
+font no. 417 ==> /Library/Fonts/Microsoft/Meiryo Bold Italic.ttf
+font no. 418 ==> /Library/Fonts/Seravek.ttc
+font no. 419 ==> /System/Library/Fonts/SFNSDisplay-Thin.otf
+font no. 420 ==> /Library/Fonts/Cochin.ttc
+font no. 421 ==> /Library/Fonts/Gurmukhi.ttf
+font no. 422 ==> /Library/Fonts/Microsoft/Tw Cen MT Bold Italic.ttf
+font no. 423 ==> /Users/Nikolas/Library/Fonts/cmunso.ttf
+font no. 424 ==> /System/Library/Fonts/SFNSText-RegularItalicG1.otf
+font no. 425 ==> /Library/Fonts/PTSans.ttc
+font no. 426 ==> /Library/Fonts/Athelas.ttc
+font no. 427 ==> /Users/Nikolas/Library/Fonts/cmunsi.ttf
+font no. 428 ==> /System/Library/Fonts/Palatino.ttc
+font no. 429 ==> /System/Library/Fonts/SFNSDisplay-Semibold.otf
+font no. 430 ==> /Library/Fonts/Seravek.ttc
+font no. 431 ==> /Library/Fonts/Didot.ttc
+font no. 432 ==> /System/Library/Fonts/GeezaPro.ttc
+font no. 433 ==> /Library/Fonts/PTMono.ttc
+font no. 434 ==> /Library/Fonts/Shree714.ttc
+font no. 435 ==> /Library/Fonts/Nadeem.ttc
+font no. 436 ==> /System/Library/Fonts/Apple Color Emoji.ttf
+font no. 437 ==> /Library/Fonts/Microsoft/Gill Sans MT Bold Italic.ttf
+font no. 438 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 439 ==> /Library/Fonts/Hanzipen.ttc
+font no. 440 ==> /Library/Fonts/WeibeiTC-Bold.otf
+font no. 441 ==> /Library/Fonts/GillSans.ttc
+font no. 442 ==> /System/Library/Fonts/Menlo.ttc
+font no. 443 ==> /Library/Fonts/Marion.ttc
+font no. 444 ==> /Library/Fonts/Kailasa.ttc
+font no. 445 ==> /Library/Fonts/Microsoft/Franklin Gothic Book Italic.ttf
+font no. 446 ==> /Library/Fonts/KufiStandardGK.ttc
+font no. 447 ==> /Library/Fonts/STIXIntUpSmReg.otf
+font no. 448 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 449 ==> /System/Library/Fonts/SFNSText-RegularItalicG3.otf
+font no. 450 ==> /Library/Fonts/PTSerifCaption.ttc
+font no. 451 ==> /Library/Fonts/PCmyoungjo.ttf
+font no. 452 ==> /System/Library/Fonts/KohinoorTelugu.ttc
+font no. 453 ==> /System/Library/Fonts/Noteworthy.ttc
+font no. 454 ==> /Library/Fonts/SuperClarendon.ttc
+font no. 455 ==> /Library/Fonts/Mishafi Gold.ttf
+font no. 456 ==> /Library/Fonts/Telugu MN.ttc
+font no. 457 ==> /Library/Fonts/GillSans.ttc
+font no. 458 ==> /Library/Fonts/Hoefler Text.ttc
+font no. 459 ==> /System/Library/Fonts/SFNSText-RegularItalicG2.otf
+font no. 460 ==> /System/Library/Fonts/SFNSText-LightItalic.otf
+font no. 461 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 462 ==> /Library/Fonts/Wingdings 2.ttf
+font no. 463 ==> /Library/Fonts/GujaratiMT.ttc
+font no. 464 ==> /Users/Nikolas/Library/Fonts/cmunci.ttf
+font no. 465 ==> /Library/Fonts/Microsoft/Constantia.ttf
+font no. 466 ==> /Users/Nikolas/Library/Fonts/cmunbi.ttf
+font no. 467 ==> /System/Library/Fonts/ヒラギノ角ゴシック W8.ttc
+font no. 468 ==> /Library/Fonts/Microsoft/Arial.ttf
+font no. 469 ==> /Library/Fonts/AlBayan.ttc
+font no. 470 ==> /Library/Fonts/Microsoft/Calibril.ttf
+font no. 471 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 472 ==> /System/Library/Fonts/Kohinoor.ttc
+font no. 473 ==> /Library/Fonts/Yuanti.ttc
+font no. 474 ==> /System/Library/Fonts/ヒラギノ角ゴシック W5.ttc
+font no. 475 ==> /Library/Fonts/Mishafi.ttf
+font no. 476 ==> /Library/Fonts/Kefa.ttc
+font no. 477 ==> /Library/Fonts/Wingdings 3.ttf
+font no. 478 ==> /Library/Fonts/PTSans.ttc
+font no. 479 ==> /System/Library/Fonts/ヒラギノ角ゴシック W6.ttc
+font no. 480 ==> /System/Library/Fonts/STHeiti Thin.ttc
+font no. 481 ==> /System/Library/Fonts/Thonburi.ttc
+font no. 482 ==> /Library/Fonts/Phosphate.ttc
+font no. 483 ==> /Library/Fonts/PlantagenetCherokee.ttf
+font no. 484 ==> /System/Library/Fonts/ヒラギノ角ゴシック W4.ttc
+font no. 485 ==> /Library/Fonts/Damascus.ttc
+font no. 486 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 487 ==> /System/Library/Fonts/ヒラギノ角ゴシック W0.ttc
+font no. 488 ==> /Users/Nikolas/Library/Fonts/cmunbx.ttf
+font no. 489 ==> /Library/Fonts/Gungseouche.ttf
+font no. 490 ==> /Library/Fonts/Kannada Sangam MN.ttc
+font no. 491 ==> /Library/Fonts/Microsoft/Meiryo.ttf
+font no. 492 ==> /Library/Fonts/Bangla MN.ttc
+font no. 493 ==> /Library/Fonts/YuMincho.ttc
+font no. 494 ==> /Library/Fonts/Seravek.ttc
+font no. 495 ==> /System/Library/Fonts/ヒラギノ角ゴシック W2.ttc
+font no. 496 ==> /Library/Fonts/Khmer Sangam MN.ttf
+font no. 497 ==> /Library/Fonts/Mshtakan.ttc
+font no. 498 ==> /Library/Fonts/NewPeninimMT.ttc
+font no. 499 ==> /Library/Fonts/Cochin.ttc
+font no. 500 ==> /Library/Fonts/STIXSizThreeSymReg.otf
+font no. 501 ==> /Library/Fonts/Seravek.ttc
+font no. 502 ==> /Library/Fonts/Muna.ttc
+font no. 503 ==> /Library/Fonts/Corsiva.ttc
+font no. 504 ==> /Library/Fonts/Athelas.ttc
+font no. 505 ==> /Library/Fonts/Nadeem.ttc
+font no. 506 ==> /System/Library/Fonts/LastResort.ttf
+font no. 507 ==> /Library/Fonts/Microsoft/Bookshelf Symbol 7.ttf
+font no. 508 ==> /Library/Fonts/STIXNonUniIta.otf
+font no. 509 ==> /Library/Fonts/Kailasa.ttc
+font no. 510 ==> /Library/Fonts/Baskerville.ttc
+font no. 511 ==> /System/Library/Fonts/MarkerFelt.ttc
+font no. 512 ==> /Library/Fonts/Chalkboard.ttc
+font no. 513 ==> /Library/Fonts/Wingdings.ttf
+font no. 514 ==> /Library/Fonts/Microsoft/MS Gothic.ttf
+font no. 515 ==> /Library/Fonts/Arial Black.ttf
+font no. 516 ==> /Library/Fonts/Tamil Sangam MN.ttc
+font no. 517 ==> /System/Library/Fonts/PingFang.ttc
+font no. 518 ==> /Library/Fonts/Iowan Old Style.ttc
+font no. 519 ==> /Library/Fonts/Kaiti.ttc
+font no. 520 ==> /Library/Fonts/Times New Roman Italic.ttf
+font no. 521 ==> /System/Library/Fonts/ヒラギノ角ゴシック W3.ttc
+font no. 522 ==> /System/Library/Fonts/Avenir.ttc
+font no. 523 ==> /Library/Fonts/Copperplate.ttc
+font no. 524 ==> /Library/Fonts/SnellRoundhand.ttc
+font no. 525 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 526 ==> /System/Library/Fonts/Avenir.ttc
+font no. 527 ==> /Library/Fonts/Microsoft/Gill Sans MT Bold.ttf
+font no. 528 ==> /Users/Nikolas/Library/Fonts/cmunoti.ttf
+font no. 529 ==> /Library/Fonts/Malayalam MN.ttc
+font no. 530 ==> /System/Library/Fonts/ヒラギノ角ゴシック W1.ttc
+font no. 531 ==> /Library/Fonts/GillSans.ttc
+font no. 532 ==> /System/Library/Fonts/Kohinoor.ttc
+font no. 533 ==> /Library/Fonts/Trebuchet MS.ttf
+font no. 534 ==> /Library/Fonts/Verdana Bold Italic.ttf
+font no. 535 ==> /Library/Fonts/Microsoft/SimSun.ttf
+font no. 536 ==> /System/Library/Fonts/ヒラギノ角ゴシック W9.ttc
+font no. 537 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 538 ==> /Library/Fonts/Al Nile.ttc
+font no. 539 ==> /Library/Fonts/Microsoft/Wingdings 3.ttf
+font no. 540 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 541 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 542 ==> /Library/Fonts/Microsoft/Consolas Bold Italic.ttf
+font no. 543 ==> /Library/Fonts/Sinhala Sangam MN.ttc
+font no. 544 ==> /System/Library/Fonts/GeezaPro.ttc
+font no. 545 ==> /Library/Fonts/Baghdad.ttc
+font no. 546 ==> /Library/Fonts/Hanzipen.ttc
+font no. 547 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 548 ==> /Library/Fonts/Shree714.ttc
+font no. 549 ==> /System/Library/Fonts/PingFang.ttc
+font no. 550 ==> /Library/Fonts/Yuanti.ttc
+font no. 551 ==> /Library/Fonts/Lao Sangam MN.ttf
+font no. 552 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 553 ==> /System/Library/Fonts/ヒラギノ角ゴシック W3.ttc
+font no. 554 ==> /Users/Nikolas/Library/Fonts/century2.ttf
+font no. 555 ==> /Library/Fonts/Songti.ttc
+font no. 556 ==> /Library/Fonts/NanumMyeongjo.ttc
+font no. 557 ==> /Library/Fonts/Al Nile.ttc
+font no. 558 ==> /System/Library/Fonts/GeezaPro.ttc
+font no. 559 ==> /Library/Fonts/GillSans.ttc
+font no. 560 ==> /System/Library/Fonts/ArialHB.ttc
+font no. 561 ==> /Library/Fonts/Seravek.ttc
+font no. 562 ==> /System/Library/Fonts/ヒラギノ明朝 ProN W6.ttc
+font no. 563 ==> /Library/Fonts/Gurmukhi Sangam MN.ttc
+font no. 564 ==> /Library/Fonts/Hannotate.ttc
+font no. 565 ==> /Library/Fonts/GillSans.ttc
+font no. 566 ==> /Library/Fonts/Microsoft/Consolas.ttf
+font no. 567 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 568 ==> /Library/Fonts/SuperClarendon.ttc
+font no. 569 ==> /Library/Fonts/Gujarati Sangam MN.ttc
+font no. 570 ==> /Library/Fonts/Arial Bold Italic.ttf
+font no. 571 ==> /Library/Fonts/Skia.ttf
+font no. 572 ==> /System/Library/Fonts/STHeiti Light.ttc
+font no. 573 ==> /System/Library/Fonts/STHeiti UltraLight.ttc
+font no. 574 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 575 ==> /Library/Fonts/Microsoft/Calibri Italic.ttf
+font no. 576 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 577 ==> /Library/Fonts/Chalkboard.ttc
+font no. 578 ==> /Library/Fonts/WawaSC-Regular.otf
+font no. 579 ==> /Library/Fonts/Microsoft/Cambria Math.ttf
+font no. 580 ==> /System/Library/Fonts/ArialHB.ttc
+font no. 581 ==> /Library/Fonts/Baskerville.ttc
+font no. 582 ==> /Library/Fonts/Baoli.ttc
+font no. 583 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 584 ==> /Library/Fonts/华文黑体.ttf
+font no. 585 ==> /Library/Fonts/Yuanti.ttc
+font no. 586 ==> /System/Library/Fonts/ArialHB.ttc
+font no. 587 ==> /System/Library/Fonts/PingFang.ttc
+font no. 588 ==> /Users/Nikolas/Library/Fonts/cmunvi.ttf
+font no. 589 ==> /Library/Fonts/Xingkai.ttc
+font no. 590 ==> /Library/Fonts/Charter.ttc
+font no. 591 ==> /System/Library/Fonts/ヒラギノ角ゴシック W6.ttc
+font no. 592 ==> /Library/Fonts/Diwan Kufi.ttc
+font no. 593 ==> /Library/Fonts/Lantinghei.ttc
+font no. 594 ==> /Library/Fonts/Skia.ttf
+font no. 595 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 596 ==> /System/Library/Fonts/ヒラギノ角ゴシック W7.ttc
+font no. 597 ==> /Library/Fonts/Kokonor.ttf
+font no. 598 ==> /Library/Fonts/Tahoma.ttf
+font no. 599 ==> /Library/Fonts/Courier New Italic.ttf
+font no. 600 ==> /System/Library/Fonts/KohinoorBangla.ttc
+font no. 601 ==> /Library/Fonts/Copperplate.ttc
+font no. 602 ==> /Library/Fonts/Microsoft/Perpetua Bold.ttf
+font no. 603 ==> /Library/Fonts/Futura.ttc
+font no. 604 ==> /Users/Nikolas/Library/Fonts/cmunsx.ttf
+font no. 605 ==> /System/Library/Fonts/Avenir.ttc
+font no. 606 ==> /System/Library/Fonts/LucidaGrande.ttc
+font no. 607 ==> /Library/Fonts/SuperClarendon.ttc
+font no. 608 ==> /Library/Fonts/Microsoft/Calibri Bold Italic.ttf
+font no. 609 ==> /Library/Fonts/Telugu MN.ttc
+font no. 610 ==> /Library/Fonts/PTSerif.ttc
+font no. 611 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 612 ==> /System/Library/Fonts/Avenir.ttc
+font no. 613 ==> /Library/Fonts/儷黑 Pro.ttf
+font no. 614 ==> /Library/Fonts/Microsoft/taile.ttf
+font no. 615 ==> /Library/Fonts/Microsoft/Lucida Sans Unicode.ttf
+font no. 616 ==> /Library/Fonts/Microsoft/Corbel Bold.ttf
+font no. 617 ==> /Library/Fonts/Hoefler Text.ttc
+font no. 618 ==> /Library/Fonts/Microsoft/Cambria Bold.ttf
+font no. 619 ==> /Library/Fonts/Courier New.ttf
+font no. 620 ==> /System/Library/Fonts/PingFang.ttc
+font no. 621 ==> /System/Library/Fonts/Optima.ttc
+font no. 622 ==> /Library/Fonts/Arial Unicode.ttf
+font no. 623 ==> /Library/Fonts/Damascus.ttc
+font no. 624 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 625 ==> /Library/Fonts/STIXNonUniBol.otf
+font no. 626 ==> /System/Library/Fonts/KohinoorTelugu.ttc
+font no. 627 ==> /Library/Fonts/Bodoni Ornaments.ttf
+font no. 628 ==> /Users/Nikolas/Library/Fonts/cmunui.ttf
+font no. 629 ==> /Library/Fonts/PTSans.ttc
+font no. 630 ==> /Library/Fonts/Microsoft/PMingLiU-ExtB.ttf
+font no. 631 ==> /Library/Fonts/Mshtakan.ttc
+font no. 632 ==> /System/Library/Fonts/PingFang.ttc
+font no. 633 ==> /Library/Fonts/Xingkai.ttc
+font no. 634 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 635 ==> /System/Library/Fonts/Avenir.ttc
+font no. 636 ==> /Library/Fonts/Kaiti.ttc
+font no. 637 ==> /System/Library/Fonts/SFNSDisplay-Black.otf
+font no. 638 ==> /System/Library/Fonts/LucidaGrande.ttc
+font no. 639 ==> /System/Library/Fonts/PingFang.ttc
+font no. 640 ==> /Library/Fonts/Microsoft/Candara Italic.ttf
+font no. 641 ==> /System/Library/Fonts/SFNSText-Bold.otf
+font no. 642 ==> /Library/Fonts/STIXIntDReg.otf
+font no. 643 ==> /System/Library/Fonts/Avenir Next Condensed.ttc
+font no. 644 ==> /System/Library/Fonts/SFNSDisplay-Bold.otf
+font no. 645 ==> /Library/Fonts/Baskerville.ttc
+font no. 646 ==> /Users/Nikolas/Library/Fonts/cmunss.ttf
+font no. 647 ==> /Library/Fonts/Khmer MN.ttc
+font no. 648 ==> /Library/Fonts/Seravek.ttc
+font no. 649 ==> /Library/Fonts/Damascus.ttc
+font no. 650 ==> /System/Library/Fonts/Apple Symbols.ttc
+font no. 651 ==> /System/Library/Fonts/KohinoorTelugu.ttc
+font no. 652 ==> /Library/Fonts/Microsoft/Tw Cen MT Italic.ttf
+font no. 653 ==> /Library/Fonts/Diwan Thuluth.ttf
+font no. 654 ==> /Library/Fonts/TsukushiAMaruGothic.ttc
+font no. 655 ==> /Library/Fonts/STIXIntSmReg.otf
+font no. 656 ==> /Library/Fonts/STIXSizOneSymReg.otf
+font no. 657 ==> /Library/Fonts/Yu Gothic Bold.otf
+font no. 658 ==> /Library/Fonts/NanumMyeongjo.ttc
+font no. 659 ==> /Library/Fonts/Myanmar MN.ttc
+font no. 660 ==> /System/Library/Fonts/PingFang.ttc
+font no. 661 ==> /Library/Fonts/PTSans.ttc
+font no. 662 ==> /Library/Fonts/Lantinghei.ttc
+font no. 663 ==> /Library/Fonts/Sinhala MN.ttc
+font no. 664 ==> /Library/Fonts/Lantinghei.ttc
+font no. 665 ==> /Library/Fonts/Microsoft/Palatino Linotype Bold Italic.ttf
+font no. 666 ==> /Library/Fonts/TsukushiBMaruGothic.ttc
+font no. 667 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 668 ==> /Library/Fonts/STIXIntUpBol.otf
+font no. 669 ==> /System/Library/Fonts/ヒラギノ角ゴシック W1.ttc
+font no. 670 ==> /Library/Fonts/Papyrus.ttc
+font no. 671 ==> /Library/Fonts/GillSans.ttc
+font no. 672 ==> /Library/Fonts/Microsoft/SimHei.ttf
+font no. 673 ==> /Library/Fonts/Microsoft/Times New Roman Bold Italic.ttf
+font no. 674 ==> /Library/Fonts/BigCaslon.ttf
+font no. 675 ==> /Library/Fonts/PTSans.ttc
+font no. 676 ==> /System/Library/Fonts/ヒラギノ角ゴシック W2.ttc
+font no. 677 ==> /Library/Fonts/Sana.ttc
+font no. 678 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 679 ==> /Library/Fonts/Arial Narrow Italic.ttf
+font no. 680 ==> /Library/Fonts/Brush Script.ttf
+font no. 681 ==> /System/Library/Fonts/Apple Braille Outline 6 Dot.ttf
+font no. 682 ==> /Library/Fonts/Trebuchet MS Bold Italic.ttf
+font no. 683 ==> /Library/Fonts/Verdana Italic.ttf
+font no. 684 ==> /Library/Fonts/STIXIntSmBol.otf
+font no. 685 ==> /System/Library/Fonts/ArialHB.ttc
+font no. 686 ==> /Users/Nikolas/Library/Fonts/cmunobx.ttf
+font no. 687 ==> /Users/Nikolas/Library/Fonts/cmunbxo.ttf
+font no. 688 ==> /System/Library/Fonts/SFNSText-SemiboldItalic.otf
+font no. 689 ==> /System/Library/Fonts/Hiragino Sans GB W6.ttc
+font no. 690 ==> /Library/Fonts/Bodoni 72 OS.ttc
+font no. 691 ==> /Library/Fonts/DevanagariMT.ttc
+font no. 692 ==> /Library/Fonts/SuperClarendon.ttc
+font no. 693 ==> /System/Library/Fonts/SFNSText-MediumItalic.otf
+font no. 694 ==> /System/Library/Fonts/PingFang.ttc
+font no. 695 ==> /System/Library/Fonts/PingFang.ttc
+font no. 696 ==> /System/Library/Fonts/ヒラギノ角ゴシック W5.ttc
+font no. 697 ==> /System/Library/Fonts/ヒラギノ角ゴシック W6.ttc
+font no. 698 ==> /Library/Fonts/AlBayan.ttc
+font no. 699 ==> /Library/Fonts/NewPeninimMT.ttc
+font no. 700 ==> /Library/Fonts/Microsoft/TaiLeb.ttf
+font no. 701 ==> /Library/Fonts/PTSerifCaption.ttc
+font no. 702 ==> /Library/Fonts/PTSans.ttc
+font no. 703 ==> /System/Library/Fonts/KohinoorBangla.ttc
+font no. 704 ==> /Library/Fonts/AmericanTypewriter.ttc
+font no. 705 ==> /Library/Fonts/GillSans.ttc
+font no. 706 ==> /System/Library/Fonts/KohinoorBangla.ttc
+font no. 707 ==> /System/Library/Fonts/ヒラギノ角ゴシック W4.ttc
+font no. 708 ==> /Library/Fonts/EuphemiaCAS.ttc
+font no. 709 ==> /Library/Fonts/YuMincho.ttc
+font no. 710 ==> /Library/Fonts/YuppySC-Regular.otf
+font no. 711 ==> /Library/Fonts/Microsoft/Tw Cen MT Bold.ttf
+font no. 712 ==> /Library/Fonts/GujaratiMT.ttc
+font no. 713 ==> /Users/Nikolas/Library/Fonts/cmunbso.ttf
+font no. 714 ==> /Library/Fonts/Al Nile.ttc
+font no. 715 ==> /System/Library/Fonts/PingFang.ttc
+font no. 716 ==> /Library/Fonts/Muna.ttc
+font no. 717 ==> /System/Library/Fonts/ヒラギノ角ゴシック W3.ttc
+font no. 718 ==> /Library/Fonts/Muna.ttc
+font no. 719 ==> /Library/Fonts/KufiStandardGK.ttc
+font no. 720 ==> /Library/Fonts/Trebuchet MS Italic.ttf
+font no. 721 ==> /Library/Fonts/ChalkboardSE.ttc
+font no. 722 ==> /System/Library/Fonts/SFNSText-BoldG3.otf
+font no. 723 ==> /Library/Fonts/Microsoft/PMingLiU.ttf
+font no. 724 ==> /Users/Nikolas/Library/Fonts/cmunti.ttf
+font no. 725 ==> /Library/Fonts/Microsoft/Palatino Linotype.ttf
+font no. 726 ==> /Library/Fonts/STIXSizFourSymBol.otf
+font no. 727 ==> /Library/Fonts/Lao MN.ttc
+font no. 728 ==> /Library/Fonts/Iowan Old Style.ttc
+font no. 729 ==> /Library/Fonts/Skia.ttf
+font no. 730 ==> /Library/Fonts/Microsoft/Verdana Italic.ttf
+font no. 731 ==> /Library/Fonts/Tamil Sangam MN.ttc
+font no. 732 ==> /Library/Fonts/Microsoft/Calibri.ttf
+font no. 733 ==> /Library/Fonts/Microsoft/MS PMincho.ttf
+font no. 734 ==> /Library/Fonts/STIXIntUpReg.otf
+font no. 735 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 736 ==> /Library/Fonts/Didot.ttc
+font no. 737 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 738 ==> /Library/Fonts/WawaTC-Regular.otf
+font no. 739 ==> /Library/Fonts/Futura.ttc
+font no. 740 ==> /Library/Fonts/Arial Rounded Bold.ttf
+font no. 741 ==> /Library/Fonts/STIXSizFiveSymReg.otf
+font no. 742 ==> /Library/Fonts/Charter.ttc
+font no. 743 ==> /Library/Fonts/Bangla Sangam MN.ttc
+font no. 744 ==> /Library/Fonts/Zapfino.ttf
+font no. 745 ==> /System/Library/Fonts/SFNSText-BoldG2.otf
+font no. 746 ==> /Library/Fonts/Skia.ttf
+font no. 747 ==> /Library/Fonts/Libian.ttc
+font no. 748 ==> /Library/Fonts/WeibeiSC-Bold.otf
+font no. 749 ==> /Library/Fonts/Microsoft/Franklin Gothic Medium Italic.ttf
+font no. 750 ==> /System/Library/Fonts/Menlo.ttc
+font no. 751 ==> /Library/Fonts/Athelas.ttc
+font no. 752 ==> /Library/Fonts/Savoye LET.ttc
+font no. 753 ==> /Library/Fonts/Songti.ttc
+font no. 754 ==> /System/Library/Fonts/PingFang.ttc
+font no. 755 ==> /System/Library/Fonts/Avenir.ttc
+font no. 756 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 757 ==> /Library/Fonts/Muna.ttc
+font no. 758 ==> /Library/Fonts/Microsoft/Batang.ttf
+font no. 759 ==> /Library/Fonts/Ayuthaya.ttf
+font no. 760 ==> /Library/Fonts/Songti.ttc
+font no. 761 ==> /Library/Fonts/Microsoft/MingLiU_HKSCS-ExtB.ttf
+font no. 762 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 763 ==> /Library/Fonts/Tamil MN.ttc
+font no. 764 ==> /Library/Fonts/Microsoft/Franklin Gothic Book.ttf
+font no. 765 ==> /System/Library/Fonts/SFNSText-BoldG1.otf
+font no. 766 ==> /Library/Fonts/Didot.ttc
+font no. 767 ==> /Library/Fonts/HeadlineA.ttf
+font no. 768 ==> /Library/Fonts/Pilgiche.ttf
+font no. 769 ==> /System/Library/Fonts/Palatino.ttc
+font no. 770 ==> /Library/Fonts/Seravek.ttc
+font no. 771 ==> /Library/Fonts/Microsoft/Tw Cen MT.ttf
+font no. 772 ==> /Library/Fonts/Songti.ttc
+font no. 773 ==> /System/Library/Fonts/HelveticaNeueDeskInterface.ttc
+font no. 774 ==> /System/Library/Fonts/PingFang.ttc
+font no. 775 ==> /Library/Fonts/Microsoft/Perpetua Italic.ttf
+font no. 776 ==> /Library/Fonts/Charter.ttc
+font no. 777 ==> /Library/Fonts/Microsoft/SimSun-ExtB.ttf
+font no. 778 ==> /System/Library/Fonts/Avenir.ttc
+font no. 779 ==> /Library/Fonts/Hannotate.ttc
+font no. 780 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 781 ==> /System/Library/Fonts/PingFang.ttc
+font no. 782 ==> /System/Library/Fonts/ArialHB.ttc
+font no. 783 ==> /Library/Fonts/TsukushiAMaruGothic.ttc
+font no. 784 ==> /Library/Fonts/Microsoft/Arial Italic.ttf
+font no. 785 ==> /Library/Fonts/Microsoft/Verdana Bold Italic.ttf
+font no. 786 ==> /Users/Nikolas/Library/Fonts/Myriad Italic.ttf
+font no. 787 ==> /System/Library/Fonts/SFNSDisplay-Regular.otf
+font no. 788 ==> /Library/Fonts/Gujarati Sangam MN.ttc
+font no. 789 ==> /System/Library/Fonts/Avenir Next.ttc
+font no. 790 ==> /Library/Fonts/Oriya MN.ttc
+font no. 791 ==> /Library/Fonts/NanumScript.ttc
+font no. 792 ==> /Library/Fonts/Microsoft/Perpetua Bold Italic.ttf
+font no. 793 ==> /Library/Fonts/Athelas.ttc
+font no. 794 ==> /Library/Fonts/Marion.ttc
+font no. 795 ==> /Library/Fonts/ITFDevanagari.ttc
+font no. 796 ==> /System/Library/Fonts/SFNSDisplay-Ultralight.otf
+font no. 797 ==> /Library/Fonts/Microsoft/Corbel Italic.ttf
+font no. 798 ==> /System/Library/Fonts/SFNSDisplay-Medium.otf
+font no. 799 ==> /Library/Fonts/Microsoft/MS Reference Specialty.ttf
+font no. 800 ==> /Library/Fonts/Tamil MN.ttc
+font no. 801 ==> /Library/Fonts/Futura.ttc
+font no. 802 ==> /Library/Fonts/Telugu Sangam MN.ttc
+font no. 803 ==> /Library/Fonts/SuperClarendon.ttc
+font no. 804 ==> /Library/Fonts/Papyrus.ttc
+font no. 805 ==> /Library/Fonts/NanumScript.ttc
+font no. 806 ==> /Library/Fonts/Shree714.ttc
+font no. 807 ==> /Library/Fonts/AlBayan.ttc
+font no. 808 ==> /Library/Fonts/STIXGeneralBol.otf
+font no. 809 ==> /Library/Fonts/Kefa.ttc
+font no. 810 ==> /System/Library/Fonts/AppleSDGothicNeo.ttc
+font no. 811 ==> /Library/Fonts/Microsoft/Brush Script.ttf
+font no. 812 ==> /Users/Nikolas/Library/Fonts/Myriad Pro Regular.ttf
+font no. 813 ==> /Library/Fonts/Lantinghei.ttc
+font no. 814 ==> /Library/Fonts/Sinhala Sangam MN.ttc
+font no. 815 ==> /Library/Fonts/Diwan Kufi.ttc
+font no. 816 ==> /Library/Fonts/Iowan Old Style.ttc
