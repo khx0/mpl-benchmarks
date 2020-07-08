@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-07
+# date: 2020-07-08
 # file: mpl_legend_manually_set_size.py
 # tested with python 3.7.6 in conjunction with mpl version 3.2.2
 ##########################################################################################
