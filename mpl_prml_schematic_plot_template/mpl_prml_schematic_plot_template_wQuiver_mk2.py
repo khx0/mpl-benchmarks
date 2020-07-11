@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-03-30
+# date: 2020-07-11
 # file: mpl_prml_schematic_plot_template_wQuiver_mk2.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.1
+# tested with python 3.7.6 in conjunction with mpl version 3.2.2
 ##########################################################################################
 
 import os
@@ -371,7 +371,7 @@ if __name__ == '__main__':
     yLeft = norm.pdf(xLeft, mu, np.sqrt(var))
     yRight = norm.pdf(xRight, mu, np.sqrt(var))
 
-    assert np.isclose(yLeft, yRight), "Error: yLeft == yRight assertion failed."
+    assert np.isclose(yLeft, yRight), "yLeft == yRight assertion failed."
     ######################################################################################
     # call the plotting function
 
