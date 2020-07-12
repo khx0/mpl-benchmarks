@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-03-30
+# date: 2020-07-12
 # file: pcolor_pseudoColor_plot_linearX_linearY.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.1
+# tested with python 3.7.6 in conjunction with mpl version 3.2.2
 ##########################################################################################
 
 import sys
@@ -235,26 +235,25 @@ if __name__ == '__main__':
 
     zVals = np.zeros((nSamples_y, nSamples_x))
 
-    for j in range(nSamples_y):         # iterate over y values
-        for i in range(nSamples_x):     # iterate over x values
+    for j in range(nSamples_y):          # iterate over y values
+        for i in range(nSamples_x):      # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
     #################################################################################
     print("xVals.shape =", xVals.shape)
     print("yVals.shape =", yVals.shape)
     print("zVals.shape =", zVals.shape)
-    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert zVals.shape == (nSamples_x, nSamples_y), "Error: Shape assertion failed."
+    assert xVals.shape == yVals.shape, "Shape assertion failed."
+    assert zVals.shape == (nSamples_x, nSamples_y), "Shape assertion failed."
     #################################################################################
 
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
 
-    assert xBoxCoords.shape == (nSamples_x + 1,), "Error: Shape assertion failed."
-    assert yBoxCoords.shape == (nSamples_y + 1,), "Error: Shape assertion failed."
+    assert xBoxCoords.shape == (nSamples_x + 1,), "Shape assertion failed."
+    assert yBoxCoords.shape == (nSamples_y + 1,), "Shape assertion failed."
 
     # call plot function
-
     fProps = (4.0, 4.0, 0.16, 0.80, 0.20, 0.88)
     xFormat = ('linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'x axis label')
     yFormat = ('linear', -0.16, 1.16, 0.0, 1.05, 0.5, 0.1, r'y axis label')
