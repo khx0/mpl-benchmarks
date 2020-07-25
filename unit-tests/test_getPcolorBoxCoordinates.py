@@ -3,13 +3,12 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-12
+# date: 2020-07-14
 # file: test_getPcolorBoxCoordinates.py
-# tested with python 3.7.6
+# tested with python 3.7.6 and pytest 5.4.3
 ##########################################################################################
 
 '''
-Tested with pytest version 5.4.3.
 Invocation:
 cd to the directory containing this script (here ../unit-tests/) and
 then invoke
