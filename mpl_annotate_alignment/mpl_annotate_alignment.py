@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-03
+# date: 2020-07-25
 # file: mpl_annotate_alignment.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.0
 ##########################################################################################
 
 import os
@@ -68,13 +68,11 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     mpl.rcParams['pdf.fonttype'] = 42
     ######################################################################################
-
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
-
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
@@ -172,7 +170,7 @@ def Plot(titlestr, X, outname, outdir, pColors,
                  zorder = 8)
 
     ######################################################################################
-    # set plot range and scale (axis limits)
+    # set plot range (axis limits)
     ax1.set_xlim(-0.05, 1.05)
     ######################################################################################
     # grid options
