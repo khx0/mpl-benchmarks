@@ -76,7 +76,7 @@ if __name__ == '__main__':
                  xycoords = 'data',
                  horizontalalignment = 'left',
                  verticalalignment = 'center')
-       
+
     # specify the (x, y) position in data coordinates
     xPos_data = 870.0
     yPos_data = 400.0
