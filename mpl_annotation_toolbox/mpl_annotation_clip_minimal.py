@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-26
+# date: 2020-08-30
 # file: mpl_annotation_clip_minimal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.0
+# tested with python 3.7.6 in conjunction with mpl version 3.3.1
 ##########################################################################################
 
 import os
