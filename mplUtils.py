@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-12-15
+# date: 2020-09-13
 # file: mplUtils.py
-# tested with python 3.7.2
+# tested with python 3.7.6
 ##########################################################################################
 
 import sys
@@ -91,7 +91,7 @@ def getHistogramCoordinates(X, nBins, density = True):
     '''
     hist, bin_edges = np.histogram(X, bins = nBins, density = density)
     bin_centers = (bin_edges[1:] + bin_edges[0:-1]) / 2.0
-    assert hist.shape == bin_centers.shape, "Error: Shape assertion failed."
+    assert hist.shape == bin_centers.shape, "Shape assertion failed."
 
     res = np.zeros((nBins, 2))
     res[:, 0] = bin_centers
