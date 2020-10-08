@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-09-13
+# date: 2020-10-09
 # file: mpl_quiver_coordinate_axis_example.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.1
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
