@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-04
+# date: 2020-10-12
 # file: mpl_AB_categorical_boxplot.py
-# tested with python 3.7.6 and matplotlib 3.2.2
+# tested with python 3.7.6 and matplotlib 3.3.2
 ##########################################################################################
 
 import os
@@ -56,15 +56,16 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 3.0, height = 4.0,
-                       lFrac = 0.28, rFrac = 0.95, bFrac = 0.20, tFrac = 0.95)
+                       lFrac = 0.28, rFrac = 0.95,
+                       bFrac = 0.20, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -115,13 +116,14 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
 
 if __name__ == '__main__':
 
+    print(__file__)
     print("running on python", platform.python_version())
     print("using mpl.__version__ =", mpl.__version__)
 
     filename = r'normal_samples_AB_np_seed_987654321.npy'
 
     data = np.load(os.path.join(RAWDIR, filename))
-    print(data.shape)
+    print("data.shape =", data.shape)
 
     outname = 'mpl_AB_categorical_boxplot'
     outname += '_Python_' + platform.python_version() + \

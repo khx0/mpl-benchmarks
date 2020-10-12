@@ -64,7 +64,8 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 3.0, height = 4.0,
-                       lFrac = 0.28, rFrac = 0.95, bFrac = 0.20, tFrac = 0.95)
+                       lFrac = 0.28, rFrac = 0.95,
+                       bFrac = 0.20, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
