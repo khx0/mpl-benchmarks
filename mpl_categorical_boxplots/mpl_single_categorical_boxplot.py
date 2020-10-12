@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-04
+# date: 2020-10-12
 # file: mpl_single_categorical_boxplot.py
-# tested with python 3.7.6 and matplotlib 3.2.2
+# tested with python 3.7.6 and matplotlib 3.3.2
 ##########################################################################################
 
 import os
@@ -56,9 +56,9 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -109,19 +109,20 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
 
 if __name__ == '__main__':
 
+    print(__file__)
     print("running on python", platform.python_version())
     print("using mpl.__version__ =", mpl.__version__)
 
     filename = r'normal_samples_np_seed_987654321.npy'
 
     data = np.load(os.path.join(RAWDIR, filename))
-    print(data.shape)
-    
+    print("data.shape =", data.shape)
+
     xLabel = r'optional $x$ label'
     yLabel = r'$y$ label'
 
     pColors_list = [['C3'], ['C0'], ['C1'], ['k']]
-    
+
     # iterate over different median bar colors
     for pColors in pColors_list:
 

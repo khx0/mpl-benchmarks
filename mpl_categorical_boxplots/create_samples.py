@@ -48,7 +48,6 @@ if __name__ == '__main__':
     if CREATE_TXT:
         np.savetxt(os.path.join(RAWDIR, outname + '.txt'), sample_A, fmt = '%.8f')
 
-
     sample_B = np.random.normal(loc = 1.4, scale = 0.45, size = nSamples)
     print("sample_B.shape =", sample_B.shape)
 
