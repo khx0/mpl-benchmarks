@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-04
+# date: 2020-10-12
 # file: mpl_single_categorical_boxplot_wScatter.py
-# tested with python 3.7.6 and matplotlib 3.2.2
+# tested with python 3.7.6 and matplotlib 3.3.2
 ##########################################################################################
 
 # TODO: update with bee scatter algorithm
@@ -59,21 +59,22 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 3.0, height = 4.0,
-                       lFrac = 0.28, rFrac = 0.95, bFrac = 0.20, tFrac = 0.95)
+                       lFrac = 0.28, rFrac = 0.95,
+                       bFrac = 0.20, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
-    
+
     ax1.spines['right'].set_visible(False)
     ax1.spines['top'].set_visible(False)
 
@@ -81,8 +82,7 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     xPos = [1.0]
     width = 0.2
 
-    bp1 = ax1.boxplot(X,
-    				  widths = width)
+    bp1 = ax1.boxplot(X, widths = width)
 
     xVals = np.array(len(X) * xPos) + 0.25
 
@@ -121,13 +121,14 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
 
 if __name__ == '__main__':
 
+    print(__file__)
     print("running on python", platform.python_version())
     print("using mpl.__version__ =", mpl.__version__)
 
     filename = r'normal_samples_np_seed_987654321.npy'
 
     data = np.load(os.path.join(RAWDIR, filename))
-    print(data.shape)
+    print("data.shape =", data.shape)
 
     outname = 'mpl_single_categorical_boxplot_wScatter'
     outname += '_Python_' + platform.python_version() + \
