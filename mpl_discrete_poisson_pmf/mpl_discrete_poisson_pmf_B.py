@@ -240,7 +240,7 @@ if __name__ == '__main__':
         ##################################################################################
         # check for normalization
         norm = np.sum(yVals)
-        print("Normalization = np.sum(yVals) = ", norm)
+        print("Normalization: np.sum(yVals) = ", norm)
         assert np.isclose(norm, 1.0), \
                "Error: Poisson distribution seems NOT to be normalized."
 
