@@ -3,7 +3,7 @@ Useful matplotlib snippets, plotting routines and template scripts.
 The examples herein illustrate many advanced matplotlib features by using them in a
 concrete context. This repository is used to collect such examples,
 to provide them for easy reusability and as interesting showcases with the hope
-that they might prove to be useful for interested other parties.
+that they might prove to be useful for other interested parties.
 This repository consist of many examples which can also be understood as
 template plot scripts for different plotting scenarios.
 In particular, many of these are meant to illustrate how much potential matplotlib
