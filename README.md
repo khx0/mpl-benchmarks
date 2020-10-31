@@ -31,7 +31,7 @@ For visualizing small 2d matrices, this pcolormesh assay illustrates a nice way 
 
 The script which produces the shown panels is loacted in 
 ```
-/mpl_pcolormesh_with_fixed_size_and_relative_border_margins/
+/mpl_pcolormesh_with_fixed_size_and_relative_border_margins
 ```
 
 ### Example: pseudo color plot (mpl's pcolormesh)
@@ -40,7 +40,7 @@ The script which produces the shown panels is loacted in
 
 The python script which produces the above two figures can be found under
 ```
-/mpl_heatmap_log_xy-scale/demo/
+/mpl_heatmap_log_xy-scale/demo
 ```
 
 ### Example: 2d correlation plot with marginal densities
@@ -49,12 +49,12 @@ The python script which produces the above two figures can be found under
 
 The python scripts which produce the above example are placed in
 ```
-/mpl_correlation2d_with_marginals/
+/mpl_correlation2d_with_marginals
 ```
 ### Testing
 For some modules unit tests are provided in the
 ```
-/unit-tests/
+/unit-tests
 ```
 directory which can be run using the unittest module or via pytest.
 All tests were done using pytest version 5.4.1.
