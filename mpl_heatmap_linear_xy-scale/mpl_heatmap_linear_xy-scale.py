@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-06
+# date: 2020-10-31
 # file: mpl_heatmap_linear_xy-scale.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import sys
@@ -55,10 +55,9 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
