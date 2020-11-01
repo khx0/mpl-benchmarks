@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-07
+# date: 2020-11-01
 # file: mpl_histogram_of_already_binned_data.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -74,9 +74,9 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -117,12 +117,12 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     # This way of calling mpl's hist function is suitable for plotting already
     # binned data, as it is the case here.
     # The key is using the weights keyword in the hist command as below.
-    
+
     ax1.hist(bins[:-1], bins, weights = values,
              color = pColors['opaque_standard_blue'],
              edgecolor = 'k',
              linewidth = 1.0)
-             
+
     # For further explanations, please see:
     # https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.pyplot.hist.html
     # e.g. using
@@ -198,12 +198,12 @@ if __name__ == '__main__':
     ######################################################################################
 
     xmin, xmax = 0.0, 1.0
-    nBins = 30
-    dx = (xmax - xmin) / float(nBins)
-    bins = np.linspace(xmin, xmax, nBins + 1)
+    n_bins = 30
+    dx = (xmax - xmin) / float(n_bins)
+    bins = np.linspace(xmin, xmax, n_bins + 1)
     binCenters = bins[:-1] + dx / 2.0
 
-    pValues = np.zeros((nBins,))    
+    pValues = np.zeros((n_bins,))    
     pValues = norm.pdf(binCenters,
                        loc = binCenters[14],
                        scale = 0.184)
@@ -232,9 +232,10 @@ if __name__ == '__main__':
     # #0000FF = RGB(0, 0, 255)
     # #6666ff roughly corresponds to #0000FF at 0.55 opacity
     # plot color dictionary
-    pColors = {'blue': '#0000FF',
-               'opaque_standard_blue': '#6666ff'
-               }
+    pColors = {
+        'blue': '#0000FF',
+        'opaque_standard_blue': '#6666ff'
+        }
     ########################################################
 
     outname = Plot(bins = bins,
