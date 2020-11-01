@@ -36,10 +36,10 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def plot_pcolor(X, Y, Z, titlestr, params,
-    fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
-    outname, outdir, showlabels = True,
-    grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
+def plot_pcolor(X, Y, Z, params, fProps, 
+    xFormat, yFormat, zFormat, zColor, outname, outdir,
+    titlestr = None, show_cBar = True, showlabels = True, grid = False, 
+    saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -85,7 +85,8 @@ def plot_pcolor(X, Y, Z, titlestr, params,
 
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(xFormat[7], fontsize = 8.0)
     ax1.set_ylabel(yFormat[7], fontsize = 8.0)
     ax1.xaxis.labelpad = 2.0
@@ -116,9 +117,6 @@ def plot_pcolor(X, Y, Z, titlestr, params,
                                         norm = cNorm,
                                         orientation = 'vertical')
 
-#         cb1.set_label(zColor[3],
-#                       labelpad = 2.5, fontsize = 6)
-
         ax1.annotate(zColor[3],
                      xy = (1.175, 1.06),
                      xycoords = 'axes fraction',
@@ -132,8 +130,7 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         if zFormat[0] == 'linear':
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
-        # cb1.ax.minorticks_on()
-
+ 
     ax1.pcolormesh(X, Y, Z,
                    cmap = cMap,
                    norm = cNorm,
@@ -167,17 +164,11 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-
-        # manual formatting here:
-        # ax1.set_xticklabels([0, 0.5, 1])
-
     elif xFormat[0] == 'log':
         ax1.set_xscale('log')
         ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
         ax1.xaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 8,
                                     subs = [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]))
-#         for label in ax1.xaxis.get_ticklabels()[1::2]:
-#             label.set_visible(False)
         ax1.set_xlim(xFormat[1], xFormat[2]) # xmin, xmax
     else:
         print("Error: Unknown xFormat[0] type encountered.")
@@ -191,14 +182,11 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-
     elif yFormat[0] == 'log':
         ax1.set_yscale('log')
         ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
         ax1.yaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 8,
                                     subs = [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]))
-#         for label in ax1.yaxis.get_ticklabels()[1::2]:
-#             label.set_visible(False)
         ax1.set_ylim(yFormat[1], yFormat[2]) # xmin, xmax
     else:
         print("Error: Unknown yFormat[0] type encountered.")
@@ -299,44 +287,36 @@ if __name__ == '__main__':
     cMap = cm.viridis # cm.plasma
     zmin = -1.0
     zmax = 1.0
-    zColor = [cMap, zmin, zmax, r'z label $\, z$']
-    zFormat = ['linear', -1.0, 1.1, 0.5]
+    zColor = (cMap, zmin, zmax, r'z label $\, z$')
+    zFormat = ('linear', -1.0, 1.1, 0.5)
 
     plot_pcolor(X = xBoxCoords,
                 Y = yBoxCoords,
                 Z = Z,
-                titlestr = '',
                 params = [Z_min, Z_max],
                 fProps = fProps,
                 xFormat = xFormat,
                 yFormat = yFormat,
                 zFormat = zFormat,
                 zColor = zColor,
-                show_cBar = True,
                 outname = outnameAbs,
-                outdir = OUTDIR,
-                grid = False,
-                saveSVG = False)
+                outdir = OUTDIR)
 
     # relative scaling
     cMap = cm.viridis # cm.plasma
     zmin = np.min(Z)
     zmax = np.max(Z)
-    zColor = [cMap, zmin, zmax, r'z label $\, z$']
-    # zFormat = ['linear', -1.0, 1.1, 0.5]
+    zColor = (cMap, zmin, zmax, r'z label $\, z$')
     zFormat = ('linear', -0.75, 0.8, 0.25)
 
     plot_pcolor(X = xBoxCoords,
                 Y = yBoxCoords,
                 Z = Z,
-                titlestr = '',
                 params = [Z_min, Z_max],
                 fProps = fProps,
                 xFormat = xFormat,
                 yFormat = yFormat,
                 zFormat = zFormat,
                 zColor = zColor,
-                show_cBar = True,
                 outname = outnameRel,
-                outdir = OUTDIR,
-                grid = False)
+                outdir = OUTDIR)
