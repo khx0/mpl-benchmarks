@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-06
+# date: 2020-11-01
 # file: mpl_heatmap_log_xy-scale.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import sys
@@ -38,7 +38,7 @@ os.makedirs(OUTDIR, exist_ok = True)
 
 def plot_pcolor(X, Y, Z, titlestr, params,
     fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
-    outname, outdir, showlabels,
+    outname, outdir, showlabels = True,
     grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -56,10 +56,9 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -278,7 +277,7 @@ if __name__ == '__main__':
     assert yBoxCoords.shape == (len(yVals) + 1,), "Error: Shape assertion failed."
 
     # call plot function
-    fProps = [4.0, 4.0, 0.20, 0.80, 0.20, 0.88]
+    fProps = (4.0, 4.0, 0.20, 0.80, 0.20, 0.88)
 
     # left and right axis padding fraction
     paddingFraction = 0.035
@@ -316,7 +315,6 @@ if __name__ == '__main__':
                 show_cBar = True,
                 outname = outnameAbs,
                 outdir = OUTDIR,
-                showlabels = True,
                 grid = False,
                 saveSVG = False)
 
@@ -341,6 +339,4 @@ if __name__ == '__main__':
                 show_cBar = True,
                 outname = outnameRel,
                 outdir = OUTDIR,
-                showlabels = True,
-                grid = False,
-                saveSVG = False)
+                grid = False)
