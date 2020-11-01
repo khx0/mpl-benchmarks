@@ -177,7 +177,7 @@ def plot_pcolor(X, Y, Z, params, fProps,
     if yFormat[0] == 'auto':
         pass
     if yFormat[0] == 'linear':
-        ax1.set_ylim(yFormat[1], yFormat[2]) # xmin, xmax
+        ax1.set_ylim(yFormat[1], yFormat[2]) # ymin, ymax
         major_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[5])
         minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
         ax1.set_yticks(major_y_ticks)
@@ -187,7 +187,7 @@ def plot_pcolor(X, Y, Z, params, fProps,
         ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
         ax1.yaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 8,
                                     subs = [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]))
-        ax1.set_ylim(yFormat[1], yFormat[2]) # xmin, xmax
+        ax1.set_ylim(yFormat[1], yFormat[2]) # ymin, ymax
     else:
         print("Error: Unknown yFormat[0] type encountered.")
         sys.exit(1)
@@ -261,8 +261,8 @@ if __name__ == '__main__':
     xBoxCoords = getPcolorBoxCoordinates(xVals, 'log')
     yBoxCoords = getPcolorBoxCoordinates(yVals, 'log')
 
-    assert xBoxCoords.shape == (len(xVals) + 1,), "Error: Shape assertion failed."
-    assert yBoxCoords.shape == (len(yVals) + 1,), "Error: Shape assertion failed."
+    assert xBoxCoords.shape == (len(xVals) + 1,), "Shape assertion failed."
+    assert yBoxCoords.shape == (len(yVals) + 1,), "Shape assertion failed."
 
     # call plot function
     fProps = (4.0, 4.0, 0.20, 0.80, 0.20, 0.88)
