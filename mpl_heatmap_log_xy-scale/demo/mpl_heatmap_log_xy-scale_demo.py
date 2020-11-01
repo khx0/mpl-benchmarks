@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-06
+# date: 2020-11-01
 # file: mpl_heatmap_log_xy-scale_demo.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import sys
@@ -38,10 +38,10 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def plot_pcolor(X, Y, Z, titlestr, params,
-    fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
-    outname, outdir, showlabels,
-    grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
+def plot_pcolor(X, Y, Z, params, fProps,
+    xFormat, yFormat, zFormat, zColor, outname, outdir,
+    titlestr = None, show_cBar = True, showlabels = True, grid = False,
+    saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -58,10 +58,9 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -88,7 +87,8 @@ def plot_pcolor(X, Y, Z, titlestr, params,
 
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(xFormat[7], fontsize = 8.0)
     ax1.set_ylabel(yFormat[7], fontsize = 8.0)
     ax1.xaxis.labelpad = 1.0
@@ -166,7 +166,6 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         minor_x_ticks = np.arange(xFormat[3], xFormat[4], xFormat[6])
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-
     elif xFormat[0] == 'log':
         ax1.set_xscale('log')
         ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 4))
@@ -174,7 +173,6 @@ def plot_pcolor(X, Y, Z, titlestr, params,
         ax1.xaxis.set_minor_locator(ticker.FixedLocator((xMinorTicks)))
         ax1.xaxis.set_minor_formatter(mpl.ticker.NullFormatter())
         ax1.set_xlim(xFormat[1], xFormat[2])
-
     else:
         print("Error: Unknown xFormat[0] type encountered.")
         sys.exit(1)
@@ -182,19 +180,18 @@ def plot_pcolor(X, Y, Z, titlestr, params,
     if yFormat[0] == 'auto':
         pass
     if yFormat[0] == 'linear':
-        ax1.set_ylim(yFormat[1], yFormat[2])
+        ax1.set_ylim(yFormat[1], yFormat[2]) # ymin, ymax
         major_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[5])
         minor_y_ticks = np.arange(yFormat[3], yFormat[4], yFormat[6])
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-
     elif yFormat[0] == 'log':
         ax1.set_yscale('log')
         ax1.yaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 4))
         yMinorTicks = getLogTicksBase10(1.0e-3, 1.0e-1)
         ax1.yaxis.set_minor_locator(ticker.FixedLocator((yMinorTicks)))
         ax1.yaxis.set_minor_formatter(mpl.ticker.NullFormatter())
-        ax1.set_ylim(yFormat[1], yFormat[2])
+        ax1.set_ylim(yFormat[1], yFormat[2]) # ymin, ymax
     else:
         print("Error: Unknown yFormat[0] type encountered.")
         sys.exit(1)
@@ -233,23 +230,25 @@ def plot_pcolor(X, Y, Z, titlestr, params,
 
 if __name__ == '__main__':
 
-    params = [(31, 0.035, cm.viridis, 'viridis'),
-              (31, 0.035, cm.magma, 'magma'),
-              (31, 0.035, cm.gray, 'gray'),
-              (31, 0.035, cm.plasma, 'plasma')]
+    params = [
+        (31, 0.035, cm.viridis, 'viridis'),
+        (31, 0.035, cm.magma, 'magma'),
+        (31, 0.035, cm.gray, 'gray'),
+        (31, 0.035, cm.plasma, 'plasma')
+        ]
 
-    for nDataPoints, paddingFraction, cMap, cMapString in params:
+    for n_datapoints, paddingFraction, cMap, cMap_str in params:
 
-        filename = 'demo_nDataPoints_{}_cMap_{}'.format(nDataPoints, cMapString)
+        filename = f'demo_nDataPoints_{n_datapoints}_cMap_{cMap_str}'
         filename += '_Python_' + platform.python_version() + \
                     '_mpl_' + mpl.__version__
 
         # create dummy data
-        Z = np.zeros((nDataPoints, nDataPoints))
+        Z = np.zeros((n_datapoints, n_datapoints))
         print('Z.shape =', Z.shape)
 
-        xVals = np.logspace(1, 3, nDataPoints)
-        yVals = np.logspace(-3, -1, nDataPoints)
+        xVals = np.logspace(1, 3, n_datapoints)
+        yVals = np.logspace(-3, -1, n_datapoints)
 
         # fill Z matrix
         for i in range(len(yVals)):
@@ -263,11 +262,11 @@ if __name__ == '__main__':
         xBoxCoords = getPcolorBoxCoordinates(xVals, 'log')
         yBoxCoords = getPcolorBoxCoordinates(yVals, 'log')
 
-        assert xBoxCoords.shape == (len(xVals) + 1,), "Error: Shape assertion failed."
-        assert yBoxCoords.shape == (len(yVals) + 1,), "Error: Shape assertion failed."
+        assert xBoxCoords.shape == (len(xVals) + 1,), "Shape assertion failed."
+        assert yBoxCoords.shape == (len(yVals) + 1,), "Shape assertion failed."
 
         # call plot function
-        fProps = [3.5, 3.5, 0.20, 0.84, 0.16, 0.88]
+        fProps = (3.5, 3.5, 0.20, 0.84, 0.16, 0.88)
 
         xminData = 1.0e1
         xmaxData = 1.0e3
@@ -283,27 +282,19 @@ if __name__ == '__main__':
                    r'y label $y$')
 
         # absolute scaling
-        # cMap = cm.viridis # cm.plasma
         zmin = -1.0
         zmax = 1.0
-        zColor = [cMap, zmin, zmax, r'z label $\, z$']
+        zColor = (cMap, zmin, zmax, r'z label $\, z$')
         zFormat = ('linear', -1.0, 1.1, 0.5)
 
         plot_pcolor(X = xBoxCoords,
                     Y = yBoxCoords,
                     Z = Z,
-                    titlestr = '',
                     params = [Z_min, Z_max],
                     fProps = fProps,
                     xFormat = xFormat,
                     yFormat = yFormat,
                     zFormat = zFormat,
                     zColor = zColor,
-                    show_cBar = True,
                     outname = filename,
-                    outdir = OUTDIR,
-                    showlabels = True,
-                    grid = False,
-                    savePDF = True,
-                    saveSVG = True,
-                    savePNG = False)
+                    outdir = OUTDIR)
