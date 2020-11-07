@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-07
+# date: 2020-11-07
 # file: mpl_legend_element_order.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -45,7 +45,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, data, outname, outdir,
+def Plot(X, data, outname, outdir, titlestr = None,
          grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
@@ -64,9 +64,9 @@ def Plot(titlestr, X, data, outname, outdir,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -93,7 +93,8 @@ def Plot(titlestr, X, data, outname, outdir,
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'$x$ label', fontsize = 6.0)
     ax1.set_ylabel(r'$y$ label', fontsize = 6.0)
     ax1.xaxis.labelpad = -2.0
@@ -226,8 +227,7 @@ if __name__ == '__main__':
     xFormat = (-0.035, 1.035, 0.0, 1.1, 1.0, 0.25)
     yFormat = (-1.65, 1.65, -1.0, 1.1, 1.0, 1.0)
 
-    outname = Plot(titlestr = '',
-                   X = X,
+    outname = Plot(X = X,
                    data = data,
                    outname = outname,
                    outdir = OUTDIR,
