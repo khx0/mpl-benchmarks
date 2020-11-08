@@ -4,7 +4,7 @@
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2020-10-31
-# file: mpl_fillbetween_example.py
+# file: mpl_fillbetween.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
@@ -14,7 +14,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from scipy.stats import norm
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -113,6 +112,7 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
              lw = 0.5,
              zorder = 3,
              label = r'legend')
+
     ######################################################################################
     # legend
     if drawLegend:
