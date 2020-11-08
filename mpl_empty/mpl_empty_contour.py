@@ -20,7 +20,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -46,7 +45,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, outname, outdir, pColors,
+def Plot(X, outname, outdir, pColors,
          grid = True, saveEPS = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -91,8 +90,8 @@ def Plot(titlestr, X, outname, outdir, pColors,
 
     ######################################################################################
     # set plot range and scale
-    #ax1.set_xlim(0.0, 628.0)
-    #ax1.set_ylim(0.0, 628.0)
+    # ax1.set_xlim(0.0, 628.0)
+    # ax1.set_ylim(0.0, 628.0)
     ax1.set_axisbelow(False)
     ######################################################################################
 
@@ -123,21 +122,20 @@ if __name__ == '__main__':
                '_mpl_' + mpl.__version__
 
 	# create data
-    nDataPoints = 500
+    n_datapoints = 500
     radius = 50.0
-    angles = np.linspace(0.0, 2.0 * np.pi, nDataPoints)
+    angles = np.linspace(0.0, 2.0 * np.pi, n_datapoints)
     xVals = radius * np.cos(angles)
     yVals = radius * np.sin(angles)
 
-    X = np.zeros((nDataPoints, 2))
+    X = np.zeros((n_datapoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
     print("X.shape =", X.shape)
 
     # plot data
-    outname = Plot(titlestr = '',
-         		   X = X,
-         		   outname = outname,
-         		   outdir = OUTDIR,
-         		   pColors = ['k'],
-         		   grid = False)
+    outname = Plot(X = X,
+                   outname = outname,
+                   outdir = OUTDIR,
+                   pColors = ['k'])
+
