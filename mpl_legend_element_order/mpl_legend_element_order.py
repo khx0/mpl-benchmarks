@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-07
+# date: 2020-11-08
 # file: mpl_legend_element_order.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -45,8 +45,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(X, data, outname, outdir, titlestr = None,
-         grid = False, drawLegend = True, xFormat = None, yFormat = None,
+def Plot(X, data, outname, outdir, 
+         titlestr = None, grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -231,7 +231,5 @@ if __name__ == '__main__':
                    data = data,
                    outname = outname,
                    outdir = OUTDIR,
-                   grid = False,
-                   drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)
