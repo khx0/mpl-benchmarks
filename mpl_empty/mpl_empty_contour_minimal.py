@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-31
+# date: 2020-11-08
 # file: mpl_empty_contour_minimal.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -20,7 +20,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -32,14 +31,14 @@ if __name__ == '__main__':
                '_mpl_' + mpl.__version__
     outname += '_' + today # set datestamp
 
-	# create data
-    nDataPoints = 500
+    # create data
+    n_datapoints = 500
     radius = 50.0
-    angles = np.linspace(0.0, 2.0 * np.pi, nDataPoints)
+    angles = np.linspace(0.0, 2.0 * np.pi, n_datapoints)
     xVals = radius * np.cos(angles)
     yVals = radius * np.sin(angles)
 
-    X = np.zeros((nDataPoints, 2))
+    X = np.zeros((n_datapoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
     print("X.shape =", X.shape)
