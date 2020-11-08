@@ -204,10 +204,10 @@ def Plot(X, data, outname, outdir, titlestr = None,
 if __name__ == '__main__':
 
     # create synthetic data
-    nVisPoints = 500
-    xVals = np.linspace(-0.25, 1.25, nVisPoints)
+    n_visPoints = 500
+    xVals = np.linspace(-0.25, 1.25, n_visPoints)
     yVals = np.sin(2.0 * np.pi * xVals)
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_visPoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
@@ -215,10 +215,10 @@ if __name__ == '__main__':
     np.random.seed(123456789)
     mu = 0.0
     sigma = 0.3
-    nDatapoints = 30
-    data = np.zeros((nDatapoints, 2))
-    data[:, 0] = np.linspace(0.0, 1.0, nDatapoints)
-    data[:, 1] = np.sin(2.0 * np.pi * data[:, 0]) + np.random.normal(mu, sigma, nDatapoints)
+    n_datapoints = 30
+    data = np.zeros((n_datapoints, 2))
+    data[:, 0] = np.linspace(0.0, 1.0, n_datapoints)
+    data[:, 1] = np.sin(2.0 * np.pi * data[:, 0]) + np.random.normal(mu, sigma, n_datapoints)
 
     outname = 'mpl_legend_element_order'
     outname += '_Python_' + platform.python_version() + \
