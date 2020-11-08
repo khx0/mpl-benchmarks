@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-31
+# date: 2020-11-08
 # file: mpl_fillbetween_example_minimal.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -19,7 +19,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from scipy.stats import norm
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -33,17 +32,18 @@ os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
 
-    nPoints = 400
-    xVals = np.linspace(-6.0, 6.0, nPoints)
-    yVals = norm.pdf(xVals, 0.0, 1.0)
-    X = np.zeros((nPoints, 2))
-    X[:, 0] = xVals
-    X[:, 1] = yVals
-
     outname = 'mpl_fillbetween_example_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     outname += '_' + today # set datestamp
+
+    n_points = 400
+    xVals = np.linspace(-6.0, 6.0, n_points)
+    yVals = norm.pdf(xVals, 0.0, 1.0)
+    X = np.zeros((n_points, 2))
+    X[:, 0] = xVals
+    X[:, 1] = yVals
+
 
     f, ax1 = plt.subplots(1)
 

@@ -22,7 +22,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -48,7 +47,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, params, outname, outdir, pColors,
+def Plot(X, outname, outdir, pColors, titlestr = None,
          grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
@@ -95,14 +94,14 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'x label', fontsize = 8.0)
     ax1.set_ylabel(r'y label', fontsize = 8.0)
     ax1.xaxis.labelpad = 2.0
     ax1.yaxis.labelpad = 2.0
     ######################################################################################
     # plotting
-
     ax1.fill_between(X[:, 0], 0, X[:, 1],
                      color = pColors[0],
                      alpha = 0.5,
@@ -181,10 +180,10 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    nPoints = 400
-    xVals = np.linspace(-6.0, 6.0, nPoints)
+    n_points = 400
+    xVals = np.linspace(-6.0, 6.0, n_points)
     yVals = norm.pdf(xVals, 0.0, 1.0)
-    X = np.zeros((nPoints, 2))
+    X = np.zeros((n_points, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
@@ -193,13 +192,9 @@ if __name__ == '__main__':
 
     pColors = ['C0']
 
-    Plot(titlestr = '',
-         X = X,
-         params = [],
+    Plot(X = X,
          outname = outname,
          outdir = OUTDIR,
          pColors = pColors,
-         grid = False,
-         drawLegend = True,
          xFormat = xFormat,
          yFormat = yFormat)

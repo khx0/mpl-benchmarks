@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-31
+# date: 2020-11-08
 # file: mpl_fillbetweenx_example_minimal.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -21,7 +21,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from scipy.stats import norm
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -40,12 +39,13 @@ if __name__ == '__main__':
                '_mpl_' + mpl.__version__
     outname += '_' + today # set datestamp
 
-    nPoints = 400
-    xVals = np.linspace(-6.0, 6.0, nPoints)
+    n_points = 400
+    xVals = np.linspace(-6.0, 6.0, n_points)
     yVals = norm.pdf(xVals, 0.0, 1.0)
-    X = np.zeros((nPoints, 2))
+    X = np.zeros((n_points, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
+
 
     f, ax1 = plt.subplots(1)
 
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     #
     # In the example below we first pass the x-coordinates and then the y-coordinates,
     # since we consider a normal x-y-plot turned by 90 degree and then flipped along
-    # the horizontal axis. Hence the conventional x-coordinates become the
+    # the horizontal axis. Hence, the conventional x-coordinates become the
     # new y-coordinates and vice versa, such that the first argument is basically
     # the array of new y coordinates. This might be confusing, but here it is precisely
     # the desired behavior.
