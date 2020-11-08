@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-31
+# date: 2020-11-08
 # file: mpl_heatmap_linear_xy-scale.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -36,9 +36,9 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(OUTDIR, exist_ok = True)
 
 def plot_pcolor(X, Y, Z, titlestr, params,
-    fProps, xFormatObj, yFormatObj, zFormat, zColor, show_cBar,
-    outname, outdir, showlabels,
-    grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
+    fProps, xFormatObj, yFormatObj, zFormat, zColor, outname, outdir,
+    show_cBar = True, showlabels = True, grid = False,
+    saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -247,12 +247,12 @@ if __name__ == '__main__':
     ######################################################################################
     # create dummy data
 
-    nDataPoints = 30
-    Z = np.zeros((nDataPoints, nDataPoints))
+    n_datapoints = 30
+    Z = np.zeros((n_datapoints, n_datapoints))
     print('Z.shape =', Z.shape)
 
-    xVals = np.linspace(0.0, 1.0, nDataPoints)
-    yVals = np.linspace(-1.0, 1.0, nDataPoints)
+    xVals = np.linspace(0.0, 1.0, n_datapoints)
+    yVals = np.linspace(-1.0, 1.0, n_datapoints)
 
     # fill Z matrix
     for i in range(len(yVals)):
@@ -308,12 +308,8 @@ if __name__ == '__main__':
                 yFormatObj = yFormatObj,
                 zFormat = zFormat,
                 zColor = zColor,
-                show_cBar = True,
                 outname = outnameAbs,
-                outdir = OUTDIR,
-                showlabels = True,
-                grid = False,
-                saveSVG = False)
+                outdir = OUTDIR)
 
     # relative scaling
     cMap = cm.viridis # cm.plasma
@@ -333,9 +329,5 @@ if __name__ == '__main__':
                 yFormatObj = yFormatObj,
                 zFormat = zFormat,
                 zColor = zColor,
-                show_cBar = True,
                 outname = outnameRel,
-                outdir = OUTDIR,
-                showlabels = True,
-                grid = False,
-                saveSVG = False)
+                outdir = OUTDIR)

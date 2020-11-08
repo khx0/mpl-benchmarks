@@ -105,7 +105,7 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     # labeling
     plt.title(titlestr)
     ax1.set_xlabel(r'$x_i$', fontsize = 8.0)
-    # rotation (angle) is expressed in degrees
+    # rotation (angle) is expressed in degrees, not radians.
     ax1.set_ylabel(r'probabilities  $ p(x_i)$', fontsize = 8.0)
     ax1.xaxis.labelpad = 1.0
     ax1.yaxis.labelpad = 4.0
