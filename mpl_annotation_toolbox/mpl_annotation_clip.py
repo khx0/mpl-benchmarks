@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-04
+# date: 2020-11-09
 # file: mpl_annotation_clip.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -21,7 +21,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -47,8 +46,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, outname, outdir, pColors,
-         grid = True, saveEPS = False, savePDF = True, savePNG = False, datestamp = True):
+def Plot(X, outname, outdir, pColors, titlestr = None,
+         grid = False, saveEPS = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -98,7 +97,8 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'x label', fontsize = 8.0)
     ax1.set_ylabel(r'y label', fontsize = 8.0)
     ax1.xaxis.labelpad = 3.0
@@ -229,17 +229,15 @@ if __name__ == '__main__':
                '_mpl_' + mpl.__version__
 
     # create dummy data
-    nVisPoints = 500
-    xVals = np.linspace(120.0, 820.0, nVisPoints)
+    n_vispoints = 500
+    xVals = np.linspace(120.0, 820.0, n_vispoints)
     yVals = xVals
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
     # plot data
-    Plot(titlestr = '',
-         X = X,
+    Plot(X = X,
          outname = outname,
          outdir = OUTDIR,
-         pColors = ['C0'],
-         grid = False)
+         pColors = ['C0'])

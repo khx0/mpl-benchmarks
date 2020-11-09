@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-04
+# date: 2020-11-09
 # file: mpl_minimal_annotation_clip_snippet.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -40,7 +40,7 @@ ax1.annotate(r"outside label ('data')",
              horizontalalignment = 'left',
              annotation_clip = False)
 
-# Using xycoords = 'data' and the keyword clip_on = False does not work to place 
+# Using xycoords = 'data' and the keyword clip_on = False does not work to place
 # annotations outside of the axes.
 yPos_data = 300.0
 ax1.annotate(r"outside label ('data') (clip_on = False)",

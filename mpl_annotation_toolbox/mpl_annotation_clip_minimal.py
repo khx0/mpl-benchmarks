@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-04
+# date: 2020-11-09
 # file: mpl_annotation_clip_minimal.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -20,7 +20,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -50,10 +49,10 @@ if __name__ == '__main__':
     outname += '_' + today
 
     # create dummy data
-    nVisPoints = 500
-    xVals = np.linspace(120.0, 820.0, nVisPoints)
+    n_vispoints = 500
+    xVals = np.linspace(120.0, 820.0, n_vispoints)
     yVals = xVals
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
@@ -102,7 +101,7 @@ if __name__ == '__main__':
                  horizontalalignment = 'left',
                  verticalalignment = 'center')
 
-    # Using xycoords = 'data' and the keyword clip_on = False does not work to place 
+    # Using xycoords = 'data' and the keyword clip_on = False does not work to place
     # annotations outside of the axes.
     xPos_data = 870.0
     yPos_data = 200.0
@@ -118,7 +117,7 @@ if __name__ == '__main__':
     ax1.set_ylabel(r'y label')
 
     # save to file
-    f.savefig(os.path.join(OUTDIR, outname) + '.pdf', 
+    f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
               dpi = 300, 
               transparent = True)
 
