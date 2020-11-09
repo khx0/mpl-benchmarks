@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-04
+# date: 2020-11-09
 # file: mpl_annotate_alignment_minimal.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -33,10 +33,10 @@ if __name__ == '__main__':
     outname += '_' + today
 
     # create synthetic data
-    nVisPoints = 500
-    xVals = np.linspace(0.0, 1.0, nVisPoints)
+    n_vispoints = 500
+    xVals = np.linspace(0.0, 1.0, n_vispoints)
     yVals = np.array([np.sin(x) ** 3 for x in xVals])
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
