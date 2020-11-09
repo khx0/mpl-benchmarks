@@ -76,6 +76,7 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     mpl.rcParams['text.latex.preamble'] = \
         r'\usepackage{cmbright}' + \
         r'\usepackage{amsmath}'
+
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
