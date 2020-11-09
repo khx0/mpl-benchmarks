@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-09
+# date: 2020-11-09
 # file: mpl_quiver_coordinate_axis_example.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -22,7 +22,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -55,8 +54,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, outname, outdir, pColors,
-         grid = False, drawLegend = True, xFormat = None, yFormat = None,
+def Plot(X, outname, outdir, pColors, titlestr = None,
+         grid = False, drawLegend = False, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -74,9 +73,9 @@ def Plot(titlestr, X, outname, outdir, pColors,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -108,7 +107,8 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.25, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'x label', fontsize = 6.0)
     ax1.set_ylabel(r'y label', fontsize = 6.0)
     ax1.xaxis.labelpad = 2.0
@@ -120,7 +120,6 @@ def Plot(titlestr, X, outname, outdir, pColors,
              linewidth = 0.75,
              color = 'C0',
              label = r'plot legend')
-
 
     ######################################################################################
     # coordinate axis arrows (using mpl quiver)
@@ -236,10 +235,10 @@ def Plot(titlestr, X, outname, outdir, pColors,
 if __name__ == '__main__':
 
     # create synthetic data
-    nVisPoints = 400
-    xVals = np.linspace(0.05, 0.95, nVisPoints)
+    n_vispoints = 400
+    xVals = np.linspace(0.05, 0.95, n_vispoints)
     yVals = xVals
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
@@ -253,12 +252,9 @@ if __name__ == '__main__':
 
     pColors = ['k']
 
-    outname = Plot(titlestr = '',
-                   X = X,
+    outname = Plot(X = X,
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
-                   grid = False,
-                   drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)
