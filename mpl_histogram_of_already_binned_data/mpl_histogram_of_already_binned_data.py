@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-01
+# date: 2020-11-10
 # file: mpl_histogram_of_already_binned_data.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -103,7 +103,8 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'$x_i$', fontsize = 8.0)
     # rotation (angle) is expressed in degrees, not radians.
     ax1.set_ylabel(r'probabilities  $ p(x_i)$', fontsize = 8.0)
@@ -113,7 +114,7 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     # plotting
 
     ######################################################################################
-    # CENTER PIECE
+    # CENTER PIECE (not center fold)
     # This way of calling mpl's hist function is suitable for plotting already
     # binned data, as it is the case here.
     # The key is using the weights keyword in the hist command as below.
@@ -180,7 +181,7 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if savePNG:
-        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
+        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = True)
     ######################################################################################
     # close handles
     plt.cla()
@@ -212,7 +213,7 @@ if __name__ == '__main__':
     normalization = np.sum(pValues)
     pValues /= normalization
 
-    assert np.isclose(np.sum(pValues), 1.0), "Error: Normalization assertion failed."
+    assert np.isclose(np.sum(pValues), 1.0), "Normalization assertion failed."
 
     # Now bins and pValues contains the pre-binned and (here) normalized data, 
     # that we wish to plot using a histogram.
@@ -245,4 +246,5 @@ if __name__ == '__main__':
                    pColors = pColors,
                    labelString = r"Using mpl's histogram with already binned data.",
                    xFormat = xFormat,
-                   yFormat = yFormat)
+                   yFormat = yFormat,
+                   savePNG = True)
