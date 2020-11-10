@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-04
+# date: 2020-11-10
 # file: create_samples.py
 # tested with python 3.7.6
 ##########################################################################################
@@ -26,8 +26,8 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(RAWDIR, exist_ok = True)
 
-def inverseTransformSamplingJoint(nSamples, mu1, sigma1, mu2, sigma2):
-    u = np.random.uniform(size = nSamples)    
+def inverseTransformSamplingJoint(n_samples, mu1, sigma1, mu2, sigma2):
+    u = np.random.uniform(size = n_samples)    
     x1 = norm.ppf(u, loc = mu1, scale = sigma1)
     x2 = norm.ppf(u, loc = mu2, scale = sigma2)
     return x1, x2
@@ -38,31 +38,31 @@ if __name__ == '__main__':
     print("using scipy.__version__ =", scipy.__version__)
 
     # set parameters
-    nSamples = 20000
+    n_samples = 20000
 
     mu1, sigma1 = 87.25, 8.124
     mu2, sigma2 = 125.75, 11.25
 
-    seedValue = 987654321
+    seed_value = 987654321
 
     ######################################################################################
     # 01 - Create fully correlated Gaussian samples using the inverse transform method
-    samples = np.zeros((nSamples, 2))
+    samples = np.zeros((n_samples, 2))
 
-    np.random.seed(seedValue)
+    np.random.seed(seed_value)
 
     samples[:, 0], samples[:, 1] = \
-        inverseTransformSamplingJoint(nSamples, mu1, sigma1, mu2, sigma2)
-    outname = 'GaussianSamples_correlated_seed_{:d}.txt'.format(seedValue)
+        inverseTransformSamplingJoint(n_samples, mu1, sigma1, mu2, sigma2)
+    outname = f'GaussianSamples_correlated_seed_{seed_value:d}.txt'
     np.savetxt(os.path.join(RAWDIR, outname), samples, fmt = '%.8f')
 
     ######################################################################################
     # 02 - Create two independent Gaussian random realizations
 
-    np.random.seed(seedValue)
+    np.random.seed(seed_value)
 
-    samples = np.zeros((nSamples, 2))
-    samples[:, 0] = norm.rvs(loc = mu1, scale = sigma1, size = nSamples)
-    samples[:, 1] = norm.rvs(loc = mu2, scale = sigma2, size = nSamples)
-    outname = 'GaussianSamples_uncorrelated_seed_{:d}.txt'.format(seedValue)
+    samples = np.zeros((n_samples, 2))
+    samples[:, 0] = norm.rvs(loc = mu1, scale = sigma1, size = n_samples)
+    samples[:, 1] = norm.rvs(loc = mu2, scale = sigma2, size = n_samples)
+    outname = f'GaussianSamples_uncorrelated_seed_{seed_value:d}.txt'
     np.savetxt(os.path.join(RAWDIR, outname), samples, fmt = '%.8f')
