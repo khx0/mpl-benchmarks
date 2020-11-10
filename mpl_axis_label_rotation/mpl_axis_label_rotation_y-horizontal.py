@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-12
+# date: 2020-11-10
 # file: mpl_axis_label_rotation_y-horizontal.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -21,7 +21,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -47,7 +46,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, params, outname, outdir, pColors,
+def Plot(X, outname, outdir, pColors, titlestr = None,
          grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
@@ -93,7 +92,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'$x$', fontsize = 6.0, x = 0.85)
     # rotation is expressed in degrees
     ax1.set_ylabel(r'$y(x)$', fontsize = 6.0, y = 0.70, rotation = 0.0)
@@ -175,10 +175,10 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 if __name__ == '__main__':
 
     # create synthetic data
-    nVisPoints = 800
-    xVals = np.linspace(0.0, 1.0, nVisPoints)
+    n_vispoints = 800
+    xVals = np.linspace(0.0, 1.0, n_vispoints)
     yVals = np.sin(2.0 * np.pi * xVals)
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
@@ -192,13 +192,9 @@ if __name__ == '__main__':
 
     pColors = ['C0']
 
-    outname = Plot(titlestr = '',
-                   X = X,
-                   params = [],
+    outname = Plot(X = X,
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
-                   grid = False,
-                   drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)
