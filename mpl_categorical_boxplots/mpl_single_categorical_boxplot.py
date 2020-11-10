@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-12
+# date: 2020-11-10
 # file: mpl_single_categorical_boxplot.py
 # tested with python 3.7.6 and matplotlib 3.3.2
 ##########################################################################################
@@ -45,7 +45,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
+def create_boxplot(X, outname, outdir = './', x_label = None, y_label = None,
 	pColors = None, datestamp = True, savePDF = True, savePNG = False):
     '''
     cretaes a single categorical (x - axis) boxplot using the given data sample X
@@ -77,18 +77,18 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
 
     # boxplot parameter
     xPos = [1.0]
+
     width = 0.2
 
-    bp1 = ax1.boxplot(X,
-    				  widths = width)
+    bp1 = ax1.boxplot(X, widths = width)
 
     if pColors:
-    	plt.setp(bp1['medians'], color = pColors[0])
+        plt.setp(bp1['medians'], color = pColors[0])
 
-    if xLabel:
-    	ax1.set_xlabel(xLabel)
-    if yLabel:
-    	ax1.set_ylabel(yLabel)
+    if x_label:
+        ax1.set_xlabel(x_label)
+    if y_label:
+        ax1.set_ylabel(y_label)
 
     ax1.set_xticks(xPos)
     ax1.set_xticklabels([r'category'])
@@ -119,8 +119,8 @@ if __name__ == '__main__':
     data = np.load(os.path.join(RAWDIR, filename))
     print("data.shape =", data.shape)
 
-    xLabel = r'optional $x$ label'
-    yLabel = r'$y$ label'
+    x_label = r'optional $x$ label'
+    y_label = r'$y$ label'
 
     pColors_list = [['C3'], ['C0'], ['C1'], ['k']]
 
@@ -136,5 +136,5 @@ if __name__ == '__main__':
                        outname = outname,
                        outdir = OUTDIR,
                        pColors = pColors,
-                       xLabel = xLabel,
-                       yLabel = yLabel)
+                       x_label = x_label,
+                       y_label = y_label)

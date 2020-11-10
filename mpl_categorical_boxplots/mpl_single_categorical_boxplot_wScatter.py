@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-12
+# date: 2020-11-10
 # file: mpl_single_categorical_boxplot_wScatter.py
 # tested with python 3.7.6 and matplotlib 3.3.2
 ##########################################################################################
@@ -48,7 +48,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
+def create_boxplot(X, outname, outdir = './', x_label = None, y_label = None,
 	pColors = None, datestamp = True, savePDF = True, savePNG = False):
     '''
     cretaes a single categorical (x - axis) boxplot using the given data sample X
@@ -94,12 +94,12 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
                 zorder = 2)
 
     if pColors:
-    	plt.setp(bp1['medians'], color = pColors[0])
+        plt.setp(bp1['medians'], color = pColors[0])
 
-    if xLabel:
-    	ax1.set_xlabel(xLabel)
-    if yLabel:
-    	ax1.set_ylabel(yLabel)
+    if x_label:
+        ax1.set_xlabel(x_label)
+    if y_label:
+        ax1.set_ylabel(y_label)
 
     ax1.set_xticks(xPos)
     ax1.set_xticklabels([r'category'])
@@ -134,12 +134,12 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    xLabel = r'optional $x$ label'
-    yLabel = r'$y$ label'
+    x_label = r'optional $x$ label'
+    y_label = r'$y$ label'
 
     create_boxplot(X = data,
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = ['C3'],
-                   xLabel = xLabel,
-                   yLabel = yLabel)
+                   x_label = x_label,
+                   y_label = y_label)

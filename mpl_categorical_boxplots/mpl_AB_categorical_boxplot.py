@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-12
+# date: 2020-11-10
 # file: mpl_AB_categorical_boxplot.py
 # tested with python 3.7.6 and matplotlib 3.3.2
 ##########################################################################################
@@ -81,20 +81,20 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     
     bp1 = ax1.boxplot(X[:, 0],
                       positions = [xPos[0]],
-    				  widths = width)
+                      widths = width)
 
     bp2 = ax1.boxplot(X[:, 1],
                       positions = [xPos[1]],
-    				  widths = width)
+                      widths = width)
 
     if pColors:
-    	plt.setp(bp1['medians'], color = pColors[0])
-    	plt.setp(bp2['medians'], color = pColors[1])
+        plt.setp(bp1['medians'], color = pColors[0])
+        plt.setp(bp2['medians'], color = pColors[1])
 
     if xLabel:
-    	ax1.set_xlabel(xLabel)
+        ax1.set_xlabel(xLabel)
     if yLabel:
-    	ax1.set_ylabel(yLabel)
+        ax1.set_ylabel(yLabel)
 
     ax1.set_xticks(xPos)
     ax1.set_xticklabels([r'A', r'B'])
@@ -117,7 +117,7 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
 if __name__ == '__main__':
 
     print(__file__)
-    print("running on python", platform.python_version())
+    print("running python", platform.python_version())
     print("using mpl.__version__ =", mpl.__version__)
 
     filename = r'normal_samples_AB_np_seed_987654321.npy'
