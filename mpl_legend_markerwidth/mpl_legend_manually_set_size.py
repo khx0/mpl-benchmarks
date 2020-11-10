@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-10
 # file: mpl_legend_manually_set_size.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import sys
@@ -16,7 +16,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from matplotlib import ticker
 
 from mplUtils import getFigureProps
@@ -24,12 +23,11 @@ from mplUtils import getFigureProps
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
+def Plot(X, Y, Z, labels, outname, outdir, pColors, titlestr = None,
          grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -46,9 +44,9 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -83,11 +81,11 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     # plot data
 
     ax1.plot(X[:, 0], X[:, 1],
-            color = pColors[0],
-            alpha = 1.0,
-            lw = 0.3,
-            zorder = 2,
-            label = labels[0])
+             color = pColors[0],
+             alpha = 1.0,
+             lw = 0.3,
+             zorder = 2,
+             label = labels[0])
 
     ax1.scatter(Y[:, 0], Y[:, 1],
                 s = 0.75,
@@ -168,8 +166,8 @@ def Plot(titlestr, X, Y, Z, params, labels, outname, outdir, pColors,
     if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     if saveSVG:
-        cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
-              ' ' + os.path.join(OUTDIR, outname + '.svg')
+        cmd = 'pdf2svg ' + os.path.join(outdir, outname + '.pdf') + \
+              ' ' + os.path.join(outdir, outname + '.svg')
         print(cmd)
         os.system(cmd)
     ######################################################################################
@@ -185,22 +183,22 @@ if __name__ == '__main__':
     np.random.seed(223456789)
 
     # create synthetic plot data
-    nDatapoints = 200
-    xVals = np.linspace(0.0, 1.0, nDatapoints)
+    n_datapoints = 200
+    xVals = np.linspace(0.0, 1.0, n_datapoints)
     yVals = np.array([x for x in xVals])
-    X = np.zeros((nDatapoints, 2))
+    X = np.zeros((n_datapoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
-    xVals = np.random.normal(0.5, 0.15, nDatapoints)
-    yVals = np.random.normal(0.5, 0.20, nDatapoints)
-    Y = np.zeros((nDatapoints, 2))
+    xVals = np.random.normal(0.5, 0.15, n_datapoints)
+    yVals = np.random.normal(0.5, 0.20, n_datapoints)
+    Y = np.zeros((n_datapoints, 2))
     Y[:, 0] = xVals
     Y[:, 1] = yVals
 
-    xVals = np.random.normal(0.5, 0.20, nDatapoints)
-    yVals = np.random.normal(0.5, 0.15, nDatapoints)
-    Z = np.zeros((nDatapoints, 2))
+    xVals = np.random.normal(0.5, 0.20, n_datapoints)
+    yVals = np.random.normal(0.5, 0.15, n_datapoints)
+    Z = np.zeros((n_datapoints, 2))
     Z[:, 0] = xVals
     Z[:, 1] = yVals
 
@@ -215,13 +213,10 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    outname = Plot(titlestr = '',
-                   X = X,
+    outname = Plot(X = X,
                    Y = Y,
                    Z = Z,
-                   params = [],
                    labels = labels,
                    outname = outname,
                    outdir = OUTDIR,
-                   pColors = pColors,
-                   grid = False)
+                   pColors = pColors)

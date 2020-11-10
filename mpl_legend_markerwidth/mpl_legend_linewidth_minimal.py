@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-10
 # file: mpl_legend_linewidth_minimal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -14,12 +14,10 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -27,10 +25,10 @@ os.makedirs(OUTDIR, exist_ok = True)
 if __name__ == '__main__':
 
     # create synthetic data
-    nDatapoints = 200
-    xVals = np.linspace(0.0, 1.0, nDatapoints)
+    n_datapoints = 200
+    xVals = np.linspace(0.0, 1.0, n_datapoints)
     yVals = np.array([x for x in xVals])
-    X = np.zeros((nDatapoints, 2))
+    X = np.zeros((n_datapoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
