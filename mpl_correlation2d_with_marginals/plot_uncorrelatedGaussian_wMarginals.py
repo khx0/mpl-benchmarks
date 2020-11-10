@@ -16,7 +16,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from matplotlib.ticker import FuncFormatter
 
 import scipy
