@@ -1,6 +1,3 @@
-# exceptions
-!mpl_pcolormesh_with_fixed_size_and_relative_border_margins/demonstration/pcolormesh_array_composition_2019-12-16.png
-!mpl_correlation2d_with_marginals/demo_composition.png
 
 # PDF and SVG image files
 *.pdf
@@ -114,5 +111,8 @@ ENV/
 # mypy
 .mypy_cache/
 
-!/mpl_pcolormesh_with_fixed_size_and_relative_border_margins/demonstration/*
+# exceptions
+!mpl_correlation2d_with_marginals/demo_composition.png
+!mpl_pcolormesh_with_fixed_size_and_relative_border_margins/demonstration/pcolormesh_array_composition_2019-12-16.png
+!mpl_pcolormesh_with_fixed_size_and_relative_border_margins/demonstration/*
 
