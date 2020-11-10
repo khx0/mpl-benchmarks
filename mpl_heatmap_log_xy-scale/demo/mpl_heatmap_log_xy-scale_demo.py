@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-01
+# date: 2020-11-10
 # file: mpl_heatmap_log_xy-scale_demo.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -16,7 +16,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
 from matplotlib import ticker
@@ -33,7 +32,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -218,8 +216,8 @@ def plot_pcolor(X, Y, Z, params, fProps,
                   dpi = 600,
                   transparent = False)
     if saveSVG:
-        cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
-              ' ' + os.path.join(OUTDIR, outname + '.svg')
+        cmd = 'pdf2svg ' + os.path.join(outdir, outname + '.pdf') + \
+              ' ' + os.path.join(outdir, outname + '.svg')
         os.system(cmd)
     ######################################################################################
     # close handles

@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-01
+# date: 2020-11-10
 # file: mpl_heatmap_log_xy-scale.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -16,7 +16,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
 from matplotlib import ticker
@@ -31,7 +30,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -130,7 +128,7 @@ def plot_pcolor(X, Y, Z, params, fProps,
         if zFormat[0] == 'linear':
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
- 
+
     ax1.pcolormesh(X, Y, Z,
                    cmap = cMap,
                    norm = cNorm,
@@ -214,8 +212,8 @@ def plot_pcolor(X, Y, Z, params, fProps,
                   dpi = 600,
                   transparent = False)
     if saveSVG:
-        cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
-              ' ' + os.path.join(OUTDIR, outname + '.svg')
+        cmd = 'pdf2svg ' + os.path.join(outdir, outname + '.pdf') + \
+              ' ' + os.path.join(outdir, outname + '.svg')
         os.system(cmd)
     ######################################################################################
     # close handles
@@ -239,12 +237,12 @@ if __name__ == '__main__':
     ######################################################################################
     # create dummy data
 
-    nDataPoints = 31
-    Z = np.zeros((nDataPoints, nDataPoints))
+    n_datapoints = 31
+    Z = np.zeros((n_datapoints, n_datapoints))
     print('Z.shape =', Z.shape)
 
-    xVals = np.logspace(1, 3, nDataPoints)
-    yVals = np.logspace(-3, -1, nDataPoints)
+    xVals = np.logspace(1, 3, n_datapoints)
+    yVals = np.logspace(-3, -1, n_datapoints)
 
     # fill Z matrix
     for i in range(len(yVals)):
