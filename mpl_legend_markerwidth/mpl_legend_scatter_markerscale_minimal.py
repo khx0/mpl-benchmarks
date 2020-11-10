@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-10
 # file: mpl_legend_scatter_markerscale_minimal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -14,12 +14,10 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -30,10 +28,10 @@ if __name__ == '__main__':
     np.random.seed(983456789)
 
     # create synthetic plot data
-    nDatapoints = 500
-    xVals = np.random.normal(0.5, 0.15, nDatapoints)
-    yVals = np.random.normal(0.5, 0.2, nDatapoints)
-    X = np.zeros((nDatapoints, 2))
+    n_datapoints = 500
+    xVals = np.random.normal(0.5, 0.15, n_datapoints)
+    yVals = np.random.normal(0.5, 0.2, n_datapoints)
+    X = np.zeros((n_datapoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
