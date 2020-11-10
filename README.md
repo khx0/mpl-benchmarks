@@ -45,7 +45,7 @@ The python script which produces the above two figures can be found under
 
 ### Example: 2d correlation plot with marginal densities
 
-![Demo3](/mpl_correlation2d_with_marginals/out/demo_composition.png)
+![Demo3](/mpl_correlation2d_with_marginals/demo_composition.png)
 
 The python scripts which produce the above example are placed in
 ```
