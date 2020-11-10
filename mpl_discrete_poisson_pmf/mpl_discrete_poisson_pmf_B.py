@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-18
+# date: 2020-11-10
 # file: mpl_discrete_poisson_pmf_B.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -14,7 +14,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from matplotlib.ticker import FuncFormatter
 
 from scipy.stats import poisson
@@ -22,7 +21,6 @@ from scipy.stats import poisson
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -55,7 +53,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, params, outname, outdir, pColors,
+def Plot(X, outname, outdir, pColors, titlestr = None,
          grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
@@ -102,7 +100,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'$k$', fontsize = 6.0)
     ax1.set_ylabel(r'$p(k\, |\, \mu)$', fontsize = 6.0)
     ax1.xaxis.labelpad = 2.0
@@ -233,7 +232,7 @@ if __name__ == '__main__':
     for i, mu in enumerate(muVals):
 
         yVals = poisson.pmf(xVals, mu)
-        assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
+        assert xVals.shape == yVals.shape, "Shape assertion failed."
 
         X[:, i + 1] = yVals
 
@@ -242,7 +241,7 @@ if __name__ == '__main__':
         norm = np.sum(yVals)
         print("Normalization: np.sum(yVals) = ", norm)
         assert np.isclose(norm, 1.0), \
-               "Error: Poisson distribution seems NOT to be normalized."
+               "Poisson distribution seems NOT to be normalized."
 
     ######################################################################################
     # call plotting function
@@ -260,13 +259,9 @@ if __name__ == '__main__':
 
     pColors = ['#CCCCCC', 'C0', 'C1', 'C2']
 
-    outname = Plot(titlestr = '',
-                   X = X,
-                   params = [],
+    outname = Plot(X = X,
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
-                   grid = False,
-                   drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)
