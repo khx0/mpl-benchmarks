@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-12
+# date: 2020-11-10
 # file: plot_correlatedGaussian_wMarginals.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -37,8 +37,8 @@ def cleanFormatter(x, pos = None):
     '''
     return '{:g}'.format(x)
 
-def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
-         drawLegend = True, xFormat = None, yFormat = None,
+def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
+         titlestr = None, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -62,10 +62,10 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
 
     f = plt.figure()
     f.set_size_inches(3.8, 3.8)
-   
+
     # create grid
     gs = plt.GridSpec(4, 4)
-    
+
     ax1 = f.add_subplot(gs[:-1, 1:])
     marginX = f.add_subplot(gs[-1, 1:])
     marginY = f.add_subplot(gs[:-1, 0])
@@ -73,26 +73,26 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
     # position axis elements explicitly
     xStartCenter = 0.35
     yStartCenter = 0.34
-    
+
     yStartMarginX = 0.11
     xStartMarginY = 0.12
-    
+
     centerWidthFrac = 0.57
     centerHeightFrac = centerWidthFrac
     subHeight = 0.22
-    
+
     ax1.set_position([xStartCenter, yStartCenter, centerWidthFrac, centerHeightFrac])
     marginX.set_position([xStartCenter, yStartMarginX, centerWidthFrac, subHeight])
     marginY.set_position([xStartMarginY, yStartCenter, subHeight, centerHeightFrac])
-    
+
     marginX.yaxis.tick_right()
     marginY.xaxis.tick_top()
-    
+
     ax1.axes.tick_params(which = 'both',
                          direction = 'in')
-    
+
     axes = [ax1, marginX, marginY]
-    
+
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -287,11 +287,8 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
         ax.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
 
     for ax in axes:
-
         ax.set_axisbelow(False)
-
         for spine in ax.spines.values(): # ax.spines is a dictionary
-
             spine.set_zorder(10)
 
     ######################################################################################
@@ -365,15 +362,13 @@ if __name__ == '__main__':
 
     outname = 'correlated_gaussian_RVs_with_marginal_distributions'
 
-    outname = Plot(titlestr = '',
-                   X = X,
+    outname = Plot(X = X,
                    marginalX = gaussianDist1,
                    marginalY = gaussianDist2,
                    params = [rhoString],
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
-                   drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)
 

@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-12
+# date: 2020-11-10
 # file: plot_uncorrelateGaussian_wMarginals.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
@@ -37,8 +37,8 @@ def cleanFormatter(x, pos = None):
     '''
     return '{:g}'.format(x)
 
-def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
-         drawLegend = True, xFormat = None, yFormat = None,
+def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
+         titlestr = None, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -62,10 +62,10 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
 
     f = plt.figure()
     f.set_size_inches(3.8, 3.8)
-   
+
     # create grid
     gs = plt.GridSpec(4, 4)
-    
+
     ax1 = f.add_subplot(gs[:-1, 1:])
     marginX = f.add_subplot(gs[-1, 1:])
     marginY = f.add_subplot(gs[:-1, 0])
@@ -73,26 +73,26 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
     # position axis elements explicitly
     xStartCenter = 0.35
     yStartCenter = 0.34
-    
+
     yStartMarginX = 0.11
     xStartMarginY = 0.12
-    
+
     centerWidthFrac = 0.57
     centerHeightFrac = centerWidthFrac
     subHeight = 0.22
-    
+
     ax1.set_position([xStartCenter, yStartCenter, centerWidthFrac, centerHeightFrac])
     marginX.set_position([xStartCenter, yStartMarginX, centerWidthFrac, subHeight])
     marginY.set_position([xStartMarginY, yStartCenter, subHeight, centerHeightFrac])
-    
+
     marginX.yaxis.tick_right()
     marginY.xaxis.tick_top()
-    
+
     ax1.axes.tick_params(which = 'both',
                          direction = 'in')
-    
+
     axes = [ax1, marginX, marginY]
-    
+
     ######################################################################################
     # labeling
     plt.title(titlestr)
@@ -102,9 +102,9 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
     marginY.yaxis.labelpad = 7.5
     ######################################################################################
     # plotting
-    
+
     lineWidth = 1.0
-    
+
     ax1.scatter(X[:, 0], X[:, 1],
                 s = 12.0,
                 marker = '.',
@@ -113,7 +113,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                 edgecolor = 'None',
                 zorder = 11,
                 alpha = 0.18)
-    
+
     marginX.hist(X[:, 0], histtype = 'stepfilled',
                  orientation = 'vertical',
                  color = pColors[1],
@@ -121,7 +121,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                  bins = 45,
                  density = True,
                  label = r'sampling')
-    
+
     marginX.plot(marginalX[:, 0], marginalX[:, 1],
                  lw = 1.25,
                  color = pColors[0],
@@ -135,7 +135,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                  bins = 45,
                  range = (75.0, 175.0),
                  density = True,
-                 label = r'sampling')     
+                 label = r'sampling')
 
     marginY.plot(marginalY[:, 1], marginalY[:, 0],
                  lw = 1.25,
@@ -180,7 +180,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                  horizontalalignment = 'left',
                  zorder = 20,
                  clip_on = False)
-     
+
     ax1.annotate(params[0],
                  xy = (-0.465, -0.21),
                  xycoords = 'axes fraction',
@@ -188,7 +188,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
                  horizontalalignment = 'left',
                  zorder = 20,
                  clip_on = False)
-     
+
     ax1.annotate(r'# samples $= 2\cdot 10^{4}$',
                  xy = (-0.465, -0.28),
                  xycoords = 'axes fraction',
@@ -228,16 +228,16 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
 
     major_x_ticks = np.arange(xFormat[2], xFormat[3], xFormat[4])
     minor_x_ticks = np.arange(xFormat[2], xFormat[3], xFormat[5])
-    
+
     major_y_ticks = np.arange(yFormat[2], yFormat[3], yFormat[4])
     minor_y_ticks = np.arange(yFormat[2], yFormat[3], yFormat[5])
-    
+
     mX_major_y_ticks = np.arange(0.0, 0.06, 0.02)
     mX_minor_y_ticks = np.arange(0.0, 0.05, 0.01)
-    
+
     mY_major_x_ticks = np.arange(0.0, 0.05, 0.02)
     mY_minor_x_ticks = np.arange(0.0, 0.05, 0.01)
-    
+
     # set ax1
     ax1.set_xticks(major_x_ticks)
     ax1.set_xticks(minor_x_ticks, minor = True)
@@ -247,7 +247,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
     ax1.set_yticklabels([])
     ax1.set_xlim(xFormat[0], xFormat[1])
     ax1.set_ylim(yFormat[0], yFormat[1])
-    
+
     # set marginX
     marginX.set_xticks(major_x_ticks)
     marginX.set_xticks(minor_x_ticks, minor = True)
@@ -255,7 +255,7 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
     marginX.set_yticks(mX_minor_y_ticks, minor = True)
     marginX.set_xlim(xFormat[0], xFormat[1])
     marginX.set_ylim(0.0522, 0.0)
-    
+
     # set marginY
     marginY.set_yticks(major_y_ticks)
     marginY.set_yticks(minor_y_ticks, minor = True)
@@ -263,35 +263,32 @@ def Plot(titlestr, X, marginalX, marginalY, params, outname, outdir, pColors,
     marginY.set_xticks(mY_minor_x_ticks, minor = True)
     marginY.set_xlim(0.042, 0.0)
     marginY.set_ylim(yFormat[0], yFormat[1])
-        
+
     # tick label formatting
     majorFormatter = FuncFormatter(cleanFormatter)
     marginX.xaxis.set_major_formatter(majorFormatter)
     marginX.yaxis.set_major_formatter(majorFormatter)
     marginY.xaxis.set_major_formatter(majorFormatter)
     marginY.yaxis.set_major_formatter(majorFormatter)
-    
+
     labelfontsize = 7.0
-    
+
     for ax in axes:
-        
+
         for tick in ax.xaxis.get_major_ticks():
             tick.label.set_fontsize(labelfontsize)
         for tick in ax.yaxis.get_major_ticks():
             tick.label.set_fontsize(labelfontsize)
-            
+
         ax.tick_params('both', length = 2.5, width = 0.5, which = 'major', pad = 2.0)
         ax.tick_params('both', length = 1.5, width = 0.35, which = 'minor', pad = 2.0)
-        
+
         ax.tick_params(axis = 'x', which = 'major', pad = 1.0)
         ax.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
-    
+
     for ax in axes:
-        
         ax.set_axisbelow(False)
-        
         for spine in ax.spines.values(): # ax.spines is a dictionary
-        
             spine.set_zorder(10)
 
     ######################################################################################
@@ -365,15 +362,13 @@ if __name__ == '__main__':
 
     outname = 'uncorrelated_gaussian_RVs_with_marginal_distributions'
 
-    outname = Plot(titlestr = '',
-                   X = X,
+    outname = Plot(X = X,
                    marginalX = gaussianDist1,
                    marginalY = gaussianDist2,
                    params = [rhoString],
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
-                   drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)
 
