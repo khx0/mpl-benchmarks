@@ -16,7 +16,7 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
+# from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
 
@@ -30,14 +30,13 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def plot_pcolor(X, Y, Z, titlestr, params,
+def plot_pcolor(X, Y, Z, params,
     fProps, xFormatObj, yFormatObj, zFormat, zColor, outname, outdir,
-    show_cBar = True, showlabels = True, grid = False,
+    titlestr = None, show_cBar = True, showlabels = True, grid = False,
     saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -84,7 +83,8 @@ def plot_pcolor(X, Y, Z, titlestr, params,
 
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(xFormatObj[2], fontsize = 8.0)
     ax1.set_ylabel(yFormatObj[2], fontsize = 8.0)
     ax1.xaxis.labelpad = 2.0
@@ -301,7 +301,6 @@ if __name__ == '__main__':
     plot_pcolor(X = xBoxCoords,
                 Y = yBoxCoords,
                 Z = Z,
-                titlestr = '',
                 params = [Z_min, Z_max],
                 fProps = fProps,
                 xFormatObj = xFormatObj,
@@ -322,7 +321,6 @@ if __name__ == '__main__':
     plot_pcolor(X = xBoxCoords,
                 Y = yBoxCoords,
                 Z = Z,
-                titlestr = '',
                 params = [Z_min, Z_max],
                 fProps = fProps,
                 xFormatObj = xFormatObj,
