@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-11
 # file: mpl_axis_label_rotation_y-horizontal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -14,7 +14,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from matplotlib.ticker import FuncFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -22,7 +21,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -55,7 +53,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, params, outname, outdir, pColors,
+def Plot(X, outname, outdir, pColors, titlestr = None,
          grid = False, drawLegend = True, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
@@ -74,9 +72,9 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -190,11 +188,11 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 if __name__ == '__main__':
 
     # create synthetic data
-    nVisPoints = 800
-    xVals = np.linspace(0.0, 1.0, nVisPoints)
+    n_vispoints = 800
+    xVals = np.linspace(0.0, 1.0, n_vispoints)
     yVals = np.sin(2.0 * np.pi * xVals)
 
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
@@ -208,13 +206,9 @@ if __name__ == '__main__':
 
     pColors = ['C0']
 
-    outname = Plot(titlestr = '',
-                   X = X,
-                   params = [],
+    outname = Plot(X = X,
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
-                   grid = False,
-                   drawLegend = True,
                    xFormat = xFormat,
                    yFormat = yFormat)
