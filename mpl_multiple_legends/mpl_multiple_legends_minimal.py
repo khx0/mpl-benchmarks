@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-11
 # file: mpl_multiple_legends_minimal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -14,14 +14,12 @@ import platform
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -34,16 +32,16 @@ if __name__ == '__main__':
     outname += '_' + today
 
     # create synthetic data
-    nVisPoints = 500
-    nScatterPoints = 20
-    xVals = np.linspace(0.0, 1.0, nVisPoints)
-    xValsScatter = np.linspace(0.0, 1.0, nScatterPoints)
+    n_vispoints = 500
+    n_scatterpoints = 20
+    xVals = np.linspace(0.0, 1.0, n_vispoints)
+    xValsScatter = np.linspace(0.0, 1.0, n_scatterpoints)
 
     yVals = [x * (1.0 - x) for x in xVals]
     yValsScatter = [x * (1.0 - x) for x in xValsScatter]
 
-    X = np.zeros((nVisPoints, 2))
-    Xs = np.zeros((nScatterPoints, 2))
+    X = np.zeros((n_vispoints, 2))
+    Xs = np.zeros((n_scatterpoints, 2))
     X[:, 0], X[:, 1] = xVals, yVals
     Xs[:, 0], Xs[:, 1] = xValsScatter, yValsScatter
 

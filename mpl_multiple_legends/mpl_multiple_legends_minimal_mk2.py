@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-11
 # file: mpl_multiple_legends_minimal_mk2.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -14,14 +14,12 @@ import platform
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -34,14 +32,14 @@ if __name__ == '__main__':
     outname += '_' + today
 
     # create synthetic data
-    nVisPoints = 500
-    xVals = np.linspace(0.0, 1.0, nVisPoints)
+    n_vispoints = 500
+    xVals = np.linspace(0.0, 1.0, n_vispoints)
 
     yVals1 = [1.0 * x for x in xVals]
     yVals2 = [1.5 * x for x in xVals]
     yVals3 = [2.0 * x for x in xVals]
 
-    X = np.zeros((nVisPoints, 4))
+    X = np.zeros((n_vispoints, 4))
     X[:, 0] = xVals
     X[:, 1] = yVals1
     X[:, 2] = yVals2
