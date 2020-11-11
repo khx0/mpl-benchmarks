@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-12
+# date: 2020-11-11
 # file: mpl_offset_text_handling_04.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -14,20 +14,18 @@ import platform
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR  = os.path.join(BASEDIR, 'raw')
 OUTDIR  = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, outdir,
-         grid = True, savePDF = True, savePNG = False, datestamp = True):
+def Plot(X, pcolors, xFormat, yFormat, plotLabel, outname, outdir, labels = True,
+         titlestr = None, grid = True, savePDF = True, savePNG = False, datestamp = True):
 
     xmin, xmax = xFormat[0], xFormat[1]
     ymin, ymax = yFormat[0], yFormat[1]
@@ -44,9 +42,9 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    plt.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -77,7 +75,8 @@ def Plot(titlestr, X, pcolors, xFormat, yFormat, plotLabel, labels, outname, out
     ######################################################################################
     # labeling
     if labels:
-        plt.title(titlestr)
+        if titlestr:
+            plt.title(titlestr)
         ax1.set_xlabel(xFormat[4], fontsize = 5)
         ax1.set_ylabel(yFormat[4], fontsize = 5)
         ax1.xaxis.labelpad = 1.5
@@ -165,10 +164,10 @@ if __name__ == '__main__':
               '_mpl_' + mpl.__version__
 
     # create dummy data to plot
-    nPoints = 200
-    xVals = np.linspace(0, 100.0, nPoints)
+    n_points = 200
+    xVals = np.linspace(0, 100.0, n_points)
     yVals = [1.0e4 * x for x in xVals]
-    X = np.zeros((nPoints, 2))
+    X = np.zeros((n_points, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
@@ -177,12 +176,10 @@ if __name__ == '__main__':
     yFormat = (0.0, 1.0e6, 200000.0, 100000.0 , r'y label')
 
     # plot data
-    Plot(titlestr = '',
-         X = X,
+    Plot(X = X,
          pcolors = ['#003399'],
          xFormat = xFormat,
          yFormat = yFormat,
          plotLabel = r'plot legend label',
-         labels = True,
          outname = outname,
          outdir = OUTDIR)
