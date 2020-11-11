@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-11
 # file: mpl_manually_set_axis_zorder_minimal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -14,7 +14,6 @@ import platform
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -32,12 +31,12 @@ if __name__ == '__main__':
                '_mpl_' + mpl.__version__
 
     # create synthetic data
-    nVisPoints = 500
+    n_vispoints = 500
 
-    xVals = np.linspace(-0.5, 1.5, nVisPoints)
+    xVals = np.linspace(-0.5, 1.5, n_vispoints)
     yVals1 = np.sin(xVals)
     yVals2 = np.sin(2.0 * xVals) - 0.1
-    X = np.zeros((nVisPoints, 3))
+    X = np.zeros((n_vispoints, 3))
     X[:, 0] = xVals
     X[:, 1] = yVals1
     X[:, 2] = yVals2
