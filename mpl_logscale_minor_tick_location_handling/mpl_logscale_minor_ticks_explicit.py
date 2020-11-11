@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-11
 # file: mpl_logscale_minor_ticks.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 # dependency: pdf2svg cmd line tool
 ##########################################################################################
 
@@ -32,7 +32,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from matplotlib import ticker
 from matplotlib.ticker import LogFormatter
 
@@ -43,7 +42,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -69,7 +67,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, showlabels, outname, outdir, pColors,
+def Plot(X, outname, outdir, pColors, showlabels = True, titlestr = None,
          grid = True, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -86,9 +84,9 @@ def Plot(titlestr, X, showlabels, outname, outdir, pColors,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -153,16 +151,16 @@ def Plot(titlestr, X, showlabels, outname, outdir, pColors,
     # set plot range and scale
     ax1.set_xscale('log')
 
-    # 1 set major ticks using LogLocator
+    # 1 Set major ticks using LogLocator.
     ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 10))
 
-    # 2 create ticks manually (explicit)
+    # 2 Create ticks manually (explicit).
     xMinorTicks = getLogTicksBase10(1.0e-12, 1.0e-6)
 
-    # 3 set minor ticks using the FixedLocator
+    # 3 Set minor ticks using the FixedLocator.
     ax1.xaxis.set_minor_locator(ticker.FixedLocator((xMinorTicks)))
 
-    # 4 use the NullFormatter for minor ticks without tick labels
+    # 4 Use the NullFormatter for minor ticks without tick labels.
     ax1.xaxis.set_minor_formatter(mpl.ticker.NullFormatter())
 
     ax1.set_xlim(5.0e-13, 2.5e-6)
@@ -205,10 +203,10 @@ def Plot(titlestr, X, showlabels, outname, outdir, pColors,
 if __name__ == '__main__':
 
     # create data to plot
-    nVisPoints = 1000
-    xValues = np.logspace(-13, -5, nVisPoints)
+    n_vispoints = 1000
+    xValues = np.logspace(-13, -5, n_vispoints)
     yValues = np.array([x / (1.0e-9 + x) for x in xValues])
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xValues
     X[:, 1] = yValues
 
@@ -219,13 +217,10 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    returnname = Plot(titlestr = '',
-                      X = X,
-                      showlabels = True,
+    returnname = Plot(X = X,
                       outname = outname,
                       outdir = OUTDIR,
-                      pColors = colorVals,
-                      grid = False)
+                      pColors = colorVals)
 
 #     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
 #           ' ' + os.path.join(OUTDIR, returnname + '.svg')
