@@ -58,7 +58,8 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     mpl.rc('legend', **{'fontsize': 7.5})
     mpl.rc('axes', linewidth = 0.5)
 
-    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    # mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Myriad Pro']})
+    mpl.rc('font', **{'family' : 'sans-serif', 'sans-serif' : ['Helvetica']})
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
