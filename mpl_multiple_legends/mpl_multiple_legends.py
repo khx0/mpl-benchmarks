@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-11
 # file: mpl_multiple_legends.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -14,14 +14,12 @@ import platform
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -47,8 +45,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
-         grid = True, savePDF = True, savePNG = False, datestamp = True):
+def Plot(Xs, X, params, outname, outdir, pColors, labels, titlestr = None,
+         grid = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -65,9 +63,9 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -107,7 +105,8 @@ def Plot(titlestr, Xs, X, params, outname, outdir, pColors, labels,
 
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'$x$ label', fontsize = 10.0)
     ax1.set_ylabel(r'$y$ label', fontsize = 10.0)
     ax1.xaxis.labelpad = 3.5
@@ -233,16 +232,16 @@ if __name__ == '__main__':
               '_mpl_' + mpl.__version__
 
     # create synthetic data
-    nVisPoints = 500
-    nScatterPoints = 20
+    n_vispoints = 500
+    n_scatterpoints = 20
     Lx = 40.0
-    xVals = np.linspace(0.0, Lx, nVisPoints)
-    xVals2 = np.linspace(0.0, Lx, nScatterPoints)
+    xVals = np.linspace(0.0, Lx, n_vispoints)
+    xVals2 = np.linspace(0.0, Lx, n_scatterpoints)
 
     amplitudes = [0.00025, 0.00015, 0.00005]
 
-    X = np.zeros((nVisPoints, 4))
-    Xs = np.zeros((nScatterPoints, 4))
+    X = np.zeros((n_vispoints, 4))
+    Xs = np.zeros((n_scatterpoints, 4))
 
     for i in range(len(amplitudes)):
 
@@ -263,15 +262,10 @@ if __name__ == '__main__':
               r'$\mathcal{A} = 1.5\cdot 10^{-4}$',
               r'$\mathcal{A} = 5 \cdot 10^{-5}$']
 
-    outname = Plot(titlestr = '',
-                   Xs = Xs,
+    outname = Plot(Xs = Xs,
                    X = X,
                    params = amplitudes,
                    outname = outname,
                    outdir = OUTDIR,
                    pColors = pColors,
-                   labels = labels,
-                   grid = False,
-                   savePDF = True,
-                   savePNG = False,
-                   datestamp = True)
+                   labels = labels)
