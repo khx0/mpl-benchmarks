@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-12
+# date: 2020-11-11
 # file: pcolor_pseudoColor_plot_linearX_linearY.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import sys
@@ -16,7 +16,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
 from matplotlib.ticker import FuncFormatter
@@ -30,13 +29,12 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
-                outname, outdir, showlabels, grid = False, saveSVG = False,
+def plot_pcolor(X, Y, Z, fProps, xFormat, yFormat, zFormat, zColor, outname, outdir,
+                showlabels = True, show_cBar = True, titlestr = None, grid = False, saveSVG = False,
                 savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -53,9 +51,9 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
@@ -81,7 +79,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
 
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(xFormat[7], fontsize = 8.0)
     ax1.set_ylabel(yFormat[7], fontsize = 8.0)
     ax1.xaxis.labelpad = 2.0
@@ -206,8 +205,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     if saveSVG:
-        cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
-              ' ' + os.path.join(OUTDIR, outname + '.svg')
+        cmd = 'pdf2svg ' + os.path.join(outdir, outname + '.pdf') + \
+              ' ' + os.path.join(outdir, outname + '.svg')
         os.system(cmd)
     ######################################################################################
     # close handles
@@ -223,20 +222,19 @@ if __name__ == '__main__':
                '_mpl_' + mpl.__version__
 
     # create synthetic plot data
-
-    nSamples_x = 5
-    nSamples_y = 5
+    n_samples_x = 5
+    n_samples_y = 5
 
     xmin, xmax = 0.0, 1.0
     ymin, ymax = 0.0, 1.0
 
-    xVals = np.linspace(xmin, xmax, nSamples_x)
-    yVals = np.linspace(ymin, ymax, nSamples_y)
+    xVals = np.linspace(xmin, xmax, n_samples_x)
+    yVals = np.linspace(ymin, ymax, n_samples_y)
 
-    zVals = np.zeros((nSamples_y, nSamples_x))
+    zVals = np.zeros((n_samples_y, n_samples_x))
 
-    for j in range(nSamples_y):          # iterate over y values
-        for i in range(nSamples_x):      # iterate over x values
+    for j in range(n_samples_y):         # iterate over y values
+        for i in range(n_samples_x):     # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
     #################################################################################
@@ -244,14 +242,14 @@ if __name__ == '__main__':
     print("yVals.shape =", yVals.shape)
     print("zVals.shape =", zVals.shape)
     assert xVals.shape == yVals.shape, "Shape assertion failed."
-    assert zVals.shape == (nSamples_x, nSamples_y), "Shape assertion failed."
+    assert zVals.shape == (n_samples_x, n_samples_y), "Shape assertion failed."
     #################################################################################
 
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
 
-    assert xBoxCoords.shape == (nSamples_x + 1,), "Shape assertion failed."
-    assert yBoxCoords.shape == (nSamples_y + 1,), "Shape assertion failed."
+    assert xBoxCoords.shape == (n_samples_x + 1,), "Shape assertion failed."
+    assert yBoxCoords.shape == (n_samples_y + 1,), "Shape assertion failed."
 
     # call plot function
     fProps = (4.0, 4.0, 0.16, 0.80, 0.20, 0.88)
@@ -267,15 +265,10 @@ if __name__ == '__main__':
     outname = plot_pcolor(X = xBoxCoords,
                           Y = yBoxCoords,
                           Z = zVals,
-                          titlestr = '',
                           fProps = fProps,
                           xFormat = xFormat,
                           yFormat = yFormat,
                           zFormat = zFormat,
                           zColor = zColor,
-                          show_cBar = True,
                           outname = outname,
-                          outdir = OUTDIR,
-                          showlabels = True,
-                          grid = False,
-                          saveSVG = False)
+                          outdir = OUTDIR)
