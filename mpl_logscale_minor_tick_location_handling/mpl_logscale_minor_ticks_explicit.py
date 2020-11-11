@@ -68,7 +68,7 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
 def Plot(X, outname, outdir, pColors, showlabels = True, titlestr = None,
-         grid = True, savePDF = True, savePNG = False, datestamp = True):
+         grid = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True

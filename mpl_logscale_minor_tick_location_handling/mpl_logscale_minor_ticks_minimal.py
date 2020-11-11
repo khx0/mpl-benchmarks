@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-11
 # file: mpl_logscale_minor_ticks_minimal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 """
@@ -141,10 +141,10 @@ def plot_minimal_version_B(X, filename):
 if __name__ == '__main__':
 
     # create data to plot
-    nVisPoints = 1000
-    xValues = np.logspace(-13, -5, nVisPoints)
+    n_vispoints = 1000
+    xValues = np.logspace(-13, -5, n_vispoints)
     yValues = np.array([x / (1.0e-9 + x) for x in xValues])
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xValues
     X[:, 1] = yValues
 

@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-08
+# date: 2020-11-11
 # file: mpl_logscale_minor_ticks.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 # requires: pdf2svg installed
 ##########################################################################################
 
@@ -29,7 +29,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from matplotlib import ticker
 from matplotlib.ticker import LogFormatter
 
@@ -38,7 +37,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -64,8 +62,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
-         grid = True, savePDF = True, savePNG = False, datestamp = True):
+def Plot(type, X, outname, outdir, pColors, showlabels = True, titlestr = None,
+         grid = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -81,9 +79,9 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -116,7 +114,8 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.5, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'x label', fontsize = 10.0)
     ax1.set_ylabel(r'y label', fontsize = 10.0)
     ax1.xaxis.labelpad = 2.0
@@ -204,10 +203,10 @@ def Plot(titlestr, type, X, showlabels, outname, outdir, pColors,
 if __name__ == '__main__':
 
     # create data to plot
-    nVisPoints = 1000
-    xValues = np.logspace(-13, -5, nVisPoints)
+    n_vispoints = 1000
+    xValues = np.logspace(-13, -5, n_vispoints)
     yValues = np.array([x / (1.0e-9 + x) for x in xValues])
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xValues
     X[:, 1] = yValues
 
@@ -218,14 +217,11 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    returnname = Plot(titlestr = '',
-                      type = 'A',
+    returnname = Plot(type = 'A',
                       X = X,
-                      showlabels = True,
                       outname = outname,
                       outdir = OUTDIR,
-                      pColors = colorVals,
-                      grid = False)
+                      pColors = colorVals)
 
 #     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
 #           ' ' + os.path.join(OUTDIR, returnname + '.svg')
@@ -235,14 +231,11 @@ if __name__ == '__main__':
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
 
-    returnname = Plot(titlestr = '',
-                      type = 'B',
+    returnname = Plot(type = 'B',
                       X = X,
-                      showlabels = True,
                       outname = outname,
                       outdir = OUTDIR,
-                      pColors = colorVals,
-                      grid = False)
+                      pColors = colorVals)
 
 #     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
 #           ' ' + os.path.join(OUTDIR, returnname + '.svg')
