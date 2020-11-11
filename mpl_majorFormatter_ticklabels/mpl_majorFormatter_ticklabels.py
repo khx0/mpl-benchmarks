@@ -101,7 +101,8 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'$x$', fontsize = 6.0, x = 0.87)
     # rotation is expressed in degrees
     ax1.set_ylabel(r'$y(x)$', fontsize = 6.0, y = 0.75, rotation = 0.0)
