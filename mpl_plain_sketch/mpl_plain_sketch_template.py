@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-11
+# date: 2020-11-12
 # file: mpl_plain_sketch_template.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.2
 ##########################################################################################
 
 import os
@@ -14,14 +14,12 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -47,8 +45,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, params, outname, outdir, pColors,
-         grid = False, drawLegend = True, xFormat = None, yFormat = None,
+def Plot(X, outname, outdir, pColors, titlestr = None,
+         grid = False, drawLegend = False, xFormat = None, yFormat = None,
          savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
@@ -66,9 +64,9 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
@@ -95,7 +93,8 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
     ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'$x$', fontsize = 6.0, x = 0.98)
     # rotation is expressed in degrees
     ax1.set_ylabel(r'$y$', fontsize = 6.0, y = 0.82, rotation = 0.0)
@@ -175,11 +174,11 @@ def Plot(titlestr, X, params, outname, outdir, pColors,
 if __name__ == '__main__':
 
     # create dummy data
-    nVisPoints = 800
-    xVals = np.linspace(-26.0, 24.0, nVisPoints)
+    n_vispoints = 800
+    xVals = np.linspace(-26.0, 24.0, n_vispoints)
     yVals = np.array([0.05 * x ** 3 + 0.05 * x ** 2 + 0.05 * x for x in xVals])
 
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
@@ -193,13 +192,9 @@ if __name__ == '__main__':
 
     pColors = ['#FF0000'] # standard red
 
-    Plot(titlestr = '',
-         X = X,
-         params = [],
+    Plot(X = X,
          outname = outname,
          outdir = OUTDIR,
          pColors = pColors,
-         grid = False,
-         drawLegend = False,
          xFormat = xFormat,
          yFormat = yFormat)
