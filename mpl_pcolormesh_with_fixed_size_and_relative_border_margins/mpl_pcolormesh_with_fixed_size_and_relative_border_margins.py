@@ -16,7 +16,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
 from matplotlib.ticker import FuncFormatter
@@ -30,14 +29,13 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
 
-def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, show_cBar,
-                outname, outdir, showlabels, params = None, grid = False, saveSVG = False,
-                savePDF = True, savePNG = False, datestamp = True):
+def plot_pcolor(X, Y, Z, fProps, xFormat, yFormat, zFormat, zColor, outname, outdir,
+                show_cBar = True, titlestr = None, showlabels = True, params = None,
+                grid = False, saveSVG = False, savePDF = True, savePNG = False, datestamp = True):
 
     # retrieve box coordinates for pcolormesh plotting
     if params:
@@ -49,8 +47,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
         xBoxCoords = getPcolorBoxCoordinates(X)
         yBoxCoords = getPcolorBoxCoordinates(Y)
 
-    assert xBoxCoords.shape == (len(X) + 1,), "Error: Shape assertion failed."
-    assert yBoxCoords.shape == (len(Y) + 1,), "Error: Shape assertion failed."
+    assert xBoxCoords.shape == (len(X) + 1,), "Shape assertion failed."
+    assert yBoxCoords.shape == (len(Y) + 1,), "Shape assertion failed."
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -66,9 +64,9 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
@@ -95,7 +93,8 @@ def plot_pcolor(X, Y, Z, titlestr, fProps, xFormat, yFormat, zFormat, zColor, sh
 
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(xFormat[7], fontsize = 8.0)
     ax1.set_ylabel(yFormat[7], fontsize = 8.0)
     ax1.xaxis.labelpad = 2.0
@@ -247,30 +246,30 @@ def test_01(cMaps = [cm.viridis]):
     print("Running test 01 /////////////////////////////////////////////////////////////")
 
     # create synthetic 10 x 10 2d image array
-    nPxs_x = 10
-    nPxs_y = 10
+    n_pxs_x = 10
+    n_pxs_y = 10
     pixelWidth = 1.0
     pixelHeight = 1.0
 
-    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
-    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+    xmin, xmax = 0.0, pixelWidth  * (n_pxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (n_pxs_y - 1)
 
-    xVals = np.linspace(xmin, xmax, nPxs_x)
-    yVals = np.linspace(ymin, ymax, nPxs_y)
+    xVals = np.linspace(xmin, xmax, n_pxs_x)
+    yVals = np.linspace(ymin, ymax, n_pxs_y)
 
-    width_X = nPxs_x * pixelWidth
-    height_Y = nPxs_y * pixelHeight
+    width_X  = n_pxs_x * pixelWidth
+    height_Y = n_pxs_y * pixelHeight
 
     # fill matrix
-    zVals = np.zeros((nPxs_x, nPxs_y))
+    zVals = np.zeros((n_pxs_x, n_pxs_y))
     # first array dimension corresponds to the x axis
     # second array dimension corresponds to the y axis
-    for j in range(nPxs_y):     # iterate over y values
-        for i in range(nPxs_x): # iterate over x values
+    for j in range(n_pxs_y):     # iterate over y values
+        for i in range(n_pxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
- 
-    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+
+    assert xVals.shape == yVals.shape, "Shape assertion failed."
+    assert zVals.shape == (n_pxs_x, n_pxs_y), "Shape assertion failed."
 
     zmin = np.min(zVals)
     zmax = np.max(zVals)
@@ -314,18 +313,13 @@ def test_01(cMaps = [cm.viridis]):
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
                               Z = zVals,
-                              titlestr = '',
                               fProps = fProps,
                               xFormat = xFormat,
                               yFormat = yFormat,
                               zFormat = zFormat,
                               zColor = zColor,
-                              show_cBar = True,
                               outname = outname,
-                              outdir = OUTDIR,
-                              showlabels = True,
-                              grid = False,
-                              saveSVG = False)
+                              outdir = OUTDIR)
 
     return None
 
@@ -335,31 +329,31 @@ def test_02(cMaps = [cm.viridis]):
     print("Running test 02 /////////////////////////////////////////////////////////////")
 
     # create synthetic 10 x 10 2d image array
-    nPxs_x = 10
-    nPxs_y = 10
+    n_pxs_x = 10
+    n_pxs_y = 10
     pixelWidth = 1.0
     pixelHeight = 1.0
 
-    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
-    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+    xmin, xmax = 0.0, pixelWidth  * (n_pxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (n_pxs_y - 1)
 
-    xVals = np.linspace(xmin, xmax, nPxs_x)
-    yVals = np.linspace(ymin, ymax, nPxs_y)
+    xVals = np.linspace(xmin, xmax, n_pxs_x)
+    yVals = np.linspace(ymin, ymax, n_pxs_y)
 
-    width_X = nPxs_x * pixelWidth
-    height_Y = nPxs_y * pixelHeight
+    width_X = n_pxs_x * pixelWidth
+    height_Y = n_pxs_y * pixelHeight
 
     # fill matrix
-    zVals = np.zeros((nPxs_x, nPxs_y))
+    zVals = np.zeros((n_pxs_x, n_pxs_y))
 
-    for j in range(nPxs_y):     # iterate over y values
-        for i in range(nPxs_x): # iterate over x values
+    for j in range(n_pxs_y):     # iterate over y values
+        for i in range(n_pxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
     zVals -= 1.0 / 3.0
 
-    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+    assert xVals.shape == yVals.shape, "Shape assertion failed."
+    assert zVals.shape == (n_pxs_x, n_pxs_y), "Shape assertion failed."
 
     zmin = np.min(zVals)
     zmax = np.max(zVals)
@@ -403,18 +397,13 @@ def test_02(cMaps = [cm.viridis]):
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
                               Z = zVals,
-                              titlestr = '',
                               fProps = fProps,
                               xFormat = xFormat,
                               yFormat = yFormat,
                               zFormat = zFormat,
                               zColor = zColor,
-                              show_cBar = True,
                               outname = outname,
-                              outdir = OUTDIR,
-                              showlabels = True,
-                              grid = False,
-                              saveSVG = False)
+                              outdir = OUTDIR)
 
     return None
 
@@ -427,29 +416,29 @@ def test_03(cMaps = [cm.viridis]):
 
     for n in np.arange(1, 10 + 1, 1): # (from, to (excluding), increment)
 
-        nPxs_x = n
-        nPxs_y = n
+        n_pxs_x = n
+        n_pxs_y = n
         pixelWidth = 1.0
         pixelHeight = 1.0
 
-        xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
-        ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+        xmin, xmax = 0.0, pixelWidth  * (n_pxs_x - 1)
+        ymin, ymax = 0.0, pixelHeight * (n_pxs_y - 1)
 
-        xVals = np.linspace(xmin, xmax, nPxs_x)
-        yVals = np.linspace(ymin, ymax, nPxs_y)
+        xVals = np.linspace(xmin, xmax, n_pxs_x)
+        yVals = np.linspace(ymin, ymax, n_pxs_y)
 
-        width_X = nPxs_x * pixelWidth
-        height_Y = nPxs_y * pixelHeight
+        width_X = n_pxs_x * pixelWidth
+        height_Y = n_pxs_y * pixelHeight
 
         # fill matrix
-        zVals = np.zeros((nPxs_x, nPxs_y))
+        zVals = np.zeros((n_pxs_x, n_pxs_y))
 
-        for j in range(nPxs_y):     # iterate over y values
-            for i in range(nPxs_x): # iterate over x values
+        for j in range(n_pxs_y):     # iterate over y values
+            for i in range(n_pxs_x): # iterate over x values
                 zVals[i, j] = 0.2 * xVals[i]
 
-        assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-        assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+        assert xVals.shape == yVals.shape, "Shape assertion failed."
+        assert zVals.shape == (n_pxs_x, n_pxs_y), "Shape assertion failed."
 
         zmin = np.min(zVals)
         zmax = np.max(zVals)
@@ -499,18 +488,13 @@ def test_03(cMaps = [cm.viridis]):
                                   Y = yVals,
                                   Z = zVals,
                                   params = [width_X, height_Y],
-                                  titlestr = '',
                                   fProps = fProps,
                                   xFormat = xFormat,
                                   yFormat = yFormat,
                                   zFormat = zFormat,
                                   zColor = zColor,
-                                  show_cBar = True,
                                   outname = outname,
-                                  outdir = OUTDIR,
-                                  showlabels = True,
-                                  grid = False,
-                                  saveSVG = False)
+                                  outdir = OUTDIR)
 
     return None
 
@@ -520,27 +504,27 @@ def test_04(cMaps = [cm.viridis]):
     print("Running test 04 /////////////////////////////////////////////////////////////")
 
     # create synthetic 32 x 32 2d image array
-    nPxs_x, nPxs_y = 32, 32
+    n_pxs_x, n_pxs_y = 32, 32
     pixelWidth, pixelHeight = 1.0, 1.0
 
-    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
-    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+    xmin, xmax = 0.0, pixelWidth  * (n_pxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (n_pxs_y - 1)
 
-    xVals = np.linspace(xmin, xmax, nPxs_x)
-    yVals = np.linspace(ymin, ymax, nPxs_y)
+    xVals = np.linspace(xmin, xmax, n_pxs_x)
+    yVals = np.linspace(ymin, ymax, n_pxs_y)
 
-    width_X = nPxs_x * pixelWidth
-    height_Y = nPxs_y * pixelHeight
+    width_X  = n_pxs_x * pixelWidth
+    height_Y = n_pxs_y * pixelHeight
 
     # fill matrix
-    zVals = np.zeros((nPxs_x, nPxs_y))
+    zVals = np.zeros((n_pxs_x, n_pxs_y))
 
-    for j in range(nPxs_y):     # iterate over y values
-        for i in range(nPxs_x): # iterate over x values
+    for j in range(n_pxs_y):     # iterate over y values
+        for i in range(n_pxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
-    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+    assert xVals.shape == yVals.shape, "Shape assertion failed."
+    assert zVals.shape == (n_pxs_x, n_pxs_y), "Shape assertion failed."
 
     zmin = np.min(zVals)
     zmax = np.max(zVals)
@@ -584,18 +568,13 @@ def test_04(cMaps = [cm.viridis]):
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
                               Z = zVals,
-                              titlestr = '',
                               fProps = fProps,
                               xFormat = xFormat,
                               yFormat = yFormat,
                               zFormat = zFormat,
                               zColor = zColor,
-                              show_cBar = True,
                               outname = outname,
-                              outdir = OUTDIR,
-                              showlabels = True,
-                              grid = False,
-                              saveSVG = False)
+                              outdir = OUTDIR)
 
     return None
 
@@ -605,27 +584,27 @@ def test_05(cMaps = [cm.viridis]):
     print("Running test 05 /////////////////////////////////////////////////////////////")
 
     # create synthetic 64 x 64 2d image array
-    nPxs_x, nPxs_y = 64, 64
+    n_pxs_x, n_pxs_y = 64, 64
     pixelWidth, pixelHeight = 1.0, 1.0
 
-    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
-    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+    xmin, xmax = 0.0, pixelWidth  * (n_pxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (n_pxs_y - 1)
 
-    xVals = np.linspace(xmin, xmax, nPxs_x)
-    yVals = np.linspace(ymin, ymax, nPxs_y)
+    xVals = np.linspace(xmin, xmax, n_pxs_x)
+    yVals = np.linspace(ymin, ymax, n_pxs_y)
 
-    width_X = nPxs_x * pixelWidth
-    height_Y = nPxs_y * pixelHeight
+    width_X = n_pxs_x * pixelWidth
+    height_Y = n_pxs_y * pixelHeight
 
     # fill matrix
-    zVals = np.zeros((nPxs_x, nPxs_y))
+    zVals = np.zeros((n_pxs_x, n_pxs_y))
 
-    for j in range(nPxs_y):     # iterate over y values
-        for i in range(nPxs_x): # iterate over x values
+    for j in range(n_pxs_y):     # iterate over y values
+        for i in range(n_pxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
-    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+    assert xVals.shape == yVals.shape, "Shape assertion failed."
+    assert zVals.shape == (n_pxs_x, n_pxs_y), "Shape assertion failed."
 
     zmin = np.min(zVals)
     zmax = np.max(zVals)
@@ -671,18 +650,13 @@ def test_05(cMaps = [cm.viridis]):
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
                               Z = zVals,
-                              titlestr = '',
                               fProps = fProps,
                               xFormat = xFormat,
                               yFormat = yFormat,
                               zFormat = zFormat,
                               zColor = zColor,
-                              show_cBar = True,
                               outname = outname,
-                              outdir = OUTDIR,
-                              showlabels = True,
-                              grid = False,
-                              saveSVG = False)
+                              outdir = OUTDIR)
 
     return None
 
@@ -692,27 +666,27 @@ def test_06(cMaps = [cm.viridis]):
     print("Running test 06 /////////////////////////////////////////////////////////////")
 
     # create synthetic 128 x 128 2d image array
-    nPxs_x, nPxs_y = 128, 128
+    n_pxs_x, n_pxs_y = 128, 128
     pixelWidth, pixelHeight = 1.0, 1.0
 
-    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
-    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+    xmin, xmax = 0.0, pixelWidth  * (n_pxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (n_pxs_y - 1)
 
-    xVals = np.linspace(xmin, xmax, nPxs_x)
-    yVals = np.linspace(ymin, ymax, nPxs_y)
+    xVals = np.linspace(xmin, xmax, n_pxs_x)
+    yVals = np.linspace(ymin, ymax, n_pxs_y)
 
-    width_X = nPxs_x * pixelWidth
-    height_Y = nPxs_y * pixelHeight
+    width_X  = n_pxs_x * pixelWidth
+    height_Y = n_pxs_y * pixelHeight
 
     # fill matrix
-    zVals = np.zeros((nPxs_x, nPxs_y))
+    zVals = np.zeros((n_pxs_x, n_pxs_y))
 
-    for j in range(nPxs_y):     # iterate over y values
-        for i in range(nPxs_x): # iterate over x values
+    for j in range(n_pxs_y):     # iterate over y values
+        for i in range(n_pxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
-    assert xVals.shape == yVals.shape, "Error: Shape assertion failed."
-    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+    assert xVals.shape == yVals.shape, "Shape assertion failed."
+    assert zVals.shape == (n_pxs_x, n_pxs_y), "Shape assertion failed."
 
     zmin = np.min(zVals)
     zmax = np.max(zVals)
@@ -756,18 +730,13 @@ def test_06(cMaps = [cm.viridis]):
         outname = plot_pcolor(X = xVals,
                               Y = yVals,
                               Z = zVals,
-                              titlestr = '',
                               fProps = fProps,
                               xFormat = xFormat,
                               yFormat = yFormat,
                               zFormat = zFormat,
                               zColor = zColor,
-                              show_cBar = True,
                               outname = outname,
-                              outdir = OUTDIR,
-                              showlabels = True,
-                              grid = False,
-                              saveSVG = False)
+                              outdir = OUTDIR)
 
     return None
 
@@ -777,27 +746,27 @@ def test_07(cMaps = [cm.viridis]):
     print("Running test 07 /////////////////////////////////////////////////////////////")
 
     # create synthetic 32 x 16 2d image array
-    nPxs_x, nPxs_y = 32, 16
+    n_pxs_x, n_pxs_y = 32, 16
     pixelWidth, pixelHeight = 1.0, 1.0
 
-    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
-    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+    xmin, xmax = 0.0, pixelWidth  * (n_pxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (n_pxs_y - 1)
 
-    xVals = np.linspace(xmin, xmax, nPxs_x)
-    yVals = np.linspace(ymin, ymax, nPxs_y)
+    xVals = np.linspace(xmin, xmax, n_pxs_x)
+    yVals = np.linspace(ymin, ymax, n_pxs_y)
 
-    width_X = nPxs_x * pixelWidth
-    height_Y = nPxs_y * pixelHeight
+    width_X  = n_pxs_x * pixelWidth
+    height_Y = n_pxs_y * pixelHeight
     xyRatio = width_X / height_Y # for non-square (image / data) matrices
 
     # fill matrix
-    zVals = np.zeros((nPxs_x, nPxs_y))
+    zVals = np.zeros((n_pxs_x, n_pxs_y))
 
-    for j in range(nPxs_y):     # iterate over y values
-        for i in range(nPxs_x): # iterate over x values
+    for j in range(n_pxs_y):     # iterate over y values
+        for i in range(n_pxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
-    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+    assert zVals.shape == (n_pxs_x, n_pxs_y), "Shape assertion failed."
 
     zmin = np.min(zVals)
     zmax = np.max(zVals)
@@ -842,18 +811,13 @@ def test_07(cMaps = [cm.viridis]):
                               Y = yVals,
                               Z = zVals,
                               params = [width_X, height_Y],
-                              titlestr = '',
                               fProps = fProps,
                               xFormat = xFormat,
                               yFormat = yFormat,
                               zFormat = zFormat,
                               zColor = zColor,
-                              show_cBar = True,
                               outname = outname,
-                              outdir = OUTDIR,
-                              showlabels = True,
-                              grid = False,
-                              saveSVG = False)
+                              outdir = OUTDIR)
 
 def test_08(cMaps = [cm.viridis]):
 
@@ -861,27 +825,27 @@ def test_08(cMaps = [cm.viridis]):
     print("Running test 08 /////////////////////////////////////////////////////////////")
 
     # create synthetic 16 x 32 2d image array
-    nPxs_x, nPxs_y = 16, 32
+    n_pxs_x, n_pxs_y = 16, 32
     pixelWidth, pixelHeight = 1.0, 1.0
 
-    xmin, xmax = 0.0, pixelWidth  * (nPxs_x - 1)
-    ymin, ymax = 0.0, pixelHeight * (nPxs_y - 1)
+    xmin, xmax = 0.0, pixelWidth  * (n_pxs_x - 1)
+    ymin, ymax = 0.0, pixelHeight * (n_pxs_y - 1)
 
-    xVals = np.linspace(xmin, xmax, nPxs_x)
-    yVals = np.linspace(ymin, ymax, nPxs_y)
+    xVals = np.linspace(xmin, xmax, n_pxs_x)
+    yVals = np.linspace(ymin, ymax, n_pxs_y)
 
-    width_X = nPxs_x * pixelWidth
-    height_Y = nPxs_y * pixelHeight
+    width_X = n_pxs_x * pixelWidth
+    height_Y = n_pxs_y * pixelHeight
     xyRatio = width_X / height_Y # for non-square (image / data) matrices
 
     # fill matrix
-    zVals = np.zeros((nPxs_x, nPxs_y))
+    zVals = np.zeros((n_pxs_x, n_pxs_y))
 
-    for j in range(nPxs_y):     # iterate over y values
-        for i in range(nPxs_x): # iterate over x values
+    for j in range(n_pxs_y):     # iterate over y values
+        for i in range(n_pxs_x): # iterate over x values
             zVals[i, j] = 0.2 * xVals[i]
 
-    assert zVals.shape == (nPxs_x, nPxs_y), "Error: Shape assertion failed."
+    assert zVals.shape == (n_pxs_x, n_pxs_y), "Shape assertion failed."
 
     zmin = np.min(zVals)
     zmax = np.max(zVals)
@@ -926,18 +890,13 @@ def test_08(cMaps = [cm.viridis]):
                               Y = yVals,
                               Z = zVals,
                               params = [width_X, height_Y],
-                              titlestr = '',
                               fProps = fProps,
                               xFormat = xFormat,
                               yFormat = yFormat,
                               zFormat = zFormat,
                               zColor = zColor,
-                              show_cBar = True,
                               outname = outname,
-                              outdir = OUTDIR,
-                              showlabels = True,
-                              grid = False,
-                              saveSVG = False)
+                              outdir = OUTDIR)
 
 if __name__ == '__main__':
 
