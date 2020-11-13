@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-09-13
+# date: 2020-11-13
 # file: mplUtils.py
 # tested with python 3.7.6
 ##########################################################################################
@@ -81,7 +81,7 @@ def getPcolorBoxCoordinates(X, type = 'linear', unitWidth = None):
         sys.exit(1)
     return Xcoords
 
-def getHistogramCoordinates(X, nBins, density = True):
+def getHistogramCoordinates(X, n_bins, density = True):
     '''
     Creates (x, y) data pairs of the histogram data using
     numpy's histogram function.
@@ -89,11 +89,11 @@ def getHistogramCoordinates(X, nBins, density = True):
     Numpy's histogram normed keyword is deprecated and has been replaced
     by density = True / False.
     '''
-    hist, bin_edges = np.histogram(X, bins = nBins, density = density)
+    hist, bin_edges = np.histogram(X, bins = n_bins, density = density)
     bin_centers = (bin_edges[1:] + bin_edges[0:-1]) / 2.0
     assert hist.shape == bin_centers.shape, "Shape assertion failed."
 
-    res = np.zeros((nBins, 2))
+    res = np.zeros((n_bins, 2))
     res[:, 0] = bin_centers
     res[:, 1] = hist
     return res
