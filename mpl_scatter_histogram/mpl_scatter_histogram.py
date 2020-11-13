@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-09
+# date: 2020-11-13
 # file: mpl_scatter_histogram.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import sys
@@ -16,7 +16,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 from mplUtils import getHistogramCoordinates
 
@@ -25,7 +24,6 @@ mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -51,8 +49,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, Y, outname, outdir, pColors,
-         grid = True, saveEPS = False, savePDF = True, savePNG = False, datestamp = True):
+def Plot(X, Y, outname, outdir, pColors, titlestr = None,
+         grid = False, saveEPS = False, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -106,7 +104,8 @@ def Plot(titlestr, X, Y, outname, outdir, pColors,
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'x label', fontsize = 8.0)
     ax1.set_ylabel(r'frequency', fontsize = 8.0)
     ax1.xaxis.labelpad = 5.0
@@ -179,29 +178,27 @@ if __name__ == '__main__':
 
     # create data
     meanValue = 1.5
-    nBins = 25
-    nSamples = 20000
+    n_bins = 25
+    n_samples = 20000
 
     # fix random seed for reproducibility
     np.random.seed(123456789)
-    samples = np.random.exponential(meanValue, nSamples)
+    samples = np.random.exponential(meanValue, n_samples)
     scatterData = getHistogramCoordinates(samples,
-                                          nBins = nBins,
+                                          nBins = n_bins,
                                           density = True)
 
     # create analytical curve
-    nVisPoints = 500
-    xVals = np.linspace(0.0, 20.0, nVisPoints)
+    n_vispoints = 500
+    xVals = np.linspace(0.0, 20.0, n_vispoints)
     yVals = np.array([np.exp(-t / meanValue) / meanValue for t in xVals])
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
     # plot data
-    Plot(titlestr = '',
-         X = X,
+    Plot(X = X,
          Y = scatterData,
          outname = outname,
          outdir = OUTDIR,
-         pColors = ['C3'],
-         grid = False)
+         pColors = ['C3'])
