@@ -3,13 +3,13 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-12
+# date: 2020-11-13
 # file: test_axisPadding.py
 # tested with python 3.7.6
 ##########################################################################################
 
 '''
-Tested with pytest version 5.4.3.
+Tested with pytest version 6.1.2.
 Invocation:
 cd to the directory containing this script (here ../unit-tests/) and
 then invoke
