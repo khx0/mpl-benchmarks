@@ -5,7 +5,7 @@
 # contact: khx0@posteo.net
 # date: 2020-11-13
 # file: mpl_prml_schematic_plot_template_wQuiver_mk2.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import os
