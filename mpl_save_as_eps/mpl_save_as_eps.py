@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-10
+# date: 2020-11-13
 # file: mpl_save_as_eps.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 '''
@@ -23,14 +23,12 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -56,8 +54,8 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-def Plot(titlestr, X, outname, outdir, pColors,
-         grid = True, saveEPS = False, savePDF = True, savePNG = False, datestamp = True):
+def Plot(X, outname, outdir, pColors, titlestr = None,
+         grid = False, saveEPS = True, savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -73,15 +71,16 @@ def Plot(titlestr, X, outname, outdir, pColors,
     mpl.rcParams['pdf.fonttype'] = 42
     mpl.rcParams['text.usetex'] = False
     mpl.rcParams['mathtext.fontset'] = 'cm'
-    fontparams = {'text.latex.preamble': [r'\usepackage{cmbright}',
-                                          r'\usepackage{amsmath}']}
-    mpl.rcParams.update(fontparams)
+    mpl.rcParams['text.latex.preamble'] = \
+        r'\usepackage{cmbright}' + \
+        r'\usepackage{amsmath}'
 
     ######################################################################################
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 6.5, height = 5.5,
-                       lFrac = 0.20, rFrac = 0.9, bFrac = 0.17, tFrac = 0.95)
+                       lFrac = 0.20, rFrac = 0.9,
+                       bFrac = 0.17, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
@@ -100,7 +99,8 @@ def Plot(titlestr, X, outname, outdir, pColors,
     ax1.tick_params(axis = 'y', which = 'major', pad = 2.0, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'x label', fontsize = 10.0)
     ax1.set_ylabel(r'y label', fontsize = 10.0)
     ax1.xaxis.labelpad = 3.0
@@ -158,18 +158,15 @@ if __name__ == '__main__':
                '_mpl_' + mpl.__version__
 
     # create data
-    nVisPoints = 500
-    xVals = np.linspace(0.0, 1.0, nVisPoints)
+    n_vispoints = 500
+    xVals = np.linspace(0.0, 1.0, n_vispoints)
     yVals = np.sin(xVals)
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
     # plot data
-    Plot(titlestr = '',
-         X = X,
+    Plot(X = X,
          outname = outname,
          outdir = OUTDIR,
-         pColors = ['C0'],
-         grid = False,
-         saveEPS = True)
+         pColors = ['C0'])
