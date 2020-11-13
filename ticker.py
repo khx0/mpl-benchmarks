@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2019-11-08
+# date: 2020-11-13
 # file: ticker.py
-# tested with python 3.7.2
+# tested with python 3.7.6
 ##########################################################################################
 
 import numpy as np
@@ -41,16 +41,16 @@ def getLogTicksBase10(min: float, max: float,\
     ...
     ****************************************************************
     '''
-    if (min > max):
+    if min > max:
         min, max = max, min
 
     expMin = int(np.floor(np.log10(min)))
     expMax = int(np.floor(np.log10(max)))
 
     if np.isclose(expMin, expMax):
-    	tmp = comb * 10.0 ** expMin
-    	tmp = tmp[tmp >= min]
-    	return tmp[tmp <= max]
+        tmp = comb * 10.0 ** expMin
+        tmp = tmp[tmp >= min]
+        return tmp[tmp <= max]
 
     ticks = np.array([])
 
