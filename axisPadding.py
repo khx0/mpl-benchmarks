@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-03-22
+# date: 2020-11-13
 # file: axisPadding.py
-# tested with python 3.7.2
+# tested with python 3.7.6
 ##########################################################################################
 
 import numpy as np
