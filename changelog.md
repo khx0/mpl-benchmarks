@@ -26,13 +26,13 @@ As of python 3.5, type hints are supported to allow for function annotations.
 Below I exemplary show how the function syntax changes when using type hints using the
 ticker.py module of this repository. This module contains a function `getLogTicksBase10`,
 which has the conventional function signature
-```
+```python
 def getLogTicksBase10(min, max, comb = np.arange(1, 10)):
     # function body
     return ...
 ```
 This changes to the following below with type hints:
-```
+```python
 def getLogTicksBase10(min: float, max: float, comb: np.ndarray = np.arange(1, 10)) -> np.ndarray:
     # function body
     return ...
@@ -40,13 +40,13 @@ def getLogTicksBase10(min: float, max: float, comb: np.ndarray = np.arange(1, 10
 
 ### 2019-08-11 date str using datetime
 I replaced my old datetime strings in the form of
-```
+```python
 import datetime
 now = datetime.datetime.now()
 now = "{}-{}-{}".format(str(now.year), str(now.month).zfill(2), str(now.day).zfill(2)) 
 ```
 by the way more simple
-```
+```python
 import datetime
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 ```
