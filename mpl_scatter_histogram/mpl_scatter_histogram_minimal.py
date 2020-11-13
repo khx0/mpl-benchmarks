@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-09
+# date: 2020-11-13
 # file: mpl_scatter_histogram_minimal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import os
@@ -14,14 +14,12 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-RAWDIR = os.path.join(BASEDIR, 'raw')
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
@@ -54,21 +52,21 @@ if __name__ == '__main__':
 
     # create data
     meanValue = 1.5
-    nBins = 25
-    nSamples = 20000
+    n_bins = 25
+    n_samples = 20000
 
     # fix random seed for reproducibility
     np.random.seed(123456789)
-    samples = np.random.exponential(meanValue, nSamples)
+    samples = np.random.exponential(meanValue, n_samples)
     scatterData = getHistogramCoordinates(samples,
-                                          nBins = nBins,
+                                          nBins = n_bins,
                                           density = True)
 
     # create analytical curve
-    nVisPoints = 500
-    xVals = np.linspace(0.0, 15.0, nVisPoints)
+    n_vispoints = 500
+    xVals = np.linspace(0.0, 15.0, n_vispoints)
     yVals = np.array([np.exp(-t / meanValue) / meanValue for t in xVals])
-    X = np.zeros((nVisPoints, 2))
+    X = np.zeros((n_vispoints, 2))
     X[:, 0] = xVals
     X[:, 1] = yVals
 
