@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-10-12
+# date: 2020-10-14
 # file: mpl_clean_style.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import os
@@ -14,7 +14,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from matplotlib.ticker import FuncFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
