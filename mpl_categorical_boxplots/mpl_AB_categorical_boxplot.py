@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-10
+# date: 2020-11-14
 # file: mpl_AB_categorical_boxplot.py
-# tested with python 3.7.6 and matplotlib 3.3.2
+# tested with python 3.7.6 and matplotlib 3.3.3
 ##########################################################################################
 
 import os
@@ -71,14 +71,14 @@ def create_boxplot(X, outname, outdir = './', xLabel = None, yLabel = None,
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
-    
+
     ax1.spines['right'].set_visible(False)
     ax1.spines['top'].set_visible(False)
 
     # boxplot parameter
     xPos = [1.0, 2.0]
     width = 0.4
-    
+
     bp1 = ax1.boxplot(X[:, 0],
                       positions = [xPos[0]],
                       widths = width)
