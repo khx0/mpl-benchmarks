@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-09
+# date: 2020-11-14
 # file: mpl_arrows_vs_quiver_aspect_1.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import os
@@ -194,9 +194,9 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
              label = r'')
 
     ax1.plot([0.05, 0.55], [0.6, 0.6],
-    		 linewidth = lineWidth,
-    		 color = '#CCCCCC',
-    		 zorder = 1)
+             linewidth = lineWidth,
+             color = '#CCCCCC',
+             zorder = 1)
 
     # vertical arrows
     dy = 0.2 # y displacement of the arrow head
@@ -257,9 +257,9 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
              label = r'')
 
     ax1.plot([0.05, 0.35], [0.35, 0.05],
-    		 linewidth = lineWidth,
-    		 color = '#CCCCCC',
-    		 zorder = 1)
+             linewidth = lineWidth,
+             color = '#CCCCCC',
+             zorder = 1)
 
     ax1.arrow(0.15, 0.25, dx, dy,
               lw = 0.5,

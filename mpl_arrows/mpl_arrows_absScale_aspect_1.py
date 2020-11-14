@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-09
+# date: 2020-11-14
 # file: mpl_arrows_absScale_aspect_1.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import os
@@ -14,7 +14,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.pyplot import legend
 from matplotlib.ticker import FuncFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
@@ -134,9 +133,9 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
              label = r'')
 
     ax1.plot([0.6, 0.6], [0.45, 0.75],
-    		 linewidth = lineWidth,
-    		 color = '#CCCCCC',
-    		 zorder = 1)
+             linewidth = lineWidth,
+             color = '#CCCCCC',
+             zorder = 1)
 
     # horizontal arrows
     dx = 0.2 # x displacement of the arrow head
@@ -171,9 +170,9 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
              label = r'')
 
     ax1.plot([0.05, 0.35], [0.6, 0.6],
-    		 linewidth = lineWidth,
-    		 color = '#CCCCCC',
-    		 zorder = 1)
+             linewidth = lineWidth,
+             color = '#CCCCCC',
+             zorder = 1)
 
     # vertical arrows
     dy = 0.2 # y displacement of the arrow head
@@ -210,9 +209,9 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
              label = r'')
 
     ax1.plot([0.05, 0.35], [0.35, 0.05],
-    		 linewidth = lineWidth,
-    		 color = '#CCCCCC',
-    		 zorder = 1)
+             linewidth = lineWidth,
+             color = '#CCCCCC',
+             zorder = 1)
 
     ax1.arrow(0.2, 0.2, dx, dy,
               lw = 0.5,
