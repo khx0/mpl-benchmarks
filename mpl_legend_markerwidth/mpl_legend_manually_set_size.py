@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-10
+# date: 2020-11-15
 # file: mpl_legend_manually_set_size.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import sys
@@ -72,7 +72,8 @@ def Plot(X, Y, Z, labels, outname, outdir, pColors, titlestr = None,
     ax1.tick_params(axis = 'y', which = 'major', pad = 1.5, zorder = 10)
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     ax1.set_xlabel(r'x label', fontsize = 8.0)
     ax1.set_ylabel(r'y label', fontsize = 8.0)
     ax1.xaxis.labelpad = 3.0
