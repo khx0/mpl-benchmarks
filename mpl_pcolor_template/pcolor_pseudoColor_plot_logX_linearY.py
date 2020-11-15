@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-11
+# date: 2020-11-15
 # file: pcolor_pseudoColor_plot_logX_linearY.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import sys
@@ -152,8 +152,6 @@ def plot_pcolor(X, Y, Z, fProps, xFormat, yFormat, zFormat, zColor, outname, out
         ax1.xaxis.set_major_locator(ticker.LogLocator(base = 10.0, numticks = 8))
         ax1.xaxis.set_minor_locator(ticker.LogLocator(base = 10.0, numticks = 8,
                                     subs = [2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0]))
-#         for label in ax1.xaxis.get_ticklabels()[1::2]:
-#             label.set_visible(False)
         ax1.set_xlim(xFormat[1], xFormat[2]) # xmin, xmax
     else:
         print("Error: Unknown xFormat[0] type encountered.")
