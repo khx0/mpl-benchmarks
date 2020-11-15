@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-08
+# date: 2020-11-15
 # file: mpl_fillbetween.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import os
@@ -127,18 +127,14 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
 
     ######################################################################################
     # set plot range
-    if xFormat == None:
-        pass
-    else:
+    if xFormat:
         major_x_ticks = np.arange(xFormat[2], xFormat[3], xFormat[4])
         minor_x_ticks = np.arange(xFormat[2], xFormat[3], xFormat[5])
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xFormat[0], xFormat[1])
 
-    if yFormat == None:
-        pass
-    else:
+    if yFormat:
         major_y_ticks = np.arange(yFormat[2], yFormat[3], yFormat[4])
         minor_y_ticks = np.arange(yFormat[2], yFormat[3], yFormat[5])
         ax1.set_yticks(major_y_ticks)
