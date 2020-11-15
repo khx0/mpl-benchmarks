@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-11
+# date: 2020-11-15
 # file: mpl_logscale_minor_ticks.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 # requires: pdf2svg installed
 ##########################################################################################
 
@@ -167,9 +167,11 @@ def Plot(type, X, outname, outdir, pColors, showlabels = True, titlestr = None,
 
     ax1.set_xlim(5.0e-13, 2.5e-6)
 
+    ###############################################################################
     # uncomment the two lines below for only using every second x-tick major label
     #     for label in ax1.xaxis.get_ticklabels()[::2]:
     #         label.set_visible(False)
+    ###############################################################################
 
     ax1.set_axisbelow(False)
 
@@ -202,6 +204,8 @@ def Plot(type, X, outname, outdir, pColors, showlabels = True, titlestr = None,
 
 if __name__ == '__main__':
 
+    convert2svg = False
+
     # create data to plot
     n_vispoints = 1000
     xValues = np.logspace(-13, -5, n_vispoints)
@@ -223,9 +227,10 @@ if __name__ == '__main__':
                       outdir = OUTDIR,
                       pColors = colorVals)
 
-#     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
-#           ' ' + os.path.join(OUTDIR, returnname + '.svg')
-#     os.system(cmd)
+    if convert2svg:
+        cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
+            ' ' + os.path.join(OUTDIR, returnname + '.svg')
+        os.system(cmd)
 
     outname = 'mpl_logscale_minor_tick_location_handling_version_B'
     outname += '_Python_' + platform.python_version() + \
@@ -237,6 +242,7 @@ if __name__ == '__main__':
                       outdir = OUTDIR,
                       pColors = colorVals)
 
-#     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
-#           ' ' + os.path.join(OUTDIR, returnname + '.svg')
-#     os.system(cmd)
+    if convert2svg:
+        cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
+            ' ' + os.path.join(OUTDIR, returnname + '.svg')
+        os.system(cmd)

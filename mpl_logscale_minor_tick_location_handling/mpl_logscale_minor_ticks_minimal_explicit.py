@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-11
+# date: 2020-11-15
 # file: mpl_logscale_minor_ticks_minimal_explicit.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 """
@@ -114,4 +114,5 @@ if __name__ == '__main__':
     outname = 'mpl_logscale_minor_tick_location_handling_minimal_version_C_explicit'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
+
     plot_minimal(X, outname)

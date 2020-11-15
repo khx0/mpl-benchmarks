@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-11
+# date: 2020-11-15
 # file: mpl_logscale_minor_ticks.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 # dependency: pdf2svg cmd line tool
 ##########################################################################################
 
@@ -203,6 +203,8 @@ def Plot(X, outname, outdir, pColors, showlabels = True, titlestr = None,
 
 if __name__ == '__main__':
 
+    convert2svg = False
+
     # create data to plot
     n_vispoints = 1000
     xValues = np.logspace(-13, -5, n_vispoints)
@@ -223,6 +225,7 @@ if __name__ == '__main__':
                       outdir = OUTDIR,
                       pColors = colorVals)
 
-#     cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
-#           ' ' + os.path.join(OUTDIR, returnname + '.svg')
-#     os.system(cmd)
+    if convert2svg:
+        cmd = 'pdf2svg ' + os.path.join(OUTDIR, returnname + '.pdf') + \
+            ' ' + os.path.join(OUTDIR, returnname + '.svg')
+        os.system(cmd)
