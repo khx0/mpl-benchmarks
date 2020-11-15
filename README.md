@@ -14,14 +14,23 @@ The full versions are often heavily customized, whilst the minimal
 versions are meant to be minimal requirement python scripts that focus on
 a single issue, without further ado.
 
-## Python and matplotlib versions
-All shown examples have been tested with Python 3 (version 3.7.6)
-and matplotlib version 3.3.2.
-Update to mpl version 3.3.3 is in progress.
-Support for Python 2 is dropped.
-However copying some snippets from the scripts will
-most likely also (still) work with Python 2.7, as they were originally
-developed using Python 2.7 starting with matplotlib 2.2.3.
+### Example: 2d correlation plot with marginal densities
+
+![Demo3](/mpl_correlation2d_with_marginals/demo_composition.png)
+
+The python scripts which produce the above example are placed in
+```
+/mpl_correlation2d_with_marginals
+```
+
+### Example: pseudo color plot (mpl's pcolormesh)
+
+![Demo2](/mpl_heatmap_log_xy-scale/demo/out/pcolor_showcase_figure_composition.png)
+
+The python script which produces the above two figures can be found under
+```
+/mpl_heatmap_log_xy-scale/demo
+```
 
 ### Example: pcolormesh pseudo color plot
 
@@ -34,30 +43,22 @@ The script which produces the shown panels is loacted in
 /mpl_pcolormesh_with_fixed_size_and_relative_border_margins
 ```
 
-### Example: pseudo color plot (mpl's pcolormesh)
+## Python and matplotlib versions
+All shown examples have been tested with Python 3 (version 3.7.6)
+and matplotlib version 3.3.2.
+Update to mpl version 3.3.3 is in progress.
+Support for Python 2 is dropped.
+However copying some snippets from the scripts will
+most likely also (still) work with Python 2.7, as they were originally
+developed using Python 2.7 starting with matplotlib 2.2.3.
 
-![Demo2](/mpl_heatmap_log_xy-scale/demo/out/pcolor_showcase_figure_composition.png)
-
-The python script which produces the above two figures can be found under
-```
-/mpl_heatmap_log_xy-scale/demo
-```
-
-### Example: 2d correlation plot with marginal densities
-
-![Demo3](/mpl_correlation2d_with_marginals/demo_composition.png)
-
-The python scripts which produce the above example are placed in
-```
-/mpl_correlation2d_with_marginals
-```
 ### Testing
 For some modules unit tests are provided in the
 ```
 /unit-tests
 ```
 directory which can be run using the unittest module or via pytest.
-All tests were done using pytest version 5.4.1.
+All tests were done using pytest version 6.1.2.
 
 ### Changes
 For changes made to this repository see the provided `changelog.md` file in root.
