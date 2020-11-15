@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-10
+# date: 2020-11-14
 # file: plot_correlatedGaussian_wMarginals.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 # description: plots the correlated data samples that can be generated using the
 # provided create_samples.py script
@@ -101,9 +101,9 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
     marginY.yaxis.labelpad = 7.5
     ######################################################################################
     # plotting
-    
+
     lineWidth = 1.0
-    
+
     ax1.scatter(X[:, 0], X[:, 1],
                 s = 12.0,
                 marker = '.',
@@ -112,7 +112,7 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
                 edgecolor = 'None',
                 zorder = 11,
                 alpha = 0.18)
-    
+
     marginX.hist(X[:, 0], histtype = 'stepfilled',
                  orientation = 'vertical',
                  color = pColors[1],
@@ -120,14 +120,14 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
                  bins = 45,
                  density = True,
                  label = r'sampling')
-    
+
     marginX.plot(marginalX[:, 0], marginalX[:, 1],
                  lw = 1.25,
                  color = pColors[0],
                  label = r'reference')
-    
+
     marginX.invert_yaxis() 
-        
+
     marginY.hist(X[:, 1], histtype = 'stepfilled',
                  orientation = 'horizontal',
                  color = pColors[1],
@@ -140,9 +140,9 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
                  lw = 1.25,
                  color = pColors[0],
                  label = r'reference')
-    
+
     marginY.invert_xaxis()
-    
+
     ######################################################################################
     # annotations
 
@@ -154,7 +154,7 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
                   horizontalalignment = 'left',
                   zorder = 20,
                   clip_on = False)
-    
+
     label = r'$p(x_2\, |\, \mu_2, \sigma_2)$'
     marginY.annotate(label,
                   xy = (0.075, 0.04),
@@ -179,7 +179,7 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
                  horizontalalignment = 'left',
                  zorder = 20,
                  clip_on = False)
-                 
+
     ax1.annotate(params[0],
                  xy = (-0.465, -0.21),
                  xycoords = 'axes fraction',
@@ -187,7 +187,7 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
                  horizontalalignment = 'left',
                  zorder = 20,
                  clip_on = False)
-                 
+
     ax1.annotate(r'# samples $= 2\cdot 10^{4}$',
                  xy = (-0.465, -0.28),
                  xycoords = 'axes fraction',
@@ -195,7 +195,7 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
                  horizontalalignment = 'left',
                  zorder = 20,
                  clip_on = False)
-    
+
     ######################################################################################
     # legend
     if drawLegend:
@@ -318,7 +318,7 @@ if __name__ == '__main__':
     # inspect random samples
     print("sample1.shape =", sample1.shape)
     print("sample2.shape =", sample2.shape)
-    
+
     print("np.min(sample1) =", np.min(sample1))
     print("np.max(sample1) =", np.max(sample1))
     print("np.min(sample2) =", np.min(sample2))
