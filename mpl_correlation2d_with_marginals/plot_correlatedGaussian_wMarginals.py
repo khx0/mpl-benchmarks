@@ -94,7 +94,8 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
 
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     marginX.set_xlabel(r'$x_1$', fontsize = 9.0)
     marginY.set_ylabel(r'$x_2$', fontsize = 9.0, rotation = 0.0)
 

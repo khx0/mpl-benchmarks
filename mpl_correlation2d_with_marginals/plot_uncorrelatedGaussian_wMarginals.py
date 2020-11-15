@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-10
+# date: 2020-11-14
 # file: plot_uncorrelateGaussian_wMarginals.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 # description: plots the uncorrelated data samples that can be generated using the
 # provided create_samples.py script
@@ -94,7 +94,8 @@ def Plot(X, marginalX, marginalY, params, outname, outdir, pColors,
 
     ######################################################################################
     # labeling
-    plt.title(titlestr)
+    if titlestr:
+        plt.title(titlestr)
     marginX.set_xlabel(r'$x_1$', fontsize = 9.0)
     marginY.set_ylabel(r'$x_2$', fontsize = 9.0, rotation = 0.0)
 
