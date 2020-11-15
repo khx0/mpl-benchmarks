@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-11
+# date: 2020-11-15
 # file: mpl_margins_minimal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 ##########################################################################################
@@ -49,7 +49,7 @@ os.makedirs(OUTDIR, exist_ok = True)
 if __name__ == '__main__':
 
     xMargin, yMargin = 0.073, 0.073
-    outname = 'mpl_margins_D_xMargin_{}_yMargin_{}_minimal'.format(xMargin, yMargin)
+    outname = f'mpl_margins_D_xMargin_{xMargin}_yMargin_{yMargin}_minimal'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     outname += '_' + today
@@ -79,7 +79,6 @@ if __name__ == '__main__':
              zorder = 1)
 
     # annotation
-    # labelString = 'x margin: {}\ny margin: {}'.format(xMargin, yMargin)
     label_str = f'x margin: {xMargin}\ny margin: {yMargin}'
 
     ax1.annotate(label_str,
