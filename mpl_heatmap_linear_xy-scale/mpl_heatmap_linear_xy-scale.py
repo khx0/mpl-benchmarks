@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-10
+# date: 2020-11-15
 # file: mpl_heatmap_linear_xy-scale.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import sys
@@ -16,7 +16,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-# from matplotlib.pyplot import legend
 import matplotlib.colors as colors
 import matplotlib.cm as cm
 
@@ -167,7 +166,6 @@ def plot_pcolor(X, Y, Z, params,
         minor_x_ticks = np.arange(xTicksMin, xTicksMax, dxMinor)
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-
     elif xFormatObj[0] == 'log':
         ax1.set_xscale('log')
         xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormatObj[1]
@@ -190,7 +188,6 @@ def plot_pcolor(X, Y, Z, params,
         minor_y_ticks = np.arange(yTicksMin, yTicksMax, dyMinor)
         ax1.set_yticks(major_y_ticks)
         ax1.set_yticks(minor_y_ticks, minor = True)
-
     elif yFormatObj[0] == 'log':
         ax1.set_yscale('log')
         ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormatObj[1]
@@ -222,8 +219,8 @@ def plot_pcolor(X, Y, Z, params,
     if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
     if saveSVG:
-        cmd = 'pdf2svg ' + os.path.join(OUTDIR, outname + '.pdf') + \
-              ' ' + os.path.join(OUTDIR, outname + '.svg')
+        cmd = 'pdf2svg ' + os.path.join(outdir, outname + '.pdf') + \
+              ' ' + os.path.join(outdir, outname + '.svg')
         os.system(cmd)
     ######################################################################################
     # close handles
@@ -268,8 +265,8 @@ if __name__ == '__main__':
     xBoxCoords = getPcolorBoxCoordinates(xVals)
     yBoxCoords = getPcolorBoxCoordinates(yVals)
 
-    assert xBoxCoords.shape == (len(xVals) + 1,), "Error: Shape assertion failed."
-    assert yBoxCoords.shape == (len(yVals) + 1,), "Error: Shape assertion failed."
+    assert xBoxCoords.shape == (len(xVals) + 1,), "Shape assertion failed."
+    assert yBoxCoords.shape == (len(yVals) + 1,), "Shape assertion failed."
 
     # call plot function
     fProps = [4.0, 4.0, 0.20, 0.80, 0.20, 0.88]
