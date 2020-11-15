@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-10
+# date: 2020-11-15
 # file: mpl_histogram_of_already_binned_data.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.2
+# tested with python 3.7.6 in conjunction with mpl version 3.3.3
 ##########################################################################################
 
 import os
@@ -132,7 +132,6 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
     ######################################################################################
 
 
-
     ######################################################################################
     # annotations
     if labelString:
@@ -145,18 +144,14 @@ def Plot(bins, values, outname, outdir, pColors, labelString = None,
 
     ######################################################################################
     # set plot range and scale
-    if xFormat == None:
-        pass # mpl autoscale
-    else:
+    if xFormat:
         xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormat
         major_x_ticks = np.arange(xTicksMin, xTicksMax, dxMajor)
         minor_x_ticks = np.arange(xTicksMin, xTicksMax, dxMinor)
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
         ax1.set_xlim(xmin, xmax) # set x limits last (order matters here)
-    if yFormat == None:
-        pass # mpl autoscale
-    else:
+    if yFormat:
         ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormat
         major_y_ticks = np.arange(yTicksMin, yTicksMax, dyMajor)
         minor_y_ticks = np.arange(yTicksMin, yTicksMax, dyMinor)
