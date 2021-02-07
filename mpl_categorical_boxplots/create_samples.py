@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-10
+# date: 2021-02-07
 # file: create_samples.py
-# tested with python 3.7.6 and numpy 1.19.4
+# tested with python 3.7.6 and numpy 1.20.0
 ##########################################################################################
 # description:
 # Creates 1d normal random samples and saves them to the disk as *.dat and *.npy files.
