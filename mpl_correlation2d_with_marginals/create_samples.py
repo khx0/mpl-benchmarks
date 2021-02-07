@@ -3,13 +3,13 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-10
+# date: 2021-02-07
 # file: create_samples.py
 # tested with python 3.7.6
 ##########################################################################################
 # description:
 # Creates fully correlated (1) and fully independent (2) normally distributed
-# random samples using inverse transform sampling.
+# random samples using inverse transform sampling (ITS).
 ##########################################################################################
 
 import os
@@ -59,7 +59,7 @@ if __name__ == '__main__':
     ######################################################################################
     # 02 - Create two independent Gaussian random realizations
 
-    np.random.seed(seed_value)
+    np.random.seed(seed_value) # reset the seed value
 
     samples = np.zeros((n_samples, 2))
     samples[:, 0] = norm.rvs(loc = mu1, scale = sigma1, size = n_samples)

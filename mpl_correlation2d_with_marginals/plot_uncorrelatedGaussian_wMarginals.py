@@ -3,11 +3,11 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-15
+# date: 2021-02-07
 # file: plot_uncorrelateGaussian_wMarginals.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.3
+# tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
-# description: plots the uncorrelated data samples that can be generated using the
+# description: plots uncorrelated data samples that can be generated using the
 # provided create_samples.py script
 ##########################################################################################
 
