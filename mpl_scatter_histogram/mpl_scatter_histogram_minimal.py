@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-13
+# date: 2021-02-11
 # file: mpl_scatter_histogram_minimal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.3
+# tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
 
 import os
@@ -36,7 +36,7 @@ def getHistogramCoordinates(X, nBins, density = True):
     '''
     hist, bin_edges = np.histogram(X, bins = nBins, density = density)
     bin_centers = (bin_edges[1:] + bin_edges[0:-1]) / 2.0
-    assert hist.shape == bin_centers.shape, "Error: Shape assertion failed."
+    assert hist.shape == bin_centers.shape, "Shape assertion failed."
 
     res = np.zeros((nBins, 2))
     res[:, 0] = bin_centers

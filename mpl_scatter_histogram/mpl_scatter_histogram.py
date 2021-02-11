@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-13
+# date: 2021-02-11
 # file: mpl_scatter_histogram.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.3
+# tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
 
 import sys
@@ -185,7 +185,7 @@ if __name__ == '__main__':
     np.random.seed(123456789)
     samples = np.random.exponential(meanValue, n_samples)
     scatterData = getHistogramCoordinates(samples,
-                                          nBins = n_bins,
+                                          n_bins = n_bins,
                                           density = True)
 
     # create analytical curve
