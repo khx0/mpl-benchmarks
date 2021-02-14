@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-15
+# date: 2021-02-14
 # file: mpl_histogram_of_already_binned_data.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.3
+# tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
 
 import os
@@ -199,7 +199,7 @@ if __name__ == '__main__':
     bins = np.linspace(xmin, xmax, n_bins + 1)
     binCenters = bins[:-1] + dx / 2.0
 
-    pValues = np.zeros((n_bins,))    
+    pValues = np.zeros((n_bins,))
     pValues = norm.pdf(binCenters,
                        loc = binCenters[14],
                        scale = 0.184)
