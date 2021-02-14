@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-15
+# date: 2021-02-14
 # file: mpl_heatmap_log_xy-scale.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.3
+# tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
 
 import sys
@@ -69,7 +69,7 @@ def plot_pcolor(X, Y, Z, params, fProps,
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
-    tick_fontsize = 8.0
+    tick_fontsize = 6.0
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(tick_fontsize)
     for tick in ax1.yaxis.get_major_ticks():
