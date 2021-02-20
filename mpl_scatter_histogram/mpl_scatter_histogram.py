@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-11
+# date: 2021-02-20
 # file: mpl_scatter_histogram.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
