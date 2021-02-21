@@ -105,7 +105,7 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     f.subplots_adjust(left = lFrac, right = rFrac)
     f.subplots_adjust(bottom = bFrac, top = tFrac)
     ######################################################################################
-    labelfontsize = 10.0
+    labelfontsize = 8.0
 
     for tick in ax1.xaxis.get_major_ticks():
         tick.label.set_fontsize(labelfontsize)
@@ -121,10 +121,10 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     # labeling
     if titlestr:
         plt.title(titlestr)
-    ax1.set_xlabel(r'x label', fontsize = 10.0)
-    ax1.set_ylabel(r'# of items', fontsize = 10.0)
-    ax1.xaxis.labelpad = 3.5
-    ax1.yaxis.labelpad = 4.0
+    ax1.set_xlabel(r'x label', fontsize = 8.0)
+    ax1.set_ylabel(r'# of items', fontsize = 8.0)
+    ax1.xaxis.labelpad = 3.0
+    ax1.yaxis.labelpad = 3.0
     ######################################################################################
     # plotting
 
