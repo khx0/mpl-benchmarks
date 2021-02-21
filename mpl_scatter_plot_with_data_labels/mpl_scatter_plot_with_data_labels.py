@@ -6,6 +6,12 @@
 # date: 2021-02-20
 # file: mpl_scatter_plot_with_data_labels.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# description:
+# This script illustrates a couple of non-default features.
+# Among these are:
+#  * data labels for scatter points using mpl's annotate function
+#  * scientific string formatting for data labels
+#  * scientific string formatting for large y scale values (offset text handling)
 ##########################################################################################
 
 import os
