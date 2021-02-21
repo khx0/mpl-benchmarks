@@ -3,15 +3,16 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-20
+# date: 2021-02-21
 # file: mpl_scatter_plot_with_data_labels.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
 # description:
 # This script illustrates a couple of non-default features.
 # Among these are:
-#  * data labels for scatter points using mpl's annotate function
-#  * scientific string formatting for data labels
-#  * scientific string formatting for large y scale values (offset text handling)
+# * data labels for scatter points using mpl's annotate function
+# * scientific string formatting for data labels
+# * scientific string formatting for large y scale values (offset text handling)
+# * horizontal grid lines only using ax1.yaxis.grid(*)
 ##########################################################################################
 
 import os
@@ -222,7 +223,7 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
 
     ymin, ymax = ax1.get_ylim()
     dy = np.abs(ymax - ymin) # y value span  
-    y_offset = 0.05 * dy
+    y_offset = 0.06 * dy # 6 per cent of y extent
 
     for i in range(n_datapoints - 1):
 
@@ -248,7 +249,6 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
                  verticalalignment = 'center',
                  zorder = 8,
                  clip_on = False)
-
 
     ######################################################################################
     # grid options
