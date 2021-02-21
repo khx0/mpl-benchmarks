@@ -14,6 +14,7 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
+from matplotlib.ticker import FuncFormatter
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -21,6 +22,34 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
+
+def cleanFormatter(x, pos = None):
+    '''
+    will format 0.0 as 0 and
+    will format 1.0 as 1
+    '''
+    return '{:g}'.format(x)
+
+def str_format_power_of_ten(text: str) -> str:
+    '''
+    Assumes a scientific formatted input string of the type 1.27e-05
+    and will output $1.27 x 10^{-5}$ with proper power of ten formatting.
+    '''
+    index = text.index('e')
+    mantisse, exponent = text[:index], text[(index + 1):]
+    exponent = exponent.lstrip('0+') # strip learding plus sign and zeros from the exponent
+    label = mantisse + r'$ \times\mathdefault{10^{' +  exponent + '}}$'
+    return label
+
+def str_format_power_of_ten_exponent(text):
+    '''
+    Assumes a scientific formatted input string of the type 1.27e-05
+    and will output the exponent only, e.g. $x 10^{-5}$ with proper power of ten formatting.
+    '''
+    index = text.index('e')
+    exponent = text[(index + 1):]
+    label = r'$\mathdefault{\times \, 10^{' +  exponent + '}}$'
+    return label
 
 def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac = 0.9):
     '''
@@ -43,10 +72,9 @@ def getFigureProps(width, height, lFrac = 0.17, rFrac = 0.9, bFrac = 0.17, tFrac
     fHeight = axesHeight / (tFrac - bFrac)
     return fWidth, fHeight, lFrac, rFrac, bFrac, tFrac
 
-
 def Plot(X, outname, outdir, pColors, titlestr = None,
-         grid = True, drawLegend = False, xFormat = None, yFormat = None,
-         savePDF = True, savePNG = True, datestamp = True):
+         grid = True, drawLegend = False, xFormat = None, yFormat = None, str_format_func = None,
+         savePDF = True, savePNG = False, datestamp = True):
 
     mpl.rcParams['xtick.top'] = False
     mpl.rcParams['xtick.bottom'] = True
@@ -116,32 +144,12 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
              lw = lineWidth,
              zorder = 2)
 
-    # create data point labels using annotations
-    n_datapoints = X.shape[0]
 
-    for i in range(n_datapoints - 1):
 
-        label = f'{int(X[i, 1]):.2e}'
-
-        ax1.annotate(label,
-                     xy = (X[i, 0] - 0.06, X[i, 1] - 0.078e6),
-                     xycoords = 'data',
-                     fontsize = 6.0,
-                     horizontalalignment = 'left',
-                     zorder = 8,
-                     clip_on = False)
-
-    # manually set label for the last data point
-    label = f'{int(X[-1, 1]):.2e}'
-
-    ax1.annotate(label,
-                 xy = (X[-1, 0] - 1.3, X[-1, 1]),
-                 xycoords = 'data',
-                 fontsize = 6.0,
-                 horizontalalignment = 'left',
-                 verticalalignment = 'center',
-                 zorder = 8,
-                 clip_on = False)
+    # tick label formatting
+    # majorFormatter = FuncFormatter(cleanFormatter)
+    # ax1.xaxis.set_major_formatter(majorFormatter)
+    # ax1.yaxis.set_major_formatter(majorFormatter)
 
     ######################################################################################
     ######################################################################################
@@ -154,19 +162,12 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     offset = ax1.get_yaxis().get_offset_text()
     ax1.yaxis.offsetText.set_visible(False)
 
-    def formatPowerOfTen(text):
-
-        index = text.index('e')
-        exponent = text[(index + 1):]
-        label = r'$\mathdefault{\times \, 10^{' +  exponent + '}}$'
-        return label
-
-    powerLabel = formatPowerOfTen(offset.get_text())
+    powerLabel = str_format_power_of_ten_exponent(offset.get_text())
 
     ax1.annotate(powerLabel,
                  xy = (0.0, 1.02),
                  xycoords = 'axes fraction',
-                 fontsize = 10.0,
+                 fontsize = 8.0,
                  horizontalalignment = 'left')
     os.remove('./dummy_figure_TMP.svg')
     ######################################################################################
@@ -209,14 +210,56 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
 
+
+    # create data point labels using annotations
+    n_datapoints = X.shape[0]
+
+    ymin, ymax = ax1.get_ylim()
+    dy = np.abs(ymax - ymin) # y value span  
+    y_offset = 0.05 * dy
+
+    for i in range(n_datapoints - 1):
+
+        label = f'{int(X[i, 1]):.2e}'
+        label = str_format_func(label)
+        ax1.annotate(label,
+                     xy = (X[i, 0], X[i, 1] - y_offset),
+                     xycoords = 'data',
+                     fontsize = 6.0,
+                     horizontalalignment = 'left',
+                     verticalalignment = 'center',
+                     zorder = 8,
+                     clip_on = False)
+
+    # manually set label for the last data point
+    label = f'{int(X[-1, 1]):.2e}'
+    label = str_format_func(label)
+    ax1.annotate(label,
+                 xy = (X[-1, 0] - 1.3, X[-1, 1]),
+                 xycoords = 'data',
+                 fontsize = 6.0,
+                 horizontalalignment = 'left',
+                 verticalalignment = 'center',
+                 zorder = 8,
+                 clip_on = False)
+
+
     ######################################################################################
     # grid options
     if grid:
-        ax1.yaxis.grid(color = 'gray', linestyle = '--', alpha = 0.4, which = 'major',
-                 linewidth = 1.0)
+        ax1.yaxis.grid(color = 'gray',
+                       linestyle = '--',
+                       dashes = [6.0, 3.0],
+                       alpha = 0.4,
+                       which = 'major',
+                       linewidth = 0.5)
         ax1.yaxis.grid('on')
-        ax1.yaxis.grid(color = 'gray', linestyle = '--', alpha = 0.4, which = 'minor',
-                 linewidth = 1.0)
+        ax1.yaxis.grid(color = 'gray',
+                       linestyle = '--',
+                       dashes = [6.0, 3.0],
+                       alpha = 0.4,
+                       which = 'minor',
+                       linewidth = 0.5)
         ax1.yaxis.grid('on', which = 'minor')
     ######################################################################################
     # save to file
@@ -235,10 +278,6 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
 
 if __name__ == '__main__':
 
-    outname = 'mpl_scatter_plot_with_data_labels'
-    outname += '_Python_' + platform.python_version() + \
-               '_mpl_' + mpl.__version__
-
     # define dummy data
     X = np.array([[1, 129475],
                   [2, 201450],
@@ -250,15 +289,27 @@ if __name__ == '__main__':
     print(type(X))
     print("X.shape =", X.shape)
 
-    # plotting
+    # plot settings
     xFormat = (0.55, 6.45, 0.0, 7.5, 1.0, 1.0)
     yFormat = (0.0, 1.077e6, 0.0, 1.125e6, 2.0e5, 1.0e5)
-
     pColors = ['k']
 
-    outname = Plot(X = X,
-                   outname = outname,
-                   outdir = OUTDIR,
-                   pColors = pColors,
-                   xFormat = xFormat,
-                   yFormat = yFormat)
+    # set data label str format functions
+    data_label_str_formatters = [
+        lambda x: x,
+        str_format_power_of_ten
+    ]
+
+    for i, data_label_str_formatter in enumerate(data_label_str_formatters):
+
+        outname = f'mpl_scatter_plot_with_data_labels_variant_{i}'
+        outname += '_Python_' + platform.python_version() + \
+                '_mpl_' + mpl.__version__
+
+        outname = Plot(X = X,
+                       outname = outname,
+                       outdir = OUTDIR,
+                       pColors = pColors,
+                       xFormat = xFormat,
+                       yFormat = yFormat,
+                       str_format_func = data_label_str_formatter)
