@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-13
+# date: 2021-02-22
 # file: mpl_xyFormat_passing.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.3
+# tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
 
 ##########################################################################################
@@ -194,7 +194,6 @@ if __name__ == '__main__':
     # plot data
 
     # matplotlib's default autoscaling
-
     xFormat = None
     yFormat = None
 
@@ -210,7 +209,6 @@ if __name__ == '__main__':
          pColors = ['C0'])
 
     # example 1
-
     xFormat = (-0.2, 10.2, 0.0, 10.1, 5.0, 1.0)
     yFormat = (-1.1, 1.1, -1.0, 1.05, 0.5, 0.1)
 
@@ -226,7 +224,6 @@ if __name__ == '__main__':
          pColors = ['C0'])
 
     # example 2
-
     xFormat = (0.0, 2.0 * np.pi, 0.0, 2.0 * np.pi * 1.02, 1.0, 0.5)
     yFormat = (-1.1, 1.1, -1.0, 1.05, 1.0, 0.2)
 
