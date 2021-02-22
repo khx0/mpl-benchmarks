@@ -278,7 +278,7 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     if savePDF: # save to file using pdf backend
         f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = 300, transparent = True)
     if savePNG:
-        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = False)
+        f.savefig(os.path.join(outdir, outname) + '.png', dpi = 600, transparent = True)
     ######################################################################################
     # close handles
     plt.cla()
@@ -322,4 +322,5 @@ if __name__ == '__main__':
                        pColors = pColors,
                        xFormat = xFormat,
                        yFormat = yFormat,
-                       str_format_func = data_label_str_formatter)
+                       str_format_func = data_label_str_formatter,
+                       savePNG = True)
