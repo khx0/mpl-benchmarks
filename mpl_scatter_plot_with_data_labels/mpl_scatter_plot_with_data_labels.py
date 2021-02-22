@@ -11,6 +11,7 @@
 # * data labels for scatter points using mpl's annotate function (using data coords)
 # * scientific string formatting for data labels
 # * scientific string formatting for large y scale values (offset text handling)
+# * clean str formatting in conjunction with scientific axis labeling
 # * horizontal grid lines only using ax1.yaxis.grid(...)
 ##########################################################################################
 
@@ -27,13 +28,6 @@ BASEDIR = os.path.dirname(os.path.abspath(__file__))
 OUTDIR = os.path.join(BASEDIR, 'out')
 
 os.makedirs(OUTDIR, exist_ok = True)
-
-def cleanFormatter(x, pos = None):
-    '''
-    will format 0.0 as 0 and
-    will format 1.0 as 1
-    '''
-    return '{:g}'.format(x)
 
 def str_format_power_of_ten(text: str) -> str:
     '''
