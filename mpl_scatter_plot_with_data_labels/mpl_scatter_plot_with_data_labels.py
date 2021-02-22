@@ -3,16 +3,15 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-21
+# date: 2021-02-22
 # file: mpl_scatter_plot_with_data_labels.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
 # description:
-# This script illustrates a couple of non-default features.
-# Among these are:
-# * data labels for scatter points using mpl's annotate function
+# This script illustrates a couple of non-default features:
+# * data labels for scatter points using mpl's annotate function (using data coords)
 # * scientific string formatting for data labels
 # * scientific string formatting for large y scale values (offset text handling)
-# * horizontal grid lines only using ax1.yaxis.grid(*)
+# * horizontal grid lines only using ax1.yaxis.grid(...)
 ##########################################################################################
 
 import os
@@ -21,7 +20,6 @@ import datetime
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.ticker import FuncFormatter
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -151,13 +149,6 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
              lw = lineWidth,
              zorder = 2)
 
-
-
-    # tick label formatting
-    # majorFormatter = FuncFormatter(cleanFormatter)
-    # ax1.xaxis.set_major_formatter(majorFormatter)
-    # ax1.yaxis.set_major_formatter(majorFormatter)
-
     ######################################################################################
     ######################################################################################
     # offset text handling
@@ -212,12 +203,31 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
         ax1.set_yticks(minor_y_ticks, minor = True)
         ax1.set_ylim(yFormat[0], yFormat[1])
 
+    ###########################################################################
+    # clean tick label formatting
+    # Caution: Be sure you know what you are doing. Manual edits like this
+    # can cause a lot of headaches if used unaware.
+    # Also, when used in conjunction with scientific axis formatting, make
+    # sure to call this snippet after the offset text handling to set the
+    # scientific axis.
+    y_ticklabels = ax1.get_yticklabels() # must be called after f.savefig(...)
+    # y_ticklabels is a list
+    for y_tick in y_ticklabels:
+        tmp = float(y_tick.get_text())
+        if np.isclose(tmp, 0.0):
+            y_tick.set_text('0')
+        elif np.isclose(tmp, 1.0):
+            y_tick.set_text('1')
+    ax1.set_yticklabels(y_ticklabels)
+    ###########################################################################
+
     ax1.set_axisbelow(False)
 
     for spine in ax1.spines.values(): # ax1.spines is a dictionary
         spine.set_zorder(10)
 
-
+    ###########################################################################
+    # data point labels (annotations)
     # create data point labels using annotations
     n_datapoints = X.shape[0]
 
@@ -297,7 +307,7 @@ if __name__ == '__main__':
 
     # plot settings
     xFormat = (0.55, 6.45, 0.0, 7.5, 1.0, 1.0)
-    yFormat = (0.0, 1.077e6, 0.0, 1.125e6, 2.0e5, 1.0e5)
+    yFormat = (0.0, 1.077e6, 0.0, 1.077e6, 2.0e5, 1.0e5)
     pColors = ['k']
 
     # set data label str format functions
