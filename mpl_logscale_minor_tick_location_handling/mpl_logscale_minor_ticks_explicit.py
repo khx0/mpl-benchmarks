@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-11-15
+# date: 2021-02-23
 # file: mpl_logscale_minor_ticks.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.3
+# tested with python 3.7.6 in conjunction with mpl version 3.3.4
 # dependency: pdf2svg cmd line tool
 ##########################################################################################
 
@@ -180,10 +180,16 @@ def Plot(X, outname, outdir, pColors, showlabels = True, titlestr = None,
     ######################################################################################
     # grid options
     if grid:
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.2, which = 'major',
+        ax1.grid(color = 'gray',
+                 linestyle = '-',
+                 alpha = 0.2,
+                 which = 'major',
                  linewidth = 0.4)
         ax1.grid(True)
-        ax1.grid(color = 'gray', linestyle = '-', alpha = 0.05, which = 'minor',
+        ax1.grid(color = 'gray',
+                 linestyle = '-',
+                 alpha = 0.05,
+                 which = 'minor',
                  linewidth = 0.2)
         ax1.grid(True, which = 'minor')
     ######################################################################################
