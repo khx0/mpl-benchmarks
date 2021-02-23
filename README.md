@@ -43,6 +43,17 @@ The script which produces the shown panels is loacted in
 /mpl_pcolormesh_with_fixed_size_and_relative_border_margins
 ```
 
+### Example: scatter plot with data labels
+
+The example below shows how to create a scatter plot with data lables using nice power of ten string formatting both for the data labels and for the scientific y-axis scaling.
+
+![Demo4](/mpl_scatter_plot_with_data_labels/demo/composition_per_2021-02-22.png)
+
+The script which produces the shown panels is loacted in 
+```
+/mpl_scatter_plot_with_data_labels
+```
+
 ## Python and matplotlib versions
 All shown examples have been tested with Python 3 (version 3.7.6)
 and matplotlib version 3.3.3. Update to 3.3.4 currently in progress.
