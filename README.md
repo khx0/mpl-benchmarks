@@ -38,7 +38,7 @@ For visualizing small 2d matrices, this pcolormesh assay illustrates a nice way 
 
 ![Demo1](/mpl_pcolormesh_with_fixed_size_and_relative_border_margins/demonstration/pcolormesh_array_composition_2019-12-16.png)
 
-The script which produces the shown panels is loacted in 
+The script which produces the shown panels is located in 
 ```
 /mpl_pcolormesh_with_fixed_size_and_relative_border_margins
 ```
@@ -49,7 +49,7 @@ The example below shows how to create a scatter plot with data lables using nice
 
 ![Demo4](/mpl_scatter_plot_with_data_labels/demo/composition_per_2021-02-22.png)
 
-The script which produces the shown panels is loacted in 
+The script which produces the above figure is located in
 ```
 /mpl_scatter_plot_with_data_labels
 ```
