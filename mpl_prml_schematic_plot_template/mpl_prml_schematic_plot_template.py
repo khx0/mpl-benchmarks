@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-24
+# date: 2021-02-25
 # file: mpl_prml_schematic_plot_template.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
