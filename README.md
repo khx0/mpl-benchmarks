@@ -56,7 +56,7 @@ The script which produces the above figure is located in
 
 ## Python and matplotlib versions
 All shown examples have been tested with Python 3 (version 3.7.6)
-and matplotlib version 3.3.3. Update to 3.3.4 currently in progress.
+and matplotlib version 3.3.4.
 Support for Python 2 is dropped.
 However copying some snippets from the scripts will
 most likely also (still) work with Python 2.7, as they were originally
