@@ -1,5 +1,38 @@
 # mpl-benchmarks' changelog
 
+### 2021-02-27 clean tick label formatting
+
+In some applications I prefer a clean tick label formatting, which removes trailing decimal zero digits, i.e.
+a 1.0 is printed as 1 and a 0.0 as 0. Previously I used the following syntax for this:
+```python
+from matplotlib.ticker import FuncFormatter
+
+def cleanFormatter(x, pos = None):
+    '''
+    will format 0.0 as 0 and
+    will format 1.0 as 1
+    '''
+    return '{:g}'.format(x)
+
+# ...
+# remaining plot script
+# ...
+
+# tick label formatting
+majorFormatter = FuncFormatter(cleanFormatter)
+ax1.xaxis.set_major_formatter(majorFormatter)
+ax1.yaxis.set_major_formatter(majorFormatter)
+```
+
+Recently I rewrote this in the simple and slimmer way below:
+```python
+# tick label formatting
+from matplotlib.ticker import FormatStrFormatter
+majorFormatter = FormatStrFormatter('%g')
+ax1.xaxis.set_major_formatter(majorFormatter)
+ax1.yaxis.set_major_formatter(majorFormatter)
+```
+
 ### 2020-07-25 latex preamble
 Changes introduced when updating to mpl 3.3.0.
 
