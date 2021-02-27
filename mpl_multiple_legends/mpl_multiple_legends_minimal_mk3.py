@@ -14,7 +14,6 @@ import platform
 import numpy as np
 import matplotlib as mpl
 from matplotlib import pyplot as plt
-from matplotlib.ticker import FuncFormatter
 
 mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
@@ -88,7 +87,8 @@ if __name__ == '__main__':
         plt.gca().add_artist(pLeg)
 
     # tick label formatting
-    majorFormatter = FuncFormatter(cleanFormatter)
+    from matplotlib.ticker import FormatStrFormatter
+    majorFormatter = FormatStrFormatter('%g')
     ax1.xaxis.set_major_formatter(majorFormatter)
     ax1.yaxis.set_major_formatter(majorFormatter)
 
