@@ -49,8 +49,13 @@ if __name__ == '__main__':
     ################################################################################################
     # figure size and margin control
     # Step 1 - Set desired figure width by user (in inches).
-    # Here we use this widht as a starting point, from which all other measures are determind.
+    # Here we use the width as a starting point from which all other measures are derived.
     # This could equally be done using the height as pivotal starting point.
+    # And is based on the aspect preserving ratio
+    # fig_width_img / fig_height_img = cumulated_image_width / cumulated_image_height,
+    # which in code reads
+    # fig_width_img / fig_height_img = sum(widths) / sum(heights).
+
     fig_width_img = 6.0
 
     # Step 2 - Derive image figure width (assuming no white space margin)

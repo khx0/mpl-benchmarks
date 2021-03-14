@@ -4,12 +4,12 @@
 # adapted by: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2021-03-14
-# file: mpl_imshow_AB_panel_no_gaps.py
+# file: mpl_imshow_ABC_panel_no_gaps.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
 
 '''
-Minimal demonstrator version for an AB panel using imshow with height_ratios and no gaps
+Minimal demonstrator version for an ABC panel using imshow with height_ratios and no gaps
 between the different images.
 This snippet was inspired by this Stackoverflow thread:
 https://stackoverflow.com/questions/42675864/how-to-remove-gaps-between-images-in-matplotlib
@@ -34,7 +34,7 @@ os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
 
-    outname = 'mpl_imshow_AB_panel_no_gaps'
+    outname = 'mpl_imshow_ABC_panel_no_gaps'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     outname += '_' + today
@@ -42,14 +42,15 @@ if __name__ == '__main__':
     dpi = 100
 
     n_rows = 1
-    n_cols = 2
+    n_cols = 3
 
     matrix_size = 512
 
     data = [np.random.rand(matrix_size, matrix_size), 
+            np.random.rand(matrix_size, matrix_size),
             np.random.rand(matrix_size, matrix_size)]
 
-    cmaps = ['viridis', 'gray']
+    cmaps = ['viridis', 'gray', 'plasma']
 
     '''
     Aussming an equal pixel size, we use the heights and widths of all
@@ -58,7 +59,7 @@ if __name__ == '__main__':
     '''
 
     heights = [matrix_size]
-    widths = [matrix_size, matrix_size]
+    widths = [matrix_size, matrix_size, matrix_size]
 
     fig_width = 6.0 # in inches
     fig_height = fig_width * sum(heights) / sum(widths)
