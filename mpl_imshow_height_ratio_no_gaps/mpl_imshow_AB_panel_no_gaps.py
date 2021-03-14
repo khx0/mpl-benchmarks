@@ -4,12 +4,12 @@
 # adapted by: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
 # date: 2021-03-14
-# file: mpl_multiple_imshows_without_gaps_demo.py
+# file: mpl_imshow_AB_panel_no_gaps.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
 
 '''
-Minimal demonstrator version using imshow with height_ratios.
+Minimal demonstrator version for an AB panel using imshow with height_ratios.
 This snippet was inspired by this Stackoverflow thread:
 https://stackoverflow.com/questions/42675864/how-to-remove-gaps-between-images-in-matplotlib
 last seen online on 2021-03-13
@@ -33,21 +33,22 @@ os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
 
-    outname = 'mpl_imshow_height_ratio_no_gaps_minimal'
+    outname = 'mpl_imshow_AB_panel_no_gaps'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
     outname += '_' + today
 
-    n_rows = 3
+    dpi = 100
+
+    n_rows = 1
     n_cols = 2
 
-    data = [[np.random.rand(10, 10), np.random.rand(10, 10)],
-            [np.random.rand(5, 10), np.random.rand(5, 10)],
-            [np.random.rand(2, 10), np.random.rand(2, 10)]]
+    matrix_size = 512
 
-    cmaps = [['viridis', 'binary'],
-             ['plasma', 'coolwarm'],
-             ['Greens', 'copper']]
+    data = [np.random.rand(matrix_size, matrix_size), 
+            np.random.rand(matrix_size, matrix_size)]
+
+    cmaps = ['viridis', 'gray']
 
     '''
     Aussming an equal pixel size, we use the heights and widths of all
@@ -55,24 +56,26 @@ if __name__ == '__main__':
     keyword, which can be passed to the pyplot.subplots constructor.
     '''
 
-    heights = [a[0].shape[0] for a in data]
-    widths = [a.shape[1] for a in data[0]]
+    heights = [matrix_size]
+    widths = [matrix_size, matrix_size]
 
     fig_width = 6.0 # in inches
     fig_height = fig_width * sum(heights) / sum(widths)
 
-    dpi = 100
+    print("widths: ", widths)
+    print("heights: ", heights)
+    print("fig_width: ", fig_width)
+    print("fig_height: ", fig_height)
 
-    f, axarr = plt.subplots(nrows = n_rows, ncols = n_cols,
+    f, axs = plt.subplots(nrows = n_rows, ncols = n_cols,
         figsize = (fig_width, fig_height),
         gridspec_kw = {'height_ratios': heights},
         dpi = dpi
     )
 
-    for i in range(n_rows):
-        for j in range(n_cols):
-            axarr[i, j].imshow(data[i][j], cmap = cmaps[i][j])
-            axarr[i, j].axis('off')
+    for j in range(n_cols):
+        axs[j].imshow(data[j], cmap = cmaps[j])
+        axs[j].axis('off')
 
     plt.subplots_adjust(
         wspace = 0.0, hspace = 0.0,
