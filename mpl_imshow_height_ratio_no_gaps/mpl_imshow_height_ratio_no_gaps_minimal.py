@@ -3,7 +3,7 @@
 ##########################################################################################
 # adapted by: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-03-14
+# date: 2021-03-18
 # file: mpl_multiple_imshows_without_gaps_demo.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
@@ -32,6 +32,9 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
+
+    # reproducibility
+    np.random.seed(123456789)
 
     outname = 'mpl_imshow_height_ratio_no_gaps_minimal'
     outname += '_Python_' + platform.python_version() + \

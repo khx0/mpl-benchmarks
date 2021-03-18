@@ -26,6 +26,9 @@ os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
 
+    # reproducibility
+    np.random.seed(123456789)
+
     outname = 'mpl_imshow_AB_panel_no_gaps_side_margin_control_with_labels'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
@@ -90,7 +93,10 @@ if __name__ == '__main__':
     )
 
     for j in range(n_cols):
-        axs[j].imshow(data[j], cmap = cmaps[j])
+
+        axs[j].imshow(data[j], cmap = cmaps[j],
+            interpolation = 'nearest')
+
         axs[j].axis('off')
 
     plt.subplots_adjust(

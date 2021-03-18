@@ -3,7 +3,7 @@
 ##########################################################################################
 # adapted by: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-03-14
+# date: 2021-03-18
 # file: mpl_imshow_AB_panel_no_gaps.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
 ##########################################################################################
@@ -33,6 +33,9 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(OUTDIR, exist_ok = True)
 
 if __name__ == '__main__':
+
+    # reproducibility
+    np.random.seed(123456789)
 
     outname = 'mpl_imshow_AB_panel_no_gaps'
     outname += '_Python_' + platform.python_version() + \
