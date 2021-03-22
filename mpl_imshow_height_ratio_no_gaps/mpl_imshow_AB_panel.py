@@ -125,7 +125,7 @@ def plot_AB_panel(data, cmaps, outname, outdir,
                 fontsize = 6.0,
                 zorder = 5
             )
-        
+
         if 'A_top_center' in anno_dict.keys():
             axs[0].annotate(
                 anno_dict['A_top_center'],
