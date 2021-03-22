@@ -6,12 +6,6 @@
 # date: 2021-03-22
 # file: mpl_imshow_AB_panel.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
-#
-# This sequential script is intended to be a standalone python script which presents
-# the code in a plain top to bottom (sequential) manner.
-# Hence, this script is not trying to hide anything away or factorize parts which 
-# might not be necessary for all use cases, but therewith allows maximal tunability
-# with direct access to all plot parameters in a very explicit way.
 ##########################################################################################
 
 import os
@@ -34,11 +28,14 @@ os.makedirs(OUTDIR, exist_ok = True)
 # TODO support non square matrix sizes
 # TODO think about different A B matrix sizes, and how to handle things then
 
-def plot_AB_panel(data, cmaps, outname,
-    fig_width_img = 4.0, top_height_frac = 0.0, bottom_height_frac = 0.0, left_width_frac = 0.0, right_width_frac = 0.0, wspace = 0.0,
+def plot_AB_panel(data, cmaps, outname, outdir,
+    fig_width_img = 4.0, top_height_frac = 0.0, bottom_height_frac = 0.0, 
+    left_width_frac = 0.0, right_width_frac = 0.0, wspace = 0.0,
     anno_dict = None, dpi = 100, savePNG = True, savePDF = False, datestamp = True):
     '''
-    data np.ndarray assuming shape (2, matrix_height, matrix_width)
+    param list data: list containing the two image matrices to be plotted. 
+        Assuming to be broadcasted into shape (2, matrix_height, matrix_width), where both the first and the second image matrix have
+        shape (matrix_height, matrix_width).
     '''
 
     # The current AB panel plot function assumes a horizontal AB panel layout.
@@ -252,6 +249,7 @@ if __name__ == '__main__':
         data = data,
         cmaps = ['gray', 'viridis'],
         outname = outname,
+        outdir = OUTDIR,
         fig_width_img = 4.0,
         top_height_frac = 0.1,
         bottom_height_frac = 0.1,
