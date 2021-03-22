@@ -36,7 +36,7 @@ os.makedirs(OUTDIR, exist_ok = True)
 
 def plot_AB_panel(data, cmaps, outname,
     fig_width_img = 4.0, top_height_frac = 0.0, bottom_height_frac = 0.0, left_width_frac = 0.0, right_width_frac = 0.0, wspace = 0.0,
-    dpi = 100):
+    anno_dict = None, dpi = 100, savePNG = True, savePDF = False, datestamp = True):
     '''
     data np.ndarray assuming shape (2, matrix_height, matrix_width)
     '''
@@ -116,89 +116,109 @@ def plot_AB_panel(data, cmaps, outname,
     )
 
     # annotations
-    # annotations
-    axs[0].annotate('top left label ',
-        xy = (0.0, 1.03),
-        xycoords = 'axes fraction',
-        horizontalalignment = 'left',
-        verticalalignment = 'center',
-        fontsize = 6.0,
-        zorder = 5)
+    if anno_dict:
 
-    axs[0].annotate('top center label ',
-        xy = (0.5, 1.03),
-        xycoords = 'axes fraction',
-        horizontalalignment = 'center',
-        verticalalignment = 'center',
-        fontsize = 6.0,
-        zorder = 5)
+        if 'A_top_left' in anno_dict.keys():
+            axs[0].annotate(
+                anno_dict['A_top_left'],
+                xy = (0.0, 1.03),
+                xycoords = 'axes fraction',
+                horizontalalignment = 'left',
+                verticalalignment = 'center',
+                fontsize = 6.0,
+                zorder = 5
+            )
+        
+        if 'A_top_center' in anno_dict.keys():
+            axs[0].annotate(
+                anno_dict['A_top_center'],
+                xy = (0.5, 1.03),
+                xycoords = 'axes fraction',
+                horizontalalignment = 'center',
+                verticalalignment = 'center',
+                fontsize = 6.0,
+                zorder = 5
+            )
 
-    axs[0].annotate('top right label ',
-        xy = (1.0, 1.03),
-        xycoords = 'axes fraction',
-        horizontalalignment = 'right',
-        verticalalignment = 'center',
-        fontsize = 6.0,
-        zorder = 5)
+        if 'A_top_right' in anno_dict.keys():
+            axs[0].annotate(
+                anno_dict['A_top_right'],
+                xy = (1.0, 1.03),
+                xycoords = 'axes fraction',
+                horizontalalignment = 'right',
+                verticalalignment = 'center',
+                fontsize = 6.0,
+                zorder = 5)
 
-    axs[1].annotate('top left label ',
-        xy = (0.0, 1.03),
-        xycoords = 'axes fraction',
-        horizontalalignment = 'left',
-        verticalalignment = 'center',
-        fontsize = 6.0,
-        zorder = 5)
+        if 'A_bottom_left' in anno_dict.keys():
+            axs[0].annotate(
+                anno_dict['A_bottom_left'],
+                xy = (0.0, -0.03),
+                xycoords = 'axes fraction',
+                horizontalalignment = 'left',
+                verticalalignment = 'center',
+                fontsize = 6.0,
+                zorder = 5
+            )
 
-    axs[1].annotate('top center label ',
-        xy = (0.5, 1.03),
-        xycoords = 'axes fraction',
-        horizontalalignment = 'center',
-        verticalalignment = 'center',
-        fontsize = 6.0,
-        zorder = 5)
+        if 'B_top_left' in anno_dict.keys():
+            axs[1].annotate(
+                anno_dict['B_top_left'],
+                xy = (0.0, 1.03),
+                xycoords = 'axes fraction',
+                horizontalalignment = 'left',
+                verticalalignment = 'center',
+                fontsize = 6.0,
+                zorder = 5
+            )
 
-    axs[1].annotate('top right label ',
-        xy = (1.0, 1.03),
-        xycoords = 'axes fraction',
-        horizontalalignment = 'right',
-        verticalalignment = 'center',
-        fontsize = 6.0,
-        zorder = 5)
+        if 'B_top_center' in anno_dict.keys():
+            axs[1].annotate(
+                anno_dict['B_top_center'],
+                xy = (0.5, 1.03),
+                xycoords = 'axes fraction',
+                horizontalalignment = 'center',
+                verticalalignment = 'center',
+                fontsize = 6.0,
+                zorder = 5
+            )
 
-    image_size_label = f'image matrix {matrix_size}' + r'$\times$' + f'{matrix_size}'
+        if 'B_top_right' in anno_dict.keys():
+            axs[1].annotate(
+                anno_dict['B_top_right'],
+                xy = (1.0, 1.03),
+                xycoords = 'axes fraction',
+                horizontalalignment = 'right',
+                verticalalignment = 'center',
+                fontsize = 6.0,
+                zorder = 5
+            )
 
-    axs[0].annotate(image_size_label,
-        xy = (0.0, -0.03),
-        xycoords = 'axes fraction',
-        horizontalalignment = 'left',
-        verticalalignment = 'center',
-        fontsize = 6.0,
-        zorder = 5)
+        if 'B_bottom_left' in anno_dict.keys():
+            axs[1].annotate(
+                anno_dict['B_bottom_left'],
+                xy = (0.0, -0.03),
+                xycoords = 'axes fraction',
+                horizontalalignment = 'left',
+                verticalalignment = 'center',
+                fontsize = 6.0,
+                zorder = 5
+            )
 
-    axs[1].annotate(image_size_label,
-        xy = (0.0, -0.03),
-        xycoords = 'axes fraction',
-        horizontalalignment = 'left',
-        verticalalignment = 'center',
-        fontsize = 6.0,
-        zorder = 5)
-
-    print("creating png figure with width, height:", fig_width, fig_height)
-    # save plot to file
-    f.savefig(os.path.join(OUTDIR, outname) + '.png',
-              transparent = True)
-
-    ####################################################
-    # uncomment to save as pdf
-    # f.savefig(os.path.join(OUTDIR, outname) + '.pdf',
-    #           transparent = True)
-    ####################################################
-
+    ######################################################################################
+    # save to file
+    if datestamp:
+        outname += '_' + today
+    if savePDF: # save to file using pdf backend
+        f.savefig(os.path.join(outdir, outname) + '.pdf', dpi = dpi, transparent = True)
+    if savePNG:
+        print("creating png figure with width, height:", fig_width, fig_height)
+        f.savefig(os.path.join(outdir, outname) + '.png', dpi = dpi, transparent = True)
+    ######################################################################################
     # close handles
     plt.cla()
     plt.clf()
     plt.close()
-
     return None
 
 if __name__ == '__main__':
@@ -214,7 +234,19 @@ if __name__ == '__main__':
     outname = 'mpl_imshow_AB_panel'
     outname += '_Python_' + platform.python_version() + \
                '_mpl_' + mpl.__version__
-    outname += '_' + today
+
+    image_size_label = f'image matrix {matrix_size}' + r'$\times$' + f'{matrix_size}'
+
+    anno_dict = {
+        'A_top_left': 'top left label',
+        'A_top_center': 'top center label',
+        'A_top_right': 'top right label',
+        'A_bottom_left': image_size_label,
+        'B_top_left': 'top left label',
+        'B_top_center': 'top center label',
+        'B_top_right': 'top right label',
+        'B_bottom_left': image_size_label,
+    }
 
     plot_AB_panel(
         data = data,
@@ -225,6 +257,7 @@ if __name__ == '__main__':
         bottom_height_frac = 0.1,
         left_width_frac = 0.02,
         right_width_frac = 0.02,
-        wspace = 0.02,
+        wspace = 0.015,
+        anno_dict = anno_dict,
         dpi = 300,
     )

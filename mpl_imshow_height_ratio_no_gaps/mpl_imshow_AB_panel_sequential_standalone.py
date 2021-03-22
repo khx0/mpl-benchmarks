@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-03-20
+# date: 2021-03-22
 # file: mpl_imshow_AB_panel_sequential_standalone.py
 # tested with python 3.7.6 in conjunction with mpl version 3.3.4
 #
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     # Step 1 - Set desired figure width by user (in inches).
     # Here we use the width as a starting point from which all other measures are derived.
     # This could equally be done using the height as pivotal starting point.
-    # This considerations are based on the aspect preserving ratio
+    # These considerations are based on the aspect preserving ratio
     # fig_width_img / fig_height_img = cumulated_image_width / cumulated_image_height,
     # which in code reads
     # fig_width_img / fig_height_img = sum(widths) / sum(heights).
@@ -124,7 +124,7 @@ if __name__ == '__main__':
     )
 
     # annotations
-    axs[0].annotate('top left label ',
+    axs[0].annotate('top left label',
         xy = (0.0, 1.03),
         xycoords = 'axes fraction',
         horizontalalignment = 'left',
@@ -132,7 +132,7 @@ if __name__ == '__main__':
         fontsize = 6.0,
         zorder = 5)
 
-    axs[0].annotate('top center label ',
+    axs[0].annotate('top center label',
         xy = (0.5, 1.03),
         xycoords = 'axes fraction',
         horizontalalignment = 'center',
@@ -140,7 +140,7 @@ if __name__ == '__main__':
         fontsize = 6.0,
         zorder = 5)
 
-    axs[0].annotate('top right label ',
+    axs[0].annotate('top right label',
         xy = (1.0, 1.03),
         xycoords = 'axes fraction',
         horizontalalignment = 'right',
@@ -148,7 +148,7 @@ if __name__ == '__main__':
         fontsize = 6.0,
         zorder = 5)
 
-    axs[1].annotate('top left label ',
+    axs[1].annotate('top left label',
         xy = (0.0, 1.03),
         xycoords = 'axes fraction',
         horizontalalignment = 'left',
@@ -156,7 +156,7 @@ if __name__ == '__main__':
         fontsize = 6.0,
         zorder = 5)
 
-    axs[1].annotate('top center label ',
+    axs[1].annotate('top center label',
         xy = (0.5, 1.03),
         xycoords = 'axes fraction',
         horizontalalignment = 'center',
@@ -164,7 +164,7 @@ if __name__ == '__main__':
         fontsize = 6.0,
         zorder = 5)
 
-    axs[1].annotate('top right label ',
+    axs[1].annotate('top right label',
         xy = (1.0, 1.03),
         xycoords = 'axes fraction',
         horizontalalignment = 'right',
