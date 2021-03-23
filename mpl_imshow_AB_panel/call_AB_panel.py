@@ -13,11 +13,8 @@ import platform
 import datetime
 import numpy as np
 import matplotlib as mpl
-from matplotlib import pyplot as plt
 
 from mpl_imshow_AB_panel import plot_AB_panel
-
-mpl.ticker._mathdefault = lambda x: '\\mathdefault{%s}'%x
 
 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
