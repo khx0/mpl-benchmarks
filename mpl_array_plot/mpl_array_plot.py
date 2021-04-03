@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-06
+# date: 2021-04-03
 # file: mpl_array_plot.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 import os
@@ -48,7 +48,7 @@ def plot_patch_array(X, nrows, ncols, outname, outdir, cmap,
                '_mpl_' + mpl.__version__
 
     if datestamp:
-        outname += '_' + today         
+        outname += '_' + today
     if savePNG:
         f.savefig(os.path.join(outdir, outname) + '.png',
                   dpi = 600,
