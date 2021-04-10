@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-06
+# date: 2021-04-10
 # file: mpl_arrows_absScale_aspect_1.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 import os
@@ -118,9 +118,9 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     lineWidth = 0.5
 
     '''
-	mpl.arrows example
-	In this example the arrow position and in particular the arrow head size are
-	specified by absolute scaling.
+    mpl.arrows example
+    In this example the arrow position and in particular the arrow head size are
+    specified by absolute scaling.
     '''
 
     ######################################################################################
@@ -266,18 +266,14 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
 
     ######################################################################################
     # set plot range and scale
-    if xFormat == None:
-        pass # mpl autoscale
-    else:
+    if xFormat:
         xmin, xmax, xTicksMin, xTicksMax, dxMajor, dxMinor = xFormat
         ax1.set_xlim(xmin, xmax)
         major_x_ticks = np.arange(xTicksMin, xTicksMax, dxMajor)
         minor_x_ticks = np.arange(xTicksMin, xTicksMax, dxMinor)
         ax1.set_xticks(major_x_ticks)
         ax1.set_xticks(minor_x_ticks, minor = True)
-    if yFormat == None:
-        pass # mpl autoscale
-    else:
+    if yFormat:
         ymin, ymax, yTicksMin, yTicksMax, dyMajor, dyMinor = yFormat
         ax1.set_ylim(ymin, ymax)
         major_y_ticks = np.arange(yTicksMin, yTicksMax, dyMajor)
