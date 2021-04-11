@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-07
+# date: 2021-04-11
 # file: mpl_axis_label_rotation_y-horizontal.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 import os
@@ -71,7 +71,8 @@ def Plot(X, outname, outdir, pColors, titlestr = None,
     # set up figure
     fWidth, fHeight, lFrac, rFrac, bFrac, tFrac =\
         getFigureProps(width = 4.1, height = 2.9,
-                       lFrac = 0.17, rFrac = 0.95, bFrac = 0.15, tFrac = 0.95)
+                       lFrac = 0.17, rFrac = 0.95,
+                       bFrac = 0.15, tFrac = 0.95)
     f, ax1 = plt.subplots(1)
     f.set_size_inches(fWidth, fHeight)
     f.subplots_adjust(left = lFrac, right = rFrac)
