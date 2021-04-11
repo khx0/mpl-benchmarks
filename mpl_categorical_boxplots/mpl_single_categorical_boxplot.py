@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-07
+# date: 2021-04-11
 # file: mpl_single_categorical_boxplot.py
-# tested with python 3.7.6 and matplotlib 3.3.4
+# tested with python 3.7.6 and matplotlib 3.4.1
 ##########################################################################################
 
 import os
@@ -127,7 +127,7 @@ if __name__ == '__main__':
     # iterate over different median bar colors
     for pColors in pColors_list:
 
-        outname = 'mpl_single_categorical_boxplot'  
+        outname = 'mpl_single_categorical_boxplot'
         outname += '_' + pColors[0]
         outname += '_Python_' + platform.python_version() + \
                    '_mpl_' + mpl.__version__
