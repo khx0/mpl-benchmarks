@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-03-22
+# date: 2021-04-18
 # file: mpl_imshow_AB_panel.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 import os
