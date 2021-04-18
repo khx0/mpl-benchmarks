@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-14
+# date: 2021-04-18
 # file: mpl_heatmap_log_xy-scale.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 import sys
@@ -170,7 +170,7 @@ def plot_pcolor(X, Y, Z, params, fProps,
         ax1.set_xlim(xFormat[1], xFormat[2]) # xmin, xmax
     else:
         print("Error: Unknown xFormat[0] type encountered.")
-        sys.exit(1)
+
     #####################################################################################
     if yFormat[0] == 'auto':
         pass
@@ -188,7 +188,6 @@ def plot_pcolor(X, Y, Z, params, fProps,
         ax1.set_ylim(yFormat[1], yFormat[2]) # ymin, ymax
     else:
         print("Error: Unknown yFormat[0] type encountered.")
-        sys.exit(1)
 
     ######################################################################################
     # grid options
