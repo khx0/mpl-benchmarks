@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-22
+# date: 2021-04-19
 # file: mpl_scatter_plot_with_data_labels.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 # description:
 # This script illustrates a couple of non-default features:
 # * data labels for scatter points using mpl's annotate function (using data coords)
