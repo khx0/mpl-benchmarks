@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-03-22
+# date: 2021-04-19
 # file: call_AB_panel.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 import os
@@ -35,7 +35,7 @@ if __name__ == '__main__':
     wspace_values = [0.0, 0.015, 0.025, 0.05]
 
     for i, wspace in enumerate(wspace_values):
-
+        print(i, wspace)
         # call plot function
         outname = f'mpl_imshow_AB_panel_{i:02d}_wspace_{wspace:0.2}'
         outname += '_Python_' + platform.python_version() + \

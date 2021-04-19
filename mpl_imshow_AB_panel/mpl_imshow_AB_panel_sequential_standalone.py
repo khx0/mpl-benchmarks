@@ -3,7 +3,7 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-04-18
+# date: 2021-04-19
 # file: mpl_imshow_AB_panel_sequential_standalone.py
 # tested with python 3.7.6 in conjunction with mpl version 3.4.1
 #
