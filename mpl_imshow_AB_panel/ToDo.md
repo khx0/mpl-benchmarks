@@ -1,4 +1,4 @@
-# TODO.md
+# ToDo.md
 
 * In the `*.png` output the single pixels appear to be non-square. Investigate this behavior.
 * This behavior was observed per 2021-04-19 using mpl version 3.4.1.
