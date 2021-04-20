@@ -3,9 +3,9 @@
 ##########################################################################################
 # adapted by: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-03-18
+# date: 2021-04-20
 # file: mpl_imshow_ABC_panel_no_gaps.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 '''
