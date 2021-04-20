@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-03-18
-# file: mpl_imshow_AB_panel_side_margin_control.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# date: 2021-04-20
+# file: mpl_imshow_AB_panel_side_margin_control_with_labels.py
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 import os
