@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-02-27
+# date: 2021-04-23
 # file: mpl_multiple_legends.py
-# tested with python 3.7.6 in conjunction with mpl version 3.3.4
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 import os
@@ -140,7 +140,6 @@ def Plot(Xs, X, params, outname, outdir, pColors, labels, titlestr = None,
                     facecolors = pColors[i],
                     alpha = 1.0,
                     linewidth = 0.5,
-                    edgecolors = pColors[i],
                     zorder = 2)
 
         ax1.scatter(Xs[:, 0], Xs[:, i + 1],
@@ -170,7 +169,6 @@ def Plot(Xs, X, params, outname, outdir, pColors, labels, titlestr = None,
                 facecolors = dummyColor,
                 alpha = 1.0,
                 linewidth = 1.0,
-                edgecolors = dummyColor,
                 label = 'M1')
     ax1.scatter(x, y,
                 marker = 'v',
