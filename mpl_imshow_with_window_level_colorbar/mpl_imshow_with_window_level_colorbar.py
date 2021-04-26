@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2020-07-09
+# date: 2021-04-26
 # file: mpl_imshow_with_window_level_colorbar.py
-# tested with python 3.7.6 in conjunction with mpl version 3.2.2
+# tested with python 3.7.6 in conjunction with mpl version 3.4.1
 ##########################################################################################
 
 import sys
@@ -349,7 +349,7 @@ def plot_image(img, fProps, zFormat, zColor, outname, outdir, show_colorbar = Fa
     plt.close()
     return outname
 
-def test_01(cMap = cm.grey):
+def test_01(cMap = cm.gray):
 
     print("/////////////////////////////////////////////////////////////////////////////")
     print("Running test 01")
