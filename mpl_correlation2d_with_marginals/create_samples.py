@@ -8,7 +8,7 @@
 # tested with python 3.7.6
 ##########################################################################################
 # description:
-# Creates fully correlated (1) and fully independent (2) normally distributed
+# Creates (1) fully correlated and (2) fully independent normally distributed
 # random samples using inverse transform sampling (ITS).
 ##########################################################################################
 
@@ -27,7 +27,7 @@ OUTDIR = os.path.join(BASEDIR, 'out')
 os.makedirs(RAWDIR, exist_ok = True)
 
 def inverseTransformSamplingJoint(n_samples, mu1, sigma1, mu2, sigma2):
-    u = np.random.uniform(size = n_samples)    
+    u = np.random.uniform(size = n_samples)
     x1 = norm.ppf(u, loc = mu1, scale = sigma1)
     x2 = norm.ppf(u, loc = mu2, scale = sigma2)
     return x1, x2

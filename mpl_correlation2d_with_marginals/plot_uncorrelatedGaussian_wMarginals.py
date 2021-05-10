@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-04-12
+# date: 2021-05-10
 # file: plot_uncorrelateGaussian_wMarginals.py
-# tested with python 3.7.6 in conjunction with mpl version 3.4.1
+# tested with python 3.7.6 in conjunction with mpl version 3.4.2
 ##########################################################################################
 # description: plots uncorrelated data samples that can be generated using the
 # provided create_samples.py script
@@ -327,7 +327,7 @@ if __name__ == '__main__':
     ######################################################################################
 
     # check correlation by computing the Pearson correlation coefficient
-    rhoPearson = scipy.stats.pearsonr(sample1, sample2)    
+    rhoPearson = scipy.stats.pearsonr(sample1, sample2)
     print("rho(Pearson) =", rhoPearson)
 
     rhoString = r'$\rho = {}$'.format(np.round(rhoPearson[0], 4))
