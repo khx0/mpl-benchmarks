@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-04-18
+# date: 2021-05-12
 # file: mpl_heatmap_linear_xy-scale.py
-# tested with python 3.7.6 in conjunction with mpl version 3.4.1
+# tested with python 3.7.6 in conjunction with mpl version 3.4.2
 ##########################################################################################
 
 import sys
@@ -127,7 +127,7 @@ def plot_pcolor(X, Y, Z, params,
         cb1.ax.tick_params(axis = 'y', direction = 'out', which = 'both')
         cb1.ax.tick_params(labelsize = 6.0)
 
-        if (zFormat[0] == 'linear'):
+        if zFormat[0] == 'linear':
             cb_labels = np.arange(zFormat[1], zFormat[2], zFormat[3])
             cb1.set_ticks(cb_labels)
         # cb1.ax.minorticks_on()
