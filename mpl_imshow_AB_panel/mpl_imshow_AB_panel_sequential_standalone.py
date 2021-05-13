@@ -3,9 +3,9 @@
 ##########################################################################################
 # author: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-04-19
+# date: 2021-05-13
 # file: mpl_imshow_AB_panel_sequential_standalone.py
-# tested with python 3.7.6 in conjunction with mpl version 3.4.1
+# tested with python 3.7.6 in conjunction with mpl version 3.4.2
 #
 # This sequential script is intended to be a standalone python script which presents
 # the code in a plain top to bottom (sequential) manner.
