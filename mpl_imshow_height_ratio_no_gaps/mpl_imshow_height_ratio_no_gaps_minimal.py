@@ -3,9 +3,9 @@
 ##########################################################################################
 # adapted by: Nikolas Schnellbaecher
 # contact: khx0@posteo.net
-# date: 2021-04-20
+# date: 2021-05-14
 # file: mpl_multiple_imshows_without_gaps_demo.py
-# tested with python 3.7.6 in conjunction with mpl version 3.4.1
+# tested with python 3.7.6 in conjunction with mpl version 3.4.2
 ##########################################################################################
 
 '''
